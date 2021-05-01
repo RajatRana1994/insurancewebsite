@@ -1,0 +1,698 @@
+/*-------- Index -----------
+- Common
+- Top Header
+- Left Side Bar
+- Right Contant
+- Footer
+- Media Query
+---------- Index ---------*/
+
+/*----- Common ------*/
+html, body{
+	height:100%;
+}
+body{
+	padding:0;
+	margin:0;
+	font-family: 'Poppins', sans-serif;
+}
+h1, h2, h3, h4, h5, h6, p , ul{
+	padding:0;
+	margin:0;
+}
+p{
+	word-break: break-word;
+}
+a, a:hover{
+	text-decoration:none;
+}
+ul{
+	list-style:none;
+}
+strong, b{
+	font-weight:600;
+}
+button:focus, .form-control:focus, button.btn:focus {
+    outline: unset;
+    box-shadow: none;
+}
+.container {
+    max-width: 1920px;
+    padding: 0 40px;
+}
+.buuz_right_outer .form-control {
+	border-color:#eee;
+	border-left:4px solid #0379fd;
+	height:66px;
+	border-radius:6px;
+	font-size:20px;
+}
+.buuz_right_outer textarea.form-control{
+	height:auto;
+}
+.buuz_right_outer .btn {
+    border-radius: 50px;
+    padding: 0 50px;
+    height: 56px;
+}
+
+/*----- Login -----*/
+.buuz_login_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.buzz_login_outer {
+    width: 100%;
+    max-width: 600px;
+    margin: 30px auto;
+}
+.buuz_login_block {
+    background: #fff;
+    box-shadow: 0 0 16px 3px #ddd;
+    margin: 32px 15px 16px;
+    padding: 50px 40px;
+    border-radius: 8px;
+}
+.buuz_login_block h1 {
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #464646;
+    text-transform: uppercase;
+}
+.buuz_login_block .form-group {
+    position: relative;
+	margin-bottom:24px;
+}
+.buuz_login_block .form-control {
+	border-color:#eee;
+	border-left:4px solid #0379fd;
+	height:72px;
+	border-radius:6px;
+	padding-left: 80px;
+	font-size:20px;
+}
+.form_control_icon {
+    position: absolute;
+    top: 23px;
+    left: 18px;
+    border-right: 2px solid #ccc;
+    padding-right: 18px;
+}
+.forgot_password {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 40px 0;
+	flex-flow: wrap;
+}
+.forgot_password a {
+    color: #464646;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+	margin-bottom:10px;
+}
+.custom-checkbox {
+	margin-bottom:10px;
+}
+.login_btn_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.login_btn_wrapper .btn {
+    background: #0379fd;
+    border-radius: 50px;
+    height: 52px;
+    width: 160px;
+    font-size: 18px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login_btn_wrapper .btn img {
+    margin-right: 10px;
+}
+
+/*----- Left Side Bar -----*/
+.buuz_left_menu {
+    position: fixed;
+    width: 350px;
+    height: 100%;
+    z-index: 2;	
+	background:#0379fd;
+	padding:24px;
+	overflow-y:auto;
+}
+.buuz_left_menu::-webkit-scrollbar, .buuz_left_menu ul::-webkit-scrollbar{
+    display: none;
+}
+.buuz_left_menu, .buuz_left_menu ul{
+    -ms-overflow-style: none;
+}
+.buuz_left_menu .side_bar_logo {
+	padding:8px 0px 32px;
+}
+.buuz_left_menu .left_link {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 198px);
+}
+.buuz_left_menu ul li{
+	position:relative;
+	cursor:pointer;
+}
+.buuz_left_menu ul li a {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    transition: all .4s;
+    font-size: 17px;
+    position: relative;
+    font-weight: 600;
+    flex-flow: wrap;
+    background: #1c86fd;
+    margin-bottom: 12px;
+    padding: 21px 20px 21px 60px;
+    border-radius: 10px;
+}
+.buuz_left_menu ul li a.active, .buuz_left_menu ul li a:hover{
+    background: #fff;
+    color: #0379fd;
+}
+.buuz_left_menu ul li a img {
+    transition: .4s all;
+    position: absolute;
+    left: 21px;
+}
+.buuz_left_menu ul li a img.active_on{
+	opacity:0;
+}
+.buuz_left_menu ul li a.active img.active_on, .buuz_left_menu ul li a:hover img.active_on{
+	opacity:1;
+}
+.buuz_left_menu ul li a img.active_off{
+	opacity:1;
+}
+.buuz_left_menu ul li a.active img.active_off, .buuz_left_menu ul li a:hover img.active_off{
+	opacity:0;
+}
+.buuz_left_menu ul.left_bottom_link li a {
+	justify-content:center;
+	padding:21px 20px;
+}
+.buuz_left_menu ul.left_bottom_link li:nth-child(1) a{
+	background:#aa00dc;
+}
+.buuz_left_menu ul.left_bottom_link li:nth-child(2) a{
+	background:#00db43;
+}
+.buuz_left_menu ul.left_bottom_link li:nth-child(3) a{
+	background:#ff9d46;
+}
+.buuz_left_menu ul.left_bottom_link li:last-child a{
+	margin-bottom:0;
+}
+.buuz_left_menu ul.left_bottom_link li a.active, .buuz_left_menu ul.left_bottom_link li a:hover{
+    background: #fff;
+}
+
+/*----- Top Header -----*/
+.buuz_top_header {
+	padding: 21px 24px;
+    background: #fff;
+    box-shadow: 0px 0px 5px 1px #eee;
+}
+.top_header_heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.top_header_heading h4 {
+	font-weight:600;
+	font-size:32px;
+	color:#6d6e70;
+}
+.top_header_heading .form-control {
+    width: auto;
+    border: none;
+    font-size: 19px;
+    color: #212121;
+}
+
+/*----- Right Contant -----*/
+.buuz_right_contant {
+    width: calc(100% - 350px);
+    float: right;
+}
+.buuz_right_outer {
+	padding:35px 24px 0;
+}
+.buuz_inner_heading {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 24px;
+    padding-bottom: 15px;
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	flex-flow: wrap;
+}
+.buuz_inner_heading h1 {
+    font-size: 32px;
+    font-weight: 600;
+	color:#6d6e70;
+}
+.right_heading_text {
+    display: flex;
+    align-items: center;
+}
+.right_heading_text div {
+    margin-left: 20px;
+	font-size:18px;
+	color:#6d6e70;
+}
+
+/*----- Buuz Connect Leads & Buuz Connect Order -----*/
+.buuz_connect_wrapper, .portfolio_wrapper {
+	font-family: 'Proxima Nova Rg';
+}
+.buuz_connect_wrapper > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 10px 16px;
+    border-radius: 5px;
+	margin-bottom:12px;
+}
+.buuz_connect_wrapper h5 {
+	font-size:25px;
+	font-weight:500;
+	color: #6d6e70;
+}
+.buuz_connect_right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: right;
+	font-size:20px;
+	color: #6d6e70;
+}
+.buuz_connect_right span {
+	margin:0 20px;
+	font-size:18px;
+	line-height:1.2;
+}
+.buuz_connect_right i {
+    border: 1px solid #0379fd;
+    border-radius: 50%;
+    color: #0379fd;
+    padding: 8px;
+    font-size: 22px;
+}
+.buuz_right_outer .buuz_connect_order_top .date_control {
+	width:140px;
+}
+.buuz_right_outer .buuz_connect_order_top .form-control {
+	height:56px;
+	font-size:16px;
+}
+.flow_wrap {
+	flex-flow:wrap;
+}
+.first_field .form-group {
+	width:47%;
+}
+.buuz_right_outer .buuz_connect_order_top .btn {
+    padding: 0 16px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+.connect_lable {
+    flex: 0 0 100%;
+    font-weight: 600;
+    font-size: 24px;
+    color: #6d6e70;
+	margin-bottom:8px;
+}
+
+/*----- Buuz Connect Leads Status & Buuz Connect Order Status -----*/
+.buuz_connect_status_block {
+    border: 1px solid #ddd;
+    padding: 4px 20px 20px;
+	height: 100%;
+    border-radius: 10px;
+}
+.buuz_connect_status_block h5 {
+    font-size: 21px;
+    margin-bottom: 2px;
+    color: #595959;
+	margin-top:16px;
+}
+.buuz_connect_status_block p {
+    font-size: 26px;
+    color: #0379fd;
+}
+.right_heading_text .print_icon {
+	color:#0379fd;
+}
+.print_icon i {
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 7px;
+}
+.buuz_right_outer .lead_received {
+	width:240px;
+}
+
+/*----- Distributor Coverage Page -----*/
+.coverage_location {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 16px;
+}
+.coverage_location li {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 7px 10px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+	color:#939598;
+	font-size:24px;
+}
+
+/*----- Profolio Page -----*/
+.portfolio_wrapper .nav-tabs {
+    padding-bottom:24px;
+    margin-bottom: 20px;
+}
+.portfolio_wrapper .nav-tabs li a {
+    background: #ebebeb;
+    padding: 15px 16px;
+    border-radius: 6px;
+    color: #000;
+    font-weight: 600;
+    margin-right: 10px;
+    width: 140px;
+    display: inline-block;
+    text-align: center;
+    font-size: 17px;
+	transition: .4s all;
+	margin-bottom:10px;
+}
+.portfolio_wrapper .nav-tabs li:last-child a{
+	margin-right:0px;
+}
+.portfolio_wrapper .nav-tabs li a.active, .portfolio_wrapper .nav-tabs li a:hover{
+	background:#0379fd;
+	color:#fff;
+}
+.portfolio_wrapper .nav-tabs form {
+	width:330px;
+	margin-right:auto;
+	margin-bottom:10px;
+}
+.portfolio_table_heading h4 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #6d6e70;
+} 
+.portfolio_table_heading p {
+    font-size: 17px;
+    color: #6d6e70;
+} 
+.portfolio_table_heading .btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+    text-transform: uppercase;
+    border-radius: 8px;
+    padding: 0 20px;
+}
+.portfolio_table table thead {
+    background: #0379fd;
+	margin-bottom: 10px;
+}
+.portfolio_table table thead tr th {
+    white-space: nowrap;
+    color: #fff;
+    border-left: 1px solid #ddd;
+    border-bottom: none; 
+	font-size:20px;
+	font-weight:500;
+	vertical-align: middle;
+	padding: 15px 10px;
+}
+.portfolio_table table .profolio_dis_td {
+	width:300px;
+}
+.portfolio_table table tbody tr td {
+    color: #575757;
+    font-size: 20px;
+    vertical-align: middle;
+    background: #f7f7f7;
+    border-top: 16px solid #fff;
+	border-left: 1px solid #eee;
+}
+.portfolio_table table .profolio_dis_td p {
+    width: 300px;
+}
+
+/*----- Media Query -----*/
+@media (min-width: 1200px){ 
+	.buuz_left_menu {
+		left: 0 !important;
+	}
+}
+
+@media (max-width: 1199px){
+	.buuz_right_contant {
+		width: 100%;
+    }
+	.mobile-adminlogo .admin_logoimg {
+		padding: 14px 10px;
+		width:auto;
+	}
+	.mobile-adminlogo img{
+		width:80%;
+	}
+	.close_btn {
+		position: absolute;
+		right: 16px;
+		top: 22px;
+	}
+	.overlay {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 20;
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+        top: 0;
+    }
+    .overlay.active {
+        display: block;
+        opacity: 1;
+    }
+    .bodyactive {
+        position: relative;
+        overflow: hidden;
+    }
+	.mobile-adminlogo {
+		background: #fff;
+		border-right: 1px solid #ddd;
+	}
+	.buuz_left_menu ul li a.active:after, .buuz_left_menu ul li a.active:before{
+		display:none;
+	}
+	.buuz_left_menu {
+		float: left;
+		overflow-x: hidden;
+		left: -100%;
+		z-index:24;
+		transition: all .4s;
+		top:0;
+		margin-top:0;
+	}
+	.toggle_nav {
+		position: absolute;
+		top: 29px;
+	}
+	.top_header_heading {
+		padding-left: 40px;
+	}
+}
+
+@media (max-width: 991px){ 
+    .buuz_left_menu {
+		width: 320px;
+	}
+	.side_bar_logo img {
+		width: 110px;
+	}
+	.buuz_left_menu .left_link {
+		height: 100%;
+	}
+	.buuz_left_menu .side_bar_logo {
+		padding: 0px 0px 24px;
+	}
+	.buuz_left_menu ul li a {
+		font-size: 15px;
+		margin-bottom: 8px;
+		padding: 14px 20px 14px 56px;
+	}
+	.buuz_left_menu ul.left_bottom_link li a {
+		padding: 14px 20px;
+	}
+    .top_header_heading h4 {
+		font-size: 24px;
+	}
+	.toggle_nav {
+		top: 26px;
+	}
+	.top_header_heading .form-control {
+		font-size: 15px;
+	}
+	.buuz_inner_heading h1 {
+		font-size: 24px;
+	}
+	.buuz_inner_heading {
+		padding-bottom: 6px;
+	}
+	.buuz_connect_status_block h5 {
+		font-size: 18px;
+	}
+	.buuz_connect_status_block p {
+		font-size: 20px;
+	}
+	.right_heading_text div {
+		font-size: 16px;
+	}
+	.buuz_right_outer .form-control, .buuz_right_outer .buuz_connect_order_top .form-control {
+		height: 50px;
+		font-size: 16px;
+	}
+	.buuz_right_outer .btn {
+		padding: 0 24px;
+		height: 50px;
+	}
+	.portfolio_wrapper .nav-tabs li a {
+		padding: 13px 6px;
+		margin-right: 8px;
+		width: 100px;
+		font-size: 15px;
+	}
+	.connect_lable {
+		font-size: 18px;
+	}
+	.buuz_connect_wrapper h5 {
+		font-size: 20px;
+	}
+	.buuz_connect_right {
+		font-size: 16px;
+	}
+	.buuz_connect_right span {
+		font-size: 14px;
+	}
+	.buuz_connect_right i {
+		padding: 6px;
+		font-size: 16px;
+	}
+	.buuz_connect_wrapper > div {
+		padding: 7px 10px;
+		margin-bottom: 10px;
+	}
+}
+@media (max-width: 767px){
+	.buuz_login_block {
+		padding: 24px 16px;
+	}
+	.form_control_icon img {
+		width: 24px;
+	}
+	.form_control_icon {
+		top: 12px;
+		left: 14px;
+		padding-right: 14px;
+	}
+	.buuz_login_block .form-control {
+		border-left: 3px solid #0379fd;
+		height: 50px;
+		padding-left: 64px;
+		font-size: 16px;
+	}
+	.forgot_password {
+		margin: 24px 0 14px;
+	}
+	.login_btn_wrapper .btn img {
+		margin-right: 6px;
+		width: 20px;
+	}
+	.login_btn_wrapper .btn {
+		height: 50px;
+		font-size: 16px;
+		width: 128px;
+	}
+	.buuz_login_block h1 {
+		font-size: 24px;
+		margin-bottom: 30px;
+	}
+	.buuz_connect_wrapper > div {
+		flex-flow:wrap;
+	}
+	.buuz_connect_wrapper h5 {
+		font-size: 20px;
+		flex: 0 0 100%;
+		margin-bottom: 10px;
+		border-bottom: 1px solid #ddd;
+		padding-bottom: 6px;
+	}
+	.buuz_connect_right {
+		justify-content: space-between;
+		font-size: 18px;
+		flex: 0 0 100%;
+	}
+	.buuz_connect_status_block {
+		height: auto;
+		margin-bottom: 24px;
+	}
+	.top_header_heading h4 {
+		font-size: 20px;
+	}
+	.buuz_inner_heading h1 {
+		font-size: 20px;
+	}
+	.buuz_connect_status_block h5 {
+		font-size: 16px;
+	}
+	.buuz_connect_status_block p {
+		font-size: 18px;
+	}
+	.buuz_right_outer .form-control, .buuz_right_outer .buuz_connect_order_top .form-control {
+		height: 44px;
+		font-size: 16px;
+		border-left: 3px solid #0379fd;
+	}
+	.buuz_right_outer .btn {
+		height: 44px;
+	}
+	.portfolio_table table thead tr th {
+		font-size: 16px;
+		padding: 12px 10px;
+	}
+	.portfolio_table table tbody tr td {
+		font-size: 16px;
+		border-top: 8px solid #fff;
+	}
+	.portfolio_wrapper .nav-tabs li a {
+		padding: 10px 6px;
+	}
+}

@@ -1,0 +1,91 @@
+  /* Actual code example */
+  .form-field {
+    display: block;
+    margin-bottom: 16px;
+  }
+  /* .form-field--is-active .form-field__control::after {
+    border-bottom: 2px solid #b11adc;
+    -webkit-transform: scaleX(150);
+            transform: scaleX(150);
+  } */
+  .form-field__label{
+      color: rgba(52, 57, 63, 0.65);
+      pointer-events: none;
+  }
+  .form-field--is-active .form-field__label {
+    color: #574bf6;
+    font-size: 0.75rem;
+    -webkit-transform: translateY(-14px);
+            transform: translateY(-14px);
+            font-weight: 500;
+  }
+  .form-field--is-filled .form-field__label {
+    font-size: 0.75rem;
+    -webkit-transform: translateY(-14px);
+
+            transform: translateY(-14px);
+            font-weight: 500;
+  }
+  
+  .form-field__label {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: normal;
+    left: 0;
+    margin: 0;
+    padding: 18px 16px 0;
+    position: absolute;
+    top: 0;
+    transition: all 0.4s;
+    width: 100%;
+  }
+  
+  .form-field__control {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    border: 1px solid #d2d3d4;
+  }
+
+  .with-icon .icon {
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 10px);
+}
+.with-icon .icon svg{
+  fill: #b5b4b4;
+  width: 20px;
+  height: 20px;
+}
+.form-field--is-active .with-icon .icon svg{
+  fill: #574bf6;
+}
+  .form-field--is-active  .form-field__control {
+    border:2px solid #574bf6
+   
+  }
+  
+  .form-field__input,
+  .form-field__textarea {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    background: transparent;
+    border: 0;
+
+    color: #333;
+    display: block;
+    font-size: 1.2rem;
+    /* margin-top: 24px; */
+    outline: 0;
+    padding: 18px 12px 12px 16px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .form-field__textarea {
+    height: 150px;
+  }
+  

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">User Details</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="/referral/dashboard">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">User Details</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <% var messages = getMessages()
+                        if (messages.error_message){ %>
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <%= messages.error_message %>
+                            </div>
+                            <% } if (messages.success_message){ %>
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <%= messages.success_message %>
+                                </div>
+                            <% } %>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header p-2">
+                                        <div class="row">
+                                            <% 
+                                            if(user_result[0].status == 0)
+                                                var acc_status = '<span class="badge bg-warning">New Request</span>';
+                                            if(user_result[0].status == 1)
+                                                var acc_status = '<span class="badge bg-success">In Review  Progress</span>'; 
+                                            if(user_result[0].status == 2)
+                                                var acc_status = '<span class="badge bg-warning">In Communication </span>';
+                                            if(user_result[0].status == 3)
+                                                var acc_status = '<span class="badge bg-success">Completed</span>';
+                                            if(user_result[0].status == 4)
+                                                var acc_status = '<span class="badge bg-danger">Rejected</span>';
+                                            %>
+                                        </div>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <!-- Basic Details -->
+                                            <div class="active tab-pane" id="basicDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <% var v_type = ''
+                                                            if(user_result[0].type == 1)
+                                                                var v_type = "Auto";
+                                                            if(user_result[0].type == 2)
+                                                                var v_type = "Home";
+                                                            if(user_result[0].type == 3)
+                                                                var v_type = "Business";
+                                                            if(user_result[0].type == 4)
+                                                                var v_type = "Work Compensation";
+                                                            if(user_result[0].type == 5)
+                                                                var v_type = "Renters";
+                                                            if(user_result[0].type == 6)
+                                                                var v_type = "Home Insurance Floater";
+                                                            if(user_result[0].type == 7)
+                                                                var v_type = "Motorcycle, RV, Boat";
+                                                            if(user_result[0].type == 8)
+                                                                var v_type = "Umbrella";
+                                                            if(user_result[0].type == 9)
+                                                                var v_type = "Small Group Benefits";
+                                                            if(user_result[0].type == 10)
+                                                                var v_type = "Life";
+                                                            if(user_result[0].type == 11)
+                                                                var v_type = "Health care";
+                                                            if(user_result[0].type == 12)
+                                                                var v_type = "Accident";
+                                                            if(user_result[0].type == 13)
+                                                                var v_type = "Dental";
+                                                            if(user_result[0].type == 14)
+                                                                var v_type = "Short-Term Medical";
+                                                            if(user_result[0].type == 15)
+                                                                var v_type = "Vision";
+                                                            if(user_result[0].type == 16)
+                                                                var v_type = "Medicare";
+                                                            if(user_result[0].type == 17)
+                                                                var v_type = "Medical";
+                                                            if(user_result[0].type == 18)
+                                                                var v_type = "Commercial Auto";
+                                                            if(user_result[0].type == 19)
+                                                                var v_type = "General Liability";
+                                                            if(user_result[0].type == 20)
+                                                                var v_type = "Professional Liability";
+                                                            if(user_result[0].type == 21)
+                                                                var v_type = "Cyber Insurance";
+                                                            if(user_result[0].type == 22)
+                                                                var v_type = "Surety Bonds";
+                                                            if (user_result[0].type == 23)
+                                                                var v_type = "Contact Us";
+                                                        %>
+                                                        <tr>
+                                                            <th>Type of Insurance</th>
+                                                            <td><%= v_type %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <td><%= user_result[0].first_name %> <%= user_result[0].last_name%></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Email</th>
+                                                            <td><%=user_result[0].email  %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Phone Number</th>
+                                                            <td><%= user_result[0].phone_number %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Address</th>
+                                                            <td><%= user_result[0].city %>, <%= user_result[0].state %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Registration Date</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Referred By</th>
+                                                            <td><%= AdminResult.name %> <%= AdminResult.last_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Description</th>
+                                                            <td><%=  user_result[0].comment %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Status</th>
+                                                            <td><%-  acc_status %>
+                                                                <form action="/referral/updateStatus" method="POST">
+                                                                    <input type="hidden" name="id" value="<%= user_result[0].id%>">
+                                                                <select name="status" id="" class="mt-3">
+                                                                    <% if(user_result[0].status == 0){ %>
+                                                                    <option value="0">New Request</option>
+                                                                    <% } if(user_result[0].status == 1 || user_result[0].status == 0){ %>
+                                                                    <option value="1">In Review  Progress</option>
+                                                                    %> } if(user_result[0].status == 2 || user_result[0].status == 0 || user_result[0].status == 1){ %>
+                                                                    <option value="2">In Communication</option>
+                                                                    <% }%>
+                                                                    <option value="3">Completed</option>
+                                                                    <option value="4">Rejected</option>
+                                                                </select>
+                                                                <% if(user_result[0].status != 3){ 
+                                                                    if(user_result[0].status != 4){
+                                                                    %>
+                                                                <button title="update" class="btn btn-primary btn-sm ml-5" onclick="return confirm('Are you sure ?');">
+                                                                    Update
+                                                                </button>
+                                                                <% }} %>
+                                                            </form>
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="68px" height="40px" viewBox="0 0 68 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ic_delete_favourites</title>
+    <desc>Created with Sketch.</desc>
+    <g id="panel-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-Copy-5" stroke="#FF6565" x="0.5" y="0.5" width="67" height="39" rx="19.5"></rect>
+        <g id="ic_delete" transform="translate(25.875000, 11.000000)">
+            <path d="M1.81428571,4.2 L1.81428571,15.6059682 C1.81428571,16.58964 2.62629709,17.4 3.62046078,17.4 L13.3795392,17.4 C14.3813196,17.4 15.1857143,16.598328 15.1857143,15.6059682 L15.1857143,4.2 L1.81428571,4.2 Z" id="Rectangle" stroke="#FF6565" stroke-width="1.2"></path>
+            <g id="Group" fill="#FF6565">
+                <rect id="Rectangle-2" x="0" y="1.2" width="17" height="1.2" rx="0.6"></rect>
+                <rect id="Rectangle-2-Copy" x="4.85714286" y="0" width="7.28571429" height="2.4" rx="1.2"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <% include partials/head.ejs%>
+    </head>
+    <body>
+        <% include partials/header.ejs%>
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center pb-4">
+                    <h2 class="section-title">All we need to get started</h2>
+                </div>
+                <div class="row about justify-content-center">
+
+                    <div class="col-12">
+                        <div class="more_product_form_outer">
+                            <form class="form" method="post" id="healthInsuranceForm">
+                                <div class="more_product_inner_heading subheading">
+                                    <h4>Your coverage</h4>
+                                    <h5 class="pb-3">Do you want to cover anyone else?</h5>
+                                </div>
+                                <div data-cy="radio_form" class="form-group-radiobox stacked form-group">
+                                    <label for="your_coverage-0-0" data-cy="your_coverage-0RadioButton" class="custom-control custom-block custom-radio">
+                                        <input id="your_coverage-0-0" name="coverage_type" type="radio" class="custom-control-input form-check-input" value="1">
+                                        <div class="custom-control-label-wrap">
+                                            <span class="custom-control-indicator"></span>
+                                            <div class="indicator-desc-row"><span class="custom-control-description">Accident</span></div>
+                                        </div>
+                                    </label>
+                                    <label for="your_coverage-2-0" data-cy="your_coverage-0RadioButton" class="custom-control custom-block custom-radio">
+                                        <input id="your_coverage-2-0" name="coverage_type" type="radio" class="custom-control-input form-check-input" value="2">
+                                        <div class="custom-control-label-wrap">
+                                            <span class="custom-control-indicator"></span>
+                                            <div class="indicator-desc-row"><span class="custom-control-description">Dental</span></div>
+                                        </div>
+                                    </label>
+                                    <label for="your_coverage-3-0" data-cy="your_coverage-0RadioButton" class="custom-control custom-block custom-radio">
+                                        <input id="your_coverage-3-0" name="coverage_type" type="radio" class="custom-control-input form-check-input" value="3">
+                                        <div class="custom-control-label-wrap">
+                                            <span class="custom-control-indicator"></span>
+                                            <div class="indicator-desc-row"><span class="custom-control-description">Health</span></div>
+                                        </div>
+                                    </label>
+                                    <label for="your_coverage-4-0" data-cy="your_coverage-0RadioButton" class="custom-control custom-block custom-radio">
+                                        <input id="your_coverage-4-0" name="coverage_type" type="radio" class="custom-control-input form-check-input" value="4">
+                                        <div class="custom-control-label-wrap">
+                                            <span class="custom-control-indicator"></span>
+                                            <div class="indicator-desc-row"><span class="custom-control-description">Medicare</span></div>
+                                        </div>
+                                    </label>
+                                    <label for="your_coverage-5-0" data-cy="your_coverage-0RadioButton" class="custom-control custom-block custom-radio">
+                                        <input id="your_coverage-5-0" name="coverage_type" type="radio" class="custom-control-input form-check-input" value="5">
+                                        <div class="custom-control-label-wrap">
+                                            <span class="custom-control-indicator"></span>
+                                            <div class="indicator-desc-row"><span class="custom-control-description">Short Term Medical</span></div>
+                                        </div>
+                                    </label>
+                                    <label for="your_coverage-6-0" data-cy="your_coverage-0RadioButton" class="custom-control custom-block custom-radio">
+                                        <input id="your_coverage-6-0" name="coverage_type" type="radio" class="custom-control-input form-check-input" value="6">
+                                        <div class="custom-control-label-wrap">
+                                            <span class="custom-control-indicator"></span>
+                                            <div class="indicator-desc-row"><span class="custom-control-description">Vision</span></div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="more_product_inner_heading subheading pt-4 pb-3">
+                                    <h5>Do you want to cover anyone else?</h5>
+                                </div>
+                                <div data-cy="radio_form" class="form-group-radiobox stacked form-group">
+                                    <label for="your_coverage1-0-0" data-cy="your_coverage1-0RadioButton" class="custom-control custom-block custom-radio">
+                                        <input id="your_coverage1-0-0" name="cover_type" type="radio" class="custom-control-input form-check-input" value="1">
+                                        <div class="custom-control-label-wrap">
+                                            <span class="custom-control-indicator"></span>
+                                            <div class="indicator-desc-row"><span class="custom-control-description">Spouse</span></div>
+                                        </div>
+                                    </label>
+                                    <label for="your_coverage1-1-0" data-cy="your_coverage1-0RadioButton" class="custom-control custom-block custom-radio">
+                                        <input id="your_coverage1-1-0" name="cover_type" type="radio" class="custom-control-input form-check-input" value="2">
+                                        <div class="custom-control-label-wrap">
+                                            <span class="custom-control-indicator"></span>
+                                            <div class="indicator-desc-row"><span class="custom-control-description">Children</span></div>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="more_product_inner_heading">
+                                    <h4>Your info</h4>
+                                </div>
+                                <div class="form-innner">
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">First Name</label>
+                                            <input type="text" class="form-field__input" name="first_name" id="first_name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Last Name</label>
+                                            <input type="text" class="form-field__input" name="last_name" id="last_name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Email</label>
+                                            <input type="email" class="form-field__input" name="email" id="email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Phone Number</label>
+                                            <input type="number" class="form-field__input" name="phone_number" id="phone_number" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Birth Date</label>
+                                            <input type="text" class="form-field__input birthdate" name="dob" id="dob" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">ZIP Code</label>
+                                            <input type="number" class="form-field__input" name="zipcode" id="zipcode" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group-radiobox form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <label for="gender-0-0" class="custom-control custom-block custom-radio">
+                                                    <input id="gender-0-0" name="gender" type="radio" class="custom-control-input form-check-input" value="1">
+                                                    <div class="custom-control-label-wrap">
+                                                        <span class="custom-control-indicator"></span>
+                                                        <div class="indicator-desc-row"><span class="custom-control-description">Male</span></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <label for="gender-1-0" class="custom-control custom-block custom-radio">
+                                                    <input id="gender-1-0" name="gender" type="radio" class="custom-control-input form-check-input" value="2">
+                                                    <div class="custom-control-label-wrap">
+                                                        <span class="custom-control-indicator"></span>
+                                                        <div class="indicator-desc-row"><span class="custom-control-description">Female</span></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div name="vehicles-2" class="form-group">
+                                        <label class="custom-control custom-block custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input form-check-input" id="tobacco_product" name="tobacco_product">
+                                            <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Uses tobacco products</span></div>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <div class="more_product_inner_heading">
+                                        <h4>Your Child</h4>
+                                    </div>
+                                    <input type="hidden" name="no_of_child_div" id="no_of_child_div" value="1" class="form-field__input" />
+                                    <div class="childForm">
+                                        <div class="form-field text-left">
+                                            <div class="form-field__control">
+                                                <label  class="form-field__label">Birthdate</label>
+                                                <input type="text" class="form-field__input birthdate" name="child_dob[]" id="child_dob1" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group-radiobox form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <label for="child_gender-1-0" class="custom-control custom-block custom-radio">
+                                                        <input id="child_gender-1-0" name="child_gender[]" type="radio" class="custom-control-input form-check-input" value="1">
+                                                        <div class="custom-control-label-wrap">
+                                                            <span class="custom-control-indicator"></span>
+                                                            <div class="indicator-desc-row"><span class="custom-control-description">Male</span></div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <label for="child_gender-1-1" class="custom-control custom-block custom-radio">
+                                                        <input id="child_gender-1-1" name="child_gender[]" type="radio" class="custom-control-input form-check-input" value="2">
+                                                        <div class="custom-control-label-wrap">
+                                                            <span class="custom-control-indicator"></span>
+                                                            <div class="indicator-desc-row"><span class="custom-control-description">Female</span></div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        <div name="vehicles-2" class="form-group">
+                                            <label class="custom-control custom-block custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input form-check-input" id="child_tobacco_product1" name="child_tobacco_product[]">
+                                                <div class="custom-control-label-wrap">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <div class="indicator-desc-row"><span class="custom-control-description">Uses tobacco products</span></div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="btn-wrapper my-5 text-center">
+                                        <button class="btn btn-black" id="addAnotherChildBtn" type="button">+ Add Another Child</button>
+                                    </div>
+                                    <div class="btn-wrapper mt-5">
+                                        <button class="btn btn-green" type="button" onClick="validateHealthInsuranceForm();">Find Plans</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Ends -->
+        <% include partials/footer.ejs%>
+        <script>
+        $(document).ready(function () {
+            $('#addAnotherChildBtn').click(function () {
+                var no_of_child_div = parseInt($('#no_of_child_div').val());
+                if (no_of_child_div >= 4) {
+                    alert("You can add maximum 4 Children");
+                } else {
+                    var checkedCount = 0;
+                    var childDob = $("#child_dob" + no_of_child_div).val();
+                    var child_gender = document.getElementsByName('child_gender[]');
+                    $.each(child_gender, function (i, val) {
+                        if ($(this).is(':checked')) {
+                            checkedCount = checkedCount + 1;
+                        }
+                    });
+                    
+                    if (childDob == '' || checkedCount < no_of_child_div) {
+                        alert("Please fill all fields");
+                    } else {
+                        no_of_child_div = no_of_child_div + 1;
+                        var childForm = '<div class="form-field text-left">'+
+                                        '<div class="form-field__control">'+
+                                            '<label  class="form-field__label">Birthdate</label>'+
+                                            '<input type="text" class="form-field__input birthdate" name="child_dob[]" id="child_dob' + no_of_child_div + '" />'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="form-group-radiobox form-group">'+
+                                        '<div class="row">'+
+                                            '<div class="col-12 col-md-6">'+
+                                                '<label for="child_gender-' + no_of_child_div + '-0" class="custom-control custom-block custom-radio">'+
+                                                    '<input id="child_gender-' + no_of_child_div + '-0" name="child_gender[]" type="radio" class="custom-control-input form-check-input" value="1">'+
+                                                    '<div class="custom-control-label-wrap">'+
+                                                        '<span class="custom-control-indicator"></span>'+
+                                                        '<div class="indicator-desc-row"><span class="custom-control-description">Male</span></div>'+
+                                                    '</div>'+
+                                                '</label>'+
+                                            '</div>'+
+                                            '<div class="col-12 col-md-6">'+
+                                                '<label for="child_gender-' + no_of_child_div + '-1" class="custom-control custom-block custom-radio">'+
+                                                    '<input id="child_gender-' + no_of_child_div + '-1" name="child_gender[]" type="radio" class="custom-control-input form-check-input" value="2">'+
+                                                    '<div class="custom-control-label-wrap">'+
+                                                        '<span class="custom-control-indicator"></span>'+
+                                                        '<div class="indicator-desc-row"><span class="custom-control-description">Female</span></div>'+
+                                                    '</div>'+
+                                                '</label>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div name="vehicles-2" class="form-group">'+
+                                        '<label class="custom-control custom-block custom-checkbox">'+
+                                            '<input type="checkbox" class="custom-control-input form-check-input" id="child_tobacco_product' + no_of_child_div + '" name="child_tobacco_product[]">'+
+                                            '<div class="custom-control-label-wrap">'+
+                                                '<span class="custom-control-indicator"></span>'+
+                                                '<div class="indicator-desc-row"><span class="custom-control-description">Uses tobacco products</span></div>'+
+                                            '</div>'+
+                                        '</label>'+
+                                    '</div>';
+                        $('.childForm').append(childForm);
+                        $('#no_of_child_div').val(no_of_child_div);
+
+                    }
+                }
+            });
+        });
+        </script>
+    </body>
+</html>

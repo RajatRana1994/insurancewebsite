@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <% include partials/head.ejs%>
+</head>
+
+<body>
+    <% include partials/header.ejs%>
+        <section class="section Blog-section pt-5">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">All Blog</h2>
+                </div>
+                <div class="row about justify-content-center">
+                    <% if(blogRes != ''){
+                    blogRes.forEach(function(res, i) { %>
+                        <div class="col-lg-4 col-sm-6 text-center">
+                            <a href="/blog-details/<%= res.id %>" class="blog-box-outer">
+                            <img src="<%= res.image_1 %>" width="100%">
+                            <div class="blog-box-text">
+                                <h6><%= res.category %></h6>
+                                <h3><%= res.title %></h3>
+                                <P><%- res.short_description %></P>
+                                <button class="btn btn-primary">READ</button> <span><i class="fa fa-clock-o" aria-hidden="true"></i>  <%= res.duration %></span>
+                            </div>
+                        </a>
+                        </div>
+                        <%  })
+                    } else{ %>
+                            <div class="">
+                                <img src="/web_assets/assets/img/no_data.png">
+                            </div>
+                            <% } %>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Ends -->
+        <% include partials/footer.ejs%>
+</body>
+
+</html>

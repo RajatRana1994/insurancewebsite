@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="assets/img/favicon.png" type="image/gif" sizes="16x16">
+        <title>Defy Insurance</title>
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+        <link rel="stylesheet" type="text/css" href="assets/css/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css"/>
+        <link href="assets/css/fonts/fonts.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/material-form.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+    </head>
+    <style>
+        textarea.form-control{
+            font-size: 12px;
+        }
+    </style>
+    <body>
+        
+        <header class="header header-light">
+            <div class="nav-toggler-wrapper d-inline-block d-lg-none">
+                <a class="nav-toggler">
+                    <span></span>
+                    <span></span>
+
+                </a>
+            </div>
+            <div class="header-left">
+
+                <div class="logo">
+                    <a class="header-brand" href="index.html"><img src="assets/img/logo.png" alt="Logo" /></a>
+                </div>
+            </div>
+
+            <div class="header-right">
+
+                <nav class="navigation">
+                    <ul class="header-nav">
+                        <li class="header-nav-item">
+                            <a class="header-nav-link" href="#checkbox"><span>Checkbox</span></a>
+                        </li>
+                        <li class="header-nav-item">
+                            <a class="header-nav-link" href="#radio"><span>Radio</span></a>
+                        </li>
+                        <li class="header-nav-item">
+                            <a class="header-nav-link" href="#select"><span>Select</span></a>
+                        </li>
+                        <li class="header-nav-item">
+                            <a class="header-nav-link" href="#dropdown"><span>Dropdown</span></a>
+                        </li>
+                    </ul>
+                </nav>
+
+
+            </div>
+
+        </header>
+        
+        <section class="banner">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-6 mt-5" id="checkbox">
+                        <h4>CheckBox</h4>
+                        <label class="custom-control custom-block custom-checkbox">
+                            <input type="checkbox" class="custom-control-input form-check-input">
+                            <div class="custom-control-label-wrap">
+                               <span class="custom-control-indicator"></span>
+                               <div class="indicator-desc-row">
+                                   <span class="custom-control-description">Checkbox</span>
+                                </div>
+                            </div>
+                         </label>
+                         <div class="card p-4">
+<xmp>
+<label class="custom-control custom-block custom-checkbox">
+    <input type="checkbox" class="custom-control-input form-check-input">
+    <div class="custom-control-label-wrap">
+        <span class="custom-control-indicator"></span>
+        <div class="indicator-desc-row">
+            <span class="custom-control-description">Yes</span>
+        </div>
+    </div>
+</label>
+</xmp>
+                         </div>
+                        
+                    </div>
+                    <div class="col-12 col-md-6 mt-5" id="radio">
+                        <h4>Radio</h4>
+                        <label for="inputID" class="custom-control custom-block custom-radio">
+                            <input id="inputID" type="radio" class="custom-control-input form-check-input">
+                            <div class="custom-control-label-wrap">
+                               <span class="custom-control-indicator"></span>
+                               <div class="indicator-desc-row"><span class="custom-control-description">Radio</span></div>
+                            </div>
+                         </label>
+
+                    <div class="card p-4">
+<xmp>
+<label for="inputID" class="custom-control custom-block custom-radio">
+    <input id="inputID" type="radio" class="custom-control-input form-check-input">
+    <div class="custom-control-label-wrap">
+        <span class="custom-control-indicator"></span>
+        <div class="indicator-desc-row"><span class="custom-control-description">Radio</span></div>
+    </div>
+</label>
+</xmp>
+                    </div>
+
+                    </div>
+                    <div class="col-12 col-md-6 mt-5" id="select">
+                        <h4>Input</h4>
+                        <div class="form-field text-left">
+                            <div class="form-field__control">
+                                <label class="form-field__label">Name</label>
+                                <input type="text" class="form-field__input">
+                            </div>
+                        </div>
+                        <div class="card p-4"> 
+<xmp>
+<div class="form-field text-left">
+    <div class="form-field__control">
+        <label class="form-field__label">Name</label>
+        <input type="text" class="form-field__input">
+    </div>
+</div>
+</xmp>
+                         </div>
+                    </div>  
+                    <div class="col-12 col-md-6 mt-5" id="dropdown">
+                        <h4>Select/Dropdown</h4>
+                        <div class="dropdown-select-wrap">
+                            <div class="dropdown-select dropdown">
+                               <span class="dropdown-select-header completed">
+                                  <label class="dropdown-label">Select Title</label>
+                                  <input id="List_input" type="text" class="form-control completed" placeholder="Select Option 1" value="">
+                                  <svg class="" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                      <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff">
+                                       </polygon>
+                                    </svg>
+                               </span>
+                               <div class="dropdown-menu" id="List">
+                                  <div class="item">Select Option 1</div>
+                                  <div class="item">Select Option 2</div>
+                                  <div class="item">Select Option 3</div>
+                                  <div class="item">Select Option 4</div>
+                                  <div class="item">Select Option 5</div>
+                               </div>
+                            </div>
+                         </div>
+                        <div class="card p-4" >
+<xmp>
+<div class="dropdown-select-wrap">
+    <div class="dropdown-select dropdown">
+        <span class="dropdown-select-header completed">
+            <label class="dropdown-label">Select Title</label>
+            <input id="List_input" type="text" class="form-control completed" placeholder="Select Option 1" value="">
+            <svg class="" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+            </svg>
+        </span>
+        <div class="dropdown-menu" id="List">
+            <div class="item">Select Option 1</div>
+            <div class="item">Select Option 2</div>
+            <div class="item">Select Option 3</div>
+            <div class="item">Select Option 4</div>
+            <div class="item">Select Option 5</div>
+        </div>
+    </div>
+</div>
+</xmp> 
+                            </div>
+                    </div>  
+
+                </div>
+            </div>
+        </section>
+
+    
+        <div class="svg-wrapper bg-white">
+            <svg version="1.1" id="Layer_1" class="footer-top" x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223" enable-background="new 0 0 1920 58.223" xml:space="preserve"><path fill="#f9f8f4" d="M1920,233.223H0C0,233.223,1600.488,364.223,1920,233.223z"/><path fill="#f9f8f4" d="M0,58.223h1920C1920,58.223,319.512-72.777,0,58.223z"/></svg>
+        </div>
+    
+
+
+
+
+        <script src="assets/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="assets/js/bootstrap.min.js" type="text/javascript"></script> 
+        <script type="text/javascript" src="assets/js/slick.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js" type="text/javascript"></script>
+        <script src="assets/js/custom.js" type="text/javascript"></script>
+        <script src="assets/js/material-form.js" type="text/javascript"></script>
+        <!-- <div style="display: none;">
+            Icons made by <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        </div> -->   
+
+
+
+    </body>
+
+</html>

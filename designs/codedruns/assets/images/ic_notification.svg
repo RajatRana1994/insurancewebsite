@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="24px" viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ic_notification</title>
+    <desc>Created with Sketch.</desc>
+    <g id="panel-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(2.000000, 3.000000)">
+            <path d="M9.6243339,0.296875 L9.6243339,0.296875 C13.5000164,0.296875 16.6418778,3.4387364 16.6418778,7.31441886 L16.6418778,16.328125 L2.60679004,16.328125 L2.60679004,7.31441886 C2.60679004,3.4387364 5.74865144,0.296875 9.6243339,0.296875 Z" id="Rectangle" stroke="#FFFFFF" stroke-width="1.76470588" fill="#FFFFFF"></path>
+            <path d="M4.91845154,5.9375 C4.91845154,3.96998558 6.49862301,2.375 8.44786331,2.375 L8.44786331,2.375" id="Path" stroke="#252037" stroke-width="1.17647059" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M7.86994793,17.21875 C7.86994793,18.2025072 8.65541328,19 9.6243339,19 L9.6243339,19 C10.5932545,19 11.3787199,18.2025072 11.3787199,17.21875" id="Path" stroke="#FFFFFF" stroke-width="1.76470588"></path>
+            <path d="M0.841831392,16.328125 L18.4307513,16.328125" id="Line" stroke="#FFFFFF" stroke-width="1.76470588" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

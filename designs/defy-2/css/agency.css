@@ -1,0 +1,307 @@
+@font-face {
+  font-family:Gilroy-Black;
+  src: url(../fonts/Radomir Tinkov - Gilroy-Black.otf);
+}
+@font-face {
+  font-family:Gilroy-BlackItalic;
+  src: url(../fonts/Radomir Tinkov - Gilroy-BlackItalic.otf);
+}
+
+@font-face {
+  font-family:Gilroy-Bold;
+  src: url(../fonts/Radomir Tinkov - Gilroy-Bold.otf);
+}
+
+@font-face {
+  font-family:Gilroy-BoldItalic;
+  src: url(../fonts/Radomir Tinkov - Gilroy-BoldItalic.otf);
+}
+
+@font-face {
+  font-family:Gilroy-ExtraBold;
+  src: url(../fonts/Radomir Tinkov - Gilroy-ExtraBold.otf);
+}
+
+@font-face {
+  font-family:Gilroy-ExtraBoldItalic;
+  src: url(../fonts/Radomir Tinkov - Gilroy-ExtraBoldItalic.otf);
+}
+
+@font-face {
+  font-family:Gilroy-Heavy;
+  src: url(../fonts/Radomir Tinkov - Gilroy-Heavy.otf);
+}
+
+@font-face {
+  font-family:Gilroy-HeavyItalic;
+  src: url(../fonts/Radomir Tinkov - Gilroy-HeavyItalic.otf);
+}
+
+@font-face {
+  font-family:Gilroy-Light;
+  src: url(../fonts/Radomir Tinkov - Gilroy-Light.otf);
+}
+
+@font-face {
+  font-family:Gilroy-LightItalic;
+  src: url(../fonts/Radomir Tinkov - Gilroy-LightItalic.otf);
+}
+
+@font-face {
+  font-family:Gilroy-Medium;
+  src: url(../fonts/Radomir Tinkov - Gilroy-Medium.otf);
+}
+
+@font-face {
+  font-family:Gilroy-MediumItalic;
+  src: url(../fonts/Radomir Tinkov - Gilroy-MediumItalic.otf);
+}
+
+@font-face {
+  font-family:Gilroy-Regular;
+  src: url(../fonts/Radomir Tinkov - Gilroy-Regular.otf);
+}
+
+@font-face {
+  font-family:Gilroy-RegularItalic;
+  src: url(../fonts/Radomir Tinkov - Gilroy-RegularItalic.otf);
+}
+
+@font-face {
+  font-family:Gilroy-SemiBold;
+  src: url(../fonts/Radomir Tinkov - Gilroy-SemiBold.otf);
+}
+@font-face {
+  font-family:Gilroy-SemiBoldItalic;
+  src: url(../fonts/Radomir Tinkov - Gilroy-SemiBoldItalic.otf);
+}
+
+@font-face {
+  font-family:Gilroy-Thin;
+  src: url(../fonts/Radomir Tinkov - Gilroy-Thin.otf);
+}
+
+@font-face {
+  font-family:Gilroy-ThinItalic;
+  src: url(../fonts/Radomir Tinkov - Gilroy-ThinItalic.otf);
+}
+
+@font-face {
+  font-family:Gilroy-UltraLight;
+  src: url(../fonts/Radomir Tinkov - Gilroy-UltraLight.otf);
+}
+
+@font-face {
+  font-family:Gilroy-UltraLightItalic;
+  src: url(../fonts/Radomir Tinkov - Gilroy-UltraLightItalic.otf);
+}
+
+
+
+
+
+.logo img{
+	width:55%;
+}
+#mainNav .navbar-nav .nav-item .nav-link {
+    padding: 1em 0.5em!important;
+    white-space: nowrap!important;
+}
+header.masthead {
+	background-image: url(../img/2018_Homepage_Hero_1920x654.jpg)!important;
+	background-color: #fdfcfc61;
+    background-blend-mode: overlay;
+	color: #1f1e1e !important;
+}
+#mainNav .navbar-nav .nav-item .nav-link {
+	font-weight: 600;	
+	color: #000 !important;	
+}
+#mainNav.navbar-shrink {
+    background-color: #fff !important;
+}
+.btn-primary {
+    background-color: #333!important;
+    border-color: #fff !important;
+}
+.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+    background-color: #fff!important;
+    border-color: #333!important;
+    color: #333;
+}
+.text-primary {
+    color: #000000!important;
+}
+#portfolio .portfolio-item .portfolio-link .portfolio-hover {
+    background: rgba(0, 0, 0, 0.68) !important;
+}
+.timeline>li .timeline-image {
+	background:rgb(0, 0, 0) !important
+}
+ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
+    background-color: #717171 !important;
+}
+.footer ul.quicklinks li a {
+	color:#333 !important;
+}
+.brand--blue {
+	background-color: #1c1d1d;
+	color: #fff;
+}
+.section--medium {
+    padding: 40px 20px;
+}
+.section--medium {
+    position: relative;
+}
+.content--center {
+    text-align: center;
+}
+.content--large {
+    max-width: 1200px;
+}
+.content {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+.content {
+    box-sizing: content-box;
+}
+.flex-container--align, .flex-container--center {
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+.flex-container--align {
+    -webkit-box-align: center;
+    align-items: center;
+}
+ .flex-container--align {
+    display: -webkit-box;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.title--alt {
+    font-family: Gilroy-Bold;
+    font-weight: 600;
+    font-style: italic;
+}
+.title--medium {
+    font-size: 24px;
+}
+.flex-column {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.flex-column {
+    flex-direction: column;
+}
+.content--center .flex-form--small, .flex-pair__content:only-child .flex-form--small {
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+.flex-form--small {
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px;
+}
+ .flex-form--small select {
+    -webkit-box-flex: .5;
+    flex: .5 0 auto;
+    margin: 5px;
+}
+.brand--blue input, .brand--blue select, .brand--blue textarea {
+    border-color: hsla(0,0%,100%,.5);
+}
+.select--branded {
+    color: #58595b;
+    padding-left: 30px;
+    font-family: Gilroy-BoldItalic;
+    font-weight: 400;
+    font-style: italic;
+    background: #fff url("../img/download.svg");
+    background-repeat: no-repeat;
+    background-size: 26px;
+    background-position-x: 93%;
+    background-position-y: 56%;
+    height: 50px;
+    border: none;
+    border-radius: 100px;
+    box-shadow: 2px 3px 5px 0 rgba(0,0,0,.16);
+    font-size: 20px;
+    width: 250px;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    cursor: pointer;
+    background: #fff url("../img/download.svg") no-repeat 100%;
+    background-size: contain;
+    padding-right: 50px;
+}
+.brand--blue .button--alt-primary{
+    font-family: Gilroy-BoldItalic;
+    font-weight: 500;
+    border: none;
+    border-radius: 100px;
+    box-shadow: 2px 3px 5px 0 rgba(0,0,0,.16);
+    font-size: 20px;
+    padding: .75rem 1rem;
+    text-align: center;
+	background: #333;
+    color: #fff;
+}
+.brand--blue .button--alt-primary:hover {
+	background: #fff;
+    color: #333;
+}
+.button--wide {
+    width: 250px;
+}
+.youtube-container {
+    position: relative;
+    padding-bottom: 56.25%;
+}
+.youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.text-defy {
+	margin-top: 30px;
+}
+.text-defy .col-md-7 {
+	text-align: left !important;
+}
+.text-defy .col-md-7 p {
+	line-height:1.3em !important;
+	color: #58595b !important;
+	font-weight: 400;
+    font-size: 18px;
+	font-family:Gilroy-Regular;
+}
+.col-md-6 {
+    float: left;
+}
+.section-heading {font-family:Gilroy-ExtraBold;}
+.contact-div {
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background: #fff;
+    text-align: center;
+    border-radius: 15px;
+    padding: 20px;
+}
+.contact-div p {
+	font-size:19px;
+}
+.contact-button {
+	width:100%;
+}

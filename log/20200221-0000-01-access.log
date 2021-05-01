@@ -1,0 +1,2 @@
+::ffff:196.52.43.88 - - [21/Feb/2020:18:12:02 +0000] "GET / HTTP/1.0" 200 90893 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3602.2 Safari/537.36"
+::ffff:209.17.97.90 - - [21/Feb/2020:18:55:05 +0000] "GET / HTTP/1.0" 200 90893 "-" "Mozilla/5.0 (compatible; Nimbostratus-Bot/v1.3.2; http://cloudsystemnetworks.com)"

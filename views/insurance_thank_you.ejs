@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <% include partials/head.ejs%>
+    </head>
+    <body>
+        <% include partials/header.ejs%>
+        <section class="section pt-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="thankyou_wrapper">
+                            <p>Thanks and welcome to Defy!</p>
+                            <p>We look forward to helping you out.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Ends -->
+        <% include partials/footer.ejs%>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            setTimeout(function() {
+             window.location.href = "/insurance_videos";
+            }, 5000);
+        });
+    
+    </script>
+    </body>
+</html> 

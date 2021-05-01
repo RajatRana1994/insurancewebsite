@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Referal List</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="/admin/dashboard">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Referal List</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Referal Lists</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <% var messages = getMessages() %>
+                                            <% if (messages.error_message){ %>
+                                                <div class="alert alert-danger alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <%= messages.error_message %>
+                                                </div>
+                                        <% } %>
+                                        <table id="referal_list" class="table table-bordered table-striped dt-responsive nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>User UID</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Phone Number</th>
+                                                    <th>Email</th>
+                                                    <th>Number of Referal Users</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% res.forEach(function(row, i) {
+                                                    %>
+                                                    <tr>
+                                                        <td><%= i+1 %></td>
+                                                        <td><%= row.local_storage_uid %></td>
+                                                        <td><%= row.first_name %></td>
+                                                        <td><%= row.last_name %></td>
+                                                        <td><%= row.phone_number %></td>
+                                                        <td><%= row.email %></td>
+                                                        <td><%= row.no_of_referal_user %></td>
+                                                        <td>
+                                                            <a title="View Details" href="/admin/referal_details/<%= row.id %>" class="btn btn-info btn-sm">
+                                                                <i class="fas fa-info-circle">
+                                                                </i>
+                                                                View
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                 <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                    </div><!--/. container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   

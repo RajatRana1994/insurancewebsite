@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>statsocial.com</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>	
+	<div class="buuz_main_wrapper">
+		<div class="buuz_left_menu" id="mobile_adminnav">
+			<span class="close_btn d-block d-xl-none" onclick="closeNav()"><img src="assets/images/close.png" alt="" width="22"></span>
+			<div class="side_bar_logo text-center">
+				<img src="assets/images/logo.png" alt="">
+			</div>
+			<div class="left_link">
+				<ul class="mb-auto">
+					<li><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Distributor Profile</a></li>
+					<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Distributor Coverage</a></li>
+					<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Portfolio</a></li>
+					<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Specials & New Releases</a></li>
+				</ul>
+				<ul class="left_bottom_link">
+					<li><a href="#">BUUZ Connect Leads</a></li>
+					<li><a href="#">BUUZ Connect Orders</a></li>
+					<li><a href="#">Contact Us</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="buuz_right_contant">
+			<nav class="buuz_top_header">
+			  <div class="toggle_nav d-block d-xl-none">
+			    <span onclick="openNav()"><img src="assets/images/menu_black.png" alt="" width="32"></span>
+			  </div>
+			  <div class="top_header_heading">
+				<h4>Heading</h4>
+				<select class="form-control">
+				  <option selected>James Smith</option>
+				  <option value="1">One</option>
+				  <option value="2">Two</option>
+				  <option value="3">Three</option>
+				</select>
+			  </div>
+			</nav>
+			<div class="buuz_right_outer">
+				<div class="buuz_inner_heading">
+					<h1>MARA Imports</h1>
+				</div>
+				<div class="buuz_connect_wrapper">
+					<div><h5>MARA Imports</h5> <div class="buuz_connect_right"> <p>Newyork, USA, 08415</p> <span>15 June 2020 <br> 2:30 pm</span> <i class="fa fa-eye" aria-hidden="true"></i> </div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="overlay"></div>
+	
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		/*----- Mobile Toggle Menu -----*/
+		$('.close_btn, .overlay, .admin-left-menu ul li a').on('click', function () {
+		  $('.toggle_nav').removeClass('show');
+		  $('.overlay').removeClass('active');
+		  jQuery('body').removeClass('bodyactive');
+		});
+		$('.toggle_nav').on('click', function () {
+		  $('.overlay').addClass('active');
+		  jQuery('body').addClass('bodyactive');
+		});
+
+		/*----- Dashboard Mobile Menu ------*/
+		function openNav() {
+		  document.getElementById("mobile_adminnav").style.left = "0";
+		}
+		function closeNav() {
+		  document.getElementById("mobile_adminnav").style.left = "-100%";
+		}
+	</script>
+	
+  </body>
+</html>
+	

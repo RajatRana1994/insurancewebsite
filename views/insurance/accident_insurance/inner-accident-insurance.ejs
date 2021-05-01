@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <% include ../../partials/head.ejs%>
+    </head>
+
+    <body class="inner_insurance_body">
+
+
+        <% include ../../partials/header.ejs%>
+		
+		<section class="update-insurance-banner my-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="inner-banner-text-outer">
+                            <div class="inner-banner-heading">
+                                <h1>Accident Insurance</h1>
+                            </div>
+                            <form action="" method="post" id="insuranceLandingForm">
+                                <div class="zipCode d-flex justify-content-center">
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control with-icon">
+                                            <label class="form-field__label">Zip Code</label>
+                                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-field__input" name="zipcode" id="zipcode">
+                                            <span class="icon">
+                                                <svg version="1.1" class="place" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 513.597 513.597"><g><path d="M263.278,0.107C158.977-3.408,73.323,80.095,73.323,183.602c0,117.469,112.73,202.72,175.915,325.322 c3.208,6.225,12.169,6.233,15.388,0.009c57.16-110.317,154.854-184.291,172.959-290.569 C456.331,108.387,374.776,3.866,263.278,0.107z M256.923,279.773c-53.113,0-96.171-43.059-96.171-96.171 s43.059-96.171,96.171-96.171c53.113,0,96.172,43.059,96.172,96.171S310.036,279.773,256.923,279.773z"></path></g></svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" onClick="validateZipCode();">Get a Quote</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="left_img">
+                            <img src="/web_assets/assets/img/accident-01.png" alt="" width="100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+		
+		
+        <section class="section bg-light">
+            <div class="container">
+				<div class="row about justify-content-center">
+					<div class="col-lg-5 text-center col-12">
+						<div class="about-video">
+							<iframe width="100%" height="400" src="<%- video %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div>
+					</div>
+					<div class="col-lg-7 text-center col-12">
+						<h2 class="section-title black-heading">Ensure that You’re Insured.</h2>
+						<h5 class="my-3">How to Ensure that You have the right Accident insurance</h5>
+                        <p>Accidents can happen anytime and are very unpredictable. Sometimes accidents happen when
+						you’re not even responsible for it. We all love to drive. Some people drive to work, some for
+						leisure, and much more. In this article, we’ll talk about the various accidents that you can
+						encounter while on road and how having the right insurance can provide coverage for these.</p>
+					</div>
+				</div>
+			</div>
+        </section>
+		
+		<section class="section faq-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Fast Facts About Accident Insurance</h2>
+                </div>
+				<div class="row">
+                    <div class="col-lg-12">
+						<div id="accordion" class="accordion insurance_faq">
+							<div class="card mb-0">
+								<div class="card-header collapsed" data-toggle="collapse" href="#faq_01">
+									<a class="card-title"> How much does accident insurance cover? </a>
+								</div>
+								<div id="faq_01" class="card-body collapse" data-parent="#accordion">
+                                    <p>It depends on your injury and the kind of treatment you receive. Usually a set amount for specific
+									injuries and treatments.</p>          
+                                </div>
+								
+								<div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq_02">
+									<a class="card-title"> What Type of accidents will my policy cover? </a>
+								</div>
+								<div id="faq_02" class="card-body collapse" data-parent="#accordion">
+                                    <p>This varies by plan, but most accident insurance covers falls, fractures, dislocations, concussions and
+									many other kinds of injuries, as well as providing benefits for accidental deaths.</p>       
+                                </div>
+								
+								<div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq_03">
+									<a class="card-title"> Is my family eligible for coverage? </a>
+								</div>
+								<div id="faq_03" class="card-body collapse" data-parent="#accordion">
+                                    <p>Definitely. Your spouse and kids can enroll for coverage on your policy if you have coverage for yourself.</p> 
+                                </div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </section>
+		
+		<section class="section Blog-section bg-light update_blog_section" id="blog">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">On The Blog</h2>
+                </div>
+				<div class="row about justify-content-center">
+                    <% if(blogRes != ''){
+                        blogRes.forEach(function(res, i) { %>
+                            <div class="col-lg-4 col-sm-6 text-center">
+                                <a href="/blog-details/<%= res.id %>" class="blog-box-outer">
+                                    <img src="<%= res.image_1 %>" width="100%">
+                                    <div class="blog-box-text">
+                                        <h6><%= res.category %></h6>
+                                        <h3><%= res.title %></h3>
+                                        <P><%- res.short_description %></P>
+                                        <button class="btn btn-primary">READ</button> <span><i class="fa fa-clock-o" aria-hidden="true"></i>  <%= res.duration %></span>
+                                    </div>
+                                </a>
+                            </div>
+                    <%  })
+                    } else{ %>
+                    <div class="">
+                        <img src="/web_assets/assets/img/no_data.png">
+                    </div>
+                    <% } %>
+				</div>
+			</div>
+        </section>
+		
+		
+		<div class="svg-wrapper bg-light" id="textimonial">
+            <svg version="1.1" id="Layer_1" class="footer-top" x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223" enable-background="new 0 0 1920 58.223" xml:space="preserve"><path fill="#21ce99" d="M1920,233.223H0C0,233.223,1600.488,364.223,1920,233.223z"/><path fill="#21ce99" d="M0,58.223h1920C1920,58.223,319.512-72.777,0,58.223z"/></svg>
+        </div>
+        <section class="testimonials section section1 bg-custom-blue">
+            <div class="testimonials-iner ">
+				<div class="section-header text-center">
+                    <h2 class="section-title black-heading">Testimonial</h2>
+                </div>				
+                <div class="testimonial-slider-wrapper">
+                    <div class="testimonial-slider">
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>Accommodating, professional, helpful, and quick. Very comfortable experience and I was impressed by their capabilities.</p>
+                                    <h4 class="client">Brad M.</h4>
+                                </div>
+                            </div>    
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>They have strong ties with the community, and it shows. It's nice to do business with people that really show they care about you and your family.</p>
+                                    <h4 class="client">Susan T.</h4>
+                                </div>  
+                            </div>    
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>Over the years we've never once had to worry about our coverage. My husband and I are long-time customers and proud to be.</p>
+                                    <h4 class="client">Carol S.</h4>
+                                </div>
+                            </div>    
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>They have strong ties with the community, and it shows. It's nice to do business with people that really show they care about you and your family.</p>
+                                    <h4 class="client">Susan T.</h4>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="svg-wrapper bg-light" id="textimonial">
+            <svg x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223"><path fill="#21ce99" d="M1920,0H0C0,0,1600.488,131,1920,0z"/><path fill="#21ce99" d="M0-175h1920C1920-175,319.512-306,0-175z"/></svg>
+        </div>
+		
+		<section class="section bg-light">
+            <div class="container">
+				<div class="section-header text-center">
+                    <h2 class="section-title">Auto Insurance Calculators</h2>
+                </div>
+			    <div class="calculator-form-wrapper">   
+					<div class="text-center col-12">
+						<div class="section-header mb-5">
+							<h4 class="subtitle mw-100">If your business operations were shut down for a period of time due to a fire or other event, how much income would you lose? How much salary would you have to pay a 
+							extra expense would you incur to get your business up and running again? This calculator helps you determine the value of business income coverage needed to make you business whole again.</h4>
+							<h4 class="subtitle mw-100">Simply complete the forms in step 1 and 2 below and hit calculate. A window will disply your result instantly,and a copy will be emailed to you for your reference.</h4>
+							<div class="col-12 mt-5 text-center">
+							   <a class="btn btn-green mr-0 mr-sm-2 mb-2" href="video-about.html">Contact Information</a>
+								<a class="btn btn-green mb-2" href="video-about.html">Business Income Limit Calculator</a>
+							</div>
+						</div> 
+					</div>
+					<form class="bg-white p-3 p-sm-5">
+						<div class="row justify-content-center how-does-it-work">
+								<div class="col-md-12">
+									<h4 class="subtitle mw-100 mb-5 text-center">Signup now and have your Results displayed online immediately. We'll also email you a copy for your records as well!</h4>
+								</div>
+								<div class="col-md-6">
+									<div class="form-field text-left">
+										<div class="form-field__control">
+											<label class="form-field__label">First Name</label>
+											<input  type="text" class="form-field__input" />
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-field text-left">
+										<div class="form-field__control">
+											<label  class="form-field__label">Last Name</label>
+											<input type="text" class="form-field__input" />
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-field text-left">
+										<div class="form-field__control">
+											<label  class="form-field__label">Email</label>
+											<input  type="text" class="form-field__input" />
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-field text-left">
+										<div class="form-field__control">
+											<label  class="form-field__label">Company</label>
+											<input  type="text" class="form-field__input" />
+										</div>
+									</div>
+								</div>
+							<div class="col-12 mt-2 mt-md-5 text-center">
+								<button class="btn btn-green calculate_nextbtn">Next</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+				<div class="calculator-link-wrapper" style="display:none;">
+					<div class="row about justify-content-center">
+						<div class="calculater-block">
+							<a href="https://www.calcxml.com/do/teaser-frame?calcId=bus03" target="_blank">
+								Should I pay or charge monthly, quarterly or annually?
+							</a>
+						</div>
+						<div class="calculater-block">
+							 <a href="https://www.calcxml.com/do/teaser-frame?calcId=bus04" target="_blank">
+								What is the value of my business?
+							</a>
+						</div>
+						<div class="calculater-block">
+							<a href="https://www.calcxml.com/do/teaser-frame?calcId=bus05" target="_blank">
+								How many units do I need to sell to breakeven?
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+        </section>
+		
+
+        <% include ../product_section.ejs %>
+        <% include ../../partials/footer.ejs %> 
+
+
+
+    </body>
+
+</html>

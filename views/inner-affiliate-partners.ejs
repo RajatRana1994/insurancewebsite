@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <% include ./partials/head.ejs %>
+</head>
+
+<body>
+
+
+    <% include ./partials/header.ejs %>
+
+        <section class="inner-pages-content affilate-partner bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="mt-0
+						">Defy Insurance</h3>
+                        <h2>Partner with Defy Insurance</h2>
+                        <p>Increase your revenue by helping your readers easily get the insurance they need</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container text-center my-5 pt-5">
+            <img src="/web_assets/assets/img/partner-icon.png" width="100%" style="max-width: 700px;">
+        </div>
+
+        <div class="inner-pages-content contact-us bg-white" id="contact_us ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p>From protecting loved ones to paying off debt to growing investments, your readers care about their finances. Let’s work together to help them build their financial safety nets with insurance resources from Policygenius.</p>
+                        <div class="section-header my-5">
+                            <h2 class="section-title">Why partner with Defy Insurance?</h2>
+                        </div>
+                        <div class="why_partner_points">
+                            <p><span><i class="fa fa-check" aria-hidden="true"></i></span>Industry-leading referral fees</p>
+                            <p><span><i class="fa fa-check" aria-hidden="true"></i></span>Reliable third-party reporting tool access</p>
+                            <p><span><i class="fa fa-check" aria-hidden="true"></i></span>Custom-branded landing pages to increase conversion</p>
+                            <p><span><i class="fa fa-check" aria-hidden="true"></i></span>Best-in-class insurance comparison shopping to help your readers save money</p>
+                        </div>
+                        <div class="btn-wrapper">
+                            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#partners_form_popup">Connect With Us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- The Modal -->
+<div class="modal" id="partners_form_popup">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Let's connect!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="quote-form">
+                <form class="form" action="/affiliate-partners" method="POST" id="insurance-form">
+                    <div class="form-innner">
+                        <div class="form-field text-left">
+                            <div class="form-field__control">
+                                <label class="form-field__label">First Name</label>
+                                <input type="text" name="first_name" class="form-field__input" />
+                            </div>
+                        </div>
+                        <div class="form-field text-left">
+                            <div class="form-field__control">
+                                <label class="form-field__label">Last Name</label>
+                                <input type="text" name="last_name" class="form-field__input" />
+                            </div>
+                        </div>
+                        <div class="form-field text-left">
+                            <div class="form-field__control">
+                                <label class="form-field__label">Email</label>
+                                <input type="text" name="email" class="form-field__input" />
+                            </div>
+                        </div>
+                        <div class="form-field text-left">
+                            <div class="form-field__control">
+                                <label class="form-field__label">Link to Website</label>
+                                <input type="text" name="web_link" class="form-field__input" />
+                            </div>
+                        </div>
+                        <div class="dropdown-select-wrap">
+                            <div class="dropdown-select dropdown">
+                                <span style="box-shadow: none;" aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                    <label class="dropdown-label" for="yearYear-0Input-0">Affiliate program interest *</label>
+                                    <input id="question_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="No Preference" value="" name="type">
+                                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                        <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                    </svg>
+                                </span>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="question">
+                                    <div class="item">Become an agent </div>
+                                    <div class="item">Become a referral partner </div>
+                                    <div class="item">Affinity solutions</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <div class="form-field__control">
+                                <label class="form-field__label">How could we work together?</label>
+                                <input type="text" name="question_work" class="form-field__input" />
+                            </div>
+                        </div>
+                        <div class="btn-wrapper">
+                            <button type="button" onclick="validateForm()" class="btn btn-green" data-toggle="modal">Get In Touch</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+        <!-- Footer Starts -->
+        <% include ./partials/footer.ejs %>
+            <!-- Footer Ends -->
+
+
+
+
+
+            <script src="../assets/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+            <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+            <script type="text/javascript" src="../assets/js/slick.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js" type="text/javascript"></script>
+            <script src="../assets/js/custom.js" type="text/javascript"></script>
+            <script src="../assets/js/material-form.js" type="text/javascript"></script>
+            <!-- <div style="display: none;">
+            Icons made by <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        </div> -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Insurance</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="/admin/dashboard">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Insurance</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <% var messages = getMessages()
+                                    if (messages.error_message){ %>
+                                        <div class="alert alert-danger alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <%= messages.error_message %>
+                                        </div>
+                                <% } if (messages.success_message){ %>
+                                        <div class="alert alert-success alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <%= messages.success_message %>
+                                        </div>
+                                <% } %>
+                                <form class="row" role="form" action="" method="post">
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Choose Insurance</label>
+                                        <select class="form-control" id="ins_type" name="ins_type" required="">
+                                            <option value="" <% if(insurance_type == ''){ %> selected="" <% } %>>Choose Insurance</option>
+                                            <option value="5" <% if(insurance_type == 5){ %> selected="" <% } %>>Renters</option>
+                                            <option value="6" <% if(insurance_type == 6){ %> selected="" <% } %>>Home Insurance Floater</option>
+                                            <option value="7" <% if(insurance_type == 7){ %> selected="" <% } %>>Motorcycle, RV, Boat</option>
+                                            <option value="8" <% if(insurance_type == 8){ %> selected="" <% } %>>Umbrella</option>
+                                            <option value="9" <% if(insurance_type == 9){ %> selected="" <% } %>>Small Group Benefits</option>
+                                            <option value="10" <% if(insurance_type == 10){ %> selected="" <% } %>>Life</option>
+                                            <option value="11" <% if(insurance_type == 11){ %> selected="" <% } %>>Health care</option>
+                                            <option value="12" <% if(insurance_type == 12){ %> selected="" <% } %>>Accident</option>
+                                            <option value="13" <% if(insurance_type == 13){ %> selected="" <% } %>>Dental</option>
+                                            <option value="14" <% if(insurance_type == 14){ %> selected="" <% } %>>Short-Term Medical</option>
+                                            <option value="15" <% if(insurance_type == 15){ %> selected="" <% } %>>Vision</option>
+                                            <option value="16" <% if(insurance_type == 16){ %> selected="" <% } %>>Medicare</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6" style="margin-top: 32px;">
+                                        <label for="name">&nbsp;</label>
+                                        <input type="submit" name="btn_sub" id="btn_sub" class="btn btn-primary" value="Search">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-12" <% if(showTable == 0){ %> style="display:none" <% }else{ %> style="display:block" <% } %>>
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Insurance</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <% var messages = getMessages() %>
+                                        <% if (messages.error_message){ %>
+                                        <div class="alert alert-danger alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <%= messages.error_message %>
+                                        </div>
+                                        <% } %>
+                                        <table id="other_insurance_list" class="table table-bordered table-striped dt-responsive nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>User UID</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Email</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% ins_res.forEach(function(res, i) {
+                                                if(res.status == 0)
+                                                    var ins_status = '<span class="badge bg-primary">Pending</span>';
+                                                if(res.status == 1)
+                                                    var ins_status = '<span class="badge bg-warning">Under Review</span>';
+                                                %>
+                                            <tr>
+                                                <td><%= i+1 %></td>
+                                                <td><%= res.local_storage_uid %></td>
+                                                <td><%= res.first_name %></td>
+                                                <td><%= res.last_name %></td>
+                                                <td><%= res.email %></td>
+                                                <td><%- ins_status %></td>
+                                                <td>
+                                                    <a title="View Details" href="/admin/other_insurance_details/<%= res.insurance_type %>/<%= res.id %>" class="btn btn-info btn-xs">
+                                                        <i class="fas fa-info-circle">
+                                                        </i>
+                                                        View
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                    </div><!--/. container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Insurance Details</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="<?php echo base_url('dashboard'); ?>">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Insurance Details</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header p-2">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <ul class="nav nav-pills">
+                                                    <li class="nav-item"><a class="nav-link active" href="#basicDetails" data-toggle="tab">Basic Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#vehicleList" data-toggle="tab">Vehicles List</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#vehicleDetails" data-toggle="tab">Vehicle Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#driverDetails" data-toggle="tab">Driver Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#spouseDetails" data-toggle="tab">Spouse Details</a></li>
+                                                </ul>
+                                            </div>
+                                            <% 
+                                            if(ins_res.status == 0)
+                                                    var ins_status = '<span class="badge bg-primary">Pending</span>';
+                                            if(ins_res.status == 1)
+                                                var ins_status = '<span class="badge bg-warning">Under Review</span>';
+                                            %>
+                                            <div class="col-md-3">
+                                                <b>Insurance Status : </b> <%- ins_status %>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <!-- Basic Details -->
+                                            <div class="active tab-pane" id="basicDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>User UID</th>
+                                                            <td><%= ins_res.local_storage_uid %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Zipcode</th>
+                                                            <td><%= ins_res.zipcode %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Vehicle List -->
+                                            <div class="tab-pane" id="vehicleList">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Year</th>
+                                                            <th>Maker</th>
+                                                            <th>Model</th>
+                                                            <th>Trim</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% var vehicleList = ins_res.vehicleList;
+                                                        for(var i=0; i<vehicleList.length; i++) { 
+                                                        var index = i+1;
+                                                        %>
+                                                        <tr>
+                                                            <td><%= index %></td>
+                                                            <td><%= vehicleList[i].year %></td>
+                                                            <td><%= vehicleList[i].maker %></td>
+                                                            <td><%= vehicleList[i].model %></td>
+                                                            <td><%= vehicleList[i].trim %></td>
+                                                        </tr>
+                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Vehicle Details -->
+                                            <div class="tab-pane" id="vehicleDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Vehicle Lease</th>
+                                                            <td><%= (ins_res.vehicle_lease == 1) ? 'Own - paid in full' : (ins_res.vehicle_lease == 2) ? 'Own - making payments' : 'Lease' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Vehicle Use For</th>
+                                                            <td><%= (ins_res.vehicle_use_for == 1) ? 'Personal/Commuting' : (ins_res.vehicle_use_for == 2) ? 'Pleasure' : (ins_res.vehicle_use_for == 3) ? 'Farm' : 'Business/Rideshare' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Estimated Mileage</th>
+                                                            <td><%= ins_res.estimated_mileage %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Frequency</th>
+                                                            <td><%= ins_res.frequency %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Driver Details -->
+                                            <div class="tab-pane" id="driverDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>First Name</th>
+                                                            <td><%= ins_res.first_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Last Name</th>
+                                                            <td><%= ins_res.last_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>DOB</th>
+                                                            <td><%= ins_res.dob %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Phone Number</th>
+                                                            <td><%= ins_res.phone_number %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Unit</th>
+                                                            <td><%= ins_res.unit %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Gender</th>
+                                                            <td><%= (ins_res.spouse_gender) ? (ins_res.spouse_gender ==1) ? 'Male' : 'Female' : 'NA' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Marital Status</th>
+                                                            <td><%= (ins_res.marital_status == 1) ? 'Single' : (ins_res.marital_status == 2) ? 'Married' : (ins_res.marital_status == 3) ? 'Divorced' : 'Widowed' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Do you own or rent your home</th>
+                                                            <td><%= (ins_res.residence_ownership == 1) ? 'Own Home' : (ins_res.residence_ownership == 2) ? 'Own Condo' : (ins_res.residence_ownership == 3) ? 'Rent' : 'Other' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Credit Score</th>
+                                                            <td><%= (ins_res.credit_score == 1) ? 'Excellent (720+)' : (ins_res.credit_score == 2) ? 'Good (680-719)' : (ins_res.credit_score == 3) ? 'Average (580-679)' : 'Poor (Below 580)' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Education</th>
+                                                            <td><%= ins_res.education %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Are you currently insured</th>
+                                                            <td><%= ins_res.currently_insured %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Who is your current carrier</th>
+                                                            <td><%= ins_res.carrier %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Any accidents or tickets in the last 3 years</th>
+                                                            <td><%= ins_res.accident %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Where would you like to receive a copy of your quotes</th>
+                                                            <td><%= ins_res.quote_receive_email %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>How did you hear about us</th>
+                                                            <td><%= (ins_res.hear_about_us) ? ins_res.hear_about_us : 'NA' %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Spouse Details -->
+                                            <div class="tab-pane" id="spouseDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>First Name</th>
+                                                            <th>Last Name</th>
+                                                            <th>DOB</th>
+                                                            <th>Phone Number</th>
+                                                            <th>Unit#</th>
+                                                            <th>Gender</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% var spouse_res = ins_res.spouse_res;
+                                                        if(spouse_res.length > 0){
+                                                            for(var j=0; j<spouse_res.length; j++) { 
+                                                            var index1 = j+1;
+                                                            %>
+                                                        <tr>
+                                                            <td><%= index1 %></td>
+                                                            <td><%= (spouse_res[j].spouse_first_name) ? spouse_res[j].spouse_first_name : 'NA' %></td>
+                                                            <td><%= (spouse_res[j].spouse_last_name) ? spouse_res[j].spouse_last_name : 'NA' %></td>
+                                                            <td><%= (spouse_res[j].spouse_dob) ? spouse_res[j].spouse_dob : 'NA' %></td>
+                                                            <td><%= (spouse_res[j].spouse_phone_number) ? spouse_res[j].spouse_phone_number : 'NA' %></td>
+                                                            <td><%= (spouse_res[j].spouse_unit) ? spouse_res[j].spouse_unit : 'NA' %></td>
+                                                            <td><%= (spouse_res[j].spouse_gender) ? (spouse_res[j].spouse_gender ==1) ? 'Male' : 'Female' : 'NA' %></td>
+                                                        </tr>
+                                                            <% } 
+                                                        }else{ %>
+                                                        <tr><td colspan="7" class="text-center">No data found</td></tr>
+                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   

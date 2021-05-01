@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <% include ./partials/head.ejs %>
+    </head>
+    <body>
+         <% include ./partials/header.ejs %>
+		<section class="inner-pages-content bg-light">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="section-header text-center">
+							<h2 class="section-title">Defy Claim Center</h2>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<div class="question-header">
+							<div>
+								<h3 class="question-text">Reporting your claim starts here.</h3>
+								<p>If you have questions or prefer to speak to one of our claim advocates, complete the form below and we’ll be in touch to assist you with your claim. That’s why we’re here.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-7">
+						<div class="quote-form">
+							<form class="form" method="POST" action="" id="claim-form">
+								<div class="form-innner">
+									<div class="row">
+										<div class="col-12">
+											<div class="dropdown-select-wrap">
+												<div class="dropdown-select dropdown">
+												<span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+													<label class="dropdown-label" for="yearYear-0Input-0">insurance *</label>
+													<input id="timeList_input" data-cy="year-0Input" name="type" type="text" class="form-control completed" placeholder="No Preference" value="">
+													<svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+														<polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+													</svg>
+												</span>
+												<div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="timeList">
+													<div class="item">Select</div>
+													<div class="item">Auto</div>
+													<div class="item">Home</div>
+													<div class="item">Business</div>
+													<div class="item">Life</div>
+													<div class="item">Health</div>
+												</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-field text-left">
+												<div class="form-field__control">
+													<label class="form-field__label">First Name *</label>
+													<input  type="text" name="first_name" class="form-field__input" />
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-field text-left">
+												<div class="form-field__control">
+													<label  class="form-field__label">Last Name *</label>
+													<input type="text" name="last_name" class="form-field__input" />
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-field text-left">
+												<div class="form-field__control">
+													<label  class="form-field__label">Email *</label>
+													<input  type="text" name="email" class="form-field__input" />
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-field text-left">
+												<div class="form-field__control">
+													<label  class="form-field__label">Phone Number *</label>
+													<input type="number" name="phone_number" class="form-field__input" />
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-field text-left">
+												<div class="form-field__control">
+													<label  class="form-field__label">Policy Number</label>
+													<input type="text" name="policy_number" class="form-field__input" />
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-field text-left">
+												<div class="form-field__control">
+													<label  class="form-field__label">Date of Accident *</label>
+													<input type="date" name="date" class="form-field__input" />
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-field text-left">
+												<div class="form-field__control">
+													<label  class="form-field__label">Carrier (Insurance company name)</label>
+													<input type="text" name="com_name" class="form-field__input" />
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-field">
+												<div class="form-field__control">
+													<label class="form-field__label">Incident description *</label>
+													<textarea class="form-field__textarea" name="description"></textarea>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-field">
+												<div class="form-field__control">
+													<label for="formFileLg" class="form-field__textarea" style="height: 40px;">Incident Images/Documents</label>
+												<input class="form-control form-control-lg form-field__textarea" id="formFileLg" name="image" type="file" style="height: 70px;" />
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="btn-wrapper mt-4 mb-5">
+												<button class="btn btn-green w-100" type="button" onclick="validateClaimForm();" style="font-size:18px;">Submit</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<h3>Report your insurance claim immediately</h3>
+						<p>We understand that you want to get your day-to- day life back to normal as soon as possible. Whether it’s an auto, property, general liability or workers' compensation claim, we help you facilitate filing your claim as quickly as possible.</p>
+						<p>Don’t worry if you don’t have all the information needed  to file your claim. It’s important to file immediately. You can always contact the claim center  later with follow-up information.</p>
+					</div>
+					<div class="col-md-12">
+						<h2>What you’ll need to file an insurance claim</h2>
+						<h3>For the most efficient experience, try to have the following available when you start your claim.</h3>
+						<ul class="pl-4">
+							<li>Contact information for you and others involved</li>
+							<li>Your policy information (if available)</li>
+							<li>The type of loss: auto, property, general liability or workers' compensation</li>
+							<li>The date of the incident</li>
+							<li>A description of the loss or any injury</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="section faq-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Claims FAQ</h2>
+                </div>
+				<div class="row">
+                    <div class="col-lg-12">
+						<div id="accordion" class="accordion insurance_faq">
+							<div class="card mb-0">
+								<div class="card-header collapsed" data-toggle="collapse" href="#faq_01">
+									<a class="card-title"> How do I file a claim? </a>
+								</div>
+								<div id="faq_01" class="card-body collapse" data-parent="#accordion">
+                                    <p>You can  file a claim online. If you don’t have an online account, you can sign up for online account  or call 1-87 7780 4626. You can also contact your agent to file a claim. Be sure to file your claim immediately following a loss or employee injury.</p>         
+                                </div>
+								
+								<div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq_02">
+									<a class="card-title"> What do I need to file a claim?</a>
+								</div>
+								<div id="faq_02" class="card-body collapse" data-parent="#accordion">
+									<h5>You’ll need:</h5>
+                                    <ul>
+										<li>Contact information for you and others involved</li>
+										<li>Your policy information</li>
+										<li>The date of the incident</li>
+										<li>A description of the injury or damages</li>
+										<li>If applicable, the claimant’s or employee’s name and contact information</li>
+									</ul>
+									<p>If you need additional help, contact your agent, who’s always there to answer any questions.</p>
+                                </div>
+								
+								<div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq_03">
+									<a class="card-title"> I just filed my claim. What happens next? </a>
+								</div>
+								<div id="faq_03" class="card-body collapse" data-parent="#accordion">
+                                    <p>After your claim has been submitted to your insurance carrier, your claim will be assigned to a claims adjuster, who will help you manage your claim and handle most of your questions. Depending on carrier,  Claims adjusters  strive for same-day contact after your claim is submitted. Your claims adjuster will walk you through all aspects of the claims process and may schedule time with you to do an on-site evaluation.</p>									
+                                </div>
+								
+								<div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq_04">
+									<a class="card-title">Who do I contact ,  if I have more questions including questions about my claims settlement?</a>
+								</div>
+								<div id="faq_04" class="card-body collapse" data-parent="#accordion">
+                                    <p>Please contact your assigned claims professional with any questions. If you cannot remember the name or contact information of your claims professional, call us at 1877 7804626.</p>									
+                                </div>
+								
+								<div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq_05">
+									<a class="card-title">Who do I contact ,  if I have more questions including questions about my claims settlement?</a>
+								</div>
+								<div id="faq_05" class="card-body collapse" data-parent="#accordion">
+									<p>Claims payments are determined by a covered cause of loss, type and extent of damages, and the applicable coverage that was purchased. Following the receipt of a property, auto , or liability claim, a claims professional will review your coverage, investigate the loss and evaluate the damage(s) to determine what the appropriate payment may be under the policy.</p>
+									<p>For a work comp claim, the claims professional must first determine whether the claim is covered and eligible for compensation, subject to state regulations. Be sure to immediately report your claim in order to set the claims management process in motion.</p>
+									<p>For third-party claims in which a claimant is alleging that you’re liable for damage(s), such as a bodily injury or property damage, we’ll evaluate your coverage, investigate any losses, and work toward final determination of the claim outcome (settlement or denial).</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </section>
+       
+        <!-- Footer Starts -->
+        <% include ./partials/footer.ejs %>
+        <!-- Footer Ends -->
+
+
+
+
+
+        <!-- <script src="../assets/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script> 
+        <script type="text/javascript" src="../assets/js/slick.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js" type="text/javascript"></script>
+        <script src="../assets/js/custom.js" type="text/javascript"></script>
+        <script src="../assets/js/material-form.js" type="text/javascript"></script> -->
+        <!-- <div style="display: none;">
+            Icons made by <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        </div> -->   
+
+
+
+    </body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Insurance Details</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="<?php echo base_url('dashboard'); ?>">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Insurance Details</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header p-2">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <ul class="nav nav-pills">
+                                                    <li class="nav-item"><a class="nav-link active" href="#basicDetails" data-toggle="tab">Basic Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#otherDetails" data-toggle="tab">Other Details</a></li>
+                                                </ul>
+                                            </div>
+                                            <% 
+                                            if(ins_res.status == 0)
+                                                    var ins_status = '<span class="badge bg-primary">Pending</span>';
+                                            if(ins_res.status == 1)
+                                                var ins_status = '<span class="badge bg-warning">Under Review</span>';
+                                            %>
+                                            <div class="col-md-3">
+                                                <b>Insurance Status : </b> <%- ins_status %>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <!-- Basic Details -->
+                                            <div class="active tab-pane" id="basicDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>User UID</th>
+                                                            <td><%= ins_res.local_storage_uid %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Zipcode</th>
+                                                            <td><%= ins_res.zipcode %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Other Details -->
+                                            <div class="tab-pane" id="otherDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Residence Type</th>
+                                                            <td><%= (ins_res.residence_type == 1) ? 'Single family' : (ins_res.residence_type == 2) ? 'Condo' : (ins_res.residence_type == 3) ? 'Rental' : 'Mobile Home' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Address</th>
+                                                            <td><%= ins_res.address %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Unit</th>
+                                                            <td><%= ins_res.unit %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Zipcode</th>
+                                                            <td><%= ins_res.ins_zipcode %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Built Year</th>
+                                                            <td><%= ins_res.built_year %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Foundation Type</th>
+                                                            <td><%= ins_res.foundation_type %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Construction Type</th>
+                                                            <td><%= ins_res.construction_type %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Square Footage</th>
+                                                            <td><%= ins_res.square_footage %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Number of Stories</th>
+                                                            <td><%= ins_res.no_of_stories %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Heating System</th>
+                                                            <td><%= ins_res.heating_system %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Roof Material</th>
+                                                            <td><%= ins_res.roof_material %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>When was your roof installed or last replaced</th>
+                                                            <td><%= ins_res.installed_replaced_year %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>How much would it cost to replace your home</th>
+                                                            <td><%= ins_res.replacement_cost %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Is your home in a flood zone</th>
+                                                            <td><%= ins_res.is_in_flood_zone %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Is there a fire hydrant within 1,000 ft of your home</th>
+                                                            <td><%= (ins_res.is_fire_hydrant_available == 'not_sure') ? "I'm not sure" : ins_res.is_fire_hydrant_available %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>How close do you live to the nearest fire station</th>
+                                                            <td><%= (ins_res.fire_station_proximity == 1) ? '1-5 miles' : (ins_res.fire_station_proximity == 2) ? '5-10 miles' : '10+ miles' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>First Name</th>
+                                                            <td><%= ins_res.first_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Last Name</th>
+                                                            <td><%= ins_res.last_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>DOB</th>
+                                                            <td><%= ins_res.dob %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Email</th>
+                                                            <td><%= ins_res.email %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Heating System</th>
+                                                            <td><%= (ins_res.home_purchase_status == 1) ? 'Yes, I already own it' : (ins_res.home_purchase_status == 2) ? "Almost, I'm closing on it soon" : (ins_res.home_purchase_status == 3) ? "Yes, I'm refinancing it" : "No, I'm just looking around" %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   

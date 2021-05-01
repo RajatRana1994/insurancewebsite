@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="24px" viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ic_flag</title>
+    <desc>Created with Sketch.</desc>
+    <g id="panel-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="flag" transform="translate(0.000000, 0.000000)">
+            <g id="Group-17">
+                <circle id="Oval" fill="#57BE69" opacity="0.600000024" cx="12" cy="12" r="12"></circle>
+                <g id="danger" transform="translate(6.000000, 4.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <path d="M0.986340659,1.617 C0.986340659,1.617 2.34774725,2.66375 4.58001099,2.192 C6.69649451,1.74625 8.66976923,1.24 11.9849341,2.375 L11.9849341,9.09475 C11.9849341,9.09475 8.93587912,7.7165 6.15847253,8.33125 C3.38106593,8.946 1.81078022,8.71 0.986340659,7.9285" id="Path"></path>
+                    <rect id="Rectangle" x="0.551868132" y="1.172625" width="1" height="14.8273438"></rect>
+                    <ellipse id="Oval" cx="0.815637363" cy="0.758875" rx="1" ry="1"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

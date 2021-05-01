@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="25px" viewBox="0 0 24 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ic_settings_active</title>
+    <desc>Created with Sketch.</desc>
+    <g id="panel-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-19-Copy-2" transform="translate(3.000000, 4.000000)">
+            <circle id="Oval-3" fill="#FFFFFF" cx="9" cy="9" r="8"></circle>
+            <circle id="Oval-3" fill="#252037" cx="9" cy="9" r="3"></circle>
+            <path d="M9,0.905582697 L9,0 M14.7236174,3.27638264 L15.363961,2.63603897 M17.0944173,9 L18,9 M14.7236174,14.7236174 L15.363961,15.363961 M9,17.0944173 L9,18 M3.27638264,14.7236174 L2.63603897,15.363961 M0.905582697,9 L-3.64589456e-15,9 M3.27638264,3.27638264 L2.63603897,2.63603897" id="Line" stroke="#FFFFFF" stroke-linecap="round"></path>
+        </g>
+    </g>
+</svg>

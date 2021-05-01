@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ../partials/head.ejs %>
+
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+                <% include ../partials/sidebar.ejs %>
+                    <!-- Content Wrapper. Contains page content -->
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!-- Content Header (Page header) -->
+                        <div class="content-header">
+                            <div class="container-fluid">
+                                <div class="row mb-2">
+                                    <div class="col-sm-6">
+                                        <h1 class="m-0 text-dark">Agents</h1>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-sm-6">
+                                        <ol class="breadcrumb float-sm-right">
+                                            <li class="breadcrumb-item">
+                                                <a href="/admin/dashboard">
+                                                    <i class="fa fa-tachometer-alt"></i> Dashboard
+                                                </a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Agent</li>
+                                        </ol>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.container-fluid -->
+                        </div>
+                        <!-- /.content-header -->
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3 class="card-title">Agent</h3>
+                                                <a title="Add Blog" href="/admin/agent/add" class="btn btn-info btn-sm float-right">Add Agent</a>
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <% var messages = getMessages()
+                                            if (messages.error_message){ %>
+                                                    <div class="alert alert-danger alert-dismissible">
+                                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                        <%= messages.error_message %>
+                                                    </div>
+                                                    <% } if (messages.success_message){ %>
+                                                        <div class="alert alert-success alert-dismissible">
+                                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                            <%= messages.success_message %>
+                                                        </div>
+                                                        <% } %>
+                                                            <table id="blogs_list" class="table table-bordered table-striped dt-responsive nowrap">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>License</th>
+                                                                        <th>First Name</th>
+                                                                        <th>Last Name</th>
+                                                                        <th>Products</th>
+                                                                        <th>Email</th>
+                                                                        <th>Contact Number</th>
+                                                                        <th>Address</th>
+                                                                        <th>City</th>
+                                                                        <th>State</th>
+                                                                        <th>About</th>
+                                                                        <th>Image</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <% result.forEach(function(res, i) {
+                                                                        var v_type = "";
+                                                                        var products = JSON.parse(res.products)
+                                                                            products.forEach(function(product){
+                                                                            if(product == 1)
+                                                                                v_type += "Auto,";
+                                                                            if(product == 2)
+                                                                                v_type += "Home,";
+                                                                            if(product == 3)
+                                                                                v_type += "Business,";
+                                                                            if(product == 4)
+                                                                                v_type += "Work Compensation,";
+                                                                            if(product == 5)
+                                                                                v_type += "Renters,";
+                                                                            if(product == 6)
+                                                                                v_type += "Home Insurance Floater,";
+                                                                            if(product == 7)
+                                                                                v_type += "Motorcycle, RV, Boat,";
+                                                                            if(product == 8)
+                                                                                v_type += "Umbrella";
+                                                                            if(product == 9)
+                                                                                v_type += "Small Group Benefits,";
+                                                                            if(product == 10)
+                                                                                v_type += "Life,";
+                                                                            if(product == 11)
+                                                                                v_type += "Health care,";
+                                                                            if(product == 12)
+                                                                                v_type += "Accident,";
+                                                                            if(product == 13)
+                                                                                v_type += "Dental,";
+                                                                            if(product == 14)
+                                                                                v_type += "Short-Term Medical,";
+                                                                            if(product == 15)
+                                                                                v_type += "Vision,";
+                                                                            if(product == 16)
+                                                                                v_type += "Medicare,";
+                                                                            if(product == 17)
+                                                                                v_type += "Medical,";
+                                                                            if(product == 18)
+                                                                                v_type += "Commercial Auto,";
+                                                                            if(product == 19)
+                                                                                v_type += "General Liability,";
+                                                                            if(product == 20)
+                                                                                v_type += "Professional Liability,";
+                                                                            if(product == 21)
+                                                                                v_type += "Cyber Insurance,";
+                                                                            if(product == 22)
+                                                                                v_type += "Surety Bonds,";
+                                                                        })
+                                                                        %>
+
+                                                                        <tr>
+                                                                            <td>
+                                                                                <%= i+1 %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= res.license %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= res.first_name %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= res.last_name %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= v_type %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= res.email %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= res.phone_number %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= res.address %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= res.city %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= res.state %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- res.about %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="<%= res.image %>" target="_blank">
+                                                                                    <img src="<%= res.image %>" width="60px" height="60px">
+                                                                                </a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a title="Delete" href="/admin/agent/delete/<%= res.id %>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you wish to delete this agent?');">
+                                                                                    <i class="fas fa-trash">
+                                                                                    </i>
+                                                                                </a>
+                                                                                <a title="Delete" href="/admin/agent/edit/<%= res.id %>" class="btn btn-info btn-sm">
+                                                                                    <i class="fas fa-edit">
+                                                                                    </i>
+                                                                                </a>
+                                                                            </td>
+                                                                            <% }) %>
+                                                                </tbody>
+                                                            </table>
+                                            </div>
+                                            <!-- /.card-body -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+                            </div>
+                            <!--/. container-fluid -->
+                        </section>
+                        <!-- /.content -->
+                    </div>
+                    <!-- /.content-wrapper -->
+                    <!-- /.content-wrapper -->
+                    <% include ../partials/footer.ejs %>
+    </body>
+
+</html>

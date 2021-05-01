@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ../partials/head.ejs %>
+
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+                <% include ../partials/sidebar.ejs %>
+                    <!-- Content Wrapper. Contains page content -->
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!-- Content Header (Page header) -->
+                        <div class="content-header">
+                            <div class="container-fluid">
+                                <div class="row mb-2">
+                                    <div class="col-sm-6">
+                                        <h1 class="m-0 text-dark">Referral</h1>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-sm-6">
+                                        <ol class="breadcrumb float-sm-right">
+                                            <li class="breadcrumb-item">
+                                                <a href="/admin/dashboard">
+                                                    <i class="fa fa-tachometer-alt"></i> Dashboard
+                                                </a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Referral</li>
+                                        </ol>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.container-fluid -->
+                        </div>
+                        <!-- /.content-header -->
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <% var messages = getMessages()
+                                if (messages.error_message){ %>
+                                            <div class="alert alert-danger alert-dismissible">
+                                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                <%= messages.error_message %>
+                                            </div>
+                                            <% } %>
+                                                <div class="card card-primary">
+                                                    <div class="card-header">
+                                                        <h3 class="card-title">Edit Referral</h3>
+                                                    </div>
+                                                    <!-- /.card-header -->
+                                                    <form role="form" action="" method="post" id="" enctype="multipart/form-data">
+                                                        <input type="hidden" name="agent_id" value="<%= result[0].id %>">
+                                                        <div class="card-body">
+                                                            <div class="form-group">
+                                                                <label for="name">First Name</label>
+                                                                <input class="form-control" type="text" value="<%=result[0].first_name %>" name="first_name" id="first_name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Last Name</label>
+                                                                <input class="form-control" type="text" name="last_name" value="<%=result[0].last_name %>" id="last_name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Products</label>
+                                                                <select class="form-control" id="product_type" name="products" value="<%=result[0].products %>" multiple>
+                                                                    <option value="">Choose Products</option>
+                                                                    <option value="1">Auto</option>
+                                                                    <option value="2">Home</option>
+                                                                    <option value="3">Business</option>
+                                                                    <option value="4">Work Compensation</option>
+                                                                    <option value="5">Renters</option>
+                                                                    <option value="6">Home Insurance Floater</option>
+                                                                    <option value="7">Motorcycle, RV, Boat</option>
+                                                                    <option value="8">Umbrella</option>
+                                                                    <option value="9">Small Group Benefits</option>
+                                                                    <option value="10">Life</option>
+                                                                    <option value="11">Health care</option>
+                                                                    <option value="12">Accident</option>
+                                                                    <option value="13">Dental</option>
+                                                                    <option value="14">Short-Term Medical</option>
+                                                                    <option value="15">Vision</option>
+                                                                    <option value="16">Medicare</option>
+                                                                    <option value="17">Medical</option>
+                                                                    <option value="18">Commercial Auto</option>
+                                                                    <option value="19">General Liability</option>
+                                                                    <option value="20">Professional Liability</option>
+                                                                    <option value="21">Cyber Insurance</option>
+                                                                    <option value="22">Surety Bonds</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Email</label>
+                                                                <input type="email" class="form-control" id="email" placeholder="Enter Email" value="<%=result[0].email %>" name="email" value="">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Phone No.</label>
+                                                                <input type="number" class="form-control" id="phone" name="phone_number" value="<%=result[0].phone_number %>" placeholder="Enter Phone No.">
+                                                            </div>
+                                                            <!-- <div class="form-group">
+                                                                <label for="name">Agent License Number</label>
+                                                                <input type="text" class="form-control" name="license" id="license" value="<%=result[0].license%>" placeholder="Enter Agent License Number">
+                                                            </div> -->
+                                                            <div class="form-group">
+                                                                <label for="name">About</label>
+                                                                <textarea name="about" id="description" class="form-control" cols="30" rows="5" maxlength="4000"><%-result[0].about%></textarea>
+                                                                <!-- <input type="number" class="form-control" name="about" id="about" value="<%=result[0].about%>" placeholder="Enter About"> -->
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Address</label>
+                                                                <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">City</label>
+                                                                <input type="text" class="form-control" name="city" id="city" placeholder="Enter City">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">States</label>
+                                                                <select class="form-control" name="state" id="state">
+                                                                    <option selected="true" value="">-Select-</option>
+                                                                    <option value="Alabama">Alabama</option>
+                                                                    <option value="Alaska">Alaska</option>
+                                                                    <option value="Arizona">Arizona</option>
+                                                                    <option value="Arkansas">Arkansas</option>
+                                                                    <option value="California">California</option>
+                                                                    <option value="Colorado">Colorado</option>
+                                                                    <option value="Connecticut">Connecticut</option>
+                                                                    <option value="Delaware">Delaware</option>
+                                                                    <option value="Florida">Florida</option>
+                                                                    <option value="Georgia">Georgia</option>
+                                                                    <option value="Hawaii">Hawaii</option>
+                                                                    <option value="Idaho">Idaho</option>
+                                                                    <option value="Illinois">Illinois</option>
+                                                                    <option value="Indiana">Indiana</option>
+                                                                    <option value="Iowa">Iowa</option>
+                                                                    <option value="Kansas">Kansas</option>
+                                                                    <option value="Kentucky">Kentucky</option>
+                                                                    <option value="Louisiana">Louisiana</option>
+                                                                    <option value="Maine">Maine</option>
+                                                                    <option value="Maryland">Maryland</option>
+                                                                    <option value="Massachusetts">Massachusetts</option>
+                                                                    <option value="Michigan">Michigan</option>
+                                                                    <option value="Minnesota">Minnesota</option>
+                                                                    <option value="Mississippi">Mississippi</option>
+                                                                    <option value="Missouri">Missouri</option>
+                                                                    <option value="Montana">Montana</option>
+                                                                    <option value="Nebraska">Nebraska</option>
+                                                                    <option value="Nevada">Nevada</option>
+                                                                    <option value="New&#x20;Hampshire">New Hampshire</option>
+                                                                    <option value="New&#x20;Jersey">New Jersey</option>
+                                                                    <option value="New&#x20;Mexico">New Mexico</option>
+                                                                    <option value="New&#x20;York">New York</option>
+                                                                    <option value="North&#x20;Carolina">North Carolina</option>
+                                                                    <option value="North&#x20;Dakota">North Dakota</option>
+                                                                    <option value="Ohio">Ohio</option>
+                                                                    <option value="Oklahoma">Oklahoma</option>
+                                                                    <option value="Oregon">Oregon</option>
+                                                                    <option value="Pennsylvania">Pennsylvania</option>
+                                                                    <option value="Rhode&#x20;Island">Rhode Island</option>
+                                                                    <option value="South&#x20;Carolina">South Carolina</option>
+                                                                    <option value="South&#x20;Dakota">South Dakota</option>
+                                                                    <option value="Tennessee">Tennessee</option>
+                                                                    <option value="Texas">Texas</option>
+                                                                    <option value="Utah">Utah</option>
+                                                                    <option value="Vermont">Vermont</option>
+                                                                    <option value="Virginia">Virginia</option>
+                                                                    <option value="Washington">Washington</option>
+                                                                    <option value="West&#x20;Virginia">West Virginia</option>
+                                                                    <option value="Wisconsin">Wisconsin</option>
+                                                                    <option value="Wyoming">Wyoming</option>
+                                                                    <option value="Alabama">Alabama</option>
+                                                                    <option value="Alaska">Alaska</option>
+                                                                    <option value="Arizona">Arizona</option>
+                                                                    <option value="Arkansas">Arkansas</option>
+                                                                    <option value="California">California</option>
+                                                                    <option value="Colorado">Colorado</option>
+                                                                    <option value="Connecticut">Connecticut</option>
+                                                                    <option value="Delaware">Delaware</option>
+                                                                    <option value="Florida">Florida</option>
+                                                                    <option value="Georgia">Georgia</option>
+                                                                    <option value="Hawaii">Hawaii</option>
+                                                                    <option value="Idaho">Idaho</option>
+                                                                    <option value="Illinois">Illinois</option>
+                                                                    <option value="Indiana">Indiana</option>
+                                                                    <option value="Iowa">Iowa</option>
+                                                                    <option value="Kansas">Kansas</option>
+                                                                    <option value="Kentucky">Kentucky</option>
+                                                                    <option value="Louisiana">Louisiana</option>
+                                                                    <option value="Maine">Maine</option>
+                                                                    <option value="Maryland">Maryland</option>
+                                                                    <option value="Massachusetts">Massachusetts</option>
+                                                                    <option value="Michigan">Michigan</option>
+                                                                    <option value="Minnesota">Minnesota</option>
+                                                                    <option value="Mississippi">Mississippi</option>
+                                                                    <option value="Missouri">Missouri</option>
+                                                                    <option value="Montana">Montana</option>
+                                                                    <option value="Nebraska">Nebraska</option>
+                                                                    <option value="Nevada">Nevada</option>
+                                                                    <option value="New&#x20;Hampshire">New Hampshire</option>
+                                                                    <option value="New&#x20;Jersey">New Jersey</option>
+                                                                    <option value="New&#x20;Mexico">New Mexico</option>
+                                                                    <option value="New&#x20;York">New York</option>
+                                                                    <option value="North&#x20;Carolina">North Carolina</option>
+                                                                    <option value="North&#x20;Dakota">North Dakota</option>
+                                                                    <option value="Ohio">Ohio</option>
+                                                                    <option value="Oklahoma">Oklahoma</option>
+                                                                    <option value="Oregon">Oregon</option>
+                                                                    <option value="Pennsylvania">Pennsylvania</option>
+                                                                    <option value="Rhode&#x20;Island">Rhode Island</option>
+                                                                    <option value="South&#x20;Carolina">South Carolina</option>
+                                                                    <option value="South&#x20;Dakota">South Dakota</option>
+                                                                    <option value="Tennessee">Tennessee</option>
+                                                                    <option value="Texas">Texas</option>
+                                                                    <option value="Utah">Utah</option>
+                                                                    <option value="Vermont">Vermont</option>
+                                                                    <option value="Virginia">Virginia</option>
+                                                                    <option value="Washington">Washington</option>
+                                                                    <option value="West&#x20;Virginia">West Virginia</option>
+                                                                    <option value="Wisconsin">Wisconsin</option>
+                                                                    <option value="Wyoming">Wyoming</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Social link (Facebook)</label>
+                                                                <input class="form-control" type="text" name="fb_link" value="<%=result[0].fb_link %>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Social link (Twiter)</label>
+                                                                <input class="form-control" type="text" name="twitter_link" value="<%=result[0].twiter_link %>">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <a href="<%= result[0].image %>" target="_blank">
+                                                                    <img src="<%= result[0].image %>" width="200px" height="100px">
+                                                                </a>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Image</label>
+                                                                <input type="file" id="image" name="image" accept="image/*">
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.card-body -->
+
+                                                        <div class="card-footer">
+                                                            <input type="submit" name="btn_sub" id="btn_sub" class="btn btn-primary" value="Add">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+                            </div>
+                            <!--/. container-fluid -->
+                        </section>
+                        <!-- /.content -->
+                    </div>
+                    <!-- /.content-wrapper -->
+                    <!-- /.content-wrapper -->
+                    <% include ../partials/footer.ejs %>
+    </body>
+
+</html>

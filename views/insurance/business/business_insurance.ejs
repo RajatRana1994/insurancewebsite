@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../../partials/head.ejs%>
+        <style>
+            .has-tooltip {
+                display: flex;
+            }
+            .modal-tooltip-toggle {
+                cursor: pointer;
+                height: 20px;
+                position: relative;
+                top: 1rem;
+                left: 1.5rem;
+            }
+            .header{
+                background-color: #f9f8f4;
+                position: fixed;
+                z-index: 9999;
+                width: 100%;
+            }
+
+            .question-icon-tooltip {
+                margin: -1rem;
+                padding: 1rem;
+            }
+            .middle-section{
+                flex: 1 1;
+            }
+
+            .question-counter {
+                border: 1px solid #0a0c0e;
+                border-radius: 100%;
+                flex: 0 0 25px;
+                font-weight: 400;
+                margin-right: .75rem;
+                text-align: center;
+                height: 25px;
+                width: 25px;
+            }   
+            .question-wrap > .form-group {
+                margin: 0;
+            }
+            .scroll-wrap {
+                max-height: 100vh;
+                overflow-x: hidden;
+                overflow-y: auto;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+                height: calc(100vh - 6.5rem);
+                width: 100%;
+            }
+            .section-header {
+                margin-bottom: 10px;
+            }
+            .navigation-buttons.section-page-appear-active, 
+            .navigation-buttons.section-page-enter-active, 
+            .section-page-questions.section-page-appear-active, 
+            .section-page-questions.section-page-enter-active {
+                animation: slideUpVH .6s ease-out;
+                animation-delay: .2s;
+            }
+            .legal-content, .legal-copy {
+                margin: 5rem auto 2.5rem;
+                max-width: 500px;
+            }
+            .header{
+                background-color: #f9f8f4;
+                position: fixed;
+                z-index: 9999;
+                width: 100%;
+            }
+
+            .section-page-header {
+                background: #f9f8f4;
+                margin-bottom: 4rem;
+                position: relative;
+            }
+            .section-page-questions {
+                counter-reset: section;
+            }
+            .question-wrap {
+                padding: 0 0 6rem;
+            }
+            .question-wrap.disabled {
+                opacity: .3;
+                position: relative;
+                z-index: auto;
+            }
+            .question-wrap:last-of-type {
+                padding-bottom: 20px;
+            }
+            .question-header {
+                margin-bottom: 1rem;
+            }
+            .question-icon {
+                margin-bottom: 15px !important;;
+            }
+            .question-text {
+                color: #34393f;
+                margin-bottom: 0;
+                text-align: left;
+            }
+            .question-byline {
+                color: #4a4f53;
+                font-size: 1.12rem;
+                margin-top: .5rem;
+                margin-bottom: 0;
+                text-align: left;
+            }
+            .form-group-radio {
+                align-items: flex-start;
+                display: block;
+            }
+            .form-group-radio.stacked {
+                flex-direction: column;
+            }
+            .question-wrap .form-group, .section-nav {
+                max-width: 400px;
+                width: 100%;
+
+            }
+            .form-group-radio.stacked .custom-radio {
+                margin-right: 0;
+                width: 100%;
+                padding-left: 0;
+            }
+            .custom-control-input {
+                opacity: 0;
+                position: absolute;
+                z-index: -1;
+            }
+            .custom-control-label-wrap {
+                background-color: #fff;
+                border: 1px solid #d2d3d4;
+                border-radius: .25rem;
+                display: flex;
+                flex-wrap: nowrap;
+                padding: 1rem;
+            }
+            .custom-control-input:checked~.custom-control-label-wrap {
+                background-color: #21ce99;
+                box-shadow: none;
+            }
+            .custom-control-indicator {
+                background-color: #fff;
+                background-position: 50%;
+                background-repeat: no-repeat;
+                border: 1px solid #d2d3d4;
+                display: block;
+                pointer-events: none;
+                user-select: none;
+                min-height: 1.625rem;
+                min-width: 1.625rem;
+                height: 1.625rem;
+                width: 1.625rem;
+            }
+            .custom-radio .custom-control-indicator {
+                border-radius: 50%;
+            }
+            .custom-control-input:checked~.custom-control-label-wrap .custom-control-indicator {
+                border: none;
+                box-shadow: none;
+                color: #fff;
+            }
+            .custom-radio .custom-control-input:checked~.custom-control-label-wrap .custom-control-indicator {
+                background-image: url(/web_assets/assets/img/svg/radio.svg);
+                background-size: 100% 100%;
+            }
+            .home-icon svg {
+                margin-right: 1rem;
+                margin-bottom: -2px;
+            }
+            .summary-rail-section .btn-edit {
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                position: absolute;
+                right: 0;
+            }
+            @media (max-width: 767px) {
+                .question-wrap:last-of-type {
+                    padding-bottom: 1.5rem;
+                }
+            }
+            .autocomplete-items {
+              position: relative;
+              border: 1px solid #d4d4d4;
+              border-bottom: none;
+              border-top: none;
+              z-index: 99;
+              /*position the autocomplete items to be the same width as the container:*/
+              top: 100%;
+              left: 0;
+              right: 0;
+            }
+
+            .autocomplete-items div {
+              padding: 10px;
+              cursor: pointer;
+              background-color: #fff; 
+              border-bottom: 1px solid #d4d4d4; 
+            }
+
+            /*when hovering an item:*/
+            .autocomplete-items div:hover {
+              background-color: #e9e9e9; 
+            }
+
+            /*when navigating through the items using the arrow keys:*/
+            .autocomplete-active {
+              background-color: DodgerBlue !important; 
+              color: #ffffff; 
+            }
+            .autocomplete {
+              position: relative;
+              display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <% include ../../partials/header.ejs%>
+        <div class="main">
+            <div class="dot-nav d-none d-md-flex" role="navigation">
+                <div class="dot-nav-item active" id="snVehiclesBtn">
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">BASIC INFO</span>
+                </div>
+                <div class="dot-nav-item" id="snRecommandationBtn">
+                    <span class="nav-marker-line"></span>
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">RECOMMENDATIONS</span>
+                </div>
+                <div class="dot-nav-item" id="snBusinessBtn">
+                    <span class="nav-marker-line"></span>
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">BUSINESS DETAILS</span>
+                </div>
+                <div class="dot-nav-item" id="snQuoteBtn">
+                    <span class="nav-marker-line"></span>
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">QUOTE</span>
+                </div>
+                <div class="dot-nav-item" id="snResultsBtn">
+                    <span class="nav-marker-line"></span>
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">PURCHASE</span>
+                </div>
+            </div>
+            <section class="middle-section">
+                <form id="businessInsuranceForm" action="" method="post">
+                    <div id="scroll-container" class="scroll-wrap">
+                        <div class="section-wrapper active" id="step-1">
+                            <div class="section-header">
+                                <h1>Welcome! Let's get started</h1>
+                                <span class="subheader-text">What does your business do?</span>
+                            </div>
+                            <div id="catdiv" style="display:none;" data-cat="<%= catRes %>"></div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Describe your business</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control autocomplete">
+                                                                <label class="form-field__label">Enter Business Type</label>
+                                                                <input type="text" class="form-field__input" name="business_type" id="business_type">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <button type="button" id="save_continue1" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" onClick="validateBusinessInsuranceFormStep1();">
+                                    <span>
+                                        <span>Save &amp; continue</span>
+                                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                        <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="section-wrapper" id="step-2">
+                            <div class="section-header">
+                                <h1>How about one of these?</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 ">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Pick the classification that best matches your business.</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-group-radiobox stacked form-group">
+                                                            <label for="business_classification1" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_classification1" name="business_classification" value="1" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Retail Bakeries</span></div>
+                                                            </label>
+                                                            <label for="business_classification2" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_classification2" name="business_classification" value="2" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Other Building Material Dealers</span></div>
+                                                            </label>
+                                                            <label for="business_classification3" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_classification3" name="business_classification" value="3" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Art Dealers</span></div>
+                                                            </label>
+                                                            <label for="business_classification4" tabindex="0" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_classification4" name="business_classification" value="4" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Other Direct Selling Establishments</span></div>
+                                                            </label>
+                                                            <label for="business_classification5" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_classification5" name="business_classification" value="5" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Communication Equipment Repair and Maintenance</span></div>
+                                                            </label>
+                                                            <label for="business_classification6" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_classification6" name="business_classification" value="6" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Candy shop</span></div>
+                                                            </label>
+                                                            <label for="business_classification7" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_classification7" name="business_classification" value="7" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Art Gallery</span></div>
+                                                            </label>
+                                                            <label for="business_classification8" tabindex="0" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_classification8" name="business_classification" value="8" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Mailing Or Addressing Company</span></div>
+                                                            </label>
+                                                            <label for="business_classification9" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_classification9" name="business_classification" value="9" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Popcorn Shop</span></div>
+                                                            </label>
+                                                            <label for="business_classification10" tabindex="0" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_classification10" name="business_classification" value="10" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Pretzel Shop</span></div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <button type="button" id="save_continue2" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" onClick="validateBusinessInsuranceFormStep2();">
+                                    <span>
+                                        <span>Save &amp; continue</span>
+                                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                        <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <div class="section-wrapper" id="step-3">
+                            <div class="section-header">
+                                <h1>Just a few questions</h1>
+                                <span class="subheader-text">Your industry is <span class="text-primary" id="industry_val"></span></span>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 ">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">What's the name of your business?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Provide your business name</label>
+                                                                <input type="text" class="form-field__input" name="business_name" id="business_name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="79" height="99" viewBox="0 0 145.22 184.03">
+                                                <title>Asset 11</title>
+                                                <path d="M140,59.13A50.65,50.65,0,0,0,109.85,33a49.6,49.6,0,0,0-12-2.29c-.57,0-1.13-.05-1.7-.07l-1.64,0a52.16,52.16,0,0,0-29.12,9.1c-.41.28-.82.56-1.22.85s-.8.6-1.2.91a50.11,50.11,0,0,0-16.4,21.89c-.17.44-.32.88-.47,1.32s-.32.94-.48,1.42-.3,1-.43,1.43a50.37,50.37,0,0,0,.14,28.3,1.46,1.46,0,0,0,0,.22L54,131.53l.36,1.47.36,1.48,4.76,19.57a9.43,9.43,0,0,0,5.93,6.63,9.41,9.41,0,0,0,8.8-1.26l48.11-35.37.17-.14A50.89,50.89,0,0,0,140,59.13Zm-40.7,8.3A15,15,0,1,1,89.05,95.62a15.14,15.14,0,0,1-4.73-2.81,13.76,13.76,0,0,1-1.1-1.06c-.35-.38-.69-.78-1-1.19A15,15,0,0,1,96.35,66.68c.5.07,1,.17,1.49.29a14.72,14.72,0,0,1,1.43.44Z" fill="#21ce99"></path>
+                                                <path d="M98.6,181h-53a1.5,1.5,0,1,0,0,3h53a1.5,1.5,0,0,0,0-3ZM51,35.52a15,15,0,0,1,11.93,5.94c.4-.31.79-.62,1.2-.91s.81-.57,1.22-.85a18,18,0,1,0-20.2,27.82c.13-.48.28-1,.43-1.43s.31-1,.48-1.42A15,15,0,0,1,51,35.52ZM4.87,33.18a1.52,1.52,0,0,0,.28.09,1.49,1.49,0,0,0,1.69-.87A48.44,48.44,0,0,1,49.23,3,48.1,48.1,0,0,1,94.47,30.6l1.64,0c.57,0,1.13,0,1.7.07A51.13,51.13,0,0,0,49.12,0a51.45,51.45,0,0,0-45,31.18A1.5,1.5,0,0,0,4.87,33.18ZM51,135.24a9.36,9.36,0,0,0,3.68-.76L54.32,133,54,131.53a6.43,6.43,0,0,1-3,.71,6.32,6.32,0,0,1-5.34-2.86L12.73,80a1.63,1.63,0,0,0-.19-.34A47.5,47.5,0,0,1,3,50.27a1.5,1.5,0,0,0-1.19-1.49,1.36,1.36,0,0,0-.29,0A1.51,1.51,0,0,0,0,50.22,50.47,50.47,0,0,0,9.94,81.16a1.28,1.28,0,0,0,.11.2L43.16,131A9.4,9.4,0,0,0,51,135.24ZM89.46,79.63a1.06,1.06,0,0,0-.18.33l-7.06,10.6c.31.41.65.81,1,1.19a13.76,13.76,0,0,0,1.1,1.06L92,81.36a1.28,1.28,0,0,0,.11-.2,50.84,50.84,0,0,0,7.21-13.75A14.72,14.72,0,0,0,97.84,67c-.5-.12-1-.22-1.49-.29A48,48,0,0,1,89.46,79.63ZM13.7,115.84l-2.5,1a1.5,1.5,0,0,0,.56,2.89,1.36,1.36,0,0,0,.56-.11l2.5-1a1.5,1.5,0,0,0-1.12-2.78Zm30.85,26.88a1.51,1.51,0,0,0-2.09.38L38,149.61a1.5,1.5,0,0,0,.39,2.09,1.54,1.54,0,0,0,.85.26,1.5,1.5,0,0,0,1.23-.65l4.49-6.51A1.49,1.49,0,0,0,44.55,142.72ZM109,1a1.48,1.48,0,0,0-1.77,1.17l-1.53,7.49a1.5,1.5,0,0,0,1.17,1.77l.3,0a1.5,1.5,0,0,0,1.47-1.2l1.53-7.5A1.49,1.49,0,0,0,109,1Zm22.54,14.18a1.51,1.51,0,0,0-2.07-.47l-5.5,3.5a1.5,1.5,0,0,0,.8,2.77,1.58,1.58,0,0,0,.81-.23l5.5-3.5A1.51,1.51,0,0,0,131.53,15.18Z" fill="#070e15"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 ">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">What state is your business based in?</h2>
+                                                    </div>
+                                                    <div class="dropdown-select-wrap ">
+                                                        <div class="dropdown-select dropdown">
+                                                            <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                                <label class="dropdown-label" for="StateList_input">Select State</label>
+                                                                <input id="StateList_input" type="text" class="form-control completed" data-id="" placeholder="Select State" value="">
+                                                                <input id="state_id" name="state_id" type="hidden" value="">
+                                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                </svg>
+                                                            </span>
+                                                            <div class="dropdown-menu" id="StateList">
+                                                                <% if(states.length > 0){
+                                                                states.forEach(function(res, i) {
+                                                                %>
+                                                                <div class="item" data-id="<%= res.id %>"><%= res.name %></div>
+                                                                <% }); 
+                                                                } %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_employees_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 ">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">How many employees (including owner)?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Number of Employee</label>
+                                                                <input type="number" min="1" class="form-field__input" name="no_of_employee" id="no_of_employee">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="111" height="80" viewBox="0 0 249.81 180">
+                                                <title>Asset 17</title>
+                                                <path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.5,1.5,0,0,0,1.15-2.46l-50-60A1.49,1.49,0,0,0,174.5,31H67.61a1.55,1.55,0,0,0-2.26,0l-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path>
+                                                <path d="M43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM241.5,177H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83Z" fill="#181717"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 ">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Where do you do your work?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-group-radiobox stacked form-group">
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input form-check-input" name="work_from" id="work_from1" value="1">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Home</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input form-check-input" name="work_from" id="work_from2" value="2">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Rented property</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input form-check-input" name="work_from" id="work_from3" value="3">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Business-owned property</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input form-check-input" name="work_from" id="work_from4" value="4">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Client sites</span></div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 9</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 ">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Do you do any of the following?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-group-radiobox stacked form-group">
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input form-check-input" name="provide_facility" id="provide_facility1" value="1">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Transport valuable equipment (worth &nbsp;&nbsp;$500 or more) to jobs</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input form-check-input" name="provide_facility" id="provide_facility2" value="2">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Accept credit cards as a form of &nbsp;&nbsp;payment</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input form-check-input" name="provide_facility" id="provide_facility3" value="3">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Store sensitive customer information</span></div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_vehicle.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 ">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">What types of vehicles are used?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-group-radiobox stacked form-group">
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input form-check-input" name="vehicle_type" value="1">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Business-owned vehicles</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input form-check-input" name="vehicle_type" value="2">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Employee-owned vehicles</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input form-check-input" name="vehicle_type" value="3">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Rented vehicles</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input form-check-input" name="vehicle_type" value="4">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">My personal vehicles</span></div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <button type="button" id="save_continue3" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" onClick="validateBusinessInsuranceFormStep3();">
+                                    <span>
+                                        <span>Save &amp; continue</span>
+                                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                        <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="section-wrapper" id="step-4">
+                            <div class="section-header">
+                                <h1><span>User Name</span> based on what we know about your business, we recommend:</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 col-lg-4 ">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <div class="card p-5 mb-3">
+                                                            <h2 class="question-text">General Liability</h2>
+                                                            <p class="mt-3">Because test could accidentally harm somebody or damage their property while you're doing work on a client's premises.</p>
+                                                            <a href="workers-compensation-insurance.html">
+                                                                What is It? 
+                                                                <svg data-name="Layer 1"  xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                                <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#007bff" fill-rule="evenodd"></path>
+                                                                </svg>
+                                                            </a>
+                                                        </div>
+                                                        <div class="card p-5 mb-3">
+                                                            <h2 class="question-text">Product Liability</h2>
+                                                            <p class="mt-3">Because test could be sued after you complete a job if someone is hurt (or their property damaged) because of a product you installed or the work you did.</p>
+                                                            <a href="workers-compensation-insurance.html">What is It? <svg data-name="Layer 1"  xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11"><path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#007bff" fill-rule="evenodd"></path></svg></a>
+                                                        </div>
+                                                        <div class="card p-5 mb-3">
+                                                            <h2 class="question-text">Workers' Comp</h2>
+                                                            <p class="mt-3">Because you have employees who could be injured while doing a job. Mylo recommends you cover them to avoid employee lawsuits.</p>
+                                                            <a href="/get_worker_comp_nsurance">What is It? <svg data-name="Layer 1"  xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11"><path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#007bff" fill-rule="evenodd"></path></svg></a>
+                                                        </div>
+                                                        <div class="card p-5 mb-3">
+                                                            <h2 class="question-text">Automobile Liability</h2>
+                                                            <p class="mt-3">Because test owns vehicles that you drive to client work sites. You're legally required to cover them.</p>
+                                                            <a href="workers-compensation-insurance.html">What is It? <svg data-name="Layer 1"  xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11"><path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#007bff" fill-rule="evenodd"></path></svg></a>
+                                                        </div>
+                                                        <div class="card p-5 mb-3">
+                                                            <h2 class="question-text">Automobile Liability - Hired & Non-owned</h2>
+                                                            <p class="mt-3">Because you have employees who drive their own vehicles on the job.</p>
+                                                            <a href="workers-compensation-insurance.html">What is It? <svg data-name="Layer 1"  xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11"><path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#007bff" fill-rule="evenodd"></path></svg></a>
+                                                        </div>
+                                                        <div class="card p-5 mb-3">
+                                                            <h2 class="question-text">Cyber</h2>
+                                                            <p class="mt-3">Because you take credit cards. That puts you at risk for a cyberattack that could result in huge costs and damage your great reputation with your customers.</p>
+                                                            <a href="workers-compensation-insurance.html">What is It? <svg data-name="Layer 1"  xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11"><path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#007bff" fill-rule="evenodd"></path></svg></a>
+                                                        </div>
+                                                        <div class="card p-5 mb-3">
+                                                            <h2 class="question-text">Property</h2>
+                                                            <p class="mt-3">Because test has an office and could be slowed down if your space is damaged.</p>
+                                                            <a href="workers-compensation-insurance.html">What is It? <svg data-name="Layer 1"  xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11"><path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#007bff" fill-rule="evenodd"></path></svg></a>
+                                                        </div>
+                                                        <div class="card p-5 mb-3">
+                                                            <h2 class="question-text">Umbrella</h2>
+                                                            <p class="mt-3">Because you appear to have enough valuable business assets to benefit from adding an extra level of protection.</p>
+                                                            <a href="workers-compensation-insurance.html">What is It? <svg data-name="Layer 1"  xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11"><path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#007bff" fill-rule="evenodd"></path></svg></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="step-5">
+                                    <span>
+                                        <span>Save &amp; continue</span>
+                                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                        <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="section-wrapper" id="step-5">
+                            <div class="section-header">
+                                <h1>How can we reach you?</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_employees_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">First name</label>
+                                                                <input type="text" class="form-field__input" name="first_name" id="first_name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Last name</label>
+                                                                <input type="text" class="form-field__input" name="last_name" id="last_name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Phone number</label>
+                                                                <input type="number" min="0" class="form-field__input" name="phone_number" id="phone_number">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Email</label>
+                                                                <input type="email" class="form-field__input" name="email" id="email">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <button type="button" id="save_continue5" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" onClick="validateBusinessInsuranceFormStep5();">
+                                    <span>
+                                        <span>Save &amp; continue</span>
+                                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                        <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="section-wrapper" id="step-6">
+                            <div class="section-header">
+                                <h1>Where is your business located?</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 col-lg-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2>Fill the Information</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Address line 1</label>
+                                                                <input type="text" class="form-field__input" name="address_line1" id="address_line1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Address line 2</label>
+                                                                <input type="text" class="form-field__input" name="address_line2" id="address_line2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-select-wrap ">
+                                                            <div class="dropdown-select dropdown">
+                                                                <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                                    <label class="dropdown-label" for="AddressStateList_input">Select State</label>
+                                                                    <input id="AddressStateList_input" type="text" class="form-control completed" data-id="" placeholder="Select State" value="">
+                                                                    <input id="address_state_id" name="address_state_id" type="hidden" value="">
+                                                                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                    <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                    </svg>
+                                                                </span>
+                                                                <div class="dropdown-menu" id="AddressStateList">
+                                                                    <% if(states.length > 0){
+                                                                    states.forEach(function(res, i) {
+                                                                    %>
+                                                                    <div class="item" data-id="<%= res.id %>"><%= res.name %></div>
+                                                                    <% }); 
+                                                                    } %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">City</label>
+                                                                <input type="text" class="form-field__input" name="city" id="city">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Zip code</label>
+                                                                <input type="number" class="form-field__input" name="zipcode" id="zipcode">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 9</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 ">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Is this address also your mailing address?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-group-radiobox stacked form-group">
+                                                            <label for="mailing_address_same1" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="mailing_address_same1" name="mailing_address_same" value="yes" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Yes</span></div>
+                                                            </label>
+                                                            <label for="mailing_address_same2" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="mailing_address_same2" name="mailing_address_same" value="no" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">No</span></div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 9</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 ">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Does your business own or rent any other locations besides the address you gave us?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-group-radiobox stacked form-group">
+                                                            <label for="business_other_location1" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_other_location1" name="business_other_location" value="yes" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Yes</span></div>
+                                                            </label>
+                                                            <label for="business_other_location2" class="custom-control custom-block custom-radio">
+                                                                <input type="radio" id="business_other_location2" name="business_other_location" value="no" class="custom-control-input form-check-input">
+                                                                <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">No</span></div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/square.svg" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 ">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Square footage occupied</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-group-radiobox stacked form-group">
+                                                            <div class="form-field text-left">
+                                                                <div class="form-field__control">
+                                                                    <label class="form-field__label">Maximum 99999</label>
+                                                                    <input type="number" min="1" max="99999" class="form-field__input" name="square_footage" id="square_footage">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <button type="button" id="save_continue6" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" onClick="validateBusinessInsuranceFormStep6();">
+                                    <span>
+                                        <span>Save &amp; continue</span>
+                                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                        <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="section-wrapper" id="step-mailing-address">
+                            <div class="section-header">
+                                <h1>What is your mailing address?</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5" id="mailing_add_div">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 col-lg-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2>What is your mailing address?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Address line 1</label>
+                                                                <input type="text" class="form-field__input" name="mailing_address_line1" id="mailing_address_line1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Address line 2</label>
+                                                                <input type="text" class="form-field__input" name="mailing_address_line2" id="mailing_address_line2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="dropdown-select-wrap ">
+                                                            <div class="dropdown-select dropdown">
+                                                                <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                                    <label class="dropdown-label" for="MailingAddressStateList_input">Select State</label>
+                                                                    <input id="MailingAddressStateList_input" type="text" class="form-control completed" data-id="" placeholder="Select State" value="">
+                                                                    <input id="mailing_address_state_id" name="mailing_address_state_id" type="hidden" value="">
+                                                                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                    <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                    </svg>
+                                                                </span>
+                                                                <div class="dropdown-menu" id="MailingAddressStateList">
+                                                                    <% if(states.length > 0){
+                                                                    states.forEach(function(res, i) {
+                                                                    %>
+                                                                    <div class="item" data-id="<%= res.id %>"><%= res.name %></div>
+                                                                    <% }); 
+                                                                    } %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">City</label>
+                                                                <input type="text" class="form-field__input" name="mailing_city" id="mailing_city">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Zip code</label>
+                                                                <input type="text" class="form-field__input" name="mailing_zipcode" id="mailing_zipcode">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <button type="button" id="mailing_save_continue" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" onClick="validateBusinessInsuranceFormForMailingAddress();">
+                                    <span>
+                                        <span>Save &amp; continue</span>
+                                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                        <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="section-wrapper" id="step-7">
+                            <div class="section-header">
+                                <h1>Just a few more details</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 9</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Business structure</h2>
+                                                    </div>
+                                                    <div class="dropdown-select-wrap ">
+                                                        <div class="dropdown-select dropdown">
+                                                            <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                                <label class="dropdown-label" for="BusinessStructureList_input">Select Business Structure</label>
+                                                                <input id="BusinessStructureList_input" type="text" class="form-control completed" data-id="" placeholder="Select Business Structure" value="">
+                                                                <input id="business_structure" name="business_structure" type="hidden" value="">
+                                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                </svg>
+                                                            </span>
+                                                            <div class="dropdown-menu" id="BusinessStructureList">
+                                                                <div class="item" data-id="1">Individual / Sole Proprietor</div>
+                                                                <div class="item" data-id="2">Joint Venture</div>
+                                                                <div class="item" data-id="3">LLC</div>
+                                                                <div class="item" data-id="4">Partnership</div>
+                                                                <div class="item" data-id="5">Trust</div>
+                                                                <div class="item" data-id="6">C Corporation</div>
+                                                                <div class="item" data-id="7">S Corporation</div>
+                                                                <div class="item" data-id="8">Unincorporated Association</div>
+                                                                <div class="item" data-id="9">Nonprofit</div>
+                                                                <div class="item" data-id="10">Other</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 9</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Date Established</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label"></label>
+                                                                <input type="text" class="form-field__input birthdate" id="establish_date" name="establish_date">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 9</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Number of business owned vehicles</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Number of business owned vehicles</label>
+                                                                <input type="number" min="0" class="form-field__input" id="business_owned_vehicle" name="business_owned_vehicle">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 9</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Projected annual revenue</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Projected annual revenue</label>
+                                                                <input type="number" min="1" class="form-field__input" id="annual_revenue" name="annual_revenue">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 9</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Annual payroll (+owner)</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Annual payroll (+owner)</label>
+                                                                <input type="number" min="1" class="form-field__input" name="annual_payroll" id="annual_payroll">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 9</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Value of business personal property</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Value of business personal property</label>
+                                                                <input type="number" min="1" class="form-field__input" name="personal_property_value" id="personal_property_value">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 9</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Website</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">http://www.website.com</label>
+                                                                <input type="url" class="form-field__input" name="website" id="website">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 10</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">We'd like to know who to thank!</h2>
+                                                    </div>
+                                                    <div class="dropdown-select-wrap ">
+                                                        <div class="dropdown-select dropdown">
+                                                            <span aria-haspopup="true" aria-expanded="false" class="dropdown-select-header completed">
+                                                                    <label class="dropdown-label" for="yearYear-0Input-0">We'd like to know who to thank!></label>
+                                                                    <input id="HearAboutUsList_input" data-cy="year-0Input" type="text" name="hear_about_us" class="form-control completed" placeholder="Hear About Us" value="">
+                                                                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                    <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                    </svg>
+                                                            </span>
+                                                            <div class="dropdown-menu" id="HearAboutUsList">
+                                                                <div class="item">Online ad on a website</div>
+                                                                <div class="item">Podcast/Radio ad</div>
+                                                                <div class="item">Hulu ad</div>
+                                                                <div class="item">Reffered by a friend</div>
+                                                                <div class="item">Another insurance website</div>
+                                                                <div class="item">Search engine (Google, Bing, etc.)</div>
+                                                                <div class="item">TV ad</div>
+                                                                <div class="item">Facebook ad</div>
+                                                                <div class="item">Other</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="navigation-buttons p-0">
+                                <button type="button" class="btn-rounded btn-continue btn btn-primary" onClick="validateBusinessInsuranceFormStep7();">
+                                    <span>
+                                        <span>Save &amp; continue</span>
+                                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                        <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <aside class="right-summary-rail d-xl-block d-none">
+            </aside>
+        </div>
+        <% include ../../partials/footer.ejs%>
+        <script src="/web_assets/assets/js/autocomplete.js" type="text/javascript"></script>
+        <script>
+            var return_category = "<%= catRes %>";
+            if(return_category != "")
+                return_categoryArr = return_category.split(',');
+            console.log(return_category);
+            console.log(return_categoryArr);
+            autocomplete(document.getElementById("business_type"), return_categoryArr);
+        </script>
+    </body>
+</html>

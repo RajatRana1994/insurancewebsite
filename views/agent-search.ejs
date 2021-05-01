@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <% include partials/head.ejs%>
+</head>
+
+<body>
+
+    <% include partials/header.ejs%>
+
+        <section class="agent_search_wrap py-5 bg-custom-blue">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title white_heading mb-2">Find a Defy Insurance Agent</h2>
+                    <p class="text-white">Search by State / Search by Name</p>
+                </div>
+                <div class="agent_search_field text-center">
+                    <button type="button" class="btn btn-black" data-search="byState">Search by State</button>
+                    <button type="button" class="btn" data-search="byName">Search by Name</button>
+                    <form action="" autocomplete="off">
+                        <input type="hidden" name="search_by" value="byState" id="search_by">
+                        <select class="form-control" name="search" id="searchByState">
+                            <option selected="true" value="" hidden>-Select-</option>
+                            <option value="Alabama">Alabama</option>
+                            <option value="Alaska">Alaska</option>
+                            <option value="Arizona">Arizona</option>
+                            <option value="Arkansas">Arkansas</option>
+                            <option value="California">California</option>
+                            <option value="Colorado">Colorado</option>
+                            <option value="Connecticut">Connecticut</option>
+                            <option value="Delaware">Delaware</option>
+                            <option value="Florida">Florida</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Hawaii">Hawaii</option>
+                            <option value="Idaho">Idaho</option>
+                            <option value="Illinois">Illinois</option>
+                            <option value="Indiana">Indiana</option>
+                            <option value="Iowa">Iowa</option>
+                            <option value="Kansas">Kansas</option>
+                            <option value="Kentucky">Kentucky</option>
+                            <option value="Louisiana">Louisiana</option>
+                            <option value="Maine">Maine</option>
+                            <option value="Maryland">Maryland</option>
+                            <option value="Massachusetts">Massachusetts</option>
+                            <option value="Michigan">Michigan</option>
+                            <option value="Minnesota">Minnesota</option>
+                            <option value="Mississippi">Mississippi</option>
+                            <option value="Missouri">Missouri</option>
+                            <option value="Montana">Montana</option>
+                            <option value="Nebraska">Nebraska</option>
+                            <option value="Nevada">Nevada</option>
+                            <option value="New&#x20;Hampshire">New Hampshire</option>
+                            <option value="New&#x20;Jersey">New Jersey</option>
+                            <option value="New&#x20;Mexico">New Mexico</option>
+                            <option value="New&#x20;York">New York</option>
+                            <option value="North&#x20;Carolina">North Carolina</option>
+                            <option value="North&#x20;Dakota">North Dakota</option>
+                            <option value="Ohio">Ohio</option>
+                            <option value="Oklahoma">Oklahoma</option>
+                            <option value="Oregon">Oregon</option>
+                            <option value="Pennsylvania">Pennsylvania</option>
+                            <option value="Rhode&#x20;Island">Rhode Island</option>
+                            <option value="South&#x20;Carolina">South Carolina</option>
+                            <option value="South&#x20;Dakota">South Dakota</option>
+                            <option value="Tennessee">Tennessee</option>
+                            <option value="Texas">Texas</option>
+                            <option value="Utah">Utah</option>
+                            <option value="Vermont">Vermont</option>
+                            <option value="Virginia">Virginia</option>
+                            <option value="Washington">Washington</option>
+                            <option value="West&#x20;Virginia">West Virginia</option>
+                            <option value="Wisconsin">Wisconsin</option>
+                            <option value="Wyoming">Wyoming</option>
+                            <option value="Alabama">Alabama</option>
+                            <option value="Alaska">Alaska</option>
+                            <option value="Arizona">Arizona</option>
+                            <option value="Arkansas">Arkansas</option>
+                            <option value="California">California</option>
+                            <option value="Colorado">Colorado</option>
+                            <option value="Connecticut">Connecticut</option>
+                            <option value="Delaware">Delaware</option>
+                            <option value="Florida">Florida</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Hawaii">Hawaii</option>
+                            <option value="Idaho">Idaho</option>
+                            <option value="Illinois">Illinois</option>
+                            <option value="Indiana">Indiana</option>
+                            <option value="Iowa">Iowa</option>
+                            <option value="Kansas">Kansas</option>
+                            <option value="Kentucky">Kentucky</option>
+                            <option value="Louisiana">Louisiana</option>
+                            <option value="Maine">Maine</option>
+                            <option value="Maryland">Maryland</option>
+                            <option value="Massachusetts">Massachusetts</option>
+                            <option value="Michigan">Michigan</option>
+                            <option value="Minnesota">Minnesota</option>
+                            <option value="Mississippi">Mississippi</option>
+                            <option value="Missouri">Missouri</option>
+                            <option value="Montana">Montana</option>
+                            <option value="Nebraska">Nebraska</option>
+                            <option value="Nevada">Nevada</option>
+                            <option value="New&#x20;Hampshire">New Hampshire</option>
+                            <option value="New&#x20;Jersey">New Jersey</option>
+                            <option value="New&#x20;Mexico">New Mexico</option>
+                            <option value="New&#x20;York">New York</option>
+                            <option value="North&#x20;Carolina">North Carolina</option>
+                            <option value="North&#x20;Dakota">North Dakota</option>
+                            <option value="Ohio">Ohio</option>
+                            <option value="Oklahoma">Oklahoma</option>
+                            <option value="Oregon">Oregon</option>
+                            <option value="Pennsylvania">Pennsylvania</option>
+                            <option value="Rhode&#x20;Island">Rhode Island</option>
+                            <option value="South&#x20;Carolina">South Carolina</option>
+                            <option value="South&#x20;Dakota">South Dakota</option>
+                            <option value="Tennessee">Tennessee</option>
+                            <option value="Texas">Texas</option>
+                            <option value="Utah">Utah</option>
+                            <option value="Vermont">Vermont</option>
+                            <option value="Virginia">Virginia</option>
+                            <option value="Washington">Washington</option>
+                            <option value="West&#x20;Virginia">West Virginia</option>
+                            <option value="Wisconsin">Wisconsin</option>
+                            <option value="Wyoming">Wyoming</option>
+                        </select>
+                        <input type="search" placeholder="Search.." name="searchByName" id="searchByName" style="display:none;">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="agent_search_list py-5">
+            <div class="container">
+                <div class="row">
+                    <% if(agents.length){ 
+                    agents.forEach(function(agent, i) { %>
+                        <div class="col-md-6">
+                            <div class="agent_list_block">
+                                <h1 class="mb-3">
+                                    <%- agent.first_name %>
+                                        <%- agent.last_name%>
+                                </h1>
+                                <p><b>Closed</b> Opens at 8:30 AM Monday </p>
+                                <p>
+                                    <% if(agent.address){ %>
+                                        <%- agent.address%>,
+                                            <% }if(agent.city){ %>
+                                                <%- agent.city%>,
+                                                    <% }if(agent.state){ %>
+                                                        <%- agent.state %>
+                                                            <% } %>
+                                </p>
+                                <p><i class="fa fa-phone" aria-hidden="true"></i>
+                                    <%- agent.phone_number%>
+                                </p>
+                                <p><i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <%- agent.email%>
+                                </p>
+                                <a href="/get_agent_serch/<%- agent.id %>" class="btn btn-black mt-2">Get a Quote</a>
+                            </div>
+                        </div>
+                        <% }) }else{ %>
+                            <div class="col-12 text-center">
+                                <div class="agent_list_block">
+                                    <p>No result Found</p>
+                                </div>
+                            </div>
+                            <% } %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Starts -->
+        <% include partials/footer.ejs%>
+            <!-- <div style="display: none;">
+            Icons made by <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        </div> -->
+
+
+
+</body>
+
+</html>

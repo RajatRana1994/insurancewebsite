@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ../partials/head.ejs %>
+
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+                <% include ../partials/sidebar.ejs %>
+                    <!-- Content Wrapper. Contains page content -->
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!-- Content Header (Page header) -->
+                        <div class="content-header">
+                            <div class="container-fluid">
+                                <div class="row mb-2">
+                                    <div class="col-sm-6">
+                                        <h1 class="m-0 text-dark">Blogs</h1>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-sm-6">
+                                        <ol class="breadcrumb float-sm-right">
+                                            <li class="breadcrumb-item">
+                                                <a href="/referral/dashboard">
+                                                    <i class="fa fa-tachometer-alt"></i> Dashboard
+                                                </a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Blogs</li>
+                                        </ol>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.container-fluid -->
+                        </div>
+                        <!-- /.content-header -->
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <% var messages = getMessages()
+                                if (messages.error_message){ %>
+                                            <div class="alert alert-danger alert-dismissible">
+                                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                <%= messages.error_message %>
+                                            </div>
+                                            <% } %>
+                                                <div class="card card-primary">
+                                                    <div class="card-header">
+                                                        <h3 class="card-title">Edit Blog</h3>
+                                                    </div>
+                                                    <% 
+                                                        if(result[0].type == 1)
+                                                            var v_type = "Auto";
+                                                        if(result[0].type == 2)
+                                                            var v_type = "Home";
+                                                        if(result[0].type == 3)
+                                                            var v_type = "Business";
+                                                        if(result[0].type == 4)
+                                                            var v_type = "Work Compensation";
+                                                        if(result[0].type == 5)
+                                                            var v_type = "Renters";
+                                                        if(result[0].type == 6)
+                                                            var v_type = "Home Insurance Floater";
+                                                        if(result[0].type == 7)
+                                                            var v_type = "Motorcycle, RV, Boat";
+                                                        if(result[0].type == 8)
+                                                            var v_type = "Umbrella";
+                                                        if(result[0].type == 9)
+                                                            var v_type = "Small Group Benefits";
+                                                        if(result[0].type == 10)
+                                                            var v_type = "Life";
+                                                        if(result[0].type == 11)
+                                                            var v_type = "Health care";
+                                                        if(result[0].type == 12)
+                                                            var v_type = "Accident";
+                                                        if(result[0].type == 13)
+                                                            var v_type = "Dental";
+                                                        if(result[0].type == 14)
+                                                            var v_type = "Short-Term Medical";
+                                                        if(result[0].type == 15)
+                                                            var v_type = "Vision";
+                                                        if(result[0].type == 16)
+                                                            var v_type = "Medicare";
+                                                        if(result[0].type == 17)
+                                                            var v_type = "Medical";
+                                                        if(result[0].type == 18)
+                                                            var v_type = "Commercial Auto";
+                                                        if(result[0].type == 19)
+                                                            var v_type = "General Liability";
+                                                        if(result[0].type == 20)
+                                                            var v_type = "Professional Liability";
+                                                        if(result[0].type == 21)
+                                                            var v_type = "Cyber Insurance";
+                                                        if(result[0].type == 22)
+                                                            var v_type = "Surety Bonds";
+                                                    %>
+                                                        <!-- /.card-header -->
+                                                        <form role="form" action="" method="post" id="" enctype="multipart/form-data">
+                                                            <input type="hidden" name="id" value="<%-result[0].id %>">
+                                                            <div class="card-body">
+                                                                <div class="form-group">
+                                                                    <label for="name">Blog Type</label>
+                                                                    <!-- <input type="text" value="<%-v_type %>" class="form-control" id="blog_type" name="blog_type" disabled="" required=""> -->
+                                                                    <select class="form-control" id="blog_type" name="blog_type">
+                                                                        <option value="">Choose Blog Type</option>
+                                                                        <option value="1">Auto</option>
+                                                                        <option value="2">Home</option>
+                                                                        <option value="3">Business</option>
+                                                                        <option value="4">Work Compensation</option>
+                                                                        <option value="5">Renters</option>
+                                                                        <option value="6">Home Insurance Floater</option>
+                                                                        <option value="7">Motorcycle, RV, Boat</option>
+                                                                        <option value="8">Umbrella</option>
+                                                                        <option value="9">Small Group Benefits</option>
+                                                                        <option value="10">Life</option>
+                                                                        <option value="11">Health care</option>
+                                                                        <option value="12">Accident</option>
+                                                                        <option value="13">Dental</option>
+                                                                        <option value="14">Short-Term Medical</option>
+                                                                        <option value="15">Vision</option>
+                                                                        <option value="16">Medicare</option>
+                                                                        <option value="17">Medical</option>
+                                                                        <option value="18">Commercial Auto</option>
+                                                                        <option value="19">General Liability</option>
+                                                                        <option value="20">Professional Liability</option>
+                                                                        <option value="21">Cyber Insurance</option>
+                                                                        <option value="22">Surety Bonds</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="name">Title</label>
+                                                                    <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title" value="<%=result[0].title%>" required="">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="name">Duration</label>
+                                                                    <input type="text" class="form-control" id="duration" placeholder="Enter Duration" name="duration" value="<%-result[0].duration %>" required="">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="name">Short Description</label>
+                                                                    <textarea class="form-control" id="short_description" placeholder="Enter Short Description" name="short_description" required=""><%-result[0].short_description%></textarea>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="name">Description</label>
+                                                                    <textarea class="form-control" id="description" placeholder="Enter Description" name="description" required=""><%-result[0].description%></textarea>
+                                                                </div>
+                                                                <% if(result[0].image_1){%>
+                                                                    <div class="form-group">
+                                                                        <a href="<%= result[0].image_1 %>" target="_blank">
+                                                                        <img src="<%= result[0].image_1 %>" width="200px" height="100px">
+                                                                    </a>
+                                                                    </div>
+                                                                    <% } %>
+                                                                        <div class="form-group">
+                                                                            <label for="name">Image 1</label>
+                                                                            <input type="file" id="image1" name="image[]" value="<%=result[0].image_1%>">
+                                                                        </div>
+                                                                        <% if(result[0].image_2){%>
+                                                                            <div class="form-group">
+                                                                                <a href="<%= result[0].image_2 %>" target="_blank">
+                                                                                <img src="<%= result[0].image_2 %>" width="200px" height="100px">
+                                                                            </a>
+                                                                            </div>
+                                                                            <% } %>
+                                                                                <div class="form-group">
+                                                                                    <label for="name">Image 2</label>
+                                                                                    <input type="file" value="<%=result[0].image_2%>" id="image2" name="image[]">
+                                                                                </div>
+                                                                                <% if(result[0].image_3){%>
+                                                                                    <div class="form-group">
+                                                                                        <a href="<%= result[0].image_3 %>" target="_blank">
+                                                                                <img src="<%= result[0].image_3 %>" width="200px" height="100px">
+                                                                            </a>
+                                                                                    </div>
+                                                                                    <% } %>
+                                                                                        <div class="form-group">
+                                                                                            <label for="name">Image 3</label>
+                                                                                            <input type="file" id="image3" value="<%=result[0].image_3%>" name="image[]">
+                                                                                        </div>
+                                                                                        <% if(result[0].image_4){%>
+                                                                                            <div class="form-group">
+                                                                                                <a href="<%= result[0].image_4 %>" target="_blank">
+                                                                                <img src="<%= result[0].image_4 %>" width="200px" height="100px">
+                                                                            </a>
+                                                                                            </div>
+                                                                                            <% } %>
+                                                                                                <div class="form-group">
+                                                                                                    <label for="name">Image 4</label>
+                                                                                                    <input type="file" id="image4" value="<%=result[0].image_4%>" name="image[]">
+                                                                                                </div>
+                                                            </div>
+                                                            <!-- /.card-body -->
+
+                                                            <div class="card-footer">
+                                                                <input type="submit" name="btn_sub" id="btn_sub" class="btn btn-primary" value="Add">
+                                                            </div>
+                                                        </form>
+                                                </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+                            </div>
+                            <!--/. container-fluid -->
+                        </section>
+                        <!-- /.content -->
+                    </div>
+                    <!-- /.content-wrapper -->
+                    <!-- /.content-wrapper -->
+                    <% include ../partials/footer.ejs %>
+    </body>
+
+</html>

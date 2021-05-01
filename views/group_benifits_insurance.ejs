@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <% include partials/head.ejs%>
+    </head>
+    <body>
+        <% include partials/header.ejs%>
+        <section class="section pt-5">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Tell us about yourself.</h2>
+                </div>
+                <div class="row about justify-content-center">
+                    <div class="col-12">
+                        <div class="more_product_form_outer">
+                            <form class="form" method="post" id="groupBenifitsInsuranceForm">
+                                <div class="form-innner">
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">First Name</label>
+                                            <input type="text" class="form-field__input" name="first_name" id="first_name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Last Name</label>
+                                            <input type="text" class="form-field__input" name="last_name" id="last_name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Email</label>
+                                            <input type="email" class="form-field__input" name="email" id="email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Phone Number</label>
+                                            <input type="number" class="form-field__input" name="phone_number" id="phone_number" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label  class="form-field__label">Company Name</label>
+                                            <input type="text" class="form-field__input" name="company_name" id="company_name" />
+                                        </div>
+                                        <small>This should be your legal business name.</small>
+                                    </div>
+
+                                    <p><i>By clicking the button below, I give my electronic signature and consent to be called by Defy or receive text messages at this number regarding my inquiry. This consent is not required for purchase and can be revoked at any time. My telephone company may impose additional charges for text messages.</i></p>
+
+                                    <div class="btn-wrapper mt-5">
+                                        <button class="btn btn-green" type="button" onClick="validateGroupBenifitsInsuranceForm();">Find Plans</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Ends -->
+        <% include partials/footer.ejs%>
+    </body>
+</html>

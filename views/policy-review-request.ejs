@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+       <% include ./partials/head.ejs%>
+    </head>
+
+    <body>
+
+
+        <% include partials/header.ejs%>
+		
+		<section class="inner-pages-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-7">
+						<h2>Account Review</h2>
+						<p>We would be happy to review your insurance needs at absolutely no cost to you, at any time during your policy period.</p>
+						<p>If you are insured with another agency, or have no insurance now, we are happy to speak with you about your needs.</p>
+						<h3>PERSONAL INSURANCE REVIEW</h3>
+						<p>Just give us a call at 877-780-4626 or fill out the form on this page, and the right Account Executive will contact you.</p>
+						<p>We also welcome you to browse our site, and learn more by selecting from the Personal menu items.</p>
+						<h3>COMMERCIAL INSURANCE REVIEW</h3>
+						<p>For Commercial Insurance inquiry, select the Business menu item and select your needs. Feel free to use the inquiry form on that page.   You will learn that our agency works with businesses just like yours every day.  Each of of business insurance team is devoted to knowing your business, as well as insurance.  Of course you may also call us at 877-780-4626.</p>
+						<img src="../assets/img/Business-People-150x150.jpg" alt="">
+					</div>
+					<div class="col-lg-5 mt-3 mt-lg-0 right-reivew-form">
+						<h2>ACCOUNT REVIEW FORM</h2>
+						<p>Free "Anytime" Account Review <br> We would be happy to review your account at absolutely no cost to you. Just give us a call at 877-780-4626 or complete the form below.</p>
+						 <form class="form" action="" method="POST" id="insurance-form">
+							<div class="form-innner">
+								<div class="form-field text-left">
+									<div class="form-field__control">
+										<label class="form-field__label">First Name</label>
+										<input  type="text" name="first_name" class="form-field__input" />
+									</div>
+								</div>
+								<div class="form-field text-left">
+									<div class="form-field__control">
+										<label  class="form-field__label">Last Name</label>
+										<input type="text" name="last_name" class="form-field__input" />
+									</div>
+								</div>
+								<div class="form-field text-left">
+									<div class="form-field__control">
+										<label  class="form-field__label">Email</label>
+										<input  type="text" name="email" class="form-field__input" />
+									</div>
+								</div>
+								<div class="form-field text-left">
+									<div class="form-field__control">
+										<label  class="form-field__label">Cell Phone</label>
+										<input type="text" name="phone_number" class="form-field__input" />
+									</div>
+								</div>
+								<div class="form-field">
+									<div class="form-field__control">
+										<select class="form-control" id="type" name="type">
+											<option value="">Choose insurance Type</option>
+											<option value="1">Auto</option>
+											<option value="2">Home</option>
+											<option value="3">Business</option>
+											<option value="4">Work Compensation</option>
+											<option value="5">Renters</option>
+											<option value="6">Home Insurance Floater</option>
+											<option value="7">Motorcycle, RV, Boat</option>
+											<option value="8">Umbrella</option>
+											<option value="9">Small Group Benefits</option>
+											<option value="10">Life</option>
+											<option value="11">Health care</option>
+											<option value="12">Accident</option>
+											<option value="13">Dental</option>
+											<option value="14">Short-Term Medical</option>
+											<option value="15">Vision</option>
+											<option value="16">Medicare</option>
+											<option value="17">Medical</option>
+											<option value="18">Commercial Auto</option>
+											<option value="19">General Liability</option>
+											<option value="20">Professional Liability</option>
+											<option value="21">Cyber Insurance</option>
+											<option value="22">Surety Bonds</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-field">
+									<div class="form-field__control">
+										<label class="form-field__label">Notes / Best time to call</label>
+										<textarea class="form-field__textarea" name="notes"></textarea>
+									</div>
+								</div>
+								<div class="btn-wrapper">
+									<button type="button" class="btn btn-green" onclick="validateForm()">Submit</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+       
+        <!-- Footer Starts -->
+        <% include partials/footer.ejs%>        
+        <!-- Footer Ends -->
+
+
+
+
+
+        <script src="../assets/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script> 
+        <script type="text/javascript" src="../assets/js/slick.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js" type="text/javascript"></script>
+        <script src="../assets/js/custom.js" type="text/javascript"></script>
+        <script src="../assets/js/material-form.js" type="text/javascript"></script>
+        <!-- <div style="display: none;">
+            Icons made by <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        </div> -->   
+
+
+
+    </body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <% include partials/head.ejs%>
+    </head>
+    <body>
+        <% include partials/header.ejs%>
+        <section class="section pt-5">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">View Carrier Info</h2>
+                </div>
+                <section class="agent_search_wrap mb-5">
+                    <div class="container">
+                        <div class="agent_search_field text-center">
+                            <form action="" autocomplete="off">                             
+                                <input type="search" placeholder="Search.." name="search" id="searchByName">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <div class="row justify-content-center">
+                    <% if(carrierInfo.length){
+                     carrierInfo.forEach(function(res, i) { %>
+                    <div class="col-lg-4 col-md-6 text-center">
+                        <div class="view-carrier-box">
+                            <div class="view-carrier-logo">
+                                <img src="<%-res.Image %>" alt="">
+                            </div>
+                            <div class="view-carrier-detail">
+                                <h3><%-res.name %></h3>
+                                <p><b>Claims: </b><%-res.claims_phone_number %></p>
+                                <p><b>Service: </b><%-res.service_phone_number %></p>
+                            </div>
+                            <div class="view-carrier-btn">
+                                <a href="<%-res.claim_url %>" target="_blank">Claims</a>
+                                <a href="%-res.billing_url %>" target="_blank">Billing</a>
+                                <a href="%-res.website_url %>" target="_blank">Website</a>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) }else{ %>
+                        <p>NO result Found</p>
+                   <% }%>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Ends -->
+        <% include partials/footer.ejs%>
+    </body>
+</html> 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+        $( "#searchByName" ).on("keydown",function(){
+            var availableTags = [];
+            setTimeout(function(){
+                var search = $( "#searchByName" ).val();
+                $.ajax({
+                    url: "/getCarrierSearch",
+                    method : "POST",
+                    data : {search:search},
+                    success: function(result){
+                    if(result!=""){
+                        result.forEach(element => {
+                            availableTags.push(element.name);
+                        });
+                    }
+                }});
+            },100)
+            $( "#searchByName" ).autocomplete({
+                source: availableTags
+            });
+        })
+    } );
+    </script>

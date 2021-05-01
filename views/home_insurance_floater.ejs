@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <% include partials/head.ejs%>
+    </head>
+    <body>
+        <% include partials/header.ejs%>
+        <section class="section pt-5">
+            <div class="container">
+                <div class="section-header text-center pb-4">
+                    <h2 class="section-title">Get your home insurance quote started.</h2>
+                </div>
+                <div class="row about justify-content-center">
+                    <div class="col-12">
+                        <div class="more_product_form_outer">
+                            <form class="form" method="post" id="homeInsuranceFloaterForm">
+                                <div class="form-innner">
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">First Name</label>
+                                            <input type="text" class="form-field__input" name="first_name" id="first_name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Last Name</label>
+                                            <input type="text" class="form-field__input" name="last_name" id="last_name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Email</label>
+                                            <input type="email" class="form-field__input" name="email" id="email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Phone Number</label>
+                                            <input type="number" class="form-field__input" name="phone_number" id="phone_number" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Birthdate</label>
+                                            <input type="text" name="dob" id="dob" class="form-field__input birthdate" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group-radiobox form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <label for="gender-0-0" class="custom-control custom-block custom-radio">
+                                                    <input id="gender-0-0" name="gender" type="radio" class="custom-control-input form-check-input" value="1" checked="">
+                                                    <div class="custom-control-label-wrap">
+                                                        <span class="custom-control-indicator"></span>
+                                                        <div class="indicator-desc-row"><span class="custom-control-description">Male</span></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <label for="gender-1-0" class="custom-control custom-block custom-radio">
+                                                    <input id="gender-1-0" name="gender" type="radio" class="custom-control-input form-check-input" value="2">
+                                                    <div class="custom-control-label-wrap">
+                                                        <span class="custom-control-indicator"></span>
+                                                        <div class="indicator-desc-row"><span class="custom-control-description">Female</span></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="dropdown-select-wrap">
+                                        <div class="dropdown-select dropdown">
+                                            <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                <label class="dropdown-label">Marital status</label>
+                                                <input id="MaritalStatus_input" type="text" data-id="" class="form-control completed" placeholder="Select" value="">
+                                                <input id="marital_status" name="marital_status" type="hidden" value="">
+                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                </svg>
+                                            </span>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="MaritalStatus">
+                                                <div class="item" data-id="1">Single</div>
+                                                <div class="item" data-id="2">Married</div>
+                                                <div class="item" data-id="3">Divorced</div>
+                                                <div class="item" data-id="4">Widowed</div>
+                                                <div class="item" data-id="5">Domestic Partner</div>
+                                                <div class="item" data-id="6">Separated</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-select dropdown">
+                                            <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                <label class="dropdown-label">Education</label>
+                                                <input id="EduList_input" name="education" type="text" class="form-control completed" placeholder="Select Education" value="">
+                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                </svg>
+                                            </span>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="EduList">
+                                                <div class="item">No High School Diploma</div>
+                                                <div class="item">High School Diploma</div>
+                                                <div class="item">Some College (No Degree)</div>
+                                                <div class="item">Vocational/Technical Degree</div>
+                                                <div class="item">Associate Degree</div>
+                                                <div class="item">Bachelor's Degree</div>
+                                                <div class="item">Master's Degree</div>
+                                                <div class="item">PhD</div>
+                                                <div class="item">Medical Degree</div>
+                                                <div class="item">Law Degree</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-select dropdown">
+                                            <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                <label class="dropdown-label">What industry do you work in?</label>
+                                                <input id="WorkIndustryList_input" name="work_industry" type="text" class="form-control completed" placeholder="Select Industry" value="">
+                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                </svg>
+                                            </span>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="WorkIndustryList">
+                                                <div class="item">Homemaker</div>
+                                                <div class="item">Retired</div>
+                                                <div class="item">Disabled</div>
+                                                <div class="item">Unemployed</div>
+                                                <div class="item">Student</div>
+                                                <div class="item">Agriculture / Forestry / Fishing</div>
+                                                <div class="item">Art / Design / Media</div>
+                                                <div class="item">Banking / Finance / Real Estate</div>
+                                                <div class="item">Business / Sales / Office</div>
+                                                <div class="item">Construction / Energy Trades</div>
+                                                <div class="item">Education / Library</div>
+                                                <div class="item">Engineer / Architect / Science / Math</div>
+                                                <div class="item">Government / Military</div>
+                                                <div class="item">Information Technology</div>
+                                                <div class="item">Insurance</div>
+                                                <div class="item">Legal / Law Enforcement / Security</div>
+                                                <div class="item">Maintenance / Repair / Housekeeping</div>
+                                                <div class="item">Manufacturing / Production</div>
+                                                <div class="item">Medical / Social Services / Religion</div>
+                                                <div class="item">Personal Care / Service</div>
+                                                <div class="item">Restaurant / Hotel Services</div>
+                                                <div class="item">Sports / Recreation</div>
+                                                <div class="item">Travel / Transportation / Warehousing</div>
+                                                <div class="item">Other</div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-select dropdown">
+                                            <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                <label class="dropdown-label">What is your job title?</label>
+                                                <input id="JobTitleList_input" name="job_title" type="text" class="form-control completed" placeholder="Select Job Title" value="">
+                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                </svg>
+                                            </span>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="JobTitleList">
+                                                <div class="item">One</div>
+                                                <div class="item">Two</div>
+                                                <div class="item">Three</div>
+                                                <div class="item">Four</div>
+                                                <div class="item">Five</div>
+                                                <div class="item">Six</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p><i>By clicking the button below, I give my electronic signature and consent to be called by Defy or receive text messages at this number regarding my inquiry. This consent is not required for purchase and can be revoked at any time. My telephone company may impose additional charges for text messages.</i></p>
+
+                                    <div class="btn-wrapper mt-5">
+                                        <button class="btn btn-green" type="button" onClick="validateHomeInsuranceFloaterForm();">Find Plans</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Ends -->
+        <% include partials/footer.ejs%>
+    </body>
+</html>

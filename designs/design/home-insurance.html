@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" href="assets/img/favicon.png" type="image/gif" sizes="16x16">
+      <title>Defy Insurance</title>
+      <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="assets/css/slick.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css"/>
+      <link href="assets/css/fonts/fonts.css" rel="stylesheet" type="text/css" />
+      <link href="assets/css/material-form.css" rel="stylesheet" type="text/css" />
+      <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+      <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+   </head>
+   <style>
+      .has-tooltip {
+      display: flex;
+      }
+      .modal-tooltip-toggle {
+      cursor: pointer;
+      height: 20px;
+      position: relative;
+      top: 1rem;
+      left: 1.5rem;
+      }
+      .header{
+      background-color: #f9f8f4;
+      position: fixed;
+      z-index: 9999;
+      width: 100%;
+      }
+    
+      .question-icon-tooltip {
+      margin: -1rem;
+      padding: 1rem;
+      }
+      .middle-section{
+      flex: 1 1;
+      }
+    
+      .question-counter {
+      border: 1px solid #0a0c0e;
+      border-radius: 100%;
+      flex: 0 0 25px;
+      font-weight: 400;
+      margin-right: .75rem;
+      text-align: center;
+      height: 25px;
+      width: 25px;
+      }   
+      .question-wrap > .form-group {
+      margin: 0;
+      }
+      .scroll-wrap {
+      max-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+      height: calc(100vh - 6.5rem);
+      width: 100%;
+      }
+      .section-header {
+      margin-bottom: 10px;
+      }
+      .navigation-buttons.section-page-appear-active, 
+      .navigation-buttons.section-page-enter-active, 
+      .section-page-questions.section-page-appear-active, 
+      .section-page-questions.section-page-enter-active {
+      animation: slideUpVH .6s ease-out;
+      animation-delay: .2s;
+      }
+      .legal-content, .legal-copy {
+      margin: 5rem auto 2.5rem;
+      max-width: 500px;
+      }
+   </style>
+   <style>
+      .header{
+      background-color: #f9f8f4;
+      position: fixed;
+      z-index: 9999;
+      width: 100%;
+      }
+     
+      .section-page-header {
+      background: #f9f8f4;
+      margin-bottom: 4rem;
+      position: relative;
+      }
+      .section-page-questions {
+      counter-reset: section;
+      }
+      .question-wrap {
+      padding: 0 0 6rem;
+      }
+      .question-wrap.disabled {
+      opacity: .3;
+      position: relative;
+      z-index: auto;
+      }
+      .question-wrap:last-of-type {
+      padding-bottom: 4rem;
+      }
+      .question-header {
+      margin-bottom: 2rem;
+      }
+      .question-text {
+      color: #34393f;
+      margin-bottom: 0;
+      text-align: left;
+      }
+      .question-byline {
+      color: #4a4f53;
+      font-size: 1.12rem;
+      margin-top: .5rem;
+      margin-bottom: 0;
+      text-align: left;
+      }
+      .form-group-radio {
+      align-items: flex-start;
+      display: block;
+      }
+      .form-group-radio.stacked {
+      flex-direction: column;
+      }
+      .question-wrap .form-group, .section-nav {
+      max-width: 400px;
+      width: 100%;
+     
+      }
+      .form-group-radio.stacked .custom-radio {
+      margin-right: 0;
+      width: 100%;
+      padding-left: 0;
+      }
+      .custom-control-input {
+      opacity: 0;
+      position: absolute;
+      z-index: -1;
+      }
+      .custom-control-label-wrap {
+      background-color: #fff;
+      border: 1px solid #d2d3d4;
+      border-radius: .25rem;
+      display: flex;
+      flex-wrap: nowrap;
+      padding: 1rem;
+      }
+      .custom-control-input:checked~.custom-control-label-wrap {
+      background-color: #574cfa;
+      box-shadow: none;
+      }
+      .custom-control-indicator {
+      background-color: #fff;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      border: 1px solid #d2d3d4;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+      min-height: 1.625rem;
+      min-width: 1.625rem;
+      height: 1.625rem;
+      width: 1.625rem;
+      }
+      .custom-radio .custom-control-indicator {
+      border-radius: 50%;
+      }
+      .custom-control-input:checked~.custom-control-label-wrap .custom-control-indicator {
+      border: none;
+      box-shadow: none;
+      color: #fff;
+      }
+      .custom-radio .custom-control-input:checked~.custom-control-label-wrap .custom-control-indicator {
+      background-image: url(assets/img/svg/radio.svg);
+      background-size: 100% 100%;
+      }
+      .home-icon svg {
+      margin-right: 1rem;
+      margin-bottom: -2px;
+      }
+      .summary-rail-section .btn-edit {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      }
+      @media (max-width: 767px) {
+         .question-wrap:last-of-type {
+            padding-bottom: 1.5rem;
+         }
+      }
+   </style>
+   <body>
+      <header class="header header-light">
+         <div class="nav-toggler-wrapper d-inline-block d-lg-none">
+            <a class="nav-toggler">
+            <span></span>
+            <span></span>
+            </a>
+         </div>
+         <div class="header-left">
+            <div class="logo">
+               <a class="header-brand"><img src="assets/img/logo.png" alt="Logo" /></a>
+            </div>
+         </div>
+         <div class="header-right">
+            <nav class="navigation">
+               <ul class="header-nav">
+                  <li class="header-nav-item">
+                     <a class="header-nav-link" href="#"><span>Our Agency</span></a>
+                  </li>
+                  <li class="header-nav-item">
+                     <a class="header-nav-link" href="#"><span>Products</span></a>
+                  </li>
+                  <li class="header-nav-item">
+                     <a class="header-nav-link" href="#"><span>Contact Us</span></a>
+                  </li>
+                  <li class="header-nav-item">
+                     <a class="header-nav-link" href="#"><span>Our Agency</span></a>
+                  </li>
+               </ul>
+            </nav>
+            <div class="call-us">
+               <a class="call-us-link" href="#">
+                  <svg x="0px" y="0px" viewBox="0 0 511.999 511.999" width="15" height="15" style="enable-background:new 0 0 511.999 511.999;">
+                     <g>
+                        <path
+                           d="M267.998,61.092c0.337,0,0.665-0.002,1-0.002c48.74,0,94.412,18.844,128.686,53.118 c34.557,34.557,53.459,80.618,53.225,129.697c-0.052,11.045,8.859,20.042,19.905,20.095c0.033,0,0.064,0,0.097,0 c10.999,0,19.944-8.892,19.997-19.905c0.285-59.837-22.778-116.009-64.94-158.172C384.134,44.088,328.43,21.09,269.004,21.09 c-0.365,0-0.733,0.001-1.099,0.002c-11.046,0.053-19.957,9.05-19.905,20.095C248.053,52.2,256.997,61.092,267.998,61.092z" />
+                        <path
+                           d="M511.949,412.553c-0.714-19.805-8.964-38.287-23.229-52.042c-27.931-26.933-51.332-42.481-73.646-48.929 c-30.75-8.887-59.226-0.805-84.641,24.016c-0.038,0.037-0.077,0.075-0.115,0.113l-27.066,26.865 c-16.811-9.444-49.491-30.227-85.234-65.971l-2.632-2.63c-35.508-35.507-56.423-68.373-65.939-85.253l26.839-27.041 c0.038-0.038,0.075-0.076,0.113-0.115c24.821-25.414,32.902-53.892,24.016-84.64c-6.448-22.313-21.995-45.715-48.929-73.646 C137.731,9.015,119.249,0.765,99.446,0.051C79.647-0.662,60.614,6.232,45.865,19.472l-0.574,0.516 c-0.267,0.239-0.527,0.486-0.78,0.739c-29.36,29.358-44.75,70.46-44.508,118.861c0.41,82.22,45.599,176.249,120.879,251.528 c0.063,0.063,0.125,0.124,0.188,0.186c14.152,14.132,30.22,28.116,47.762,41.567c8.765,6.721,21.319,5.063,28.041-3.702 c6.721-8.766,5.064-21.32-3.702-28.041c-16.236-12.448-31.041-25.333-44.004-38.296c-0.062-0.062-0.124-0.124-0.187-0.185 C81.095,294.683,40.361,211.239,40.002,139.387c-0.186-37.276,11.027-68.389,32.431-90.014l0.153-0.138 c14.538-13.048,36.548-12.254,50.108,1.808c51.781,53.698,48.031,79.049,25.151,102.511l-37.074,37.353 c-5.814,5.858-7.433,14.686-4.075,22.226c0.941,2.114,23.709,52.427,80.414,109.132l2.632,2.629 c56.698,56.699,107.011,79.466,109.125,80.408c7.54,3.359,16.368,1.739,22.226-4.075l37.346-37.068 c23.466-22.883,48.818-26.638,102.518,25.145c14.062,13.56,14.856,35.57,1.81,50.105l-0.141,0.157 c-21.45,21.229-52.231,32.433-89.102,32.433c-0.303,0-0.608,0-0.912-0.002c-29.471-0.147-63.598-8.226-98.689-23.362 c-10.142-4.376-21.911,0.3-26.286,10.443c-4.375,10.142,0.301,21.911,10.443,26.286c40.562,17.496,79.029,26.456,114.332,26.633 c0.375,0.001,0.748,0.002,1.122,0.002c47.914-0.001,88.608-15.379,117.738-44.51c0.254-0.254,0.5-0.513,0.739-0.78l0.519-0.577 C505.766,451.385,512.663,432.357,511.949,412.553z" />
+                        <path
+                           d="M369.457,142.549c-21.453-21.454-42.043-27.147-51.939-29.884c-10.649-2.945-21.663,3.299-24.607,13.946 c-2.944,10.646,3.299,21.663,13.946,24.607c8.092,2.238,20.32,5.62,34.316,19.615c13.473,13.473,17.052,25.636,19.421,33.685 l0.289,0.979c2.574,8.697,10.538,14.329,19.169,14.329c1.88,0.001,3.792-0.267,5.686-0.828 c10.591-3.135,16.636-14.263,13.5-24.854l-0.271-0.918C395.882,182.744,390.14,163.232,369.457,142.549z" />
+                     </g>
+                  </svg>
+                  <span>877-780-4626</span>
+               </a>
+               <div class="cta-btn">
+                  <a class="btn btn-primary btn-sm" href="#">
+                     <span>Get a Quote</span>
+                     <svg height="16px" viewBox="0 0 512 512.00007" width="16px">
+                        <path d="m509.785156 15.433594c-.773437-6.972656-6.277344-12.480469-13.253906-13.253906-118.703125-13.183594-219.890625 34.300781-302.429688 119.265624-23.621093 24.316407-44.109374 50.054688-61.597656 74.894532-29.597656-1.203125-62.414062 12.1875-85.679687 35.453125l-42.429688 42.429687c-4.800781 4.800782-5.777343 12.230469-2.382812 18.109375 3.394531 5.878907 10.3125 8.742188 16.875 6.988281 9.84375-2.644531 25.839843-5.71875 41.207031-6.433593 5.617188-.261719 10.285156-.179688 14.164062.117187-9.363281 18.007813-16.539062 33.09375-18.917968 36.871094-3.726563 5.929688-2.863282 13.644531 2.089844 18.597656l24.550781 24.550782c-35.730469 48.730468-36.320313 73.6875-36.195313 77.222656.261719 7.488281 6.101563 14.503906 15.773438 14.503906 8.375 0 32.394531-3.554688 76.121094-36.027344l25.824218 25.824219c4.988282 4.988281 12.78125 5.824219 18.71875 2.011719 4.039063-2.597656 18.238282-9.472656 35.265625-18.371094.28125 12.691406-1.441406 31.328125-5.179687 56.589844-2.125 14.328125 15.292968 22.953125 25.445312 12.804687l42.429688-42.429687c21.878906-21.878906 34.566406-54.375 33.628906-84.859375 26.167969-18.285157 53.390625-39.855469 78.808594-64.78125 84.15625-82.527344 130.179687-182.949219 117.164062-300.078125zm-28.695312 15.4375c2.394531 32.34375-.160156 63.695312-7.601563 94.035156-18.480469-5.820312-36.546875-17.253906-52.863281-33.566406-16.375-16.378906-27.832031-34.519532-33.628906-53.066406 30.328125-7.332032 61.699218-9.816407 94.09375-7.402344zm-422.953125 232.039062 9.898437-9.902344c11.972656-11.96875 27.542969-20.589843 43.027344-24.464843-8.089844 12.839843-15.300781 25.101562-21.660156 36.417969-9.824219-2.167969-20.746094-2.570313-31.265625-2.050782zm28.386719 72.230469c3.246093-6.40625 7.171874-14.4375 14.378906-28.054687l19.746094 19.75c-7.347657 7.882812-13.980469 15.371093-19.957032 22.46875zm73.355468-5.738281c10.929688-10.925782 21.410156-12.921875 34.429688-13.203125-.285156 12.6875-2.320313 23.523437-13.214844 34.417969-46.570312 46.570312-78.492188 67.367187-97.582031 76.648437 9.417969-19.457031 30.269531-51.765625 76.367187-97.863281zm16.871094 95.964844-15.46875-15.472657c7.0625-6 14.527344-12.652343 22.402344-20.027343l21.019531 21.019531c-13.820313 7.378906-19.585937 10.15625-27.953125 14.480469zm82.214844 18.570312-12.007813 12.011719c.972657-14.550781.636719-25.152344-.738281-33.332031 11.03125-6.210938 23.011719-13.253907 35.566406-21.132813-3.578125 15.859375-11.621094 31.257813-22.820312 42.453125zm-26.953125-48.167969-26.894531-26.898437c19.902343-21.898438 19.160156-43 19.160156-67.652344 0-8.285156-6.714844-15-15-15-23.03125 0-45.195313-1.234375-67.652344 19.164062l-25.683594-25.683593c70.132813-122.980469 151.199219-200.839844 242.28125-232.902344 7.210938 23.332031 21.246094 45.8125 41.191406 65.757813 19.851563 19.855468 42.226563 33.855468 65.457032 41.09375-32.25 90.582031-110.089844 171.597656-232.859375 242.121093zm0 0"/>
+                        <path d="m378.199219 133.765625c-29.246094-29.242187-76.832031-29.242187-106.074219 0-29.242188 29.246094-29.242188 76.832031 0 106.074219 29.242188 29.242187 76.828125 29.246094 106.074219 0 29.242187-29.242188 29.242187-76.828125 0-106.074219zm-21.214844 84.859375c-17.546875 17.546875-46.101563 17.546875-63.644531 0-17.546875-17.546875-17.546875-46.097656 0-63.644531 17.542968-17.542969 46.09375-17.546875 63.644531 0 17.546875 17.546875 17.546875 46.097656 0 63.644531zm0 0"/>
+                     </svg>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </header>
+      <div class="main">
+      <div class="dot-nav d-none d-md-flex" role="navigation">
+         <div class="dot-nav-item active" id="snVehiclesBtn">
+            <span class="nav-dot"></span>
+            <span class="nav-label">VEHICLES</span>
+         </div>
+         <div class="dot-nav-item" id="snDriversBtn">
+            <span class="nav-marker-line"></span>
+            <span class="nav-dot"></span>
+            <span class="nav-label">DRIVERS</span>
+         </div>
+         <div class="dot-nav-item" id="snResultsBtn">
+            <span class="nav-marker-line"></span>
+            <span class="nav-dot"></span>
+            <span class="nav-label">RESULTS</span>
+         </div>
+      </div>
+      <section class="middle-section">
+         <div id="scroll-container" class="scroll-wrap">
+            <div class="section-wrapper active" id="step-1">
+               <div class="section-header">
+                  <h1>Let's start with some details about your home.</h1>
+                  <span class="subheader-text">Use your home's details found in your purchase contract to help answer the questions.</span><span class="header-divider"></span>
+               </div>
+               <div class="section-page-questions">
+                  <div class="section-page-question-item">
+                     <div class="section-page-question mt-5">
+                        <div class="row">
+                           <div class="col-12">
+                              <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180">
+                                 <title>Asset 9</title>
+                                 <rect x="179" y="142" width="29" height="5" fill="none"></rect>
+                                 <rect x="67" y="126" width="41" height="33" fill="none"></rect>
+                                 <rect x="63" y="76" width="17" height="25" fill="none"></rect>
+                                 <rect x="135" y="142" width="29" height="5" fill="none"></rect>
+                                 <rect x="135" y="126" width="29" height="5" fill="none"></rect>
+                                 <rect x="135" y="134" width="29" height="5" fill="none"></rect>
+                                 <rect x="35" y="126" width="21" height="43" fill="none"></rect>
+                                 <rect x="179" y="134" width="29" height="5" fill="none"></rect>
+                                 <rect x="179" y="126" width="29" height="5" fill="none"></rect>
+                                 <path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#574cfa"></path>
+                                 <path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path>
+                              </svg>
+                           </div>
+                           <div class="col-12 col-md-6 col-lg-6 ">
+                              <div  class="element question-wrap ">
+                                 <div class="question-header">
+                                    <h2 class="question-text">What type of residence is this?</h2>
+                                    <p class="question-byline">Choose the type of home you live in<span>—</span>a.k.a. your primary residence.</p>
+                                 </div>
+                                 <div class="">
+                                    <div class="form-group-radiobox stacked form-group">
+                                       <label for="residence_type-SINGLE_FAMILY" class="custom-control custom-block custom-radio">
+                                          <input type="radio" id="residence_type-SINGLE_FAMILY" name="residence_type" value="SINGLE_FAMILY" class="custom-control-input form-check-input">
+                                          <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Single family home</span></div>
+                                       </label>
+                                       <label for="residence_type-CONDO" class="custom-control custom-block custom-radio">
+                                          <input type="radio" id="residence_type-CONDO" name="residence_type"  class="custom-control-input form-check-input">
+                                          <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Condo</span></div>
+                                       </label>
+                                       <label for="residence_type-RENTAL" class="custom-control custom-block custom-radio">
+                                          <input type="radio" id="residence_type-RENTAL" name="residence_type"  class="custom-control-input form-check-input">
+                                          <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Rental</span></div>
+                                       </label>
+                                       <label for="residence_type-MOBILE_HOME" tabindex="0" class="custom-control custom-block custom-radio">
+                                          <input type="radio" id="residence_type-MOBILE_HOME" name="residence_type" class="custom-control-input form-check-input">
+                                          <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Mobile home</span></div>
+                                       </label>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="row">
+                           <div class="col-12">
+                              <svg class=" question-icon mb-2" width="79" height="99" viewBox="0 0 145.22 184.03">
+                                 <title>Asset 11</title>
+                                 <path d="M140,59.13A50.65,50.65,0,0,0,109.85,33a49.6,49.6,0,0,0-12-2.29c-.57,0-1.13-.05-1.7-.07l-1.64,0a52.16,52.16,0,0,0-29.12,9.1c-.41.28-.82.56-1.22.85s-.8.6-1.2.91a50.11,50.11,0,0,0-16.4,21.89c-.17.44-.32.88-.47,1.32s-.32.94-.48,1.42-.3,1-.43,1.43a50.37,50.37,0,0,0,.14,28.3,1.46,1.46,0,0,0,0,.22L54,131.53l.36,1.47.36,1.48,4.76,19.57a9.43,9.43,0,0,0,5.93,6.63,9.41,9.41,0,0,0,8.8-1.26l48.11-35.37.17-.14A50.89,50.89,0,0,0,140,59.13Zm-40.7,8.3A15,15,0,1,1,89.05,95.62a15.14,15.14,0,0,1-4.73-2.81,13.76,13.76,0,0,1-1.1-1.06c-.35-.38-.69-.78-1-1.19A15,15,0,0,1,96.35,66.68c.5.07,1,.17,1.49.29a14.72,14.72,0,0,1,1.43.44Z" fill="#574cfa"></path>
+                                 <path d="M98.6,181h-53a1.5,1.5,0,1,0,0,3h53a1.5,1.5,0,0,0,0-3ZM51,35.52a15,15,0,0,1,11.93,5.94c.4-.31.79-.62,1.2-.91s.81-.57,1.22-.85a18,18,0,1,0-20.2,27.82c.13-.48.28-1,.43-1.43s.31-1,.48-1.42A15,15,0,0,1,51,35.52ZM4.87,33.18a1.52,1.52,0,0,0,.28.09,1.49,1.49,0,0,0,1.69-.87A48.44,48.44,0,0,1,49.23,3,48.1,48.1,0,0,1,94.47,30.6l1.64,0c.57,0,1.13,0,1.7.07A51.13,51.13,0,0,0,49.12,0a51.45,51.45,0,0,0-45,31.18A1.5,1.5,0,0,0,4.87,33.18ZM51,135.24a9.36,9.36,0,0,0,3.68-.76L54.32,133,54,131.53a6.43,6.43,0,0,1-3,.71,6.32,6.32,0,0,1-5.34-2.86L12.73,80a1.63,1.63,0,0,0-.19-.34A47.5,47.5,0,0,1,3,50.27a1.5,1.5,0,0,0-1.19-1.49,1.36,1.36,0,0,0-.29,0A1.51,1.51,0,0,0,0,50.22,50.47,50.47,0,0,0,9.94,81.16a1.28,1.28,0,0,0,.11.2L43.16,131A9.4,9.4,0,0,0,51,135.24ZM89.46,79.63a1.06,1.06,0,0,0-.18.33l-7.06,10.6c.31.41.65.81,1,1.19a13.76,13.76,0,0,0,1.1,1.06L92,81.36a1.28,1.28,0,0,0,.11-.2,50.84,50.84,0,0,0,7.21-13.75A14.72,14.72,0,0,0,97.84,67c-.5-.12-1-.22-1.49-.29A48,48,0,0,1,89.46,79.63ZM13.7,115.84l-2.5,1a1.5,1.5,0,0,0,.56,2.89,1.36,1.36,0,0,0,.56-.11l2.5-1a1.5,1.5,0,0,0-1.12-2.78Zm30.85,26.88a1.51,1.51,0,0,0-2.09.38L38,149.61a1.5,1.5,0,0,0,.39,2.09,1.54,1.54,0,0,0,.85.26,1.5,1.5,0,0,0,1.23-.65l4.49-6.51A1.49,1.49,0,0,0,44.55,142.72ZM109,1a1.48,1.48,0,0,0-1.77,1.17l-1.53,7.49a1.5,1.5,0,0,0,1.17,1.77l.3,0a1.5,1.5,0,0,0,1.47-1.2l1.53-7.5A1.49,1.49,0,0,0,109,1Zm22.54,14.18a1.51,1.51,0,0,0-2.07-.47l-5.5,3.5a1.5,1.5,0,0,0,.8,2.77,1.58,1.58,0,0,0,.81-.23l5.5-3.5A1.51,1.51,0,0,0,131.53,15.18Z" fill="#070e15"></path>
+                              </svg>
+                           </div>
+                           <div class="col-12 col-md-6 col-lg-6 ">
+                              <div class="element  question-wrap">
+                                 <div class="question-header">
+                                    <h2 class="question-text">What is the address you'd like to insure?</h2>
+                                    <p class="question-byline">Choose the type of home you live in<span>—</span>a.k.a. your primary residence.</p>
+                                 </div>
+                                 <div class="">
+                                    <div class="row">
+                                       <div class="col-9 ">
+                                          <div class="form-field">
+                                             <div class="form-field__control">
+                                                <label class="form-field__label">Address</label>
+                                                <input type="text" class="form-field__input">
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="col-3 ">
+                                          <div class="form-field">
+                                             <div class="form-field__control">
+                                                <label class="form-field__label"># 123</label>
+                                                <input type="text" class="form-field__input">
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="col-9">
+                                          <div class="form-field">
+                                             <div class="form-field__control">
+                                                <label class="form-field__label">zipcode</label>
+                                                <input type="text" class="form-field__input">
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="row">
+                           <div class="col-12">
+                              <svg class=" question-icon mb-2" width="93" height="100" viewBox="0 0 174.25 190.7">
+                                 <title>Asset 12</title>
+                                 <path d="M144.33,49.81a1.34,1.34,0,0,1,.37.38,1.34,1.34,0,0,0-.37-.38h0a1.47,1.47,0,0,0-1.12-.25A1.5,1.5,0,0,1,144.33,49.81Zm29.28,95a40.31,40.31,0,0,1-16.7-26.21L145.06,51.39l-.11-.61a1.51,1.51,0,0,1-.25,1.12h0a1.47,1.47,0,0,1-1,.62h0l-1.47.26h0l.36,2.09L154,119.14h0a43.56,43.56,0,0,0,3.46,11,41.19,41.19,0,0,0,2.26,4.19,43,43,0,0,0,9.43,10.87l-7.29,1.29-1.48.26-1.47.26L51.66,165.88A40.35,40.35,0,0,1,35.47,140L24.89,80l-.26-1.48-.26-1.48-.6-3.38-.87.15-.5.72-1.22,1.74.23,1.29.26,1.48.26,1.48,10.58,60a43.35,43.35,0,0,0,17.94,28.14,1.47,1.47,0,0,0,.86.28l.26,0,107.82-19,.58,3.28L45.91,173.32a1.5,1.5,0,0,0,.26,3l.26,0,114.06-20.11.52,3L41,180.27a1.5,1.5,0,0,0,.26,3l.26,0,117.88-20.79-2.78,4L37.3,187.47,18.55,81.12l-.15-.86.5-.72,1.22-1.74,1.06-1.52L20.12,77.8,18.9,79.54,18,80.77a1.5,1.5,0,0,1-1,.61,2.06,2.06,0,0,1-.26,0h0a1.62,1.62,0,0,1-.44-.07,1.65,1.65,0,0,1-.42-.21,1.3,1.3,0,0,1-.22-.19.64.64,0,0,1-.1-.13.39.39,0,0,1-.08-.1,1.4,1.4,0,0,1-.09-.17.41.41,0,0,0-.05-.09l-.06-.23s0-.07,0-.11a.13.13,0,0,0,0,.06L34.61,189.46a1.5,1.5,0,0,0,1.47,1.24,1.23,1.23,0,0,0,.27,0l121.44-21.41a1.5,1.5,0,0,0,1-.62L164,161.2h0a1.35,1.35,0,0,0,.15-.26l0-.06a1.42,1.42,0,0,0,.07-.22.13.13,0,0,1,0-.06,1.79,1.79,0,0,0,0-.23,1,1,0,0,0,0-.29l-1-5.9h0l-.84-4.75L173,147.53a1.5,1.5,0,0,0,.6-2.71ZM20.8,71.59h0a1.45,1.45,0,0,1,.19-.23A2,2,0,0,0,20.8,71.59ZM149.25,9a1.5,1.5,0,0,0,2-.6l3.35-6.14A1.5,1.5,0,1,0,152,.78l-3.35,6.14A1.5,1.5,0,0,0,149.25,9Zm14.67,28.09a1.5,1.5,0,0,0,.47-.08l8.37-2.79a1.5,1.5,0,0,0-.94-2.85l-8.38,2.79a1.51,1.51,0,0,0,.48,2.93ZM7.44,39.94l-5-3.9A1.5,1.5,0,0,0,.58,38.41l5,3.9a1.47,1.47,0,0,0,.92.32,1.5,1.5,0,0,0,.92-2.69ZM43.9,118.72h0A1.5,1.5,0,0,1,45.11,117h0l1.48-.26h0l-2.46-14h0L59.55,100h0L62,114h0l-15.43,2.72L62,114l1.47-.26h0a1.55,1.55,0,0,1,1.13.24,1.53,1.53,0,0,1,.61,1h0l.26,1.48h0l15.43-2.72h0l2.46,14h0L68,130.41h0l.26,1.47h0A1.51,1.51,0,0,1,67,133.62h0l-1.48.26h0l.15.82c.11.64.25,1.27.4,1.89.05.2.11.4.16.6.11.42.23.84.37,1.26l.22.67c.14.39.28.77.43,1.15.09.23.17.45.27.67.16.39.34.77.52,1.16.1.19.18.39.28.58.25.5.52,1,.8,1.46l.11.21c.32.54.67,1.07,1,1.59l.36.49.56.78-15,2.64h0c-.13-.14-.23-.28-.35-.42s-.36-.43-.53-.65-.39-.51-.58-.78-.32-.43-.47-.66-.37-.55-.54-.84-.28-.44-.41-.67-.33-.59-.49-.9-.24-.44-.35-.67-.3-.64-.44-1-.2-.44-.29-.67-.26-.69-.39-1-.16-.43-.23-.64c-.13-.39-.23-.79-.34-1.19-.05-.18-.11-.36-.16-.55-.14-.57-.26-1.15-.37-1.73,0,0,0,0,0-.05v-.08l-.13-.74h0l13.11-2.31L50.1,136.6l-1.48.26h0a1.14,1.14,0,0,1-.26,0,1.51,1.51,0,0,1-1.48-1.23h0l.41,2.29a28.41,28.41,0,0,0,7.25,14.56l.23.2.2.11.07,0,.22.07.07,0a1.53,1.53,0,0,0,.3,0l.26,0,18.38-3.24,18.38-3.24,17.82-3.14,17.78-3.14a1.23,1.23,0,0,1-.27,0,1.51,1.51,0,0,1-1.09-.47q-.33-.36-.63-.72a15.67,15.67,0,0,1-1.12-1.49l.09.15-14.45,2.54c-.1-.11-.2-.23-.29-.35s-.31-.37-.46-.57-.35-.48-.52-.72-.28-.41-.41-.62-.32-.51-.47-.78-.25-.43-.37-.66-.29-.56-.42-.85-.23-.45-.33-.69-.26-.62-.38-.93-.19-.48-.28-.72-.23-.69-.35-1-.16-.48-.23-.72c-.11-.41-.22-.83-.32-1.24-.06-.22-.12-.42-.17-.64-.14-.64-.28-1.31-.4-2l-.15-.82,15.43-2.72h0l-.26-1.48h0a1.49,1.49,0,0,1,.25-1.12,1.44,1.44,0,0,1,1-.61h0l1.47-.27,16.91-3h0a1.51,1.51,0,0,1,1.74,1.22l-3-16.92h0l-3-16.92-3-16.92A1.5,1.5,0,0,0,131,66.94l-18.37,3.24a1.49,1.49,0,0,1,1.12.25,1.53,1.53,0,0,1,.61,1l.26,1.48,15.43-2.72,2.46,14-15.42,2.72h0l.26,1.48h0a1.51,1.51,0,0,1-1.22,1.74h0l-1.48.26L99.27,93l-1.48.26h0l-.26,0a1.46,1.46,0,0,1-.86-.27,1.5,1.5,0,0,1-.62-1h0l-.26-1.48h0L80.37,93.32l-2.46-14,15.42-2.72-.26-1.48h0a1.51,1.51,0,0,1,1.22-1.74L75.91,76.66,57.53,79.9,39.15,83.14a1.51,1.51,0,0,0-1.22,1.74Zm30.68,27.89-.36-.43c-.18-.21-.36-.42-.53-.64s-.39-.52-.59-.78l-.46-.66q-.28-.4-.54-.84c-.14-.22-.28-.44-.41-.67s-.33-.6-.49-.9-.24-.44-.35-.67-.3-.64-.44-1-.2-.44-.29-.67-.27-.69-.39-1-.16-.42-.23-.63c-.13-.4-.24-.8-.35-1.2L69,136c-.15-.59-.27-1.18-.38-1.78l-.14-.82,15.42-2.72.14.82c.12.64.26,1.27.41,1.89,0,.2.11.4.16.6.11.42.23.84.37,1.26l.22.67c.14.39.28.77.43,1.15.09.23.17.45.27.67.16.39.34.77.52,1.16.1.19.18.39.28.58.25.5.52,1,.8,1.46l.11.21c.32.54.67,1.07,1,1.59l.36.49.56.78Zm9.29-33.41,15.43-2.72h0l2.46,14h0l-15.43,2.72Zm21.89,25a3.79,3.79,0,0,1,.2.34c.23.4.47.8.72,1.18l.35.51c.12.19.24.38.38.56L93,143.36h0c-.12-.14-.23-.29-.34-.43s-.36-.42-.53-.64-.39-.52-.59-.78l-.46-.66c-.19-.27-.37-.56-.54-.84s-.28-.44-.41-.67-.33-.6-.49-.9l-.35-.67c-.16-.32-.3-.65-.44-1s-.2-.44-.29-.67-.27-.7-.39-1-.16-.42-.23-.64c-.13-.39-.24-.79-.35-1.19l-.15-.54c-.15-.59-.27-1.18-.38-1.78l-.14-.82,15.42-2.72h0l.14.82c.13.72.28,1.41.43,2.09.05.22.11.43.16.64.11.46.23.92.36,1.36l.21.69c.13.42.27.83.41,1.23.08.21.15.43.23.64.17.44.35.86.53,1.28.07.15.13.31.2.46C105.2,137.17,105.48,137.71,105.76,138.23ZM136.06,104l2.46,14-15.43,2.72-2.46-14Zm-3-16.92,2.47,14-15.43,2.72-2.46-14Zm-15.39,20.16h0l2.46,14h0l-15.43,2.72-2.46-14Zm-3-16.92h0l2.47,14h0L101.73,107,99.27,93ZM96.31,93.56h0l2.47,14h0l-15.43,2.72-2.46-14ZM77.93,96.8h0l2.47,14h0L65,113.49l-2.46-14ZM75,79.88h0l2.46,14h0L62,96.56l-2.46-14Zm-33.8,6,15.42-2.72h0l2.46,14h0L43.61,99.8h0l-2.46-14Z" fill="#070e15"></path>
+                                 <path d="M148.6,43.05l-3.5-19.84A4,4,0,0,0,140.5,20L23.5,40.62a6.4,6.4,0,0,0-4.15,2.64l-6.88,9.82a6.42,6.42,0,0,0-1.06,4.81l3.93,22.28a.13.13,0,0,1,0-.06s0,.07,0,.11l.06.23a.41.41,0,0,1,.05.09.91.91,0,0,0,.09.17.39.39,0,0,0,.08.1.64.64,0,0,0,.1.13,1,1,0,0,0,.22.19,1.38,1.38,0,0,0,.42.21,1.62,1.62,0,0,0,.44.07h0a2.06,2.06,0,0,0,.26,0,1.5,1.5,0,0,0,1-.61l.86-1.23,1.22-1.74,1.06-1.52,1.22-1.74.5-.72.87-.15,116.4-20.52,2.09-.37h0l1.47-.26h0a1.47,1.47,0,0,0,1-.62h0a1.51,1.51,0,0,0,.25-1.12l.11.61,2.47-3.53A6.41,6.41,0,0,0,148.6,43.05Zm-4.27,6.76a1.5,1.5,0,0,0-1.12-.25,1.47,1.47,0,0,1,1.12.25h0a1.34,1.34,0,0,1,.37.38A1.34,1.34,0,0,0,144.33,49.81Zm1.27-2.66a1.38,1.38,0,0,1-.29.08l-1.14.2L28.72,67.79a4,4,0,0,1-.7.06,4,4,0,0,1-3.89-3.28L20.9,46.28l-.2-1.14a1.51,1.51,0,0,1,1.22-1.74,1.42,1.42,0,0,1,.46,0,1.52,1.52,0,0,1,.86.42,1.55,1.55,0,0,1,.42.8l3.42,19.43a1,1,0,0,0,.4.62.93.93,0,0,0,.72.16L144.79,44.28a1.42,1.42,0,0,1,.89.12,1.52,1.52,0,0,1,.69.66,1.3,1.3,0,0,1,.15.43A1.5,1.5,0,0,1,145.6,47.15Zm-3.46,74.07-.4-2.3A1.51,1.51,0,0,0,140,117.7h0l-16.91,3-1.47.27h0a1.44,1.44,0,0,0-1,.61,1.49,1.49,0,0,0-.25,1.12h0l.26,1.48h0l.14.82c.08.46.17.92.26,1.38,0,.1,0,.2,0,.29.09.46.19.92.29,1.38l.06.29c.11.48.23,1,.35,1.45l0,.11c.12.46.26.92.4,1.38l.07.25c.15.47.31.93.49,1.39a2.49,2.49,0,0,0,.11.29c.18.47.37.94.58,1.4,0,0,.05.1.08.16q.3.66.66,1.29a1.28,1.28,0,0,0,.11.2,14.49,14.49,0,0,0,.8,1.29,15.67,15.67,0,0,0,1.12,1.49q.3.36.63.72a1.51,1.51,0,0,0,1.09.47,1.23,1.23,0,0,0,.27,0l17.13-3a1.53,1.53,0,0,0,1.07-.78,1.55,1.55,0,0,0,0-1.33A56,56,0,0,1,142.14,121.22Zm-24.75-32.9-.26-1.48h0l-2.47-14-.26-1.48a1.53,1.53,0,0,0-.61-1,1.49,1.49,0,0,0-1.12-.25L94.29,73.42a1.51,1.51,0,0,0-1.22,1.74h0l.26,1.48,2.46,14h0l.26,1.48h0a1.5,1.5,0,0,0,.62,1,1.46,1.46,0,0,0,.86.27l.26,0h0L99.27,93l15.42-2.72,1.48-.26h0a1.51,1.51,0,0,0,1.22-1.74ZM68.22,131.88,68,130.41h0l-2.47-14h0L65.23,115h0a1.53,1.53,0,0,0-.61-1,1.55,1.55,0,0,0-1.13-.24h0L62,114l-15.43,2.72-1.48.26h0a1.5,1.5,0,0,0-1.21,1.73h0l3,16.92h0a1.51,1.51,0,0,0,1.48,1.23,1.14,1.14,0,0,0,.26,0h0l1.48-.26,15.42-2.72,1.48-.26h0a1.51,1.51,0,0,0,1.22-1.74Z" fill="#574cfa"></path>
+                              </svg>
+                           </div>
+                           <div class="col-12 col-md-6 col-lg-6 ">
+                              <div class="element  question-wrap">
+                                 <div class="question-header">
+                                    <h2 class="question-text">What year was your home built?</h2>
+                                    <p class="question-byline">Choose the type of home you live in<span>—</span>a.k.a. your primary residence.</p>
+                                 </div>
+                                 <div class="">
+                                    <div class="row">
+                                       <div class="col-9 ">
+                                          <div class="form-field">
+                                             <div class="form-field__control">
+                                                <label class="form-field__label">Year Built</label>
+                                                <input type="text" class="form-field__input">
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="navigation-buttons p-0">
+                  <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="step-2">
+                     <span>
+                        <span>Save &amp; continue</span>
+                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                           <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                        </svg>
+                     </span>
+                  </button>
+                  <div class="text-gray text-xs mt-3">
+                     <p>IMPORTANT TERMS &amp; CONDITIONS</p>
+                     <p style="max-width: 450px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                  </div>
+               </div>
+            </div>
+            <div class="section-wrapper" id="step-2">
+               <div class="section-header">
+                  <h1>Let's build your protection from the foundation, up!</h1>
+               </div>
+               <div class="section-page-questions">
+                  <div class="section-page-question-item">
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap foundation_type">
+                           <svg class=" question-icon mb-2" width="108" height="105" viewBox="0 0 207.5 202">
+                              <title>Asset 10</title>
+                              <path d="M202.41,150a1.51,1.51,0,0,1-1.41,1H2a1.51,1.51,0,0,1-1.41-1,1.64,1.64,0,0,0-.09.5v50A1.5,1.5,0,0,0,2,202H201a1.5,1.5,0,0,0,1.5-1.5v-50A1.64,1.64,0,0,0,202.41,150Z" fill="#574cfa"></path>
+                              <path d="M201,148H186.5V86.5a1.5,1.5,0,0,0-3,0V148h-80V86.5a1.5,1.5,0,0,0-3,0V148h-80v-3H49a1.5,1.5,0,0,0,1.5-1.5v-38A1.5,1.5,0,0,0,49,104H29a1.5,1.5,0,0,0-1.5,1.5V142h-7V87L58.33,41.7A1.5,1.5,0,0,0,56,39.78L17.85,85.54a1.48,1.48,0,0,0-.35,1V148H2a1.5,1.5,0,0,0-1.5,1.5,1.64,1.64,0,0,0,.09.5A1.51,1.51,0,0,0,2,151H201a1.51,1.51,0,0,0,1.41-1,1.64,1.64,0,0,0,.09-.5A1.5,1.5,0,0,0,201,148ZM30.5,107h17v35h-17Zm-18-24.78a1.47,1.47,0,0,0,.94.34A1.53,1.53,0,0,0,14.65,82L56.06,30.62l40.7,48.84a1.49,1.49,0,0,0,1.15.54h90a1.5,1.5,0,0,0,1.15-2.46l-41.67-50a1.49,1.49,0,0,0-1.15-.54H57.35a.91.91,0,0,0-.17-.17,1.5,1.5,0,0,0-2.11.23L12.31,80.11A1.51,1.51,0,0,0,12.54,82.22ZM145.54,30l39.17,47H98.61L59.44,30ZM56,137H92a1.5,1.5,0,0,0,1.5-1.5v-30A1.5,1.5,0,0,0,92,104H56a1.5,1.5,0,0,0-1.5,1.5v30A1.5,1.5,0,0,0,56,137Zm1.5-30h33v27h-33Zm13-20.5v-23A1.5,1.5,0,0,0,69,62H52a1.5,1.5,0,0,0-1.5,1.5v23A1.5,1.5,0,0,0,52,88H69A1.5,1.5,0,0,0,70.5,86.5Zm-3-1.5h-14V65h14ZM138,127a1.5,1.5,0,0,0,1.5-1.5v-20A1.5,1.5,0,0,0,138,104H111a1.5,1.5,0,0,0-1.5,1.5v30A1.5,1.5,0,0,0,111,137h27a1.5,1.5,0,0,0,0-3H112.5v-7Zm-25.5-20h24v3h-24Zm0,6h24v4h-24Zm0,7h24v4h-24Zm62.5,7a1.5,1.5,0,0,0,1.5-1.5v-20A1.5,1.5,0,0,0,175,104H148a1.5,1.5,0,0,0-1.5,1.5v30A1.5,1.5,0,0,0,148,137h27a1.5,1.5,0,0,0,0-3H149.5v-7Zm-25.5-20h24v3h-24Zm0,6h24v4h-24Zm0,7h24v4h-24ZM37.69,11.23A1.49,1.49,0,0,0,39,12a1.47,1.47,0,0,0,.73-.19,1.5,1.5,0,0,0,.58-2l-5-9a1.5,1.5,0,1,0-2.62,1.46ZM1,46.42l6,2a1.26,1.26,0,0,0,.47.08A1.5,1.5,0,0,0,8,45.58l-6-2A1.5,1.5,0,0,0,1,46.42ZM171.1,27.7a1.52,1.52,0,0,0,.9.3,1.49,1.49,0,0,0,1.2-.6l6-8a1.5,1.5,0,0,0-2.4-1.8l-6,8A1.5,1.5,0,0,0,171.1,27.7Zm36.36,27.48A1.49,1.49,0,0,0,205.68,54l-9,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9-2A1.49,1.49,0,0,0,207.46,55.18Z" fill="#0a0d0e"></path>
+                           </svg>
+                           <div id="foundation_type" name="foundation_type" class="element">
+                              <div class="question-header">
+                                 <h2 class="question-text">What type of foundation does your home have?</h2>
+                                 <p class="question-byline">If you have more than one foundation type supporting your home, choose the option that makes up the majority.</p>
+                              </div>
+                              <div class="has-tooltip">
+                                 <div class="dropdown-select-wrap  form-group">
+                                    <div data-cy="dropdown-foundation_type" class="dropdown-select dropdown">
+                                       <span class="dropdown-select-header completed has-label has-value" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
+                                          <!-- react-text: 138 -->Slab<!-- /react-text --><label class="dropdown-label" for="foundation_typeInput-0">Select foundation type</label>
+                                          <svg class="dropdown-toggle closed" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                             <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#574cfa"></polygon>
+                                          </svg>
+                                       </span>
+                                       <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
+                                          <div data-cy="dropdown-foundation_type-SLAB" class="item" id="foundation_type-Slab-0" role="menuitem" tabindex="0">Slab</div>
+                                          <div data-cy="dropdown-foundation_type-CRAWL_SPACE" class="item" id="foundation_type-CrawlSpace-0" role="menuitem" tabindex="0">Crawl space</div>
+                                          <div data-cy="dropdown-foundation_type-BASEMENT" class="item" id="foundation_type-Basement-0" role="menuitem" tabindex="0">Basement</div>
+                                          <div data-cy="dropdown-foundation_type-PIER_AND_BEAM_PILING" class="item" id="foundation_type-PierAndBeam/Piling-0" role="menuitem" tabindex="0">Pier and beam / piling</div>
+                                          <div data-cy="dropdown-foundation_type-OTHER" class="item" id="foundation_type-Other-0" role="menuitem" tabindex="0">Other</div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <span class="modal-tooltip-toggle" id="tooltip-FOUNDATION_TYPE_TOOLTIP_MODAL-target">
+                                    <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1">
+                                       <defs>
+                                          <path d="M10,20 C4.4771525,20 0,15.5228475 0,10 C0,4.4771525 4.4771525,0 10,0 C15.5228475,0 20,4.4771525 20,10 C20,15.5228475 15.5228475,20 10,20 Z M10,18.75 C14.8324916,18.75 18.75,14.8324916 18.75,10 C18.75,5.16750844 14.8324916,1.25 10,1.25 C5.16750844,1.25 1.25,5.16750844 1.25,10 C1.25,14.8324916 5.16750844,18.75 10,18.75 Z M12.4375,5.4375 C12.4375,5.8333353 12.2877619,6.1705715 11.9882812,6.4492188 C11.6888006,6.727866 11.3281271,6.8671875 10.90625,6.8671875 C10.4843729,6.8671875 10.1223973,6.727866 9.8203125,6.4492188 C9.5182277,6.1705715 9.3671875,5.8333353 9.3671875,5.4375 C9.3671875,5.0416647 9.5182277,4.7031264 9.8203125,4.421875 C10.1223973,4.1406236 10.4843729,4 10.90625,4 C11.3281271,4 11.6888006,4.1406236 11.9882812,4.421875 C12.2877619,4.7031264 12.4375,5.0416647 12.4375,5.4375 Z M12.2734375,14.9765625 L12.1015625,15.6796875 C11.5859349,15.8828135 11.1744807,16.0377599 10.8671875,16.1445312 C10.5598943,16.2513026 10.203127,16.3046875 9.796875,16.3046875 C9.1718719,16.3046875 8.6861996,16.1523453 8.3398438,15.8476562 C7.9934879,15.5429672 7.8203125,15.1562523 7.8203125,14.6875 C7.8203125,14.5052074 7.8333332,14.3190114 7.859375,14.1289062 C7.8854168,13.9388011 7.927083,13.7239595 7.984375,13.484375 L8.625,11.203125 C8.682292,10.9843739 8.7304686,10.7773447 8.7695312,10.5820312 C8.8085939,10.3867178 8.828125,10.2083341 8.828125,10.046875 C8.828125,9.7552069 8.7682298,9.5520839 8.6484375,9.4375 C8.5286452,9.3229161 8.2994809,9.265625 7.9609375,9.265625 C7.79427,9.265625 7.6236988,9.2916664 7.4492188,9.34375 C7.2747387,9.3958336 7.1250006,9.4453123 7,9.4921875 L7.171875,8.7890625 C7.5937521,8.6171866 7.9973939,8.4700527 8.3828125,8.3476562 C8.7682311,8.2252598 9.1328108,8.1640625 9.4765625,8.1640625 C10.0963573,8.1640625 10.5742171,8.3138006 10.9101562,8.6132812 C11.2460954,8.9127619 11.4140625,9.3020809 11.4140625,9.78125 C11.4140625,9.8802088 11.4023439,10.0546862 11.3789062,10.3046875 C11.3554686,10.5546888 11.3125003,10.7838531 11.25,10.9921875 L10.609375,13.265625 C10.5572914,13.4479176 10.5104169,13.6562488 10.46875,13.890625 C10.4270831,14.1250012 10.40625,14.3020827 10.40625,14.421875 C10.40625,14.7239598 10.4739577,14.929687 10.609375,15.0390625 C10.7447923,15.148438 10.979165,15.203125 11.3125,15.203125 C11.4687508,15.203125 11.6458323,15.1757815 11.84375,15.1210938 C12.0416677,15.066406 12.1848954,15.0182294 12.2734375,14.9765625 Z" id="icon-info-path"></path>
+                                       </defs>
+                                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                          <g transform="translate(-513.000000, -1391.000000)">
+                                             <g transform="translate(114.000000, 1379.000000)">
+                                                <g transform="translate(399.000000, 12.000000)">
+                                                   <rect id="Footprint" x="0" y="0" width="20" height="20"></rect>
+                                                   <mask id="icon-info-mask" fill="white">
+                                                      <use xlink:href="#icon-info-path"></use>
+                                                   </mask>
+                                                   <use fill="#F8AE02" fill-rule="evenodd" xlink:href="#icon-info-path"></use>
+                                                   <g mask="url(#icon-info-mask)" fill="#574CFA" fill-rule="evenodd">
+                                                      <rect id="Rectangle" x="0" y="0" width="20" height="20"></rect>
+                                                   </g>
+                                                </g>
+                                             </g>
+                                          </g>
+                                       </g>
+                                    </svg>
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap construction_type">
+                           <svg class=" question-icon mb-2" width="130" height="94" viewBox="0 0 249.24 181">
+                              <title>Asset 13</title>
+                              <path d="M19.5,94a1.51,1.51,0,0,0,1.16-.55l48.2-58.91,32,39.38,1.9,2.34,14.79,18.19a1.5,1.5,0,0,0,1.17.55H225.86A1.5,1.5,0,0,0,227,92.55l-49.59-61a1.5,1.5,0,0,0-1.17-.55H70.11a1.21,1.21,0,0,0-.16-.16,1.49,1.49,0,0,0-2.11.21l-49.5,60.5A1.5,1.5,0,0,0,19.5,94ZM175.55,34l47.16,58H119.45L72.3,34ZM243.5,178H225V103.5a1.5,1.5,0,0,0-1.5-1.5H24.69l.2-.25L45.74,76.26l1.91-2.34L69,47.79a1.5,1.5,0,0,0-2.32-1.9L21.12,101.63a1.59,1.59,0,0,0-.28.53A1.5,1.5,0,0,0,20,103.5V178H3.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM120,178H23V105h97Zm102,0H123V105h99ZM8.58,56.6a1.5,1.5,0,0,0,.5-2.92L2,51.16A1.5,1.5,0,1,0,1,54l7.08,2.53A1.43,1.43,0,0,0,8.58,56.6ZM43.1,12.71a1.5,1.5,0,0,0,1.38.91,1.5,1.5,0,0,0,1.38-2.09L41.31.91a1.5,1.5,0,0,0-2.76,1.18ZM202.82,33a1.51,1.51,0,0,0,2.09-.39L211.48,23A1.5,1.5,0,0,0,209,21.33l-6.57,9.61A1.5,1.5,0,0,0,202.82,33ZM249.2,72a1.5,1.5,0,0,0-1.79-1.14l-9.1,2a1.5,1.5,0,0,0-1.14,1.79,1.52,1.52,0,0,0,1.47,1.17,1.22,1.22,0,0,0,.32,0l9.1-2A1.5,1.5,0,0,0,249.2,72Z" fill="#070e15"></path>
+                              <path d="M89.18,101.74l-.39.26h2.32A1.51,1.51,0,0,0,89.18,101.74Zm-64.29,0-.2.25h.58Zm49.37-1.21L47.65,73.92l-1.91,2.34L71.49,102H77l25.74-25.74-1.9-2.34ZM107.7,34h-3.9l48.33,58h3.78a1.51,1.51,0,0,0-.26-.46Zm84,57.54L143.7,34h-3.9l48.33,58h3.78A1.51,1.51,0,0,0,191.65,91.54ZM56.72,122.77,29.81,105H24.37l27.26,18H32.5a1.5,1.5,0,0,0-1.5,1.5V169H23.5a1.64,1.64,0,0,0-.5.09v2.82a1.64,1.64,0,0,0,.5.09H56v6h3V124.87l30-19.43V178h3V105H84.15ZM56,169H34V126H56Zm134-64v73h3V105Zm-33,73h3V105h-3Z" fill="#574cfa"></path>
+                           </svg>
+                           <div id="construction_type" name="construction_type" class="element">
+                              <div class="question-header">
+                                 <h2 class="question-text">What is the frame of your house made of?</h2>
+                                 <p class="question-byline">If multiple materials were used, choose the one that makes up most of the frame.</p>
+                              </div>
+                              <div class="has-tooltip">
+                                 <div class="dropdown-select-wrap  form-group">
+                                    <div data-cy="dropdown-construction_type" class="dropdown-select dropdown">
+                                       <span class="dropdown-select-header completed has-label has-value" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
+                                          <!-- react-text: 175 -->Wood frame<!-- /react-text --><label class="dropdown-label" for="construction_typeInput-0">Select construction material</label>
+                                          <svg class="dropdown-toggle closed" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                             <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#574cfa"></polygon>
+                                          </svg>
+                                       </span>
+                                       <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
+                                          <div data-cy="dropdown-construction_type-WOOD_FRAME" class="item" id="construction_type-WoodFrame-0" role="menuitem" tabindex="0">Wood frame</div>
+                                          <div data-cy="dropdown-construction_type-MASONRY" class="item" id="construction_type-Masonry-0" role="menuitem" tabindex="0">Masonry</div>
+                                          <div data-cy="dropdown-construction_type-CONCRETE" class="item" id="construction_type-Concrete-0" role="menuitem" tabindex="0">Concrete</div>
+                                          <div data-cy="dropdown-construction_type-LOG" class="item" id="construction_type-Log-0" role="menuitem" tabindex="0">Log</div>
+                                          <div data-cy="dropdown-construction_type-OTHER" class="item" id="construction_type-Other-0" role="menuitem" tabindex="0">Other</div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <span class="modal-tooltip-toggle" id="tooltip-CONSTRUCTION_TYPE_TOOLTIP_MODAL-target">
+                                    <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1">
+                                       <defs>
+                                          <path d="M10,20 C4.4771525,20 0,15.5228475 0,10 C0,4.4771525 4.4771525,0 10,0 C15.5228475,0 20,4.4771525 20,10 C20,15.5228475 15.5228475,20 10,20 Z M10,18.75 C14.8324916,18.75 18.75,14.8324916 18.75,10 C18.75,5.16750844 14.8324916,1.25 10,1.25 C5.16750844,1.25 1.25,5.16750844 1.25,10 C1.25,14.8324916 5.16750844,18.75 10,18.75 Z M12.4375,5.4375 C12.4375,5.8333353 12.2877619,6.1705715 11.9882812,6.4492188 C11.6888006,6.727866 11.3281271,6.8671875 10.90625,6.8671875 C10.4843729,6.8671875 10.1223973,6.727866 9.8203125,6.4492188 C9.5182277,6.1705715 9.3671875,5.8333353 9.3671875,5.4375 C9.3671875,5.0416647 9.5182277,4.7031264 9.8203125,4.421875 C10.1223973,4.1406236 10.4843729,4 10.90625,4 C11.3281271,4 11.6888006,4.1406236 11.9882812,4.421875 C12.2877619,4.7031264 12.4375,5.0416647 12.4375,5.4375 Z M12.2734375,14.9765625 L12.1015625,15.6796875 C11.5859349,15.8828135 11.1744807,16.0377599 10.8671875,16.1445312 C10.5598943,16.2513026 10.203127,16.3046875 9.796875,16.3046875 C9.1718719,16.3046875 8.6861996,16.1523453 8.3398438,15.8476562 C7.9934879,15.5429672 7.8203125,15.1562523 7.8203125,14.6875 C7.8203125,14.5052074 7.8333332,14.3190114 7.859375,14.1289062 C7.8854168,13.9388011 7.927083,13.7239595 7.984375,13.484375 L8.625,11.203125 C8.682292,10.9843739 8.7304686,10.7773447 8.7695312,10.5820312 C8.8085939,10.3867178 8.828125,10.2083341 8.828125,10.046875 C8.828125,9.7552069 8.7682298,9.5520839 8.6484375,9.4375 C8.5286452,9.3229161 8.2994809,9.265625 7.9609375,9.265625 C7.79427,9.265625 7.6236988,9.2916664 7.4492188,9.34375 C7.2747387,9.3958336 7.1250006,9.4453123 7,9.4921875 L7.171875,8.7890625 C7.5937521,8.6171866 7.9973939,8.4700527 8.3828125,8.3476562 C8.7682311,8.2252598 9.1328108,8.1640625 9.4765625,8.1640625 C10.0963573,8.1640625 10.5742171,8.3138006 10.9101562,8.6132812 C11.2460954,8.9127619 11.4140625,9.3020809 11.4140625,9.78125 C11.4140625,9.8802088 11.4023439,10.0546862 11.3789062,10.3046875 C11.3554686,10.5546888 11.3125003,10.7838531 11.25,10.9921875 L10.609375,13.265625 C10.5572914,13.4479176 10.5104169,13.6562488 10.46875,13.890625 C10.4270831,14.1250012 10.40625,14.3020827 10.40625,14.421875 C10.40625,14.7239598 10.4739577,14.929687 10.609375,15.0390625 C10.7447923,15.148438 10.979165,15.203125 11.3125,15.203125 C11.4687508,15.203125 11.6458323,15.1757815 11.84375,15.1210938 C12.0416677,15.066406 12.1848954,15.0182294 12.2734375,14.9765625 Z" id="icon-info-path"></path>
+                                       </defs>
+                                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                          <g transform="translate(-513.000000, -1391.000000)">
+                                             <g transform="translate(114.000000, 1379.000000)">
+                                                <g transform="translate(399.000000, 12.000000)">
+                                                   <rect id="Footprint" x="0" y="0" width="20" height="20"></rect>
+                                                   <mask id="icon-info-mask" fill="white">
+                                                      <use xlink:href="#icon-info-path"></use>
+                                                   </mask>
+                                                   <use fill="#F8AE02" fill-rule="evenodd" xlink:href="#icon-info-path"></use>
+                                                   <g mask="url(#icon-info-mask)" fill="#574CFA" fill-rule="evenodd">
+                                                      <rect id="Rectangle" x="0" y="0" width="20" height="20"></rect>
+                                                   </g>
+                                                </g>
+                                             </g>
+                                          </g>
+                                       </g>
+                                    </svg>
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap square_footage">
+                           <svg class=" question-icon mb-2" width="97" height="107" viewBox="0 0 188.66 212.94">
+                              <title>Asset 14</title>
+                              <path d="M68,123.42a1.5,1.5,0,0,1,1.67,1.31l3,24.31,18.86-2.31-1.41-11.42a1.5,1.5,0,0,1,1.31-1.67,14.53,14.53,0,0,1,15.9,11.15l11-1.35L116.63,130a1.5,1.5,0,0,1,3-.37l1.64,13.4,22.83-2.8L140.3,109.5,121,111.88l-3.48.42,1.16,9.43a1.5,1.5,0,0,1-3,.37l-1.34-10.92-1.82-14.89a1.5,1.5,0,1,1,3-.36l1.65,13.39,3.47-.42,19.36-2.38-1.47-11.91-13.39,1.65a1.5,1.5,0,1,1-.37-3l13.4-1.65L134,57.89l-31.77,3.9,3.11,25.31a1.5,1.5,0,1,1-3,.36l-3.1-25.31L87.32,63.61l2.86,23.33a1.5,1.5,0,0,1-1.31,1.67l-24.31,3,1,8.43a1.5,1.5,0,1,1-3,.37L61.4,90.47a1.49,1.49,0,0,1,1.3-1.67l24.32-3L84.34,64l-53.6,6.58,5,40.7L66,107.54a1.5,1.5,0,0,1,1.67,1.3l1,8a1.5,1.5,0,0,1-3,.36l-.79-6.45L36.1,114.23l4.76,38.71,28.78-3.53-3-24.32A1.5,1.5,0,0,1,68,123.42Z" fill="none"></path>
+                              <path d="M93.25,136.53l1.2,9.83,9.83-1.2A11.52,11.52,0,0,0,93.25,136.53Z" fill="none"></path>
+                              <path d="M135.09,54.73l-106.2,13a1.5,1.5,0,0,0-1.31,1.67L38.06,154.8a1.5,1.5,0,0,0,1.67,1.3l106.2-13a1.5,1.5,0,0,0,1.31-1.67L136.76,56A1.5,1.5,0,0,0,135.09,54.73Zm9,85.54L40.86,152.94,30.74,70.56,134,57.89ZM32.63,172.09l-.32,0h.08Zm.12,3a2.1,2.1,0,0,1-.24.06c-9.47,1.16-15.95,9.7-14.75,19.44a1.5,1.5,0,0,1-1.24,1.65l-.07,0a1.5,1.5,0,0,1-1.67-1.31,20.52,20.52,0,0,0,22.84,17.85,1.5,1.5,0,0,0,1.31-1.67l-4.45-36.23-1.49.19A1.92,1.92,0,0,1,32.75,175.07ZM136.45.15a1.51,1.51,0,0,0-1.31,1.68l14.63,119.1a1.5,1.5,0,0,0,1.67,1.31,17.52,17.52,0,0,1,19.5,15.23,1.5,1.5,0,0,0,3-.36L159.29,18A20.52,20.52,0,0,0,136.45.15Z" fill="#574cfa"></path>
+                              <path d="M93.25,136.53a11.52,11.52,0,0,1,11,8.63l3-.37a14.53,14.53,0,0,0-15.9-11.15,1.5,1.5,0,0,0-1.31,1.67l1.41,11.42,3-.37Zm44.86-44.9-13.4,1.65a1.5,1.5,0,1,0,.37,3l13.39-1.65ZM104,88.77a1.5,1.5,0,0,0,1.3-1.67L102.2,61.79l-3,.36,3.1,25.31A1.51,1.51,0,0,0,104,88.77ZM90.18,86.94,87.32,63.61l-3,.37L87,85.82l-24.32,3a1.49,1.49,0,0,0-1.3,1.67l1.21,9.93a1.5,1.5,0,1,0,3-.37l-1-8.43,24.31-3A1.5,1.5,0,0,0,90.18,86.94ZM68,123.42a1.5,1.5,0,0,0-1.31,1.67l3,24.32,3-.37-3-24.31A1.5,1.5,0,0,0,68,123.42Zm-.28-14.58a1.5,1.5,0,0,0-1.67-1.3l-30.27,3.72.36,3,28.79-3.53.79,6.45a1.5,1.5,0,0,0,3-.36Zm50.26,19.53a1.5,1.5,0,0,0-1.31,1.67l1.64,13.4,3-.37-1.64-13.4A1.5,1.5,0,0,0,117.94,128.37Zm-.47-16.07,22.83-2.8-.36-3-22.83,2.8-1.65-13.39a1.5,1.5,0,1,0-3,.36l3.16,25.81a1.5,1.5,0,0,0,3-.37ZM14.12,179.4l.26,0a1.51,1.51,0,0,0,1.31-1.67L3.39,75.43a17.5,17.5,0,0,1,15.2-19.5L140,41l-.37-3L16,53.23a1.53,1.53,0,0,0-.72.29A20.51,20.51,0,0,0,.15,75.82l12.3,102.27A1.5,1.5,0,0,0,14.12,179.4Zm157.3-34.52a1.51,1.51,0,0,0-1.93.88A17.45,17.45,0,0,1,155.22,157L32.63,172.09l-.24,0h-.25C21,173.52,13.38,183.52,14.78,194.93a1.5,1.5,0,0,0,1.67,1.31l.07,0a1.5,1.5,0,0,0,1.24-1.65c-1.2-9.74,5.28-18.28,14.75-19.44a2.1,2.1,0,0,0,.24-.06,1.92,1.92,0,0,0,.24,0L156.07,160l.25,0a20.45,20.45,0,0,0,16-13.09A1.51,1.51,0,0,0,171.42,144.88Zm16.35,4.34-5.33-2.36a1.5,1.5,0,1,0-1.22,2.74l5.33,2.37a1.45,1.45,0,0,0,.79.11,1.5,1.5,0,0,0,.43-2.86Zm-7.42-7.91a1.36,1.36,0,0,0,.81.13,1.49,1.49,0,0,0,1.18-.85l4-8.55a1.5,1.5,0,0,0-2.72-1.27l-4,8.55A1.5,1.5,0,0,0,180.35,141.31Z" fill="#0a0d0e"></path>
+                           </svg>
+                           <div id="square_footage" name="square_footage" class="element">
+                              <div class="question-header">
+                                 <h2 class="question-text">What is the square footage?</h2>
+                                 <p class="question-byline">Don't include square footage from your garage, basement, or attic.</p>
+                              </div>
+                              <div class="">
+                                 <div class="form-group">
+                                    <div class="form-field text-left">
+                                    <div class="form-field__control">
+                                        <label class="form-field__label">square footage</label>
+                                        <input type="text" class="form-field__input">
+                                    </div>
+                                    </div>
+                                </div>
+                                 
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap number_of_stories">
+                           <svg class=" question-icon mb-2" width="127" height="77" viewBox="0 0 228 138">
+                              <title>Asset 15</title>
+                              <path d="M93,99H88.5a1.5,1.5,0,0,0-1.5,1.5V105H82.5a1.5,1.5,0,0,0-1.5,1.5V111H76.5a1.5,1.5,0,0,0-1.5,1.5V117H70.5a1.5,1.5,0,0,0-1.5,1.5V123H64.5a1.5,1.5,0,0,0-1.5,1.5V129H58.5a1.5,1.5,0,0,0-1.5,1.5V135h3v-3h4.5a1.5,1.5,0,0,0,1.5-1.5V126h4.5a1.5,1.5,0,0,0,1.5-1.5V120h4.5a1.5,1.5,0,0,0,1.5-1.5V114h4.5a1.5,1.5,0,0,0,1.5-1.5V108h4.5a1.5,1.5,0,0,0,1.5-1.5V102h4.5a1.5,1.5,0,0,0,1.5-1.5V96H93Zm43.5-12H132V82.5a1.5,1.5,0,0,0-1.5-1.5H126V76.5a1.5,1.5,0,0,0-1.5-1.5H120V70.5a1.5,1.5,0,0,0-1.5-1.5H114V64.5a1.5,1.5,0,0,0-1.5-1.5H108V58.5a1.5,1.5,0,0,0-1.5-1.5H102V53.5a1.64,1.64,0,0,0-.09-.5H99.09a1.64,1.64,0,0,0-.09.5v5a1.5,1.5,0,0,0,1.5,1.5H105v4.5a1.5,1.5,0,0,0,1.5,1.5H111v4.5a1.5,1.5,0,0,0,1.5,1.5H117v4.5a1.5,1.5,0,0,0,1.5,1.5H123v4.5a1.5,1.5,0,0,0,1.5,1.5H129v4.5a1.5,1.5,0,0,0,1.5,1.5H135v3h3V88.5A1.5,1.5,0,0,0,136.5,87Z" fill="#574cfa"></path>
+                              <path d="M226.5,135H213V64.5a1.5,1.5,0,0,0-3,0V135H153V53h.13a1.47,1.47,0,0,0,1.24-.67L183,9.42l27.27,40.91a1.49,1.49,0,0,0,1.25.67,1.47,1.47,0,0,0,.83-.25,1.5,1.5,0,0,0,.42-2.08l-28-41.95,1.54-2.31,31,47.88a1.47,1.47,0,0,0,1.26.69,1.49,1.49,0,0,0,1.25-2.31L187.94,1.4a1.46,1.46,0,0,0-.16-.61A1.49,1.49,0,0,0,186.46,0H41a1.47,1.47,0,0,0-1.24.67l-33.34,50a1.52,1.52,0,0,0-.07,1.54A1.49,1.49,0,0,0,7.67,53h7.42a1.64,1.64,0,0,0-.09.5v72a1.5,1.5,0,0,0,3,0V96H150v39H48V103.5a1.5,1.5,0,0,0-1.5-1.5h-18a1.5,1.5,0,0,0-1.5,1.5V135H1.5a1.5,1.5,0,0,0,0,3h225a1.5,1.5,0,0,0,0-3ZM45,135H30V105H45ZM150,93H18V53.5a1.64,1.64,0,0,0-.09-.5H150ZM10.47,50,41.81,3H183.66l-1.58,2.37L152.32,50Zm160,74h21a1.5,1.5,0,0,0,1.5-1.5v-21a1.5,1.5,0,0,0-1.5-1.5h-21a1.5,1.5,0,0,0-1.5,1.5v21A1.5,1.5,0,0,0,170.5,124ZM183,103h7v5h-7Zm0,8h7v10h-7Zm-11-8h8v5h-8Zm0,8h8v10h-8Zm2-27.5v-22a1.5,1.5,0,0,0-1.5-1.5h-9a1.5,1.5,0,0,0-1.5,1.5v22a1.5,1.5,0,0,0,1.5,1.5h9A1.5,1.5,0,0,0,174,83.5ZM171,82h-6V63h6Zm30,1.5v-22a1.5,1.5,0,0,0-1.5-1.5h-9a1.5,1.5,0,0,0-1.5,1.5v22a1.5,1.5,0,0,0,1.5,1.5h9A1.5,1.5,0,0,0,201,83.5ZM198,82h-6V63h6ZM55.5,84h9A1.5,1.5,0,0,0,66,82.5v-21A1.5,1.5,0,0,0,64.5,60h-9A1.5,1.5,0,0,0,54,61.5v21A1.5,1.5,0,0,0,55.5,84ZM57,63h6V81H57ZM29.5,84h9A1.5,1.5,0,0,0,40,82.5v-21A1.5,1.5,0,0,0,38.5,60h-9A1.5,1.5,0,0,0,28,61.5v21A1.5,1.5,0,0,0,29.5,84ZM31,63h6V81H31Zm33.5,50a1.5,1.5,0,0,0,1.5-1.5v-8a1.5,1.5,0,0,0-1.5-1.5h-9a1.5,1.5,0,0,0-1.5,1.5v8a1.5,1.5,0,0,0,1.5,1.5ZM57,105h6v5H57ZM217.49,59.78a1.51,1.51,0,0,0,1.49,1.4h.11l5.86-.41a1.5,1.5,0,0,0-.21-3l-5.86.42A1.5,1.5,0,0,0,217.49,59.78Zm-.38,6.58a1.5,1.5,0,0,0,.16,2.12l3.6,3.09a1.51,1.51,0,0,0,2.12-.16,1.5,1.5,0,0,0-.16-2.12l-3.6-3.09A1.5,1.5,0,0,0,217.11,66.36ZM2,126l5,3.8a1.53,1.53,0,0,0,.91.3,1.48,1.48,0,0,0,1.19-.59,1.5,1.5,0,0,0-.29-2.1l-5-3.8A1.5,1.5,0,0,0,2,126Z" fill="#070e15"></path>
+                           </svg>
+                           <div id="number_of_stories" name="number_of_stories" class="element">
+                              <div class="question-header">
+                                 <h2 class="question-text">How many stories is it?</h2>
+                                 <p class="question-byline">Exclude your basement if you have one.</p>
+                              </div>
+                              <div class="">
+                                 <div class="dropdown-select-wrap  form-group">
+                                    <div data-cy="dropdown-number_of_stories" class="dropdown-select dropdown">
+                                       <span class="dropdown-select-header completed has-label has-value" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
+                                          <!-- react-text: 228 -->2<!-- /react-text --><label class="dropdown-label" for="number_of_storiesInput-0">Select number of stories</label>
+                                          <svg class="dropdown-toggle closed" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                             <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#574cfa"></polygon>
+                                          </svg>
+                                       </span>
+                                       <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
+                                          <div data-cy="dropdown-number_of_stories-ONE" class="item" id="number_of_stories-1-0" role="menuitem" tabindex="0">1</div>
+                                          <div data-cy="dropdown-number_of_stories-TWO" class="item" id="number_of_stories-2-0" role="menuitem" tabindex="0">2</div>
+                                          <div data-cy="dropdown-number_of_stories-THREE" class="item" id="number_of_stories-3-0" role="menuitem" tabindex="0">3</div>
+                                          <div data-cy="dropdown-number_of_stories-FOUR_OR_MORE" class="item" id="number_of_stories-4+-0" role="menuitem" tabindex="0">4+</div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- react-text: 237 --><!-- /react-text -->
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap heat_type">
+                           <svg class=" question-icon mb-2" width="118" height="88" viewBox="0 0 200.71 149.77">
+                              <title>Asset 16</title>
+                              <path d="M111.8,51.72a4.47,4.47,0,0,0-7.24,2.76,1.5,1.5,0,0,1-2.45.89,3,3,0,0,0-1.93-.71l-.32,0A3,3,0,0,0,97.2,58a2.83,2.83,0,0,0,.57,1.44l14.82-1.57a4.37,4.37,0,0,0,.86-3.1A4.46,4.46,0,0,0,111.8,51.72Zm8.74,20.18L93.7,74.81l1.42,13.42L122,85.33ZM95.44,91.21,97,106.13l26.85-2.84-1.59-15Zm34.87,15.92-7.9-74.58a1.49,1.49,0,0,0-.55-1,1.47,1.47,0,0,0-1.1-.32L16.34,42.28A1.5,1.5,0,0,0,15,43.93l7.9,74.58a1.53,1.53,0,0,0,.55,1,1.48,1.48,0,0,0,.94.33h.16L129,108.78A1.5,1.5,0,0,0,130.31,107.13Zm-4.63-1h0L30.21,116.23h-.16a1.5,1.5,0,0,1-1.49-1.34,1.5,1.5,0,0,1-1.33,1.65h-.16a1.5,1.5,0,0,1-1.49-1.34h0L18.31,46.6h0A1.49,1.49,0,0,1,19.64,45h0l72.48-7.68,26-2.76a1.5,1.5,0,0,1,.32,3l-97,10.27,7.11,67.13a1.5,1.5,0,0,1,1.34-1.65L94,106.45l-6.8-64.14a1.5,1.5,0,0,1,3-.32l3.17,29.83,26.84-2.9-3.16-29.77a1.5,1.5,0,0,1,3-.32l7,65.63A1.49,1.49,0,0,1,125.68,106.11ZM114.46,60.3a1.52,1.52,0,0,1-.95.47L97.34,62.49h-.16a1.49,1.49,0,0,1-1-.38,6,6,0,0,1,3.37-10.42,5.88,5.88,0,0,1,2.67.33,7.51,7.51,0,0,1,6-4.26,7.48,7.48,0,0,1,6.28,12.54ZM38.76,97.22H38.6a1.5,1.5,0,0,1-.16-3L63.8,91.55a1.5,1.5,0,0,1,.32,3Zm9.74,6.51-9,1h-.16a1.5,1.5,0,0,1-.16-3l9-1a1.5,1.5,0,1,1,.32,3Zm-.42-19.12a.64.64,0,0,1-.57.66L41,86a.64.64,0,0,1-.49-.16.69.69,0,0,1-.22-.47,35.28,35.28,0,0,1,2-12.1,44.62,44.62,0,0,1,5.21-10.46L35.25,64.06a.65.65,0,0,1-.71-.57L34,58.12a.65.65,0,0,1,.57-.71l19.19-2a.64.64,0,0,1,.71.57l.48,4.56a.66.66,0,0,1-.1.43A41.62,41.62,0,0,0,49.59,72,40.21,40.21,0,0,0,48.08,84.61Zm14.83-3a9,9,0,0,1-2.86-10.71A7.2,7.2,0,0,1,62,68.25a7.19,7.19,0,0,1-2.84-5.15A8.32,8.32,0,0,1,61,56.65,9.27,9.27,0,0,1,73.6,55.31a8.3,8.3,0,0,1,3.25,5.91,7.22,7.22,0,0,1-1.74,5.63A7.22,7.22,0,0,1,77.52,69a8.56,8.56,0,0,1,1.57,4.17A8.45,8.45,0,0,1,77,80.1a11.2,11.2,0,0,1-14,1.47Zm8.78-5.82a3,3,0,0,0,.63-2.25,3,3,0,0,0-1.12-2.07,3.27,3.27,0,0,0-4.47.48,2.94,2.94,0,0,0-.66,2.25,3.21,3.21,0,0,0,5.62,1.59Zm-3.45-11A2.38,2.38,0,0,0,70,63.84a2.46,2.46,0,0,0-.33-3.48,2.52,2.52,0,0,0-4.16,2.22,2.37,2.37,0,0,0,.9,1.68A2.41,2.41,0,0,0,68.24,64.78Z" fill="#574cfa"></path>
+                              <path d="M191.56,115.72l-9.49-89.5a16.51,16.51,0,0,0-18.14-14.66L35.64,25.15a1.5,1.5,0,0,0-1.33,1.65h0A1.49,1.49,0,0,0,36,28.13L164.24,14.54a13.51,13.51,0,0,1,14.85,12l9.49,89.5a13.51,13.51,0,0,1-12,14.85l-50.71,5.37-1.43-13.42a1.5,1.5,0,1,0-3,.31l1.42,13.43-11.93,1.26-1.42-13.42a1.5,1.5,0,0,0-3,.31L108,138.16,96,139.42,94.6,126a1.5,1.5,0,0,0-3,.31L93,139.74,81.11,141l-1.42-13.42a1.5,1.5,0,0,0-3,.32l1.42,13.42-11.93,1.27-1.42-13.43a1.5,1.5,0,0,0-3,.32l1.42,13.42-11.94,1.27-1.42-13.43a1.5,1.5,0,1,0-3,.32l1.42,13.42-11.93,1.27-1.42-13.43a1.5,1.5,0,0,0-3,.32l1.42,13.42-6,.64a13.52,13.52,0,0,1-14.85-12L3.08,45.19a13.5,13.5,0,0,1,12-14.84,1.5,1.5,0,0,0,1.33-1.65h0a1.49,1.49,0,0,0-1.65-1.34A16.52,16.52,0,0,0,.09,45.51L9.58,135A16.51,16.51,0,0,0,26,149.77a17.09,17.09,0,0,0,1.75-.09l22.38-2.37h0l44.75-4.74h0l82-8.69a16.5,16.5,0,0,0,14.67-18.15ZM31.44,10.46a1.61,1.61,0,0,0,.48.08,1.5,1.5,0,0,0,1.42-1L35.85,2A1.5,1.5,0,1,0,33,1L30.5,8.56A1.49,1.49,0,0,0,31.44,10.46ZM15.68,15.14a1.5,1.5,0,0,0,2.48-1.69L12.39,5A1.5,1.5,0,0,0,9.91,6.71Zm2.63,31.45h0l7.27,68.61h0a1.5,1.5,0,0,0,1.49,1.34h.16a1.5,1.5,0,0,0,1.33-1.65h0L21.45,47.77l97-10.27a1.5,1.5,0,0,0-.32-3l-26,2.76L19.64,45h0A1.49,1.49,0,0,0,18.31,46.59ZM159.8,71.47l-16.57,1.76a5.08,5.08,0,0,0-4.13,3,5.27,5.27,0,0,0,.49,5.27l9.87,14a5.12,5.12,0,0,0,8.93-.94l6.7-15.78a5.27,5.27,0,0,0-.62-5.26A5.11,5.11,0,0,0,159.8,71.47Zm2.26,3.86a2.31,2.31,0,0,1,.27,2.31l-6.71,15.77a2.11,2.11,0,0,1-3.71.4l-9.87-14a2.33,2.33,0,0,1-.21-2.32,2.08,2.08,0,0,1,1.71-1.26l16.58-1.75.23,0A2.11,2.11,0,0,1,162.06,75.33Zm38.25,69.28-6.27-6.7a1.5,1.5,0,0,0-2.2,2.05l6.28,6.7a1.47,1.47,0,0,0,1.09.48,1.51,1.51,0,0,0,1.1-2.53ZM152.4,38.08a5.12,5.12,0,0,0-8.93,1l-6.71,15.78a5.27,5.27,0,0,0,.62,5.26,5.11,5.11,0,0,0,4.12,2.1,4.93,4.93,0,0,0,.55,0l16.58-1.75a5.12,5.12,0,0,0,4.13-3,5.3,5.3,0,0,0-.5-5.28ZM160,56.14a2.11,2.11,0,0,1-1.72,1.26l-16.57,1.76a2.1,2.1,0,0,1-2-.88,2.3,2.3,0,0,1-.27-2.3l6.71-15.78A2.09,2.09,0,0,1,148,38.89h.23a2.09,2.09,0,0,1,1.74.93l9.87,14A2.33,2.33,0,0,1,160,56.14Z" fill="#070e15"></path>
+                           </svg>
+                           <div id="heat_type" name="heat_type" class="element">
+                              <div class="question-header">
+                                 <h2 class="question-text">What is your home's primary heating system?</h2>
+                                 <p class="question-byline">Forced air (Central) is the most common heating system in the US.</p>
+                              </div>
+                              <div class="has-tooltip">
+                                 <div class="dropdown-select-wrap  form-group">
+                                    <div data-cy="dropdown-heat_type" class="dropdown-select dropdown">
+                                       <span class="dropdown-select-header completed has-label has-value" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
+                                          <!-- react-text: 251 -->Boiler<!-- /react-text --><label class="dropdown-label" for="heat_typeInput-0">Select heating system</label>
+                                          <svg class="dropdown-toggle closed" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                             <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#574cfa"></polygon>
+                                          </svg>
+                                       </span>
+                                       <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
+                                          <div data-cy="dropdown-heat_type-FORCED_AIR_CENTRAL" class="item" id="heat_type-ForcedAir(Central)-0" role="menuitem" tabindex="0">Forced air (Central)</div>
+                                          <div data-cy="dropdown-heat_type-ELECTRIC" class="item" id="heat_type-Electric-0" role="menuitem" tabindex="0">Electric</div>
+                                          <div data-cy="dropdown-heat_type-BOILER" class="item" id="heat_type-Boiler-0" role="menuitem" tabindex="0">Boiler</div>
+                                          <div data-cy="dropdown-heat_type-WOOD_STOVE" class="item" id="heat_type-WoodStove-0" role="menuitem" tabindex="0">Wood stove</div>
+                                          <div data-cy="dropdown-heat_type-NO_CENTRAL_HEAT_SOURCE" class="item" id="heat_type-NoCentralHeatSource-0" role="menuitem" tabindex="0">No central heat source</div>
+                                          <div data-cy="dropdown-heat_type-OTHER" class="item" id="heat_type-Other-0" role="menuitem" tabindex="0">Other</div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <span class="modal-tooltip-toggle" id="tooltip-HEAT_TYPE_TOOLTIP_MODAL-target">
+                                    <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1">
+                                       <defs>
+                                          <path d="M10,20 C4.4771525,20 0,15.5228475 0,10 C0,4.4771525 4.4771525,0 10,0 C15.5228475,0 20,4.4771525 20,10 C20,15.5228475 15.5228475,20 10,20 Z M10,18.75 C14.8324916,18.75 18.75,14.8324916 18.75,10 C18.75,5.16750844 14.8324916,1.25 10,1.25 C5.16750844,1.25 1.25,5.16750844 1.25,10 C1.25,14.8324916 5.16750844,18.75 10,18.75 Z M12.4375,5.4375 C12.4375,5.8333353 12.2877619,6.1705715 11.9882812,6.4492188 C11.6888006,6.727866 11.3281271,6.8671875 10.90625,6.8671875 C10.4843729,6.8671875 10.1223973,6.727866 9.8203125,6.4492188 C9.5182277,6.1705715 9.3671875,5.8333353 9.3671875,5.4375 C9.3671875,5.0416647 9.5182277,4.7031264 9.8203125,4.421875 C10.1223973,4.1406236 10.4843729,4 10.90625,4 C11.3281271,4 11.6888006,4.1406236 11.9882812,4.421875 C12.2877619,4.7031264 12.4375,5.0416647 12.4375,5.4375 Z M12.2734375,14.9765625 L12.1015625,15.6796875 C11.5859349,15.8828135 11.1744807,16.0377599 10.8671875,16.1445312 C10.5598943,16.2513026 10.203127,16.3046875 9.796875,16.3046875 C9.1718719,16.3046875 8.6861996,16.1523453 8.3398438,15.8476562 C7.9934879,15.5429672 7.8203125,15.1562523 7.8203125,14.6875 C7.8203125,14.5052074 7.8333332,14.3190114 7.859375,14.1289062 C7.8854168,13.9388011 7.927083,13.7239595 7.984375,13.484375 L8.625,11.203125 C8.682292,10.9843739 8.7304686,10.7773447 8.7695312,10.5820312 C8.8085939,10.3867178 8.828125,10.2083341 8.828125,10.046875 C8.828125,9.7552069 8.7682298,9.5520839 8.6484375,9.4375 C8.5286452,9.3229161 8.2994809,9.265625 7.9609375,9.265625 C7.79427,9.265625 7.6236988,9.2916664 7.4492188,9.34375 C7.2747387,9.3958336 7.1250006,9.4453123 7,9.4921875 L7.171875,8.7890625 C7.5937521,8.6171866 7.9973939,8.4700527 8.3828125,8.3476562 C8.7682311,8.2252598 9.1328108,8.1640625 9.4765625,8.1640625 C10.0963573,8.1640625 10.5742171,8.3138006 10.9101562,8.6132812 C11.2460954,8.9127619 11.4140625,9.3020809 11.4140625,9.78125 C11.4140625,9.8802088 11.4023439,10.0546862 11.3789062,10.3046875 C11.3554686,10.5546888 11.3125003,10.7838531 11.25,10.9921875 L10.609375,13.265625 C10.5572914,13.4479176 10.5104169,13.6562488 10.46875,13.890625 C10.4270831,14.1250012 10.40625,14.3020827 10.40625,14.421875 C10.40625,14.7239598 10.4739577,14.929687 10.609375,15.0390625 C10.7447923,15.148438 10.979165,15.203125 11.3125,15.203125 C11.4687508,15.203125 11.6458323,15.1757815 11.84375,15.1210938 C12.0416677,15.066406 12.1848954,15.0182294 12.2734375,14.9765625 Z" id="icon-info-path"></path>
+                                       </defs>
+                                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                          <g transform="translate(-513.000000, -1391.000000)">
+                                             <g transform="translate(114.000000, 1379.000000)">
+                                                <g transform="translate(399.000000, 12.000000)">
+                                                   <rect id="Footprint" x="0" y="0" width="20" height="20"></rect>
+                                                   <mask id="icon-info-mask" fill="white">
+                                                      <use xlink:href="#icon-info-path"></use>
+                                                   </mask>
+                                                   <use fill="#F8AE02" fill-rule="evenodd" xlink:href="#icon-info-path"></use>
+                                                   <g mask="url(#icon-info-mask)" fill="#574CFA" fill-rule="evenodd">
+                                                      <rect id="Rectangle" x="0" y="0" width="20" height="20"></rect>
+                                                   </g>
+                                                </g>
+                                             </g>
+                                          </g>
+                                       </g>
+                                    </svg>
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap roof_material">
+                           <svg class=" question-icon mb-2" width="111" height="80" viewBox="0 0 249.81 180">
+                              <title>Asset 17</title>
+                              <path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.5,1.5,0,0,0,1.15-2.46l-50-60A1.49,1.49,0,0,0,174.5,31H67.61a1.55,1.55,0,0,0-2.26,0l-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#574cfa"></path>
+                              <path d="M43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM241.5,177H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83Z" fill="#181717"></path>
+                           </svg>
+                           <div id="roof_material" name="roof_material" class="element">
+                              <div class="question-header">
+                                 <h2 class="question-text">What is the material of your roof?</h2>
+                                 <p class="question-byline">Asphalt shingles are the most common roof material.</p>
+                              </div>
+                              <div class="has-tooltip">
+                                 <div class="dropdown-select-wrap  form-group">
+                                    <div data-cy="dropdown-roof_material" class="dropdown-select dropdown">
+                                       <span class="dropdown-select-header completed has-label has-value" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
+                                          <!-- react-text: 289 -->Wood<!-- /react-text --><label class="dropdown-label" for="roof_materialInput-0">Select roof material</label>
+                                          <svg class="dropdown-toggle closed" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                             <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#574cfa"></polygon>
+                                          </svg>
+                                       </span>
+                                       <div tabindex="-1" aria-hidden="true" role="menu" class="dropdown-menu">
+                                          <div data-cy="dropdown-roof_material-ASPHALT_COMPOSITION" class="item" id="roof_material-AsphaltComposition-0" role="menuitem" tabindex="0">Asphalt composition</div>
+                                          <div data-cy="dropdown-roof_material-WOOD" class="item" id="roof_material-Wood-0" role="menuitem" tabindex="0">Wood</div>
+                                          <div data-cy="dropdown-roof_material-TILE" class="item" id="roof_material-Tile-0" role="menuitem" tabindex="0">Tile</div>
+                                          <div data-cy="dropdown-roof_material-METAL" class="item" id="roof_material-Metal-0" role="menuitem" tabindex="0">Metal</div>
+                                          <div data-cy="dropdown-roof_material-SLATE" class="item" id="roof_material-Slate-0" role="menuitem" tabindex="0">Slate</div>
+                                          <div data-cy="dropdown-roof_material-OTHER" class="item" id="roof_material-Other-0" role="menuitem" tabindex="0">Other</div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <span class="modal-tooltip-toggle" id="tooltip-ROOF_MATERIAL_TOOLTIP_MODAL-target">
+                                    <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1">
+                                       <defs>
+                                          <path d="M10,20 C4.4771525,20 0,15.5228475 0,10 C0,4.4771525 4.4771525,0 10,0 C15.5228475,0 20,4.4771525 20,10 C20,15.5228475 15.5228475,20 10,20 Z M10,18.75 C14.8324916,18.75 18.75,14.8324916 18.75,10 C18.75,5.16750844 14.8324916,1.25 10,1.25 C5.16750844,1.25 1.25,5.16750844 1.25,10 C1.25,14.8324916 5.16750844,18.75 10,18.75 Z M12.4375,5.4375 C12.4375,5.8333353 12.2877619,6.1705715 11.9882812,6.4492188 C11.6888006,6.727866 11.3281271,6.8671875 10.90625,6.8671875 C10.4843729,6.8671875 10.1223973,6.727866 9.8203125,6.4492188 C9.5182277,6.1705715 9.3671875,5.8333353 9.3671875,5.4375 C9.3671875,5.0416647 9.5182277,4.7031264 9.8203125,4.421875 C10.1223973,4.1406236 10.4843729,4 10.90625,4 C11.3281271,4 11.6888006,4.1406236 11.9882812,4.421875 C12.2877619,4.7031264 12.4375,5.0416647 12.4375,5.4375 Z M12.2734375,14.9765625 L12.1015625,15.6796875 C11.5859349,15.8828135 11.1744807,16.0377599 10.8671875,16.1445312 C10.5598943,16.2513026 10.203127,16.3046875 9.796875,16.3046875 C9.1718719,16.3046875 8.6861996,16.1523453 8.3398438,15.8476562 C7.9934879,15.5429672 7.8203125,15.1562523 7.8203125,14.6875 C7.8203125,14.5052074 7.8333332,14.3190114 7.859375,14.1289062 C7.8854168,13.9388011 7.927083,13.7239595 7.984375,13.484375 L8.625,11.203125 C8.682292,10.9843739 8.7304686,10.7773447 8.7695312,10.5820312 C8.8085939,10.3867178 8.828125,10.2083341 8.828125,10.046875 C8.828125,9.7552069 8.7682298,9.5520839 8.6484375,9.4375 C8.5286452,9.3229161 8.2994809,9.265625 7.9609375,9.265625 C7.79427,9.265625 7.6236988,9.2916664 7.4492188,9.34375 C7.2747387,9.3958336 7.1250006,9.4453123 7,9.4921875 L7.171875,8.7890625 C7.5937521,8.6171866 7.9973939,8.4700527 8.3828125,8.3476562 C8.7682311,8.2252598 9.1328108,8.1640625 9.4765625,8.1640625 C10.0963573,8.1640625 10.5742171,8.3138006 10.9101562,8.6132812 C11.2460954,8.9127619 11.4140625,9.3020809 11.4140625,9.78125 C11.4140625,9.8802088 11.4023439,10.0546862 11.3789062,10.3046875 C11.3554686,10.5546888 11.3125003,10.7838531 11.25,10.9921875 L10.609375,13.265625 C10.5572914,13.4479176 10.5104169,13.6562488 10.46875,13.890625 C10.4270831,14.1250012 10.40625,14.3020827 10.40625,14.421875 C10.40625,14.7239598 10.4739577,14.929687 10.609375,15.0390625 C10.7447923,15.148438 10.979165,15.203125 11.3125,15.203125 C11.4687508,15.203125 11.6458323,15.1757815 11.84375,15.1210938 C12.0416677,15.066406 12.1848954,15.0182294 12.2734375,14.9765625 Z" id="icon-info-path"></path>
+                                       </defs>
+                                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                          <g transform="translate(-513.000000, -1391.000000)">
+                                             <g transform="translate(114.000000, 1379.000000)">
+                                                <g transform="translate(399.000000, 12.000000)">
+                                                   <rect id="Footprint" x="0" y="0" width="20" height="20"></rect>
+                                                   <mask id="icon-info-mask" fill="white">
+                                                      <use xlink:href="#icon-info-path"></use>
+                                                   </mask>
+                                                   <use fill="#F8AE02" fill-rule="evenodd" xlink:href="#icon-info-path"></use>
+                                                   <g mask="url(#icon-info-mask)" fill="#574CFA" fill-rule="evenodd">
+                                                      <rect id="Rectangle" x="0" y="0" width="20" height="20"></rect>
+                                                   </g>
+                                                </g>
+                                             </g>
+                                          </g>
+                                       </g>
+                                    </svg>
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap roof_improvement_year">
+                           <svg class=" question-icon mb-2" width="94" height="99" viewBox="0 0 188.9 217.6">
+                              <title>Asset 18</title>
+                              <path d="M159.39,47.76l-.08-.43v0l-2.62-14.84-1.32-7.52a4.47,4.47,0,0,0-.48-1.31c0-.09-.09-.19-.14-.27s-.19-.24-.29-.36a3.5,3.5,0,0,0-.24-.3,3.89,3.89,0,0,0-.53-.46,4,4,0,0,0-.62-.38l-.21-.12a4.19,4.19,0,0,0-.68-.23l-.12,0a6.17,6.17,0,0,0-.62-.08,1.81,1.81,0,0,1-.23,0,3.42,3.42,0,0,0-.45,0,3,3,0,0,0-.42,0l-40,7L16.22,45.06h-.06l-.42.08a7.15,7.15,0,0,0-4.64,2.94L3.19,59.39A7.18,7.18,0,0,0,2,64.75L6.52,90.37h0a1.63,1.63,0,0,0,.13.37.3.3,0,0,0,0,.08,1.36,1.36,0,0,0,.23.32h0a1.3,1.3,0,0,0,.22.19l.06,0a1.06,1.06,0,0,0,.21.11l.21.08a1.57,1.57,0,0,0,.37,0h.08l.28,0,.13,0,.21-.07.1-.08A1.22,1.22,0,0,0,9,91.25,1.6,1.6,0,0,0,9.23,91l.36-.51,3.57-5.1,1.72-2.46.86-.15L152.5,58.65h0l1.48-.26a1.38,1.38,0,0,0,.29-.08l.15-.08.11,0,.16-.13.07,0a2,2,0,0,0,.19-.22,1.53,1.53,0,0,0,.25-1.13,1.49,1.49,0,0,0-1.74-1.21h0a1.5,1.5,0,0,1,1.12.25,1.47,1.47,0,0,1,.62,1l.11.61,2.89-4.14A7.06,7.06,0,0,0,159.39,47.76Zm-5.81-15.67-1.17-6.64a1.4,1.4,0,0,0-.18-.48,1.28,1.28,0,0,1,.18.47Zm-3-9.21a3.05,3.05,0,0,1,1.13,0,3.13,3.13,0,0,1,.88.38,3.13,3.13,0,0,0-.88-.38,3.05,3.05,0,0,0-1.13,0l-32.83,5.79Zm1.29,1.74-.22-.13a1.63,1.63,0,0,1,.19.09ZM13.63,79.88l.12,0h0ZM155.79,52.31l-.77.13L21.66,76a4.74,4.74,0,0,1-.75.06,4.34,4.34,0,0,1-4.27-3.58L12.83,50.85l-.13-.77a1.5,1.5,0,0,1,1.21-1.74,1.41,1.41,0,0,1,.41,0,1.47,1.47,0,0,1,1.33,1.22l3.94,22.36A1.34,1.34,0,0,0,21.14,73L155.27,49.35a1.54,1.54,0,0,1,1.17.29,1.52,1.52,0,0,1,.43.54,1.64,1.64,0,0,1,.14.39A1.52,1.52,0,0,1,155.79,52.31ZM114.27,84.23a1.5,1.5,0,0,0-1.24-.3L64.47,93.62a1.46,1.46,0,0,0-.92-.12,1.51,1.51,0,0,0-1,.76L45.1,126.31a1.5,1.5,0,0,0,.6,2,1.54,1.54,0,0,0,.72.18,1.51,1.51,0,0,0,1.32-.78L64.26,97.34l27.12,21.89a1.47,1.47,0,0,0,.94.34,1.43,1.43,0,0,0,.29,0l49.3-9.84a1.49,1.49,0,0,0,.64-2.63Z" fill="#574cfa"></path>
+                              <path d="M151.25,9a1.5,1.5,0,0,0,2-.6l3.35-6.14A1.5,1.5,0,1,0,154,.78l-3.35,6.14A1.5,1.5,0,0,0,151.25,9Z" fill="#070e15"></path>
+                              <path d="M169.92,29.05a1.5,1.5,0,0,0,.47-.08l8.37-2.79a1.5,1.5,0,0,0-.94-2.85l-8.38,2.79a1.51,1.51,0,0,0,.48,2.93Z" fill="#070e15"></path>
+                              <path d="M7.44,31.94l-5-3.9A1.5,1.5,0,0,0,.58,30.41l5,3.9a1.47,1.47,0,0,0,.92.32,1.5,1.5,0,0,0,.92-2.69Z" fill="#070e15"></path>
+                              <path d="M8,91.61a1.57,1.57,0,0,1-.37,0l.06,0A1.63,1.63,0,0,0,8,91.61Zm.08,0h0Zm88,30.2a1.5,1.5,0,1,0-2.94.59l6.6,33.12,3-.59ZM54.65,166.05a1.49,1.49,0,0,0,1.46,1.2,1.53,1.53,0,0,0,.3,0L147.94,149a1.5,1.5,0,0,0,1.17-1.77l-6.9-34.59a1.49,1.49,0,0,0-1.76-1.18,1.52,1.52,0,0,0-1.18,1.77l6.61,33.12-43.18,8.61.29,1.47a1.5,1.5,0,0,1-1.18,1.77l-.29,0a1.51,1.51,0,0,1-1.47-1.21l-.3-1.47L57.29,164l-6.48-32.52,15.77-29A1.5,1.5,0,0,0,63.94,101l-16,29.5a1.47,1.47,0,0,0-.15,1ZM188.26,165a46.59,46.59,0,0,1-19.3-30.3L155.31,57.26l-.11-.61a1.47,1.47,0,0,0-.62-1,1.5,1.5,0,0,0-1.12-.25h0a1.49,1.49,0,0,1,1.74,1.21,1.53,1.53,0,0,1-.25,1.13,2,2,0,0,1-.19.22l-.07,0-.16.13-.11,0-.15.08a1.38,1.38,0,0,1-.29.08l-1.48.26h0L166,135.21v0a49.54,49.54,0,0,0,17.73,30.11l-10.51,1.85h-.12L48,189.27a46.67,46.67,0,0,1-18.8-30L15.74,82.76l-.86.15-1.72,2.46,13.13,74.48a49.62,49.62,0,0,0,20.54,32.23,1.46,1.46,0,0,0,.86.27l.26,0,124.26-21.91.75,4.22L41.52,197.81a1.5,1.5,0,0,0,.26,3l.26,0,131.44-23.18.67,3.84L35.92,205.81a1.5,1.5,0,0,0,.26,3l.26,0,136.15-24,3.56-.63a1.46,1.46,0,0,0,1-.64,1,1,0,0,0,.13-.23v0a1.52,1.52,0,0,0,.1-.85v0l-2.19-12.47,12.49-2.21a1.5,1.5,0,0,0,.6-2.7Zm-12.11,19.38-3.56.63L169,190.09,31.39,214.36,9.59,90.7l-.36.51a1.35,1.35,0,0,1-.25.28,1.22,1.22,0,0,1-.19.12l-.1.08-.21.07-.13,0a1.33,1.33,0,0,1-.28,0H8a1.63,1.63,0,0,1-.31,0l-.06,0-.21-.08-.21-.11-.06,0-.22-.19h0a1.36,1.36,0,0,1-.23-.32.3.3,0,0,1,0-.08,1.71,1.71,0,0,1-.13-.38L28.69,216.36a1.5,1.5,0,0,0,.62,1,1.46,1.46,0,0,0,.86.27l.26,0,139.72-24.64a1.5,1.5,0,0,0,1-.62l6-8.57v0A1.49,1.49,0,0,1,176.15,184.37Z" fill="#181717"></path>
+                              <path d="M101.52,158.2l.29,0A1.5,1.5,0,0,0,103,156.4l-.29-1.47-3,.59.3,1.47A1.51,1.51,0,0,0,101.52,158.2Z" fill="#070e15"></path>
+                           </svg>
+                           <div id="roof_improvement_year" name="roof_improvement_year" class="element">
+                              <div class="question-header">
+                                 <h2 class="question-text">When was your roof installed or last replaced?</h2>
+                                 
+                              </div>
+                              <div class="">
+                                <div class="form-group">
+                                    <div class="form-field text-left">
+                                    <div class="form-field__control">
+                                        <label class="form-field__label">Year</label>
+                                        <input type="text" class="form-field__input">
+                                    </div>
+                                    </div>
+                                </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap replacement_amount">
+                           <svg class=" question-icon mb-2" width="112" height="80" viewBox="0 0 207.43 167.43">
+                              <title>Asset 27</title>
+                              <path d="M118.1,48.94a1.47,1.47,0,0,0-1.23-.31l-41.2,7.78a1.54,1.54,0,0,0-.85-.1,1.47,1.47,0,0,0-1,.75l-15.06,27a1.51,1.51,0,0,0,.58,2,1.47,1.47,0,0,0,.73.19,1.49,1.49,0,0,0,1.31-.77L75.5,60.15,98.09,78.78a1.51,1.51,0,0,0,1,.34,1.27,1.27,0,0,0,.28,0l41.89-7.91a1.47,1.47,0,0,0,1.17-1.1,1.48,1.48,0,0,0-.49-1.53Zm84,60L186.92,24.57a4.66,4.66,0,0,0-4.58-3.83,4.76,4.76,0,0,0-.84.07l-33.69,6.06,16.82,93.52,33.7-6.06A4.67,4.67,0,0,0,202.09,108.91ZM180.56,84.62l.84,4.79-2.9.5-.82-4.64a13.58,13.58,0,0,1-7.39-.8l.57-3.27a12.48,12.48,0,0,0,7,.82c3.27-.57,5.15-2.85,4.69-5.47S180,72.77,176.36,72c-5-1-8.28-2.63-9-6.64-.67-3.81,1.54-7.19,5.65-8.62l-.81-4.65,2.85-.5.78,4.47a12.62,12.62,0,0,1,6.27.56l-.62,3.24a11.31,11.31,0,0,0-6.08-.55c-3.54.62-4.51,3-4.18,4.81.41,2.39,2.33,3.29,6.62,4.25,5.08,1.1,7.89,3.08,8.6,7.18C187.1,79.16,185.16,83,180.56,84.62Z" fill="#574cfa"></path>
+                              <path d="M45.47,163.82A19.62,19.62,0,0,1,42,162.61a1.5,1.5,0,1,0-1.24,2.73,23.33,23.33,0,0,0,4,1.39,1.49,1.49,0,0,0,.36.05,1.5,1.5,0,0,0,.36-3Zm26.38-3.77c-1.23.49-2.46,1-3.68,1.39a1.5,1.5,0,0,0,.5,2.91,1.4,1.4,0,0,0,.49-.08c1.26-.44,2.55-.93,3.82-1.45a1.5,1.5,0,1,0-1.13-2.77Zm-13.1,3.89c-1.3.23-2.59.4-3.83.5a1.5,1.5,0,0,0,.12,3h.13c1.32-.11,2.7-.29,4.1-.53a1.5,1.5,0,1,0-.52-3ZM18.23,131.62a1.51,1.51,0,0,0-1.69-1.28,1.5,1.5,0,0,0-1.28,1.7,32.92,32.92,0,0,0,.83,4.09,1.5,1.5,0,0,0,1.44,1.12,1.74,1.74,0,0,0,.39-.05A1.5,1.5,0,0,0,19,135.36,31.33,31.33,0,0,1,18.23,131.62Zm15.64,25.81c-1-.81-2-1.66-2.92-2.55a1.5,1.5,0,1,0-2.07,2.17c1,.95,2,1.86,3.11,2.72a1.5,1.5,0,1,0,1.88-2.34Zm-11.22-13.2A1.5,1.5,0,0,0,20,145.7c.67,1.19,1.4,2.37,2.18,3.51a1.49,1.49,0,0,0,1.24.66,1.45,1.45,0,0,0,.84-.27,1.5,1.5,0,0,0,.4-2.08C24,146.46,23.28,145.35,22.65,144.23Zm61.54,9.67c-1.14.67-2.3,1.32-3.44,1.94a1.5,1.5,0,0,0,.71,2.82,1.53,1.53,0,0,0,.71-.18c1.17-.63,2.36-1.3,3.54-2a1.5,1.5,0,0,0-1.52-2.59ZM40.81,86.19a11.47,11.47,0,1,0-6.58,20.9,11,11,0,0,0,2.06-.19,11.47,11.47,0,0,0,4.52-20.71Zm.45,14.28a8.52,8.52,0,1,1-8.51-13.25,8.78,8.78,0,0,1,1.53-.13,8.52,8.52,0,0,1,7,13.38ZM141.63,73.39a1.5,1.5,0,1,0-2.95.55L144,101.86l-36.25,6.85-5.27-27.93a1.5,1.5,0,0,0-2.94.56l5.27,27.92L69.12,116,63.86,88.13a1.5,1.5,0,1,0-2.94.55L66.45,118a1.51,1.51,0,0,0,1.48,1.22l.28,0L146,104.53a1.51,1.51,0,0,0,1.2-1.75Zm63.41,35L189.87,24a7.67,7.67,0,0,0-8.9-6.18L40.88,43.06A7.65,7.65,0,0,0,36,46.23L1.37,96a7.67,7.67,0,0,0,1.92,10.66l14.16,9.85a1.48,1.48,0,0,0-1.15,1,33,33,0,0,0-.92,4.08,1.5,1.5,0,0,0,1.24,1.72l.24,0a1.51,1.51,0,0,0,1.48-1.26,30.84,30.84,0,0,1,.84-3.72,1.53,1.53,0,0,0,0-.67L53,141.24a7.63,7.63,0,0,0,4.36,1.37,7.84,7.84,0,0,0,1.37-.12l140.09-25.21A7.67,7.67,0,0,0,205,108.38Zm-6.71,6-33.7,6.06L58.24,139.53a4.62,4.62,0,0,1-3.48-.76L5,104.19A4.67,4.67,0,0,1,3.83,97.7L38.41,48h0a4.63,4.63,0,0,1,3-1.92L147.81,26.87l33.69-6.06a4.76,4.76,0,0,1,.84-.07,4.66,4.66,0,0,1,4.58,3.83l15.17,84.34A4.67,4.67,0,0,1,198.33,114.33ZM34.83,96a34.5,34.5,0,0,0-3.68,2,1.5,1.5,0,0,0,1.59,2.55,30.23,30.23,0,0,1,3.35-1.82A1.5,1.5,0,0,0,34.83,96ZM95.54,146.1c-1,.79-2,1.6-3.12,2.39a1.5,1.5,0,0,0,.89,2.71,1.43,1.43,0,0,0,.88-.29c1.13-.82,2.21-1.66,3.24-2.48a1.51,1.51,0,0,0,.22-2.11A1.49,1.49,0,0,0,95.54,146.1Zm9.86-8.27a1.5,1.5,0,0,0-2.08.42c-.25.36-.52.74-.83,1.13a1.49,1.49,0,0,0,1.17,2.43,1.52,1.52,0,0,0,1.18-.56c.36-.46.69-.91,1-1.34A1.5,1.5,0,0,0,105.4,137.83Zm-82.15-33a35.15,35.15,0,0,0-2.54,3.32,1.5,1.5,0,0,0,.41,2.08,1.54,1.54,0,0,0,.84.26,1.5,1.5,0,0,0,1.24-.67,35.24,35.24,0,0,1,2.32-3,1.5,1.5,0,0,0-2.27-2Z" fill="#181717"></path>
+                              <path d="M185,6.14h0a1.5,1.5,0,0,0,1.47-1.53l-.06-3.14A1.5,1.5,0,0,0,184.94,0h0a1.5,1.5,0,0,0-1.47,1.53l.06,3.14A1.51,1.51,0,0,0,185,6.14Z" fill="#070e15"></path>
+                              <path d="M207.14,8.43a1.5,1.5,0,0,0-2.1-.3l-4.14,3.08a1.5,1.5,0,0,0,.9,2.7,1.47,1.47,0,0,0,.89-.3l4.14-3.08A1.51,1.51,0,0,0,207.14,8.43Z" fill="#070e15"></path>
+                           </svg>
+                           <div id="replacement_amount" name="replacement_amount" class="element">
+                              <div class="question-header">
+                                 <h2 class="question-text">How much would it cost to replace your home?</h2>
+                                 <p class="question-byline">This is what it would cost to rebuild your home, not the value of your lot.</p>
+                              </div>
+                              <div class="has-tooltip">
+                                <div class="form-group">
+                                    <div class="form-field text-left">
+                                    <div class="form-field__control">
+                                        <label class="form-field__label">Replacement cost</label>
+                                        <input type="text" class="form-field__input">
+                                    </div>
+                                    </div>
+                                </div>
+                                 <span class="modal-tooltip-toggle" id="tooltip-REPLACEMENT_COST_TOOLTIP_MODAL-target">
+                                    <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1">
+                                       <defs>
+                                          <path d="M10,20 C4.4771525,20 0,15.5228475 0,10 C0,4.4771525 4.4771525,0 10,0 C15.5228475,0 20,4.4771525 20,10 C20,15.5228475 15.5228475,20 10,20 Z M10,18.75 C14.8324916,18.75 18.75,14.8324916 18.75,10 C18.75,5.16750844 14.8324916,1.25 10,1.25 C5.16750844,1.25 1.25,5.16750844 1.25,10 C1.25,14.8324916 5.16750844,18.75 10,18.75 Z M12.4375,5.4375 C12.4375,5.8333353 12.2877619,6.1705715 11.9882812,6.4492188 C11.6888006,6.727866 11.3281271,6.8671875 10.90625,6.8671875 C10.4843729,6.8671875 10.1223973,6.727866 9.8203125,6.4492188 C9.5182277,6.1705715 9.3671875,5.8333353 9.3671875,5.4375 C9.3671875,5.0416647 9.5182277,4.7031264 9.8203125,4.421875 C10.1223973,4.1406236 10.4843729,4 10.90625,4 C11.3281271,4 11.6888006,4.1406236 11.9882812,4.421875 C12.2877619,4.7031264 12.4375,5.0416647 12.4375,5.4375 Z M12.2734375,14.9765625 L12.1015625,15.6796875 C11.5859349,15.8828135 11.1744807,16.0377599 10.8671875,16.1445312 C10.5598943,16.2513026 10.203127,16.3046875 9.796875,16.3046875 C9.1718719,16.3046875 8.6861996,16.1523453 8.3398438,15.8476562 C7.9934879,15.5429672 7.8203125,15.1562523 7.8203125,14.6875 C7.8203125,14.5052074 7.8333332,14.3190114 7.859375,14.1289062 C7.8854168,13.9388011 7.927083,13.7239595 7.984375,13.484375 L8.625,11.203125 C8.682292,10.9843739 8.7304686,10.7773447 8.7695312,10.5820312 C8.8085939,10.3867178 8.828125,10.2083341 8.828125,10.046875 C8.828125,9.7552069 8.7682298,9.5520839 8.6484375,9.4375 C8.5286452,9.3229161 8.2994809,9.265625 7.9609375,9.265625 C7.79427,9.265625 7.6236988,9.2916664 7.4492188,9.34375 C7.2747387,9.3958336 7.1250006,9.4453123 7,9.4921875 L7.171875,8.7890625 C7.5937521,8.6171866 7.9973939,8.4700527 8.3828125,8.3476562 C8.7682311,8.2252598 9.1328108,8.1640625 9.4765625,8.1640625 C10.0963573,8.1640625 10.5742171,8.3138006 10.9101562,8.6132812 C11.2460954,8.9127619 11.4140625,9.3020809 11.4140625,9.78125 C11.4140625,9.8802088 11.4023439,10.0546862 11.3789062,10.3046875 C11.3554686,10.5546888 11.3125003,10.7838531 11.25,10.9921875 L10.609375,13.265625 C10.5572914,13.4479176 10.5104169,13.6562488 10.46875,13.890625 C10.4270831,14.1250012 10.40625,14.3020827 10.40625,14.421875 C10.40625,14.7239598 10.4739577,14.929687 10.609375,15.0390625 C10.7447923,15.148438 10.979165,15.203125 11.3125,15.203125 C11.4687508,15.203125 11.6458323,15.1757815 11.84375,15.1210938 C12.0416677,15.066406 12.1848954,15.0182294 12.2734375,14.9765625 Z" id="icon-info-path"></path>
+                                       </defs>
+                                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                          <g transform="translate(-513.000000, -1391.000000)">
+                                             <g transform="translate(114.000000, 1379.000000)">
+                                                <g transform="translate(399.000000, 12.000000)">
+                                                   <rect id="Footprint" x="0" y="0" width="20" height="20"></rect>
+                                                   <mask id="icon-info-mask" fill="white">
+                                                      <use xlink:href="#icon-info-path"></use>
+                                                   </mask>
+                                                   <use fill="#F8AE02" fill-rule="evenodd" xlink:href="#icon-info-path"></use>
+                                                   <g mask="url(#icon-info-mask)" fill="#574CFA" fill-rule="evenodd">
+                                                      <rect id="Rectangle" x="0" y="0" width="20" height="20"></rect>
+                                                   </g>
+                                                </g>
+                                             </g>
+                                          </g>
+                                       </g>
+                                    </svg>
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap is_in_flood_zone">
+                           <svg class=" question-icon mb-2" width="136" height="89" viewBox="0 0 243 157.11">
+                              <title>Asset 21</title>
+                              <path d="M241.5,118.11H209v3h32.5a1.5,1.5,0,0,0,0-3Zm-206.5,0H1.5a1.5,1.5,0,0,0,0,3H35Zm0,9.5v-1.5H19.5a1.5,1.5,0,1,0,0,3h17A1.5,1.5,0,0,1,35,127.61Zm189.5-1.5H209v1.5a1.5,1.5,0,0,1-1.5,1.5h17a1.5,1.5,0,1,0,0-3Zm-166,28h-14a1.5,1.5,0,0,0,0,3h14a1.5,1.5,0,0,0,0-3Zm51,0h-25a1.5,1.5,0,0,0,0,3h25a1.5,1.5,0,0,0,0-3Zm18,0h-9a1.5,1.5,0,0,0,0,3h9a1.5,1.5,0,0,0,0-3Zm41,0h-16a1.5,1.5,0,0,0,0,3h16a1.5,1.5,0,0,0,0-3Zm19,0h-2a1.5,1.5,0,0,0,0,3h2a1.5,1.5,0,0,0,0-3Zm10-19h-10a1.5,1.5,0,0,0,0,3h10a1.5,1.5,0,0,0,0-3Zm-78.56,7.16,1.72,3.43a1.49,1.49,0,0,0,1.34.83,1.44,1.44,0,0,0,.67-.16,1.5,1.5,0,0,0,.67-2L122,141.6l1.38-2.75a1.53,1.53,0,0,0,0-1.35L122,134.75l1.38-2.76a1.5,1.5,0,1,0-2.68-1.34l-1.72,3.42a1.53,1.53,0,0,0,0,1.35l1.38,2.75-1.38,2.76A1.5,1.5,0,0,0,118.94,142.27ZM37.63,137.5l-1.38-2.75L37.63,132a1.5,1.5,0,0,0-2.69-1.34l-1.71,3.42a1.53,1.53,0,0,0,0,1.35l1.38,2.75-1.38,2.76a1.5,1.5,0,0,0,0,1.34l1.71,3.43a1.5,1.5,0,0,0,2.69-1.34l-1.38-2.76,1.38-2.75A1.53,1.53,0,0,0,37.63,137.5Zm171.43,0-1.38-2.75,1.38-2.76a1.5,1.5,0,0,0-2.69-1.34l-1.71,3.42a1.53,1.53,0,0,0,0,1.35l1.38,2.75-1.38,2.76a1.5,1.5,0,0,0,0,1.34l1.71,3.43a1.5,1.5,0,0,0,1.34.83,1.44,1.44,0,0,0,.67-.16,1.49,1.49,0,0,0,.68-2l-1.38-2.76,1.38-2.75A1.53,1.53,0,0,0,209.06,137.5ZM170.67,130a1.5,1.5,0,0,0-2,.67l-1.72,3.42a1.53,1.53,0,0,0,0,1.35l1.72,3.43a1.49,1.49,0,0,0,1.34.82,1.56,1.56,0,0,0,.67-.15,1.51,1.51,0,0,0,.67-2L170,134.75l1.38-2.76A1.5,1.5,0,0,0,170.67,130ZM133,130a1.51,1.51,0,0,0-2,.67l-1.71,3.42a1.53,1.53,0,0,0,0,1.35l1.71,3.43a1.52,1.52,0,0,0,1.35.82,1.63,1.63,0,0,0,.67-.15,1.51,1.51,0,0,0,.67-2l-1.38-2.75,1.38-2.76A1.5,1.5,0,0,0,133,130Zm-87.73,8.87a1.49,1.49,0,0,0,1.34.82,1.56,1.56,0,0,0,.67-.15,1.51,1.51,0,0,0,.67-2l-1.38-2.75L47.91,132a1.5,1.5,0,0,0-2.68-1.34l-1.71,3.42a1.46,1.46,0,0,0,0,1.35ZM67.81,130a1.5,1.5,0,0,0-2,.67l-1.71,3.42a1.53,1.53,0,0,0,0,1.35l1.71,3.43a1.49,1.49,0,0,0,1.34.82,1.56,1.56,0,0,0,.67-.15,1.51,1.51,0,0,0,.67-2l-1.37-2.75L68.48,132A1.5,1.5,0,0,0,67.81,130Zm6.86,0a1.5,1.5,0,0,0-2,.67l-1.72,3.42a1.53,1.53,0,0,0,0,1.35l1.72,3.43a1.49,1.49,0,0,0,1.34.82,1.56,1.56,0,0,0,.67-.15,1.51,1.51,0,0,0,.67-2L74,134.75,75.34,132A1.5,1.5,0,0,0,74.67,130Zm37.71,0a1.5,1.5,0,0,0-2,.67l-1.71,3.42a1.53,1.53,0,0,0,0,1.35l1.71,3.43a1.51,1.51,0,0,0,1.34.82,1.56,1.56,0,0,0,.67-.15,1.5,1.5,0,0,0,.68-2l-1.38-2.75,1.38-2.76A1.49,1.49,0,0,0,112.38,130Z" fill="#574cfa"></path>
+                              <path d="M164.91,10.86a1.37,1.37,0,0,0,.4.05,1.51,1.51,0,0,0,1.45-1.09L169,1.91a1.5,1.5,0,0,0-2.89-.82L163.87,9A1.5,1.5,0,0,0,164.91,10.86ZM207.5,80.11a1.5,1.5,0,0,0-1.5,1.5v44.5H172v-7h25.5a1.5,1.5,0,0,0,1.5-1.5v-17a1.5,1.5,0,0,0-1.5-1.5h-27a1.5,1.5,0,0,0-1.5,1.5v25.5H134v-7h25.5a1.5,1.5,0,0,0,1.5-1.5v-17a1.5,1.5,0,0,0-1.5-1.5h-27a1.5,1.5,0,0,0-1.5,1.5v25.5h-7V81.61a1.5,1.5,0,0,0-3,0v44.5h-8v-25.5a1.5,1.5,0,0,0-1.5-1.5h-38a1.5,1.5,0,0,0-1.5,1.5v25.5H69v-25.5a1.5,1.5,0,0,0-1.5-1.5h-21a1.5,1.5,0,0,0-1.5,1.5v25.5H38V81.87L77.21,35a1.5,1.5,0,0,0-2.3-1.92L35.35,80.36a1.48,1.48,0,0,0-.35,1v46.29a1.5,1.5,0,0,0,1.5,1.5h171a1.5,1.5,0,0,0,1.5-1.5v-46A1.5,1.5,0,0,0,207.5,80.11Zm-35.5,22h24v5H172Zm0,8h24v6H172Zm-38-8h24v5H134Zm0,8h24v6H134Zm-68,16H48v-24H66Zm44,0H75v-24h35ZM211.73,71.65l-42.5-51a1.5,1.5,0,0,0-1.15-.54H76.28a1.51,1.51,0,0,0-1.3.77L31.71,72.06a1.5,1.5,0,0,0,1.15,2.47A1.48,1.48,0,0,0,34,74L76.29,24l41.34,49.6a1.49,1.49,0,0,0,1.15.54h91.8a1.5,1.5,0,0,0,1.15-2.46Zm-92.25-.54-40-48h87.9l40,48ZM69,57.61v24a1.5,1.5,0,0,0,1.5,1.5h17a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-17A1.5,1.5,0,0,0,69,57.61Zm3,1.5H86v21H72ZM181.65,19.59a1.46,1.46,0,0,0,1-.35l8.88-7.43a1.5,1.5,0,0,0-1.93-2.3l-8.88,7.43a1.5,1.5,0,0,0-.18,2.11A1.47,1.47,0,0,0,181.65,19.59ZM25.33,103,17,96.29a1.51,1.51,0,0,0-2.11.23,1.5,1.5,0,0,0,.23,2.11l8.35,6.72a1.52,1.52,0,0,0,.94.33,1.5,1.5,0,0,0,.94-2.67Z" fill="#070e15"></path>
+                           </svg>
+                           <div id="is_in_flood_zone" name="is_in_flood_zone" class="element ">
+                              <div class="question-header">
+                                 <h2 class="question-text">Is your home in a flood zone?</h2>
+                                 <!-- react-text: 370 --><!-- /react-text -->
+                                 <p class="question-byline">Use the <a class="text-underline" target="_blank" href="https://msc.fema.gov/portal/search?kbid=62548#searchresultsanchor">FEMA</a> flood map service center to find out if your home is in a flood zone.</p>
+                              </div>
+                              <div class="has-tooltip">
+                                 <div class="form-group-radio form-group">
+                                    <label for="is_in_flood_zone-true" data-cy="radio-property_details-true" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="is_in_flood_zone-true" name="is_in_flood_zone-0" value="true" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Yes</span></div>
+                                    </label>
+                                    <label for="is_in_flood_zone-false" data-cy="radio-property_details-false" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="is_in_flood_zone-false" name="is_in_flood_zone-1" value="false" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">No</span></div>
+                                    </label>
+                                 </div>
+                                 <span class="modal-tooltip-toggle" id="tooltip-FLOOD_INSURANCE_TOOLTIP_MODAL-target">
+                                    <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1">
+                                       <defs>
+                                          <path d="M10,20 C4.4771525,20 0,15.5228475 0,10 C0,4.4771525 4.4771525,0 10,0 C15.5228475,0 20,4.4771525 20,10 C20,15.5228475 15.5228475,20 10,20 Z M10,18.75 C14.8324916,18.75 18.75,14.8324916 18.75,10 C18.75,5.16750844 14.8324916,1.25 10,1.25 C5.16750844,1.25 1.25,5.16750844 1.25,10 C1.25,14.8324916 5.16750844,18.75 10,18.75 Z M12.4375,5.4375 C12.4375,5.8333353 12.2877619,6.1705715 11.9882812,6.4492188 C11.6888006,6.727866 11.3281271,6.8671875 10.90625,6.8671875 C10.4843729,6.8671875 10.1223973,6.727866 9.8203125,6.4492188 C9.5182277,6.1705715 9.3671875,5.8333353 9.3671875,5.4375 C9.3671875,5.0416647 9.5182277,4.7031264 9.8203125,4.421875 C10.1223973,4.1406236 10.4843729,4 10.90625,4 C11.3281271,4 11.6888006,4.1406236 11.9882812,4.421875 C12.2877619,4.7031264 12.4375,5.0416647 12.4375,5.4375 Z M12.2734375,14.9765625 L12.1015625,15.6796875 C11.5859349,15.8828135 11.1744807,16.0377599 10.8671875,16.1445312 C10.5598943,16.2513026 10.203127,16.3046875 9.796875,16.3046875 C9.1718719,16.3046875 8.6861996,16.1523453 8.3398438,15.8476562 C7.9934879,15.5429672 7.8203125,15.1562523 7.8203125,14.6875 C7.8203125,14.5052074 7.8333332,14.3190114 7.859375,14.1289062 C7.8854168,13.9388011 7.927083,13.7239595 7.984375,13.484375 L8.625,11.203125 C8.682292,10.9843739 8.7304686,10.7773447 8.7695312,10.5820312 C8.8085939,10.3867178 8.828125,10.2083341 8.828125,10.046875 C8.828125,9.7552069 8.7682298,9.5520839 8.6484375,9.4375 C8.5286452,9.3229161 8.2994809,9.265625 7.9609375,9.265625 C7.79427,9.265625 7.6236988,9.2916664 7.4492188,9.34375 C7.2747387,9.3958336 7.1250006,9.4453123 7,9.4921875 L7.171875,8.7890625 C7.5937521,8.6171866 7.9973939,8.4700527 8.3828125,8.3476562 C8.7682311,8.2252598 9.1328108,8.1640625 9.4765625,8.1640625 C10.0963573,8.1640625 10.5742171,8.3138006 10.9101562,8.6132812 C11.2460954,8.9127619 11.4140625,9.3020809 11.4140625,9.78125 C11.4140625,9.8802088 11.4023439,10.0546862 11.3789062,10.3046875 C11.3554686,10.5546888 11.3125003,10.7838531 11.25,10.9921875 L10.609375,13.265625 C10.5572914,13.4479176 10.5104169,13.6562488 10.46875,13.890625 C10.4270831,14.1250012 10.40625,14.3020827 10.40625,14.421875 C10.40625,14.7239598 10.4739577,14.929687 10.609375,15.0390625 C10.7447923,15.148438 10.979165,15.203125 11.3125,15.203125 C11.4687508,15.203125 11.6458323,15.1757815 11.84375,15.1210938 C12.0416677,15.066406 12.1848954,15.0182294 12.2734375,14.9765625 Z" id="icon-info-path"></path>
+                                       </defs>
+                                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                          <g transform="translate(-513.000000, -1391.000000)">
+                                             <g transform="translate(114.000000, 1379.000000)">
+                                                <g transform="translate(399.000000, 12.000000)">
+                                                   <rect id="Footprint" x="0" y="0" width="20" height="20"></rect>
+                                                   <mask id="icon-info-mask" fill="white">
+                                                      <use xlink:href="#icon-info-path"></use>
+                                                   </mask>
+                                                   <use fill="#F8AE02" fill-rule="evenodd" xlink:href="#icon-info-path"></use>
+                                                   <g mask="url(#icon-info-mask)" fill="#574CFA" fill-rule="evenodd">
+                                                      <rect id="Rectangle" x="0" y="0" width="20" height="20"></rect>
+                                                   </g>
+                                                </g>
+                                             </g>
+                                          </g>
+                                       </g>
+                                    </svg>
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap is_fire_hydrant_available">
+                           <svg class=" question-icon mb-2" width="65" height="89" viewBox="0 0 123 168">
+                              <title>Asset 7</title>
+                              <rect x="26" y="55" width="72" height="12" rx="3" fill="none"></rect>
+                              <path d="M30,80.07l-5.07,1-.19,0C19,82,14.41,89.19,14,97.83v0c0,.36,0,.73,0,1.1s0,.74,0,1.1c.37,8.67,5,15.88,10.7,16.79l.17,0,5.09,1Z" fill="none"></path>
+                              <path d="M70.58,10H51.18a3,3,0,0,0-2.85,4,3.05,3.05,0,0,0,2.94,2H70.68a3,3,0,1,0-.1-6Z" fill="none"></path>
+                              <path d="M89.5,79.31,82.36,78a8.41,8.41,0,0,0-2.06.31,9.83,9.83,0,0,0-2.8,1.2C72.53,82.57,69,90.13,69,99s3.53,16.39,8.5,19.49a11.81,11.81,0,0,0,1.5.77,10.11,10.11,0,0,0,1.5.49,9,9,0,0,0,1.86.25l7.14-1.35,1.5-.28,1.17-.22c-.4-.22-.79-.45-1.17-.71a13.77,13.77,0,0,1-1.5-1.17c-4.2-3.72-7-10.27-7-17.73s2.8-14,7-17.73A13.77,13.77,0,0,1,91,79.6h0Z" fill="none"></path>
+                              <path d="M102,153H21a3,3,0,0,0-3,3v9h87v-9A3,3,0,0,0,102,153Z" fill="none"></path>
+                              <path d="M67.5,0h-12A1.5,1.5,0,0,0,54,1.5V7H69V1.5A1.5,1.5,0,0,0,67.5,0Zm42.84,87.1c0,.11.11.22.17.33a5.3,5.3,0,0,0-1.88-.42h-.13a3.68,3.68,0,0,0-.58,0,1.49,1.49,0,0,1,1,1.08,1.75,1.75,0,0,1,0,.33,1.51,1.51,0,0,1-.49,1.1,1.6,1.6,0,0,1-.43.28h0a1.39,1.39,0,0,1-.57.12h0a2.13,2.13,0,0,0-.93.23,2,2,0,0,0-.32.18c-1.72,1.09-3.25,4.32-3.25,8.59,0,4.54,1.73,7.89,3.57,8.77a2.13,2.13,0,0,0,.93.23h0a1.07,1.07,0,0,1,.25,0,1.16,1.16,0,0,1,.32.08,1.51,1.51,0,0,1,.81.82.65.65,0,0,1,0,.13,1.32,1.32,0,0,1,.08.44,1.51,1.51,0,0,1-.39,1,1.58,1.58,0,0,1-1.11.5,4.68,4.68,0,0,1-1.19-.16,5.53,5.53,0,0,1-1.84-.83,7.58,7.58,0,0,1-1.43-1.31,12.52,12.52,0,0,1-2.47-5,19.58,19.58,0,0,1,0-9.38,12.52,12.52,0,0,1,2.47-5A7.84,7.84,0,0,1,104.28,88l.12-.09a5.47,5.47,0,0,1,2.33-.94h.18l-.19-.32-.17,0h0l-6-.86L99,85.66l-1.29-.19H97.5a7.07,7.07,0,0,0-5,2.22A10.78,10.78,0,0,0,91,89.55a14.56,14.56,0,0,0-1.5,3.15,20.09,20.09,0,0,0,0,12.52,14.56,14.56,0,0,0,1.5,3.15,10.78,10.78,0,0,0,1.5,1.87,7.07,7.07,0,0,0,5,2.22h.21l1.29-.19,1.5-.21,5.45-.78,1.91-.27.35,0a1.5,1.5,0,0,0,1-.61,6,6,0,0,0,.82-.27c3.2-1.37,5.49-6,5.49-11.57C115.5,93.09,113.36,88.64,110.34,87.1Z" fill="#574cfa"></path>
+                              <path d="M121.5,165H108v-9a6,6,0,0,0-6-6H33V70H90v6.76l-6.72-1.27-.27,0c-9.1,0-16.51,10.76-16.51,24,0,10.7,4.84,19.78,11.5,22.87V143a1.5,1.5,0,0,0,3,0V122.78a12.21,12.21,0,0,0,2,.18l.27,0L90,121.66V143a1.5,1.5,0,0,0,3,0V121.6l6.78-1.29a1.47,1.47,0,0,0,1-.68c4.06-1.06,7.55-4.41,9.76-9.06a6,6,0,0,1-.82.27,1.5,1.5,0,0,1-1,.61l-.35,0-1.91.27a12,12,0,0,1-5.45,4.64,8,8,0,0,1-1.5.43A7.49,7.49,0,0,1,98,117a8.68,8.68,0,0,1-5-1.66,12.23,12.23,0,0,1-1.5-1.23,14.91,14.91,0,0,1-1.5-1.73A22.7,22.7,0,0,1,86,99a22.7,22.7,0,0,1,4-13.38,14.91,14.91,0,0,1,1.5-1.73A12.23,12.23,0,0,1,93,82.66a9.15,9.15,0,0,1,3.77-1.57A8.48,8.48,0,0,1,98,81a7.49,7.49,0,0,1,1.5.16,8,8,0,0,1,1.5.43,12.31,12.31,0,0,1,5.72,5.09l.19.32h-.18a5.47,5.47,0,0,0-2.33.94l-.12.09A7.84,7.84,0,0,0,103,89.26a12.52,12.52,0,0,0-2.47,5,19.58,19.58,0,0,0,0,9.38,12.52,12.52,0,0,0,2.47,5A7.58,7.58,0,0,0,104.4,110a5.53,5.53,0,0,0,1.84.83,4.68,4.68,0,0,0,1.19.16,1.58,1.58,0,0,0,1.11-.5,1.51,1.51,0,0,0,.39-1,1.32,1.32,0,0,0-.08-.44.65.65,0,0,0,0-.13,1.51,1.51,0,0,0-.81-.82,1.16,1.16,0,0,0-.32-.08,1.07,1.07,0,0,0-.25,0h0a2.13,2.13,0,0,1-.93-.23c-1.84-.88-3.57-4.23-3.57-8.77,0-4.27,1.53-7.5,3.25-8.59a2,2,0,0,1,.32-.18,2.13,2.13,0,0,1,.93-.23h0a1.39,1.39,0,0,0,.57-.12h0a1.6,1.6,0,0,0,.43-.28,1.51,1.51,0,0,0,.49-1.1,1.75,1.75,0,0,0,0-.33,1.49,1.49,0,0,0-1-1.08,3.68,3.68,0,0,1,.58,0h.13a5.3,5.3,0,0,1,1.88.42c-.06-.11-.12-.22-.17-.33C107.63,81.61,103.11,78,98,78c-.35,0-.7,0-1,.07l-4-.74V70h2a6,6,0,0,0,6-6V58a6,6,0,0,0-6-6H93V46a31.54,31.54,0,0,0-18-28.43,6,6,0,0,0,2-5.88A6.13,6.13,0,0,0,71,7H51.89a6.14,6.14,0,0,0-6.08,4.73,6,6,0,0,0,2,5.89A31.53,31.53,0,0,0,30,46a1.5,1.5,0,0,0,3,0A28.54,28.54,0,0,1,52.4,19H70.6A28.54,28.54,0,0,1,90,46v6H29a6,6,0,0,0-6,6v6a6,6,0,0,0,6,6h1v7.51l-5.78,1.1-.12,0C17,79.88,11.48,88.07,11,98.18c0,.42,0,.85,0,1.28s0,.87,0,1.26c.43,10.13,5.92,18.33,13.08,19.57l.1,0,5.78,1.1V150H21a6,6,0,0,0-6,6v9H1.5a1.5,1.5,0,0,0,0,3h120a1.5,1.5,0,0,0,0-3ZM70.68,16H51.27a3.05,3.05,0,0,1-2.94-2,3,3,0,0,1,2.85-4h19.4a3,3,0,1,1,.1,6ZM91,79.6a13.77,13.77,0,0,0-1.5,1.17c-4.2,3.72-7,10.27-7,17.73s2.8,14,7,17.73A13.77,13.77,0,0,0,91,117.4c.38.26.77.49,1.17.71l-1.17.22-1.5.28L82.36,120a9,9,0,0,1-1.86-.25,10.11,10.11,0,0,1-1.5-.49,11.81,11.81,0,0,1-1.5-.77c-5-3.1-8.5-10.66-8.5-19.49s3.53-16.39,8.5-19.49a9.83,9.83,0,0,1,2.8-1.2A8.41,8.41,0,0,1,82.36,78l7.14,1.35,1.5.29h0ZM29,67a3,3,0,0,1-3-3V58a3,3,0,0,1,3-3H95a3,3,0,0,1,3,3v6a3,3,0,0,1-3,3Zm-4.09,49.89-.17,0c-5.74-.91-10.33-8.12-10.7-16.79,0-.36,0-.73,0-1.1s0-.74,0-1.1v0c.37-8.64,5-15.84,10.7-16.76l.19,0,5.07-1v37.78ZM105,165H18v-9a3,3,0,0,1,3-3h81a3,3,0,0,1,3,3ZM15.18,47l6.7.56H22a1.5,1.5,0,0,0,.13-3L15.43,44a1.5,1.5,0,1,0-.25,3ZM22.38,39a1.48,1.48,0,0,0,1,.4,1.5,1.5,0,0,0,1-2.6l-3.91-3.63a1.5,1.5,0,0,0-2,2.2Zm83.83,98.81-5.58,2.24a1.5,1.5,0,0,0,.56,2.89,1.36,1.36,0,0,0,.56-.11l5.58-2.23a1.5,1.5,0,1,0-1.12-2.79ZM60,76v67a1.5,1.5,0,0,0,3,0V76a1.5,1.5,0,0,0-3,0ZM43.5,74.5a1.51,1.51,0,0,0-1.15.55A1.46,1.46,0,0,0,42,76v67a1.5,1.5,0,0,0,3,0V76a1.86,1.86,0,0,0,0-.34A1.5,1.5,0,0,0,43.5,74.5Z" fill="#070e15"></path>
+                           </svg>
+                           <div id="is_fire_hydrant_available" name="is_fire_hydrant_available" class="element ">
+                              <div class="question-header">
+                                 <h2 class="question-text">Is there a fire hydrant within 1,000 ft of your home?</h2>
+                                 <p class="question-byline">Think of it this way, is there a fire hydrant within 3 football field lengths of your home?</p>
+                              </div>
+                              <div class="">
+                                 <div class="form-group-radio stacked form-group">
+                                    <label for="is_fire_hydrant_available-YES" data-cy="radio-property_details-YES" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="is_fire_hydrant_available-YES" name="is_fire_hydrant_available-0" value="YES" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Yes</span></div>
+                                    </label>
+                                    <label for="is_fire_hydrant_available-NO" data-cy="radio-property_details-NO" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="is_fire_hydrant_available-NO" name="is_fire_hydrant_available-1" value="NO" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">No</span></div>
+                                    </label>
+                                    <label for="is_fire_hydrant_available-DONT_KNOW" data-cy="radio-property_details-DONT_KNOW" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="is_fire_hydrant_available-DONT_KNOW" name="is_fire_hydrant_available-2" value="DONT_KNOW" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">I'm not sure</span></div>
+                                    </label>
+                                 </div>
+                                 <!-- react-text: 429 --><!-- /react-text -->
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap fire_station_proximity">
+                           <svg class=" question-icon mb-2" width="137" height="65" viewBox="0 0 219 103.94">
+                              <title>Asset 22</title>
+                              <path d="M47.11,33.39H7.58a7,7,0,0,0-1,2.16L1.1,55.42a1.34,1.34,0,0,1,.4-.06H40.18l5.41-19.11A7.89,7.89,0,0,1,47.11,33.39ZM26.82,36.65,22.48,51.84A1.5,1.5,0,0,1,21,52.93a1.4,1.4,0,0,1-.41-.06,1.49,1.49,0,0,1-1-1.85l4.34-15.2a1.5,1.5,0,1,1,2.88.83Zm21.66.42L43.3,55.36l-.26.91a1.45,1.45,0,0,1,.12.59v1.5H71.64v-25H53.33A5.06,5.06,0,0,0,48.48,37.07Zm26.14-5.35a1,1,0,0,1,0,.17V55.52l.28-.11-.28-23.54A.77.77,0,0,0,74.62,31.72ZM25.52,20.37H65.4a1.5,1.5,0,0,0,1.39-.93c0-.05,0-.11,0-.16a1.48,1.48,0,0,0-.37-1.47l-1.52-1.53-1.73-1.73a1.5,1.5,0,0,0-1.06-.44h-.41a1.48,1.48,0,0,1,1.32,2.17.65.65,0,0,1-.1.15,1.25,1.25,0,0,1-.16.24l-2.19,2.2-.42.41-.37.38a1.53,1.53,0,0,1-1.06.44,1.49,1.49,0,0,1-1.06-.44,1.53,1.53,0,0,1-.14-.21,1.42,1.42,0,0,1-.25-.58,1.44,1.44,0,0,1,.39-1.33l3-3a1.51,1.51,0,0,1,1.06-.44h-33a1.5,1.5,0,0,0-1.06.44l-3.26,3.26a1.5,1.5,0,0,0,1.07,2.56Zm168.36,22-.8-1.51v-3l-4.21,2.31-.28-.29,2.31-4.2h-3l-1.51-.8a.87.87,0,0,0-.83,0l-1.51.8h-2.95l2.31,4.2-.29.29L179,37.87v3l-.81,1.51a.87.87,0,0,0,0,.83l.81,1.51v2.95l4.2-2.31.29.29-2.31,4.2h2.95l1.51.81a.93.93,0,0,0,.83,0L188,49.8h3l-2.31-4.2.28-.29,4.21,2.31V44.67l.8-1.51A.87.87,0,0,0,193.88,42.33Z" fill="#574cfa"></path>
+                              <path d="M21,52.93a1.5,1.5,0,0,0,1.44-1.09l4.34-15.19a1.5,1.5,0,1,0-2.88-.83L19.6,51a1.49,1.49,0,0,0,1,1.85A1.4,1.4,0,0,0,21,52.93ZM57.56,19.45a1.53,1.53,0,0,0,.14.21,1.49,1.49,0,0,0,1.06.44,1.53,1.53,0,0,0,1.06-.44l.37-.38.42-.41,2.19-2.2a1.25,1.25,0,0,0,.16-.24.65.65,0,0,0,.1-.15,1.48,1.48,0,0,0-1.32-2.17,1.51,1.51,0,0,0-1.06.44l-3,3a1.44,1.44,0,0,0-.39,1.33A1.42,1.42,0,0,0,57.56,19.45ZM217.5,20.62H207.06V5.17H217.5a1.5,1.5,0,0,0,0-3H120.9a1.5,1.5,0,0,0,0,3h11.52V20.62H120.9a1.5,1.5,0,0,0,0,3h36.49v3.52H141.52a1.5,1.5,0,0,0-1.5,1.5v7.18H117V23.21A6.94,6.94,0,0,0,110,16.28H64.94l1.52,1.53a1.48,1.48,0,0,1,.37,1.47h8.25l-2.43,2.43h-19a6.63,6.63,0,0,1,1.6-1.34h-4.4A10.85,10.85,0,0,0,50,21.71H13.44A10.19,10.19,0,0,0,3.26,31.89a1.5,1.5,0,0,0,1.5,1.5H47.11a7.89,7.89,0,0,0-1.52,2.86L40.18,55.36H1.5a1.34,1.34,0,0,0-.4.06A1.49,1.49,0,0,0,0,56.86V91.59a1.5,1.5,0,0,0,3,0V58.36H40.16V90.09H11.27a1.5,1.5,0,1,0,0,3H28.32a12.27,12.27,0,0,0,4.21,7.85H2.59a1.5,1.5,0,0,0,0,3H209.9a1.5,1.5,0,1,0,0-3H182.53a13.44,13.44,0,0,0,4.74-7.85H211a1.5,1.5,0,0,0,1.5-1.47l1.12-63a1.49,1.49,0,0,0-1.5-1.52H196.21V23.62H217.5a1.5,1.5,0,0,0,0-3Zm-73.14,0h-8.94V5.17h8.94Zm11.94,0h-8.94V5.17h8.94ZM43.54,30.39H6.41a7.21,7.21,0,0,1,7-5.68h33A10.19,10.19,0,0,0,43.54,30.39Zm3,0a7.19,7.19,0,0,1,7-5.68H73.27a1.5,1.5,0,0,0,1.06-.44l3.84-3.84A3.91,3.91,0,0,1,81,19.28H110A3.93,3.93,0,0,1,114,23.21V55.36H75.31a1.6,1.6,0,0,0-.39,0l-.28.11V31.89a1,1,0,0,0,0-.17s0-.09,0-.14a.88.88,0,0,1,0-.15.65.65,0,0,1,0-.13.57.57,0,0,0-.08-.13l-.06-.12-.09-.11-.09-.11-.11-.09a.94.94,0,0,0-.12-.09.47.47,0,0,0-.12-.07l-.13-.07-.16-.05-.12,0a1.53,1.53,0,0,0-.3,0Zm71.73,28V90.09h-18a1.5,1.5,0,0,0-.6.13c-.76-9.55-9.24-17.37-19.21-17.37a19.06,19.06,0,0,0-5.82.92V58.19a1.51,1.51,0,0,0,.67.17ZM43,56.27l.26-.91,5.18-18.29a5.06,5.06,0,0,1,4.85-3.68H71.64V74.22a1.53,1.53,0,0,0,.18.71A19.07,19.07,0,0,0,61.25,90.09H43.16V56.86A1.45,1.45,0,0,0,43,56.27Zm5.58,44.67a12.27,12.27,0,0,0,4.21-7.85H67.55a13.44,13.44,0,0,0,4.74,7.85Zm32.12,0a10.45,10.45,0,0,1-10.11-7.85,12.4,12.4,0,0,1-.28-1.5c0-.36,0-.72,0-1.09,0-.14,0-.27,0-.41a10.42,10.42,0,0,1,20.83,0c0,.14,0,.27,0,.41a9.82,9.82,0,0,1-.06,1.09,10.72,10.72,0,0,1-.28,1.5A10.45,10.45,0,0,1,80.74,100.94Zm8.44,0a13.39,13.39,0,0,0,4.74-7.85h4.32a1.5,1.5,0,0,0,1-.4,1.46,1.46,0,0,0,1,.4h29a12.3,12.3,0,0,0,4.2,7.85ZM140,90.09H121.31V56.86a1.5,1.5,0,0,0-1.5-1.5H117V50.79c3.86,0,14.76,0,23.05,0Zm0-42.29H128.51c-6.28,0-9.67,0-11.54,0v-9H140ZM183.18,5.17h8.94V20.62h-8.94Zm10,18.45v3.52H160.39V23.62Zm-22-18.45h8.94V20.62h-8.94Zm-11.94,0h8.94V20.62H159.3Zm-9.73,95.77a12.3,12.3,0,0,0,4.2-7.85h7.13a13.34,13.34,0,0,0,4.74,7.85Zm34.9-9.35a12.4,12.4,0,0,1-.28,1.5,10.43,10.43,0,0,1-20.21,0,10.72,10.72,0,0,1-.28-1.5,9.82,9.82,0,0,1-.06-1.09c0-.14,0-.27,0-.41a10.43,10.43,0,0,1,20.84,0c0,.14,0,.27,0,.41C184.52,90.87,184.5,91.23,184.47,91.59Zm26.14-61.45-1.07,60H193.3c-.77-8.9-8.25-16.26-17.37-17.15q-.9-.09-1.83-.09c-.62,0-1.24,0-1.84.09-9.12.89-16.6,8.25-17.37,17.15H143V30.14Zm-6.55-9.52h-8.94V5.17h8.94ZM151.29,58.36h51a1.5,1.5,0,0,0,0-3H163.64v-18a1.5,1.5,0,1,0-3,0v18h-9.35a1.5,1.5,0,0,0,0,3Zm-140,26.05H25.38a1.5,1.5,0,0,0,0-3H11.27a1.5,1.5,0,1,0,0,3Zm0-8.69H25.38a1.5,1.5,0,0,0,0-3H11.27a1.5,1.5,0,1,0,0,3ZM61.2,7.34a1.5,1.5,0,0,0,1.5-1.5V1.5a1.5,1.5,0,0,0-3,0V5.84A1.5,1.5,0,0,0,61.2,7.34Zm-30.39,0a1.5,1.5,0,0,0,1.5-1.5V1.5a1.5,1.5,0,1,0-3,0V5.84A1.5,1.5,0,0,0,30.81,7.34Zm38,2.17a1.48,1.48,0,0,0,1.06-.44L74.2,4.73a1.51,1.51,0,0,0,0-2.12,1.49,1.49,0,0,0-2.12,0L67.74,7a1.49,1.49,0,0,0,0,2.12A1.45,1.45,0,0,0,68.8,9.51ZM23.23,9.07a1.48,1.48,0,0,0,1.06.44,1.45,1.45,0,0,0,1.06-.44,1.49,1.49,0,0,0,0-2.12L21,2.61a1.49,1.49,0,0,0-2.12,0,1.51,1.51,0,0,0,0,2.12ZM129.58,66a4.76,4.76,0,1,0-4.76-4.75A4.76,4.76,0,0,0,129.58,66Zm0-6.51a1.76,1.76,0,1,1-1.76,1.76A1.76,1.76,0,0,1,129.58,59.44Zm0,18.45a4.76,4.76,0,1,0-4.76-4.75A4.76,4.76,0,0,0,129.58,77.89Zm0-6.51a1.76,1.76,0,1,1-1.76,1.76A1.76,1.76,0,0,1,129.58,71.38ZM87.25,51.84h19.54a1.5,1.5,0,0,0,1.5-1.5V27.55a1.5,1.5,0,0,0-1.5-1.5H87.25a1.5,1.5,0,0,0-1.5,1.5V50.34A1.5,1.5,0,0,0,87.25,51.84Zm1.5-22.79h16.54v4.6H88.75Zm0,7.6h16.54v4.6H88.75Zm0,7.6h16.54v4.59H88.75Z" fill="#181717"></path>
+                           </svg>
+                           <div id="fire_station_proximity" name="fire_station_proximity" class="element ">
+                              <div class="question-header">
+                                 <h2 class="question-text">How close do you live to the nearest fire station?</h2>
+                                 <p class="question-byline">Select distance</p>
+                              </div>
+                              <div class="">
+                                 <div class="form-group-radio stacked form-group">
+                                    <label for="fire_station_proximity-ONE_TO_FIVE" data-cy="radio-property_details-ONE_TO_FIVE" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="fire_station_proximity-ONE_TO_FIVE" name="fire_station_proximity-0" value="ONE_TO_FIVE" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">1-5 miles</span></div>
+                                    </label>
+                                    <label for="fire_station_proximity-FIVE_TO_TEN" data-cy="radio-property_details-FIVE_TO_TEN" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="fire_station_proximity-FIVE_TO_TEN" name="fire_station_proximity-1" value="FIVE_TO_TEN" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">5-10 miles</span></div>
+                                    </label>
+                                    <label for="fire_station_proximity-GREATER_THAN_TEN" data-cy="radio-property_details-GREATER_THAN_TEN" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="fire_station_proximity-GREATER_THAN_TEN" name="fire_station_proximity-2" value="GREATER_THAN_TEN" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">10+ miles</span></div>
+                                    </label>
+                                 </div>
+                                 <!-- react-text: 456 --><!-- /react-text -->
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="navigation-buttons p-0">
+
+                  <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="step-3">
+                     <span>
+                        <span>Save &amp; continue</span>
+                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                           <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                        </svg>
+                     </span>
+                  </button>
+               </div>
+            </div>
+            <div class="section-wrapper" id="step-3">
+               <div class="section-header">
+                  <h1>Final details about you!</h1>
+               </div>
+               <div class="section-page-questions">
+                  <div class="section-page-question-item">
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap ownerPII">
+                           <svg class=" question-icon mb-2" width="121" height="94" viewBox="0 0 183 143.46">
+                              <title>Asset 24</title>
+                              <path d="M91,119.65c-3.81-2.13-8.36-2.45-12.38-2.74-4.5-.33-8.42-.61-10.5-3.08l-.64-3.67a1.5,1.5,0,0,0-1.73-1.23l-20.81,3.59a1.49,1.49,0,0,0-1.23,1.73l.63,3.67c-1.12,3-4.69,4.59-8.81,6.41-3.66,1.62-7.81,3.45-10.69,6.71a1.5,1.5,0,0,0,1.12,2.5l.26,0,64.3-11.08a1.51,1.51,0,0,0,1.23-1.22A1.53,1.53,0,0,0,91,119.65ZM107.5,94.22a4.64,4.64,0,0,1,0-.91,1.51,1.51,0,0,0-1.72-1.8h0a61.06,61.06,0,0,1-6.82.67l-.24,0-3,.21a40.19,40.19,0,0,0-10,1.84,1.51,1.51,0,0,0-1,1.12l-1.08,5.4a1.5,1.5,0,0,0,1.17,1.77l13.07,2.63,3.15.63,6.22,1.25a1.53,1.53,0,0,0,.3,0,1.48,1.48,0,0,0,1.05-.43,1.51,1.51,0,0,0,.42-1.35A92.45,92.45,0,0,1,107.5,94.22Zm51.28,15.17a.54.54,0,0,0-.05-.11,1.58,1.58,0,0,0-.31-.42h0c-3.35-3-7.63-5.14-11.4-7-1.1-.55-2.17-1.08-3.18-1.61l-.07,0c-.42-.22-.83-.45-1.23-.68l-.34-.19-.92-.56-.3-.18a1.49,1.49,0,0,0-2.28,1,5.8,5.8,0,0,1-.32.86,91.9,91.9,0,0,1-5.73,9.62,1.5,1.5,0,0,0,1,2.31L156,116.85a1.5,1.5,0,0,0,1.77-1.18l1.08-5.4a1.46,1.46,0,0,0,0-.36v0A1.43,1.43,0,0,0,158.78,109.39Z" fill="#574cfa"></path>
+                              <path d="M27.51,70.45c.54-1.91,1.12-4,1.39-5A1.5,1.5,0,0,0,26,64.7c-.27,1-.84,3-1.38,4.93-.44,1.55-.85,3-1.05,3.73C22,79.12,20.05,86.3,21.87,93.05a19.85,19.85,0,0,0,8.4,11.44,19.65,19.65,0,0,0,6.45,2.64,1.63,1.63,0,0,0,.31,0,1.5,1.5,0,0,0,.32-3A16.61,16.61,0,0,1,24.77,92.27c-1.61-6,.15-12.43,1.7-18.12C26.66,73.43,27.07,72,27.51,70.45Zm4.9,10.63h0a1.5,1.5,0,0,0-1.49,1.51c0,3.39.88,5.39,3,10L34.53,94c2.8,6.31,6.9,15.54,17.54,15.54a20.75,20.75,0,0,0,3.32-.28h.07l.17,0h.09a16.64,16.64,0,0,0,8.83-4.29h0l.68-.65A25.08,25.08,0,0,0,72.7,89.71,1.49,1.49,0,0,0,71.43,88a1.51,1.51,0,0,0-1.7,1.27,22,22,0,0,1-6.58,12.84l-.67.64h0A13.63,13.63,0,0,1,55,106.3c-11,1.83-14.73-6.67-17.76-13.49l-.66-1.47c-2-4.47-2.68-6-2.7-8.77A1.5,1.5,0,0,0,32.41,81.08Zm26.17.15a1.07,1.07,0,0,0,.25,0,1.5,1.5,0,0,0,1.23-1.73l-.29-1.66a1.5,1.5,0,1,0-3,.51L57.1,80A1.51,1.51,0,0,0,58.58,81.23ZM40.77,79.56a1.5,1.5,0,0,0-1.23,1.73L39.83,83A1.5,1.5,0,0,0,41.3,84.2l.26,0a1.51,1.51,0,0,0,1.22-1.74l-.28-1.65A1.5,1.5,0,0,0,40.77,79.56Zm6.55,11.82a4.52,4.52,0,0,0,3.3,1.43h.28a5.29,5.29,0,0,0,4-1.94,1.5,1.5,0,0,0-2.28-2,2.32,2.32,0,0,1-1.95.89,1.61,1.61,0,0,1-1-.3,14.17,14.17,0,0,0,.56-6,1.5,1.5,0,0,0-3,.37,10.93,10.93,0,0,1-.47,4.85A2.74,2.74,0,0,0,47.32,91.38ZM45.65,76.7a1.5,1.5,0,0,0-.91-1.92c-5.83-2.09-9.34,1.14-10.37,3.14a1.49,1.49,0,0,0,.63,2,1.56,1.56,0,0,0,.69.17A1.51,1.51,0,0,0,37,79.31c.19-.35,2-3.39,6.71-1.71A1.5,1.5,0,0,0,45.65,76.7Zm.52,20.22a1.51,1.51,0,0,0,.95,1.9,11.4,11.4,0,0,0,3.52.55,11.71,11.71,0,0,0,8.18-3.28A1.5,1.5,0,1,0,56.72,94a8.86,8.86,0,0,1-8.66,2A1.5,1.5,0,0,0,46.17,96.92ZM182.75,22.35a1.5,1.5,0,0,0-.95-.64l-16.7-3.36a1.51,1.51,0,0,0-1.76,1.18h0a1.49,1.49,0,0,0,1.17,1.76l15.22,3.06-19.65,97.76-58.2-11.7-3.16-.63-19.61-4,1.7-8.46,1.72-8.53L83,86.5l1.77-8.83L89.31,55.1,91,47,98.76,8.08l55.53,11.16a1.51,1.51,0,0,0,1.77-1.18h0a1.49,1.49,0,0,0-1.18-1.76l-57-11.46A1.5,1.5,0,0,0,96.11,6L89.53,38.75,87.33,26a1.51,1.51,0,0,0-1.73-1.23L1.25,39.26a1.5,1.5,0,1,0,.51,3L84.63,27.94l3.26,19-5.2,25.9a95.44,95.44,0,0,0-8-12.45c-1.53-2.12-3-4.11-4-5.85a26.61,26.61,0,0,0-34.88-8.93c-9.7,5-9.09,11.35-7.86,14.67a1.5,1.5,0,0,0,2.82-1c-1.33-3.59.11-6.88,4.15-9.62-1.06,3.59,0,7.58.66,9.57a15.2,15.2,0,0,0-5.88,10.11A23,23,0,0,0,30,77.78,1.5,1.5,0,0,0,33,77.1a19.86,19.86,0,0,1-.35-7.41,12,12,0,0,1,5.08-8.41,1.18,1.18,0,0,0,.3-.1,1.53,1.53,0,0,0,.56-.44,15.77,15.77,0,0,1,3.79-1.58,12.26,12.26,0,0,1,9.88,1c3.58,2.1,6,6.08,7.71,9.94a8,8,0,0,0-2.13.15A7.5,7.5,0,0,0,53,73.69,1.5,1.5,0,0,0,54.23,76a1.52,1.52,0,0,0,1.29-.72,4.4,4.4,0,0,1,2.91-2.11,4.61,4.61,0,0,1,2.78.27c.79,2.33,1.3,4.37,1.59,5.58,3,12.37-2.43,18.05-2.67,18.3a1.5,1.5,0,0,0,0,2.12,1.5,1.5,0,0,0,2.12,0c.29-.28,7-7,3.49-21.16-.31-1.24-.81-3.29-1.61-5.66a1.51,1.51,0,0,0-.42-1.2c-1.81-5-4.86-10.9-10-13.88a15.25,15.25,0,0,0-12.19-1.26,20,20,0,0,0-3.39,1.28c-.67-2.21-1.27-5.66,0-8.15a6.44,6.44,0,0,1,4.54-3.27l.24-.06a12,12,0,0,1,9.59,2c6.05,4,10.37,12.33,11.37,18.11a1.5,1.5,0,0,0,1.47,1.25l.26,0a1.5,1.5,0,0,0,1.22-1.74c-1-6-5.31-14.44-11.39-19.17a22.89,22.89,0,0,1,12.65,9.58c1.13,1.83,2.61,3.87,4.17,6,3.49,4.82,7.4,10.25,9.45,15.73L78,95.91a24.33,24.33,0,0,1-7.64,5.28,1.5,1.5,0,0,0,.6,2.87,1.61,1.61,0,0,0,.6-.12,27.48,27.48,0,0,0,5.47-3.2l-1.2,6a1.5,1.5,0,0,0,1.18,1.77L99.27,113l2.28,13.26-81.39,14L4.21,47.64a1.5,1.5,0,0,0-3,.51l16.2,94.07a1.5,1.5,0,0,0,1.48,1.24l.26,0,84.35-14.53a1.45,1.45,0,0,0,1-.61,1.48,1.48,0,0,0,.25-1.12l-2.34-13.6L161,125.35a1.53,1.53,0,0,0,.3,0,1.5,1.5,0,0,0,1.47-1.21L183,23.47A1.48,1.48,0,0,0,182.75,22.35ZM155.32,37.79c-.34-.32-.69-.63-1-.93l-.28-.24c-.26-.21-.51-.43-.77-.63l-.37-.29-.69-.52-.34-.25-.14-.1h.2a2,2,0,0,0,.34,0h0a1.3,1.3,0,0,0,.42-.18l.1-.08a1.21,1.21,0,0,0,.24-.21,1.47,1.47,0,0,0,.1-.13l.06-.08a1.55,1.55,0,0,0,.14-.29h0v0a1.41,1.41,0,0,0,.07-.45v-.05a1.26,1.26,0,0,0-.08-.43s0,0,0-.07a1.79,1.79,0,0,0-.22-.38s0,0,0,0a1.5,1.5,0,0,0-.35-.31c-18.48-11.09-28-1.93-28.36-1.54A1.57,1.57,0,0,0,124,31h0a1.68,1.68,0,0,0-.11.54v.05c-10.59,2.11-15,12.68-15.26,13.4h0v0a1.45,1.45,0,0,0-.1.55l.11,8.66-.47,1.84c-.44,1.1-2.87,7.46-1,11.32A5,5,0,0,0,110.34,70a1.48,1.48,0,0,0-.89,1.49,22.92,22.92,0,0,0,3.12,9.72c.11,2.89-.21,7.55-3.12,9.13a12.4,12.4,0,0,1-3.63,1.15,1.51,1.51,0,0,1,1.72,1.8,4.64,4.64,0,0,0,0,.91A13.79,13.79,0,0,0,110.88,93c2.85-1.55,4.07-4.59,4.51-7.73a13.69,13.69,0,0,0,8.9,5.27,16.63,16.63,0,0,0,3.42.39,13,13,0,0,0,4.1-.67,1.5,1.5,0,0,0-.93-2.85,10.79,10.79,0,0,1-6,.19c-3.35-.67-5.82-1.56-9.54-7.6h0a19.93,19.93,0,0,1-2.89-8.73,1.5,1.5,0,0,0-.92-1.25,1.49,1.49,0,0,0-.21-2.82,2,2,0,0,1-1.43-1.12,7.92,7.92,0,0,1-.19-4.51l0,0a1.3,1.3,0,0,0,.21.31.83.83,0,0,0,.11.15,1.52,1.52,0,0,0,.48.31,1.5,1.5,0,0,0,1.88-.69l2.86-5.36a1.37,1.37,0,0,0,.16-.52l.69-5.34c.25-.82,2.49-7.57,9.61-7.65a33.14,33.14,0,0,1,4.35.13l.12.07.85.36a13.06,13.06,0,0,1,4.14,2.28A5.66,5.66,0,0,1,136.88,50a1.51,1.51,0,0,0,1.43,1.57h.07a1.5,1.5,0,0,0,1.5-1.43,8.66,8.66,0,0,0-1.65-5.45A25.12,25.12,0,0,1,141.39,46c6.46,3.25,6,10.08,5.91,10.82l-1.14,5.34a1.2,1.2,0,0,0,0,.38l.26,5.95a1.5,1.5,0,0,0,1.44,1.43h.1a1.51,1.51,0,0,0,.48-.08h0a1.55,1.55,0,0,0,.41-.25.1.1,0,0,0,0,0l0,0A7.87,7.87,0,0,1,147,73.54a2.05,2.05,0,0,1-1.75.48h-.14a1.68,1.68,0,0,0-.5.07,1.49,1.49,0,0,0-1.06,1.2v0a19.18,19.18,0,0,1-6.88,8.93,1.47,1.47,0,0,0-.48.57c-1.89,3.92-3.51,9.4-.46,13.2a13.61,13.61,0,0,0,2.63,2.41,5.8,5.8,0,0,0,.32-.86,1.49,1.49,0,0,1,2.28-1l.3.18a13,13,0,0,1-3.19-2.64c-2.09-2.6-.56-7.05.67-9.69A22.65,22.65,0,0,0,146.13,77a5,5,0,0,0,2.84-1.2c3.27-2.82,3.49-9.64,3.5-10.81l.27-1.88,2.08-4.79c.16-.38.31-.76.44-1.14,0-.11.07-.23.11-.34s.16-.53.23-.79l.09-.34q.1-.44.18-.87c0-.06,0-.12,0-.17.05-.34.09-.68.12-1,0-.09,0-.17,0-.26,0-.24,0-.48,0-.71a2.71,2.71,0,0,0,0-.29c0-.23,0-.46,0-.68a1.41,1.41,0,0,1,0-.2.19.19,0,0,0,0-.08l1.54,1.31h0l.11.08.3.17.17,0a1.54,1.54,0,0,0,.31,0h.06a1.43,1.43,0,0,0,.29,0h0l.06,0a1.11,1.11,0,0,0,.34-.14h0l0,0a1.35,1.35,0,0,0,.32-.26l.05-.06a1.49,1.49,0,0,0,.2-.31.08.08,0,0,0,0,0,1.25,1.25,0,0,0,.11-.39s0-.06,0-.09a1.89,1.89,0,0,0,0-.41c-.09-.44-.19-.86-.3-1.28,0-.13-.07-.25-.11-.38s-.16-.56-.25-.83-.09-.27-.14-.4-.19-.53-.29-.78-.1-.23-.14-.34c-.14-.32-.28-.64-.43-.94a.36.36,0,0,1,0-.09c-.17-.34-.34-.66-.52-1l-.15-.26c-.12-.22-.25-.43-.38-.64l-.18-.28-.17-.25.18.06h0a1.52,1.52,0,0,0,.42.06h0a1.09,1.09,0,0,0,.25,0,1.28,1.28,0,0,0,.28-.07,1.78,1.78,0,0,0,.36-.19h0a1.58,1.58,0,0,0,.28-.3l0,0s0,0,0,0A1.85,1.85,0,0,0,159,43a.13.13,0,0,1,0-.06,1.58,1.58,0,0,0,.05-.38s0,0,0-.06a1.14,1.14,0,0,0-.07-.41.31.31,0,0,0,0-.08,2,2,0,0,0-.21-.38c-.33-.43-.66-.84-1-1.24l-.33-.37c-.24-.28-.48-.54-.72-.8l-.36-.38c-.25-.26-.51-.52-.77-.77Zm-12-5.19a1.71,1.71,0,0,1-.21.5v0a1.51,1.51,0,0,1-1.57.62A9.84,9.84,0,0,0,134.32,35a10,10,0,0,0-4.11,5c-.05.13-.09.25-.13.38s-.13.38-.18.57a1.71,1.71,0,0,1-.27.52c0,.06-.1.1-.15.15l0,0-.18.15-.08,0-.12.06-.23.1-.29,0-.11,0a1.31,1.31,0,0,1-.39,0h0a1.73,1.73,0,0,1-.31-.14h0l-.12-.08,0,0-.41-.29-.12-.09a7.08,7.08,0,0,1-1.37-1.47h0a7.21,7.21,0,0,1-1.24-3.32l-.2-1.87h0l-.16-1.5V33a1.47,1.47,0,0,1,.09-.69,1.49,1.49,0,0,1,1.23-1h0a.88.88,0,0,1,.23,0h0a1.49,1.49,0,0,1,1.15.7l0,0,.06.14v0a.37.37,0,0,1,.05.11.61.61,0,0,1,0,.13c0,.06,0,.11,0,.17h0l.37,3.48a4.08,4.08,0,0,0,.51,1.58,13.08,13.08,0,0,1,4.87-5.37,12.87,12.87,0,0,1,9.44-1.58,1.51,1.51,0,0,1,1.08,1h0A1.38,1.38,0,0,1,143.33,32.6Zm10.88,15.33a1.43,1.43,0,0,1-.29.64,1.45,1.45,0,0,1-.21.22,1.51,1.51,0,0,1-1,.35l-.22,0a1.5,1.5,0,0,1-.93-.51,8.71,8.71,0,0,0-4.95-2.9,1.22,1.22,0,0,1-.38-.13,1.49,1.49,0,0,1-.58-.5,1.51,1.51,0,0,1-.23-1.12,1.49,1.49,0,0,1,1.75-1.19,11.43,11.43,0,0,1,5.71,2.9h0a12.65,12.65,0,0,1,.95,1A1.47,1.47,0,0,1,154.21,47.93Zm-26.15,86.86a1.51,1.51,0,0,0-2-.74,1.49,1.49,0,0,0-.75,2l2.5,5.5a1.5,1.5,0,0,0,2.74-1.24ZM143.22,7.18a1.43,1.43,0,0,0,.92.32,1.49,1.49,0,0,0,1.18-.58l3.5-4.5A1.5,1.5,0,0,0,146.45.58L143,5.08A1.5,1.5,0,0,0,143.22,7.18Zm-69.42,8a1.5,1.5,0,1,0,2.68-1.34l-3.5-7A1.5,1.5,0,0,0,70.3,8.17Zm43.72,38.55A1.5,1.5,0,0,0,119,56.33a5.82,5.82,0,0,1,7.22,1.52,1.5,1.5,0,0,0,1.21.6,1.43,1.43,0,0,0,.89-.3,1.5,1.5,0,0,0,.31-2.1A8.83,8.83,0,0,0,117.52,53.72Zm24.2,7.52a1.5,1.5,0,0,0,2.44-1.76c-2.93-4.06-7.34-5-11.24-2.3a1.5,1.5,0,1,0,1.7,2.48C137.16,57.92,139.75,58.5,141.72,61.24ZM120.92,78.9a25.15,25.15,0,0,0,8,1.31,24.76,24.76,0,0,0,4.21-.36,1.5,1.5,0,1,0-.5-3,22.39,22.39,0,0,1-10.78-.83,1.5,1.5,0,1,0-1,2.84ZM130,70.42a2.61,2.61,0,0,1-2,.61,2.59,2.59,0,0,1-1.77-1.18,1.5,1.5,0,0,0-2.57,1.55A5.57,5.57,0,0,0,127.52,74a5.29,5.29,0,0,0,.8.06A5.6,5.6,0,0,0,132,72.67a1.5,1.5,0,0,0-2-2.25Zm-9.84-7.6,1.62.4a1.64,1.64,0,0,0,.37.05,1.5,1.5,0,0,0,.36-3l-1.62-.4a1.5,1.5,0,1,0-.73,2.91Zm17,.31a1.5,1.5,0,0,0-.26,3l1.63.14h.13a1.5,1.5,0,0,0,.13-3Z" fill="#070e15"></path>
+                           </svg>
+                           <div id="ownerPII" name="ownerPII" class="element">
+                              <div class="question-header">
+                                 <h2 class="question-text">Tell us a little about yourself.</h2>
+                                 <p class="question-byline">We take your privacy seriously and your information is always secure with us.</p>
+                              </div>
+                              <div class="">
+                                 <div>
+                                    <div class="form-group">
+                                        <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">First name
+                                            </label>
+                                            <input type="text" class="form-field__input">
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Last name</label>
+                                            <input type="text" class="form-field__input">
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Date of birth</label>
+                                            <input type="text" class="form-field__input">
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Email</label>
+                                            <input type="text" class="form-field__input">
+                                        </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                                 <!-- react-text: 497 --><!-- /react-text -->
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question mt-5">
+                        <div class="question-wrap home_purchase_status">
+                           <svg class=" question-icon mb-2" width="120" height="82" viewBox="0 0 205.39 140.45">
+                              <title>Asset 23</title>
+                              <path d="M162.67,34.46l.69-.6.63-.54A5,5,0,0,0,165.46,28a39.53,39.53,0,0,0-7.94-14.25,1.5,1.5,0,0,1-.15,2.11l0,0a1.5,1.5,0,0,1-2.08-.17c-.44-.51-.9-1-1.36-1.48l-.43-.42c-.32-.32-.65-.65-1-1l-.56-.5-.45-.4c-.16-.13-.3-.27-.46-.39l-.31-.25-.31-.26-.9-.7-.66-.48-.46-.31-.45-.32L147.58,9l-.35-.23q-.47-.3-.93-.57l-.71-.42c-.31-.18-.64-.35-1-.52l-.36-.19-.36-.18c-.16-.09-.33-.16-.49-.24l-.5-.24-.36-.16-.36-.17-1-.43-.35-.14-.34-.14-.59-.21-.58-.2-.3-.11-.31-.1c-.56-.18-1.13-.35-1.7-.5l-.25-.06c-.54-.15-1.09-.28-1.65-.4l-.34-.06-.34-.07-.57-.1-.58-.11-.39-.06-.4,0-1.05-.14-.84-.08-1-.08-.85,0-1,0h-1.64L125,3.08l-.64,0-.56,0-.56.06-.58.06-.64.1-.63.09-.42.06c-.85.15-1.7.34-2.54.55l-.85.2-.41.12-.62.19-.62.18-.28.1-.28.1-.54.19-.53.19c-.21.07-.41.16-.62.24s-.67.26-1,.41l-.64.28-1,.45-.32.16-.32.16-.93.49-.32.18-.31.18c-.16.08-.31.18-.46.27l-.46.27-.3.19-.3.19c-.32.2-.62.41-.93.62l-.28.19-.28.19-.49.37-.49.36-.47.36c-.2.15-.39.32-.58.48s-.56.44-.83.68c-.54.47-1.07,1-1.58,1.47A36.65,36.65,0,0,0,91.7,29.9h2.08l1.57,0L97,29.8c.54,0,1.08-.07,1.61-.12q1.59-.13,3.06-.36c.52-.08,1-.17,1.51-.27,1-.2,1.87-.42,2.7-.67.41-.13.81-.26,1.19-.4a8.67,8.67,0,0,1,0-1.14,10.48,10.48,0,0,1,3.27-7.2l.32-.31a10.14,10.14,0,0,1,2.13-1.42,10.39,10.39,0,0,1,3.31-1.05,10.67,10.67,0,0,1,3.43.07,10.42,10.42,0,0,1,4,1.64,10.06,10.06,0,0,1,2,1.79,10.54,10.54,0,1,1-15.9,13.84h0a10.47,10.47,0,0,1-1.13-1.56c-.16-.28-.3-.56-.43-.84a7.12,7.12,0,0,1-.36-.86l-1.26.4-1.35.36c-.92.22-1.91.42-2.95.58q-.89.13-1.8.24c-1.22.15-2.49.25-3.81.31-.65,0-1.32.06-2,.07h-.72l-.73,0H93l-.75,0H91c-.15.75-.27,1.51-.38,2.27s-.18,1.54-.23,2.31c0,.62-.07,1.24-.09,1.85a36.76,36.76,0,0,0,9.08,25,1.53,1.53,0,0,1,.36,1.07,1.55,1.55,0,0,1-.48,1l0,0a1.52,1.52,0,0,1-2.12-.15,40.25,40.25,0,0,1-5-7.29,39.68,39.68,0,0,1-2.64-6c-.17-.53-.33-1.06-.49-1.6a39.8,39.8,0,0,0,21.2,24.75,5.14,5.14,0,0,0,2.19.49,5,5,0,0,0,3.29-1.22l.63-.54.68-.6.69-.6.67-.58.67-.59,41.7-36.28.67-.58.66-.58Z" fill="#574cfa"></path>
+                              <path d="M205,116.36l-6.9-7.93a1.5,1.5,0,0,0-1-.51l-5.92-.41.41-5.92a1.51,1.51,0,0,0-.37-1.09l-3.45-4a1.5,1.5,0,0,0-1-.51l-3.45-.24.58-8.39a1.49,1.49,0,0,0-.36-1.09L159,58.17a36.43,36.43,0,0,0,4.33-24.31l-.69.6-.69.6-.66.58-.67.58a33.52,33.52,0,0,1-4.74,21.33,1.49,1.49,0,0,0,.14,1.77l24.8,28.49-.4,5.66-20.61-23.7a1.5,1.5,0,0,0-2.27,2l23,26.43,0,0a1.29,1.29,0,0,0,.21.19l.1.06.16.1.13,0,.16.06.14,0,.11,0,4.32.3,2.63,3-.47,6.8a1.46,1.46,0,0,0,.37,1.09,1.5,1.5,0,0,0,1,.51l6.8.47,6.08,7-.88,12.71-8.39-.58a1.49,1.49,0,0,0-1.09.36,1.53,1.53,0,0,0-.51,1,1.49,1.49,0,0,0,1.39,1.6l9.89.69h.1a1.5,1.5,0,0,0,1.5-1.39l1-14.83A1.54,1.54,0,0,0,205,116.36Zm-114.76-33-9.79,1.33a1.5,1.5,0,0,0,.2,3h.2l9.8-1.34a1.5,1.5,0,0,0-.41-3Zm-12,13.18a1.5,1.5,0,0,0-2,2.25l8.31,7.34a1.5,1.5,0,1,0,2-2.25ZM75,48.25a1.46,1.46,0,0,0-.83-.79L41.47,35a1.49,1.49,0,0,0-1.93.86L8.35,117.69a1.52,1.52,0,0,0,0,1.15,1.48,1.48,0,0,0,.84.79L42,132.1a1.47,1.47,0,0,0,.54.1,1.51,1.51,0,0,0,1.4-1L75.08,49.4A1.48,1.48,0,0,0,75,48.25ZM41.62,128.77,11.69,117.36l30.12-79L71.74,49.73ZM124.5,35.23a10.32,10.32,0,0,0,1.62-1.76,10.51,10.51,0,0,0,2-5.33,10.85,10.85,0,0,0,0-1.14,10.5,10.5,0,0,0-2.58-6.64,10.06,10.06,0,0,0-2-1.79,10.42,10.42,0,0,0-4-1.64,10.67,10.67,0,0,0-3.43-.07,10.39,10.39,0,0,0-3.31,1.05,10.14,10.14,0,0,0-2.13,1.42l-.32.31a10.48,10.48,0,0,0-3.27,7.2,8.67,8.67,0,0,0,0,1.14c-.38.14-.78.27-1.19.4-.83.25-1.73.47-2.7.67-.49.1-1,.19-1.51.27q-1.47.22-3.06.36c-.53.05-1.07.09-1.61.12l-1.66.08-1.57,0H91.7a36.65,36.65,0,0,1,9.72-16.35c.51-.5,1-1,1.58-1.47.27-.24.55-.46.83-.68s.38-.33.58-.48l.47-.36.49-.36.49-.37.28-.19.28-.19c.31-.21.61-.42.93-.62l.3-.19.3-.19.46-.27c.15-.09.3-.19.46-.27l.31-.18.32-.18.93-.49.32-.16.32-.16,1-.45.64-.28c.33-.15.67-.28,1-.41s.41-.17.62-.24l.53-.19.54-.19.28-.1.28-.1.62-.18.62-.19.41-.12.85-.2c.84-.21,1.69-.4,2.54-.55l.42-.06.63-.09.64-.1.58-.06.56-.06.56,0,.64,0L126.05,3h1.64l1,0,.85,0,1,.08.84.08,1.05.14.4,0,.39.06.58.11.57.1.34.07.34.06c.56.12,1.11.25,1.65.4l.25.06c.57.15,1.14.32,1.7.5l.31.1.3.11.58.2.59.21.34.14.35.14,1,.43.36.17.36.16.5.24c.16.08.33.15.49.24l.36.18.36.19c.32.17.65.34,1,.52l.71.42q.47.27.93.57l.35.23.35.22.45.32.46.31.66.48.9.7.31.26.31.25c.16.12.31.26.46.39l.45.4.56.5c.33.3.66.63,1,1l.43.42c.46.48.92,1,1.36,1.48a1.5,1.5,0,0,0,2.08.17l0,0a1.5,1.5,0,0,0,.15-2.11A40.07,40.07,0,0,0,101,9.81l-.19.17A88.06,88.06,0,0,0,81.59,4.27c-23.34-4.27-37.22.4-38.42,7-.41,2.27.68,4.88,3.25,7.48l-7.19,3.22a11.94,11.94,0,0,0-6.31,6.69L.79,112.94a12,12,0,0,0,6.94,15.5L37.2,139.66a11.8,11.8,0,0,0,4.26.79,12,12,0,0,0,11.24-7.73L66.69,96a1.5,1.5,0,0,0-2.8-1.07l-14,36.73a9,9,0,0,1-11.62,5.21L8.8,125.63A9,9,0,0,1,3.59,114L35.72,29.69a9,9,0,0,1,4.74-5l8.45-3.79A42.64,42.64,0,0,0,58,26a6.12,6.12,0,0,0,.53,2.25,6,6,0,0,0,3.36,3.18,6.2,6.2,0,0,0,2.15.4,6,6,0,0,0,4.65-2.23c2.46.64,5.09,1.23,7.9,1.75l1.21.19,4,8.9A9,9,0,0,1,82,47.33L71.26,75.58a1.5,1.5,0,1,0,2.8,1.06L84.83,48.4a11.91,11.91,0,0,0-.27-9.19l-3.19-7.12c2.25.3,4.45.51,6.6.65a41.78,41.78,0,0,0-.58,4.51A40.23,40.23,0,0,0,88.78,50.9c0,.16.1.33.15.49.16.54.32,1.07.49,1.6a39.68,39.68,0,0,0,2.64,6,40.25,40.25,0,0,0,5,7.29,1.52,1.52,0,0,0,2.12.15l0,0a1.55,1.55,0,0,0,.48-1,1.53,1.53,0,0,0-.36-1.07,36.76,36.76,0,0,1-9.08-25c0-.61,0-1.23.09-1.85,0-.77.13-1.54.23-2.31s.23-1.52.38-2.27h1.26l.75,0h.08l.73,0h.72c.68,0,1.35,0,2-.07,1.32-.06,2.59-.16,3.81-.31q.91-.1,1.8-.24c1-.16,2-.36,2.95-.58l1.35-.36,1.26-.4a7.12,7.12,0,0,0,.36.86c.13.28.27.56.43.84a10.47,10.47,0,0,0,1.13,1.56h0a10.54,10.54,0,0,0,14.87,1ZM63,28.55a2.91,2.91,0,0,1-1.41-1.15c1.1.4,2.25.78,3.45,1.15A2.92,2.92,0,0,1,63,28.55Zm-1.4-4.41a2.91,2.91,0,0,1,1.24-1.06,3,3,0,0,1,1.21-.26,3,3,0,0,1,2.7,1.75A3,3,0,0,1,67,26C65.11,25.4,63.31,24.78,61.63,24.14ZM70,26.81A6,6,0,0,0,58.76,23a47,47,0,0,1-6.67-3.52l8.71-3.91a9,9,0,0,1,11.91,4.54l3.65,8.15C74.16,27.82,72,27.34,70,26.81Zm18.59,3c-2.81-.16-5.72-.47-8.7-.93l-4.47-10a12,12,0,0,0-15.87-6.05L49.33,17.41c-2.36-2-3.51-4-3.21-5.64.92-5,15.49-8.1,34.93-4.55a86.64,86.64,0,0,1,17.44,5A39.69,39.69,0,0,0,88.62,29.78ZM112,32.18h0a7.78,7.78,0,0,1-1.42-2.47c2.57-1.39,4.12-3.19,4.51-5.32a1.5,1.5,0,1,0-3-.54,4.26,4.26,0,0,1-1.91,2.57A7.39,7.39,0,0,1,112,22.36a7.6,7.6,0,0,1,.69-.7A7.46,7.46,0,1,1,112,32.18Zm30.51,39a1.49,1.49,0,0,0-1.73-.39A33.37,33.37,0,0,1,119,72.5l-.67.59-.67.58-.69.6-.68.6a36.42,36.42,0,0,0,24.67-.94l41,47.07a1.49,1.49,0,0,0,2.11.14h0a1.49,1.49,0,0,0,.15-2.11Z" fill="#070e15"></path>
+                           </svg>
+                           <div id="home_purchase_status" name="home_purchase_status" class="element ">
+                              <div class="question-header">
+                                 <h2 class="question-text">Do you already own this home?</h2>
+                                 <p class="question-byline">This helps us understand your needs. You'll still get quotes if you don't own the home yet.</p>
+                              </div>
+                              <div class="">
+                                 <div class="form-group-radio stacked form-group">
+                                    <label for="home_purchase_status-OWN" data-cy="radio-property_details-OWN" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="home_purchase_status-OWN" name="home_purchase_status-0" value="OWN" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Yes, I already own it.</span></div>
+                                    </label>
+                                    <label for="home_purchase_status-PENDING" data-cy="radio-property_details-PENDING" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="home_purchase_status-PENDING" name="home_purchase_status-1" value="PENDING" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Almost, I'm closing on it soon.</span></div>
+                                    </label>
+                                    <label for="home_purchase_status-REFINANCING" data-cy="radio-property_details-REFINANCING" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="home_purchase_status-REFINANCING" name="home_purchase_status-2" value="REFINANCING" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">Yes, I'm refinancing it.</span></div>
+                                    </label>
+                                    <label for="home_purchase_status-JUST_LOOKING" data-cy="radio-property_details-JUST_LOOKING" tabindex="0" class="custom-control custom-block custom-radio">
+                                       <input type="radio" id="home_purchase_status-JUST_LOOKING" name="home_purchase_status-3" value="JUST_LOOKING" tabindex="-1" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap"><span class="custom-control-indicator"></span><span class="custom-control-description">No, I'm just looking around.</span></div>
+                                    </label>
+                                 </div>
+                                 <!-- react-text: 529 --><!-- /react-text -->
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="navigation-buttons p-0">
+                  <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="step-4">
+                     <span>
+                        <span style="font-size: 24px;margin-right: 5px;">Save &amp; continue</span>
+                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                           <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                        </svg>
+                     </span>
+                  </button>
+               </div>
+            </div>
+         </div>
+      </section>
+      <aside class="right-summary-rail d-xl-block d-none">
+         <div class="summary-rail-section">
+            <h5 data-reactid="76">Property</h5>
+            <div class="summary-rail-item" >
+               <span class="home-icon item-info" >
+                  <svg width="20px" height="19px" viewBox="0 0 20 19">
+                     <g stroke-width="1" fill-rule="evenodd" >
+                        <g transform="translate(-1120.000000, -233.000000)" fill="#574CFA" fill-rule="nonzero" >
+                           <g transform="translate(1119.000000, 184.000000)" >
+                              <g data-reactid="83">
+                                 <g data-reactid="84">
+                                    <g transform="translate(1.000000, 49.000000)">
+                                       <path d="M17.5,10 L17.5,18.3333333 L12.5,18.3333333 L12.5,13.3333333 L7.5,13.3333333 L7.5,18.3333333 L2.5,18.3333333 L2.5,10 L0,10 L10,0 L20,10 L17.5,10 Z M16.6666667,5.0775 L16.6666667,0.833333333 L14.1666667,0.833333333 L14.1666667,2.5775 L16.6666667,5.0775 Z" data-reactid="86"></path>
+                                    </g>
+                                 </g>
+                              </g>
+                           </g>
+                        </g>
+                     </g>
+                  </svg>
+                  <!-- react-text: 87 -->Primary Home<!-- /react-text -->
+               </span>
+               <button type="button" class="btn-edit btn btn-secondary" >
+                  <svg viewBox="0 0 19 20" version="1.1" height="19px" >
+                     <title data-reactid="90">Edit</title>
+                     <g transform="translate(-1.000000, 0.000000)" >
+                        <path fill="#616568" fill-rule="nonzero" transform="translate(11.880871, 13.719729) rotate(-315.000000) translate(-11.880871, -13.719729) " d="M4.86444859,8.43277641 L4.86444859,6.93277641 L10.8106323,6.93277641 L10.8106323,8.43277641 L4.86444859,8.43277641 Z M5.67383114,4.21549126 L5.67383114,19.2113048 L7.96792383,22.2070165 L10.1121121,19.2239144 L10.1121121,4.21549126 L5.67383114,4.21549126 Z M11.6121121,2.71549126 L11.6121121,19.7070681 L8.00607605,24.723966 L4.17383114,19.7196777 L4.17383114,2.71549126 L11.6121121,2.71549126 Z M13.5775033,18.0763142 L18.5272508,13.1265667 L19.5879109,14.1872269 L14.6381635,19.1369744 L13.5775033,18.0763142 Z" data-reactid="92"></path>
+                     </g>
+                  </svg>
+               </button>
+               <div class="response-list">
+                  <span class="response-item fs-block">260-C North El Camino Real</span>
+                  <span class="response-item" data-reactid="94">Single family home</span>
+                  <span class="response-item">1,200 — Square Footage</span>
+                  <span class="response-item">2 stories</span>
+                  <span class="response-item">Slab - Foundation</span>
+                  <span class="response-item">Wood frame - Construction</span>
+                  <span class="response-item">Wood - Roof</span>
+                  <span class="response-item">1995 — Year Built</span>
+                  <span class="response-item">1-5 miles - Fire Station Proximity</span>
+                  <span class="response-item">$1,000 — Rebuild Cost</span>
+               </div>
+            </div>
+         </div>
+         <div class="summary-rail-section">
+            <h5>Owner</h5>
+            <div class="summary-rail-item">
+               <span class="item-info fs-block">
+                  <div class="owner-initials d-inline-flex justify-content-center align-items-center"><span>TT</span></div>
+                  <!-- react-text: 641 -->Test test - 27 yrs<!-- /react-text -->
+               </span>
+               <button type="button" class="btn-edit btn btn-secondary">
+                  <svg viewBox="0 0 19 20" version="1.1" height="19px">
+                     <title>Edit</title>
+                     <g transform="translate(-1.000000, 0.000000)">
+                        <path fill="#616568" fill-rule="nonzero" transform="translate(11.880871, 13.719729) rotate(-315.000000) translate(-11.880871, -13.719729) " d="M4.86444859,8.43277641 L4.86444859,6.93277641 L10.8106323,6.93277641 L10.8106323,8.43277641 L4.86444859,8.43277641 Z M5.67383114,4.21549126 L5.67383114,19.2113048 L7.96792383,22.2070165 L10.1121121,19.2239144 L10.1121121,4.21549126 L5.67383114,4.21549126 Z M11.6121121,2.71549126 L11.6121121,19.7070681 L8.00607605,24.723966 L4.17383114,19.7196777 L4.17383114,2.71549126 L11.6121121,2.71549126 Z M13.5775033,18.0763142 L18.5272508,13.1265667 L19.5879109,14.1872269 L14.6381635,19.1369744 L13.5775033,18.0763142 Z"></path>
+                     </g>
+                  </svg>
+               </button>
+               <div class="response-list"><span class="response-item fs-block">srikant@gmail.com</span></div>
+            </div>
+         </div>
+      </aside>
+      </main>
+      <script src="assets/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+      <script src="assets/js/bootstrap.min.js" type="text/javascript"></script> 
+      <script type="text/javascript" src="assets/js/slick.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js" type="text/javascript"></script>
+      <script src="assets/js/custom.js" type="text/javascript"></script>
+      <script src="assets/js/material-form.js" type="text/javascript"></script>
+      <!-- <div style="display: none;">
+         Icons made by <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+         </div> -->   
+   </body>
+</html>

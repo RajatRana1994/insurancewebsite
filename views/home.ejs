@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <% include partials/head.ejs%>
+</head>
+
+<body>
+    <% include partials/header.ejs%>
+        <section class="agent_detail_sec home_top_new_section mt-5 mb-5 py-4 position-relative">
+            <div class="cloud_imgs">
+                <img src="/web_assets/assets/img/umbrella_dark.png" alt="">
+                <img src="/web_assets/assets/img/umbrella_dark.png" alt="">
+                <img src="/web_assets/assets/img/umbrella_dark.png" alt="">
+            </div>
+            <div class="container">
+                <div class="row align-items-center">
+                    <% var messages = getMessages() %>
+                            <% if (messages.error_message){ %>
+                                <div class="col-12 col-md-12 alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <%= messages.error_message %>
+                                </div>
+                                <% } if (messages.success_message){ %>
+                                    <div class="col-12 col-md-12 alert alert-success alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <%= messages.success_message %>
+                                    </div>
+                                    <% } %>
+                    <div class="col-md-8">
+                        <div class="heading">
+                            <h1>Coverage <br> Confidence <br> Community</h1>
+                            <p class="sub_new">Whether you're running a business, raising a family or building a community, we know how it feels! </p>
+                            <p>Defy expectations! Feel prepared and protected with your  Defy insurance Agency.</p>
+                            <form class="quote-form mt-3" action="" autocomplete="off">
+                                <div class="form-innner">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <select class="form-control" id="productInput" name="" required="" title="Please select a product">
+                                                <option value="">Choose a product</option>
+                                                <option value="get_auto_nsurance">Auto</option>
+                                                <option value="get_home_nsurance">Home</option>
+                                                <option value="get_business_nsurance">Business</option>
+                                                <option value="get_worker_comp_nsurance">Work Compensation</option>
+                                                <option value="get_renter_nsurance">Renters</option>
+                                                <option value="add_insurance/6">Home Insurance Floater</option>
+                                                <option value="get_motorcycle_nsurance">Motorcycle, RV, Boat</option>
+                                                <option value="get_umbrella_nsurance">Umbrella</option>
+                                                <option value="small_group_benefits">Small Group Benefits</option>
+                                                <option value="get_life_nsurance">Life</option>
+                                                <option value="get_health_nsurance">Health care</option>
+                                                <option value="get_accident_nsurance">Accident</option>
+                                                <option value="get_dental_nsurance">Dental</option>
+                                                <option value="add_insurance/14">Short-Term Medical</option>
+                                                <option value="add_insurance/15">Vision</option>
+                                                <option value="get_medicare_nsurance">Medicare</option>
+                                                <option value="get_medical_nsurance">Medical</option>
+                                                <option value="get_commercial_nsurance">Commercial Auto</option>
+                                                <option value="get_general_liability_nsurance">General Liability</option>
+                                                <option value="get_professional_liability_nsurance">Professional Liability</option>
+                                                <option value="get_cyber_nsurance">Cyber Insurance</option>
+                                                <option value="get_surety_bonds_nsurance">Surety Bonds</option>
+                                            </select>
+                                        </div>
+                                        <div class="btn-wrapper col-6">
+                                            <button type="button" class="btn btn-primary" id="findMyQuote">Start My Quote</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--div class="col-md-4">
+                        <div class="left_img">
+                            <img src="/web_assets/assets/img/green-img/icon-green-7.png" alt="" width="100%">
+                        </div>
+                    </div-->
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <img src="/web_assets/assets/img/agent-banner.png" width="100%">
+        </div>
+
+        <section class="banner update_banner_home py-5">
+            <div class="banner-content">
+                <div class="banner-inner featured-section section-one pt-4">
+                    <div class="typed_wrap">
+                        <h1 class="banner-title black-heading">Shop the market and get insurance right.</h1>
+                        <h4 class="subtitle">Select a product to see your quotes.</h4>
+                    </div>
+
+                    <div class="row justify-content-center mb-5">
+                        
+                                        <div class="col-12 col-md-3">
+                                            <a href="/get_business_nsurance">
+                                                <div class="card featured-card border-style">
+                                                    <h4>Business</h4>
+                                                    <div class="card-icon">
+                                                        <img src="/web_assets/assets/img/green-img/icon-green-10.png" width="100px" />
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <a href="/get_auto_nsurance">
+                                                <div class="card featured-card border-style">
+                                                    <h4>Auto</h4>
+                                                    <div class="card-icon">
+                                                        <img src="/web_assets/assets/img/green-img/icon-green-6.png" width="100px" />
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <a href="/get_home_nsurance">
+                                                <div class="card featured-card border-style">
+                                                    <h4>Home</h4>
+                                                    <div class="card-icon">
+                                                        <img src="/web_assets/assets/img/green-img/icon-green-8.png" width="100px" />
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-12 col-md-4 col-sm-6 col-lg-3">
+                                            <a href="/get_renter_nsurance" class="card featured-card border-style">
+                                                <h4>Life</h4>
+                                                <div class="card-icon">
+                                                    <img src="/web_assets/assets/img/green-img/shop.png" width="100px" />
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-12 col-md-4 col-sm-6 col-lg-3">
+                                            <a href="/add_insurance/6" class="card featured-card border-style">
+                                                <h4>Workers Compensation</h4>
+                                                <div class="card-icon">
+                                                    <img src="/web_assets/assets/img/green-img/worker icon.png" width="100px" />
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-12 col-md-4 col-sm-6 col-lg-3">
+                                            <a href="/add_insurance/7" class="card featured-card border-style">
+                                                <h4>Cyber</h4>
+                                                <div class="card-icon">
+                                                    <img src="/web_assets/assets/img/green-img/cybericon.png" width="100px" />
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-12 col-md-4 col-sm-6 col-lg-3">
+                                            <a href="/add_insurance/8" class="card featured-card border-style">
+                                                <h4>Umbrella</h4>
+                                                <div class="card-icon">
+                                                    <img src="/web_assets/assets/img/green-img/icon-green-7.png" width="100px" />
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <a href="/insurance_more_product">
+                                                <div class="card featured-card border-style">
+                                                    <h4>More</h4>
+                                                    <div class="card-icon">
+                                                        <img src="/web_assets/assets/img/green-img/icon-green-11.png" width="100px" />
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about section featured-section how-it-work-new" id="how_it_work">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 text-center col-12">
+                        <div class="section-header">
+                            <h2 class="section-title">How does it work </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center how-does-it-work">
+                    <div class="col-12 col-md-4">
+                        <div class="card featured-card product">
+                            <div class="card-icon">
+                                <img src="/web_assets/assets/img/green-img/icon-green-2.png" width="100px" />
+                            </div>
+                            <h4>Learn</h4>
+                            <p>Short fun and educative resources about your insurance.</p>
+                         </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card featured-card">
+                            <div class="card-icon">
+                                <img src="/web_assets/assets/img/green-img/icon-green-1.png" width="100px" />
+                            </div>
+                            <h4>Shop</h4>
+                            <p>leverage the  power of partnering with an independent agency.</p>
+                         </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card featured-card">
+                            <div class="card-icon">
+                                <img src="/web_assets/assets/img/green-img/icon-green-5.png" width="100px" />
+                            </div>
+                            <h4>Save</h4>
+                            <p>We make  it happen. Clients stay with us because they want to save year over year not just when they switch.</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="svg-wrapper bg-white" id="about_us">
+            <svg version="1.1" id="Layer_1" class="footer-top" x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223" enable-background="new 0 0 1920 58.223" xml:space="preserve"><path fill="#12bcc5" d="M1920,233.223H0C0,233.223,1600.488,364.223,1920,233.223z"/><path fill="#12bcc5" d="M0,58.223h1920C1920,58.223,319.512-72.777,0,58.223z"/></svg>
+        </div>
+
+        <section class="section section1 featured-section bg-custom-green ">
+            <div class="container">
+                <div class="section-header text-center mb-4">
+                    <h2 class="section-title white_heading">About Us</h2>
+                </div>
+                <div class="row about justify-content-center">
+                    <div class="col-lg-9 text-center col-12">
+                        <p class="mb-5 text-white">Need expert insurance advice, helpful hacks and tailored insights to answer your insurance and risk management questions? Turn to the Defy experts.</p>
+                        <div class="about-video">
+                            <iframe width="100%" height="315" src="<%= about_video %>" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-12 mt-2 mt-md-5 text-center">
+                            <a class="btn btn-black" href="/about-defy">About Defy </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="svg-wrapper bg-white">
+            <svg x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223"><path fill="#12bcc5" d="M1920,0H0C0,0,1600.488,131,1920,0z"/><path fill="#12bcc5" d="M0-175h1920C1920-175,319.512-306,0-175z"/></svg>
+        </div>
+
+        <section class="about section featured-section" id="community">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 text-center col-12">
+                        <div class="section-header">
+                            <h2 class="section-title">Defy makes it easy for you to make a smart decision.</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center how-does-it-work">
+                    <div class="col-12 col-md-3">
+                        <div class="card featured-card product">
+                            <h4>Business owner?</h4>
+                            <p>Get a custom consultation and only pay for the coverage you need (nothing more, nothing less).<a href="#">Read More</a></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class="card featured-card">
+                            <h4>Home or car owner?</h4>
+                            <p>Discover discounts you don't know about, including sweet savings when you bundle both policies together.<a href="#">Read More</a></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class="card featured-card">
+                            <h4>Looking for health insurance?</h4>
+                            <p>We'll guide you through the maze of today's options – straight to a decision you can trust.<a href="#">Read More</a></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class="card featured-card">
+                            <h4>Want to protect your family?</h4>
+                            <p>Find the best Life insurance plan for your life stage and budget.<a href="#">Read More</a></p>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2 mt-md-5 text-center">
+                        <a class="btn btn-green" href="/videos">Seriously, we've got this.  Add video</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about section bg-light featured-section how-it-work-new" id="pledge">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 text-center col-12">
+                        <div class="section-header">
+                            <h2 class="section-title">Our Pledge to You </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center how-does-it-work">
+                    <div class="col-12">
+                        <div class="card featured-card product col-md-10 offset-md-1">
+                            <div class="card-icon mb-4">
+                                <img src="/web_assets/assets/img/green-img/icon-green-4.png" width="100px" style="width: 250px; height: 250px;">
+                            </div>
+                            <p>Defy Insurance takes an educational and transparent approach to insuring your Business, your home or Auto. Our team of licensed insurance experts so you can finally have an insurance partner you can trust and rely on when life
+                                happens.will help you understand your insurance and develop a personalized solution tailored to your needs. We invest in building trust and long-term relationship </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="svg-wrapper bg-light" id="textimonial">
+            <svg version="1.1" id="Layer_1" class="footer-top" x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223" enable-background="new 0 0 1920 58.223" xml:space="preserve"><path fill="#12bcc5" d="M1920,233.223H0C0,233.223,1600.488,364.223,1920,233.223z"/><path fill="#12bcc5" d="M0,58.223h1920C1920,58.223,319.512-72.777,0,58.223z"/></svg>
+        </div>
+
+        <section class="testimonials section section1" style="background-color: #12bcc5;">
+            <div class="testimonials-iner ">
+                <div class="section-header text-center">
+                    <h2 class="section-title black-heading">Testimonial</h2>
+                </div>
+                <div class="testimonial-slider-wrapper">
+                    <div class="testimonial-slider">
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>Accommodating, professional, helpful, and quick. Very comfortable experience and I was impressed by their capabilities.</p>
+                                    <h4 class="client">Brad M.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>They have strong ties with the community, and it shows. It's nice to do business with people that really show they care about you and your family.</p>
+                                    <h4 class="client">Susan T.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>Over the years we've never once had to worry about our coverage. My husband and I are long-time customers and proud to be.</p>
+                                    <h4 class="client">Carol S.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>They have strong ties with the community, and it shows. It's nice to do business with people that really show they care about you and your family.</p>
+                                    <h4 class="client">Susan T.</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="svg-wrapper bg-white">
+            <svg x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223"><path fill="#12bcc5" d="M1920,0H0C0,0,1600.488,131,1920,0z"/><path fill="#12bcc5" d="M0-175h1920C1920-175,319.512-306,0-175z"/></svg>
+        </div>
+
+        <section class="section Blog-section" id="blog">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">On The Blog</h2>
+                </div>
+                <div class="row about justify-content-center">
+                    <% if(blogRes != ''){
+                    blogRes.forEach(function(res, i) { %>
+                        <div class="col-lg-4 col-sm-6 text-center">
+                            <a href="/blog-details/<%= res.id %>" class="blog-box-outer">
+                            <img src="<%= res.image_1 %>" width="100%">
+                            <div class="blog-box-text">
+                                <h6><%= res.category %></h6>
+                                <h3><%- res.title %></h3>
+                                <P><%- res.short_description %></P>
+                                <button class="btn btn-primary">READ</button> <span><i class="fa fa-clock-o" aria-hidden="true"></i>  <%- res.duration %></span>
+                            </div>
+                        </a>
+                        </div>
+                        <% }) %>
+                            <div class="col-12 text-center">
+                                <div class="btn-wrapper">
+                                    <a href="/blogs" class="btn btn-green">View More</a>
+                                </div>
+                            </div>
+                            <% } else{ %>
+                                <div class="">
+                                    <img src="/web_assets/assets/img/no_data.png">
+                                </div>
+                                <% } %>
+                </div>
+            </div>
+        </section>
+
+        <div class="svg-wrapper bg-white" id="view_carrier_info">
+            <svg version="1.1" id="Layer_1" class="footer-top" x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223" enable-background="new 0 0 1920 58.223" xml:space="preserve"><path fill="#12bcc5" d="M1920,233.223H0C0,233.223,1600.488,364.223,1920,233.223z"/><path fill="#12bcc5" d="M0,58.223h1920C1920,58.223,319.512-72.777,0,58.223z"/></svg>
+        </div>
+
+        <section class="section section1 bg-custom-green ">
+            <div class="container">
+                <div class="section-header text-center mb-4">
+                    <h2 class="section-title white_heading">View Carrier Info</h2>
+                </div>
+                <div class="row about justify-content-center">
+                    <div class="col-lg-9 text-center col-12">
+                        <p class="mb-5 text-white">Update your billing information, make a payment or contact your insurance carrier directly by visiting the Carrier Info page.</p>
+                        <div class="col-12 mt-2 mt-md-5 text-center">
+                            <a class="btn btn-black" href="/carrier-info">View Carrier Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="svg-wrapper bg-white">
+            <svg x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223"><path fill="#12bcc5" d="M1920,0H0C0,0,1600.488,131,1920,0z"/><path fill="#12bcc5" d="M0-175h1920C1920-175,319.512-306,0-175z"/></svg>
+        </div>
+
+        <!--section class="section bg-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 text-center col-12">
+                        <div class="section-header">
+                            <h2 class="section-title">Download Our Free Fire Safety Ebook!</h2>
+                            <h4 class="subtitle mw-100">Is your family prepared to handle a house fire? Do you know the steps to prevent one? Do you have a go-plan to keep your family safe in the event of the fire emergency in your  
+                                home? If not,our free ebook can help. sign up below to receive your copy of "Stop,Drop,and Go:12 Essential Steps  To Keep Your Family Safe for Fire."</h4>
+                        </div> 
+                    </div>
+                </div>
+                <form method="post" action="/save-ebook" id="eBookForm">
+                    <div class="row justify-content-center how-does-it-work">
+                        <div class="col-12 col-md-4">
+                            <div class="form-field text-left">
+                                <div class="form-field__control">
+                                    <label class="form-field__label">First Name</label>
+                                    <input  type="text" class="form-field__input" name="first_name" id="first_name" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-field text-left">
+                                <div class="form-field__control">
+                                    <label  class="form-field__label">Last Name</label>
+                                    <input type="text" class="form-field__input" name="last_name" id="last_name" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-field text-left">
+                                <div class="form-field__control">
+                                    <label class="form-field__label">Email</label>
+                                    <input type="email" class="form-field__input" name="email" id="email" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2 mt-md-5 text-center">
+                            <button type="button" id="contact_sub_btn" onClick="validateEBookForm();" class="btn btn-green">Get The Ebook</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section-->
+
+        <section class="section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 text-center col-12">
+                        <div class="section-header">
+                            <h2 class="section-title">About Our App</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center about-our-app">
+                    <div class="col-md-6">
+                        <div class="our-app-img">
+                            <img src="/web_assets/assets/img/iphone-01.png" width="100%">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="our-app-text">
+                            <h4>Get Defy insurance Mobile App for Android,™ and iPhone® and iPad®</h4>
+                            <p>On the go, Our mobile app lets you access your insurance policies with our agency and any other insurance policies you have with other insurance companies. No more shuffling through your glove box for your proof of insurance.
+                                No more calling various insurance agents to get a copy of your policies. The app keeps everything in order on your phone, ready and waiting for when you need it most. ID cards, policies, 24 hour access.</p>
+                            <h4>Defy Mobile app features</h4>
+                            <ul class="p-0 ml-3">
+                                <li>Fingerprint and facial login (subject to device capabilities)</li>
+                                <li>Make a payment</li>
+                                <li>Import and manage all your insurance policies in onc device</li>
+                                <li>Save or easily share ID cards with drivers on your policy</li>
+                                <li>File a claim</li>
+                                <li>Get quote</li>
+                                <li>Connect to live insurance agents in your area</li>
+                            </ul>
+                            <!--a href="#"><img src="/web_assets/assets/img/ic_google_pay.png"></a>
+                            <a href="#"><img src="/web_assets/assets/img/ic_app_store.png"></a-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section contact-us" id="contact_us">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md map">
+                        <div class="section-header">
+                            <h2 class="section-title">Reach Us</h2>
+                            <p>Reach Us on Below Address</p>
+                        </div>
+                        <div class="mapouter">
+                            <div class="gmap_canvas">
+                                <iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-auto">
+                        <div style="width: 2px;margin: 0 10px; min-height: 100%;background-color: #0a0c0e; ">
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-md">
+                        <div class="quote-form">
+                            <div class="section-header">
+                                <h2 class="section-title">Request A Callback</h2>
+                                <p>Questions about your account? </p>
+                            </div>
+                            <form class="form" action="contact" method="POST" id="insurance-form">
+                                <div class="form-innner">
+                                    <div class="dropdown-select-wrap">
+                                        <div class="dropdown-select dropdown">
+                                            <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                <label class="dropdown-label" for="yearYear-0Input-0">I have a question about</label>
+                                                <input id="question_input" data-cy="year-0Input" type="text" name="question" class="form-control completed" placeholder="No Preference" value="">
+                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                    <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                </svg>
+                                            </span>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="question">
+                                                <div class="item">None</div>
+                                                <div class="item">Become an agent </div>
+                                                <div class="item">Affiliate partnership </div>
+                                                <div class="item">Get a quote</div>
+                                                <div class="item">My policies</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-field text-left">
+                                                <div class="form-field__control">
+                                                    <label class="form-field__label">First Name</label>
+                                                    <input type="text" name="first_name" class="form-field__input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-field text-left">
+                                                <div class="form-field__control">
+                                                    <label class="form-field__label">Last Name</label>
+                                                    <input type="text" name="last_name" class="form-field__input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-field text-left">
+                                                <div class="form-field__control">
+                                                    <label class="form-field__label">City</label>
+                                                    <input type="text" name="city" class="form-field__input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="dropdown-select-wrap">
+                                                <div class="dropdown-select dropdown">
+                                                    <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                        <label class="dropdown-label" for="yearYear-0Input-0">State/ Province</label>
+                                                        <input id="timeList_input" data-cy="year-0Input" type="text" name="state" class="form-control completed" placeholder="No Preference" value="">
+                                                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                            <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                        </svg>
+                                                    </span>
+                                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="timeList">
+                                                        <div class="item">Alabama</div>
+                                                        <div class="item">Alaska</div>
+                                                        <div class="item">Arizona</div>
+                                                        <div class="item">Arkansas</div>
+                                                        <div class="item">California</div>
+                                                        <div class="item">Colorado</div>
+                                                        <div class="item">Connecticut</div>
+                                                        <div class="item">Delaware</div>
+                                                        <div class="item">Florida</div>
+                                                        <div class="item">Georgia</div>
+                                                        <div class="item">Hawaii</div>
+                                                        <div class="item">Idaho</div>
+                                                        <div class="item">Illinois</div>
+                                                        <div class="item">Indiana</div>
+                                                        <div class="item">Iowa</div>
+                                                        <div class="item">Kansas</div>
+                                                        <div class="item">Kentucky</div>
+                                                        <div class="item">Louisiana</div>
+                                                        <div class="item">Maine</div>
+                                                        <div class="item">Maryland</div>
+                                                        <div class="item">Massachusetts</div>
+                                                        <div class="item">Michigan</div>
+                                                        <div class="item">Minnesota</div>
+                                                        <div class="item">Mississippi</div>
+                                                        <div class="item">Missouri</div>
+                                                        <div class="item">Montana</div>
+                                                        <div class="item">Nebraska</div>
+                                                        <div class="item">Nevada</div>
+                                                        <div class="item">New Hampshire</div>
+                                                        <div class="item">New Jersey</div>
+                                                        <div class="item">New Mexico</div>
+                                                        <div class="item">New York</div>
+                                                        <div class="item">North Carolina</div>
+                                                        <div class="item">North Dakota</div>
+                                                        <div class="item">Ohio</div>
+                                                        <div class="item">Oklahoma</div>
+                                                        <div class="item">Oregon</div>
+                                                        <div class="item">Pennsylvania</div>
+                                                        <div class="item">Rhode Island</div>
+                                                        <div class="item">South Carolina</div>
+                                                        <div class="item">South Dakota</div>
+                                                        <div class="item">Tennessee</div>
+                                                        <div class="item">Texas</div>
+                                                        <div class="item">Utah</div>
+                                                        <div class="item">Vermont</div>
+                                                        <div class="item">Virginia</div>
+                                                        <div class="item">Washington</div>
+                                                        <div class="item">West Virginia</div>
+                                                        <div class="item">Wisconsin</div>
+                                                        <div class="item">Wyoming</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-field text-left">
+                                                <div class="form-field__control">
+                                                    <label class="form-field__label">Email</label>
+                                                    <input type="text" name="email" class="form-field__input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-field text-left">
+                                                <div class="form-field__control">
+                                                    <label class="form-field__label">Phone</label>
+                                                    <input type="text" name="phone_number" class="form-field__input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Additional comments</label>
+                                            <textarea class="form-field__textarea" name="messages"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="btn-wrapper">
+                                        <button type="button" class="btn btn-green" onclick="validateForm();">Request a Quote</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Ends -->
+        <% include partials/footer.ejs%>
+</body>
+
+</html>

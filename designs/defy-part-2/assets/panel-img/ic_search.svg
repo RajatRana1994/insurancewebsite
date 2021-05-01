@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="25px" viewBox="0 0 24 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ic_search</title>
+    <desc>Created with Sketch.</desc>
+    <g id="panel-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-217" transform="translate(2.000000, 2.000000)">
+            <path d="M13.1641,3.1187 C16.1241,6.0787 16.1241,10.8777 13.1641,13.8377 C10.2051,16.7967 5.4061,16.7967 2.4461,13.8377 C-0.5139,10.8777 -0.5139,6.0787 2.4461,3.1187 C5.4061,0.1597 10.2051,0.1597 13.1641,3.1187 Z" id="Stroke-211" stroke="#DE4A44" stroke-width="1.5" stroke-linecap="round"></path>
+            <g id="Group-216" transform="translate(13.000000, 14.000000)">
+                <path d="M0.4888,0.2163 L6.5518,6.2793" id="Fill-213" fill="#666666"></path>
+                <path d="M2.44877844,2.17627844 L6.5518,6.2793" id="Stroke-215" stroke="#DE4A44" stroke-width="1.5" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

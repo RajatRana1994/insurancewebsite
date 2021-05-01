@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="68px" height="40px" viewBox="0 0 68 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ic_edit_favourites</title>
+    <desc>Created with Sketch.</desc>
+    <g id="panel-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" stroke="#333333" x="0.5" y="0.5" width="67" height="39" rx="19.5"></rect>
+        <g id="edit" transform="translate(24.000000, 10.000000)">
+            <g id="Group-2" fill="#333333">
+                <g id="edit-copy" transform="translate(0.500000, 0.500000)">
+                    <g id="Group" transform="translate(0.984615, 0.984615)">
+                        <polygon id="Rectangle" transform="translate(9.264964, 8.598297) rotate(135.000000) translate(-9.264964, -8.598297) " points="-0.735036271 6.59829706 15.735552 6.59829706 19.2649637 8.54287714 15.735552 10.5982971 -0.735036271 10.5982971"></polygon>
+                    </g>
+                </g>
+            </g>
+            <path d="M17.5,6.5 L14.5,3.5" id="Line" stroke="#FFFFFF" stroke-linecap="square"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,45 @@
+@font-face { 
+    font-display: swap; 
+    font-family: 'Basetica'; 
+    font-style: normal; 
+    font-weight: 200; 
+    src: local('Basetica Light'), local('Basetica-Light'), 
+        url('Basetica-Light.woff2') format('woff2'), 
+        url('Basetica-Light.woff') format('woff'); 
+}
+@font-face { 
+    font-display: swap; font-family: 'Basetica'; font-style: normal; 
+    font-weight: 300; 
+    src: local('Basetica Book'), local('Basetica-Book'), 
+        url('Basetica-Book.woff2') format('woff2'), 
+        url('Basetica-Book.woff') format('woff'); 
+} 
+@font-face { 
+    font-display: swap; 
+    font-family: 'Basetica'; 
+    font-style: normal;
+    font-weight: normal; 
+    src: local('Basetica Medium'), local('Basetica-Medium'), 
+        url('Basetica-Medium.woff2') format('woff2'), 
+        url('Basetica-Medium.woff') format('woff'); 
+} 
+
+@font-face { 
+    font-display: swap; 
+    font-family: 'Basetica'; 
+    font-style: normal; 
+    font-weight: 600; 
+    src: local('Basetica Bold'), local('Basetica-Bold'), 
+        url('Basetica-Bold.woff2') format('woff2'), 
+        url('Basetica-Bold.woff') format('woff'); 
+}
+
+@font-face { 
+    font-display: swap; 
+    font-family: 'Basetica'; 
+    font-style: normal; 
+    font-weight: bold; 
+    src: local('Basetica Black'), local('Basetica-Black'), 
+        url('Basetica-Black.woff2') format('woff2'), 
+        url('Basetica-Black.woff')
+}

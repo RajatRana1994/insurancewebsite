@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" href="assets/img/favicon.png" type="image/gif" sizes="16x16">
+      <title>Defy Insurance</title>
+      <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="assets/css/slick.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css"/>
+      <link href="assets/css/fonts/fonts.css" rel="stylesheet" type="text/css" />
+      <link href="assets/css/material-form.css" rel="stylesheet" type="text/css" />
+      <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+      <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+   </head>
+   <style>
+      .header{
+      background-color: #f9f8f4;
+      position: fixed;
+      z-index: 9999;
+      width: 100%;
+      }
+      #step-1 .section-page-header {
+      background: linear-gradient(180deg,#f9f8f4,rgba(249,248,244,0));
+      width: calc(100% - 34rem);
+      z-index: 1030;
+      position: fixed;
+      top: 6.25rem;
+      }
+   
+      .middle-section{
+      flex: 1 1;
+      }
+      .middle-section .section-wrapper {
+      margin-bottom: 50px;
+      padding-right: 3rem;
+      padding-left: 3.75rem;
+      position: relative;
+      }
+      .question-counter {
+      border: 1px solid #0a0c0e;
+      border-radius: 100%;
+      flex: 0 0 25px;
+      font-weight: 400;
+      margin-right: .75rem;
+      text-align: center;
+      height: 25px;
+      width: 25px;
+      }   
+      .question-header {
+      display: flex;
+      margin-bottom: 2rem;
+      }
+      .question-wrap > .form-group {
+      margin: 0;
+      }
+      .question-counter.complete {
+      background-color: #02a38a;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      background-size: 70% 70%;
+      border-color: #02a38a;
+      background-image: url(assets/img/svg/tick-white.svg);
+      }
+      .question-header {
+      display: flex;
+      margin-bottom: 2rem;
+      }
+      .question-wrap .vehicle-select {
+      margin-right: 0;
+      margin-left: 0;
+      width: 100%;
+      }
+      .question-text {
+      color: #34393f;
+      font-size: 1.375rem;
+      letter-spacing: 0;
+      line-height: 1.875rem;
+      text-align: left;
+      }
+      .question{
+      display: none;
+      }
+      .active-question .question{
+      display: block;
+      }
+      .active-question .question-wrap{
+      padding-bottom: 2rem;
+      }
+     
+      .scroll-wrap {
+      max-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+      height: calc(100vh - 6.5rem);
+      width: 100%;
+      }
+      .section-header {
+      margin-bottom: 10px;
+      }
+      .navigation-buttons.section-page-appear-active, 
+      .navigation-buttons.section-page-enter-active, 
+      .section-page-questions.section-page-appear-active, 
+      .section-page-questions.section-page-enter-active {
+      animation: slideUpVH .6s ease-out;
+      animation-delay: .2s;
+      }
+      .section-page-questions {
+      margin-top: 3rem;
+      }
+      #step-1 .section-page-questions {
+      margin-top: 8rem;
+      }
+      .legal-content, .legal-copy {
+      margin: 5rem auto 2.5rem;
+      max-width: 500px;
+      }
+   </style>
+   <body>
+      <header class="header header-light">
+         <div class="nav-toggler-wrapper d-inline-block d-lg-none">
+             <a class="nav-toggler">
+                 <span></span>
+                 <span></span>
+
+             </a>
+         </div>
+         <div class="header-left">
+
+             <div class="logo">
+                 <a class="header-brand" href="index.html"><img src="assets/img/logo.png" alt="Logo" /></a>
+             </div>
+         </div>
+
+         <div class="header-right">
+
+             <nav class="navigation">
+                 <ul class="header-nav">
+                     <li class="header-nav-item">
+                         <a class="header-nav-link" href="#"><span>Our Agency</span></a>
+                     </li>
+                     <li class="header-nav-item">
+                         <a class="header-nav-link" href="#"><span>Products</span></a>
+                         
+        <div class="mega-menu">
+         <div class="mega-menu-inner">
+             <ul class="mega-menu-list">
+                 <li  class="is-submenu-item is-dropdown-submenu-item">
+                     <a href="auto-insurance/home-auto-insurance.html" target="">Home &amp; Auto Insurance</a>
+                 </li>
+                 
+                 <li  class="is-dropdown-submenu-parent " >
+                     <a href="javascript:void()" >Auto Insurance</a>
+                     <ul class="submenu" >
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/liability-coverage.html">Auto Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/liability-coverage.html">Liability Coverage</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/comprehensive-coverage.html">Comprehensive Coverage</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/collision-coverage.html">Collision Coverage</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/uninsured-underinsured-motorist-coverage">Uninsured &amp; Underinsured Motorist Coverage</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/diminishing-deductible.html">Diminishing Deductible</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/accident-forgiveness.html">Accident Forgiveness</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/minor-violation-forgiveness.html">Minor Violation Forgiveness</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/roadside-assistance">Roadside Assistance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/specialty-auto-insurance.html">Specialty Auto Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/24-hour-customer-service.html">24-Hour Customer Service</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/towing.html">Towing</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/rental-reimbursement.html">Rental Reimbursement</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/personal-injury-protection-pip.html">Personal Injury Protection (PIP)</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="auto-insurance/medical-payments-coverage.html">Medical Payments Coverage</a>
+                             </li>
+                     </ul>
+                 </li>
+                 <li  class="is-dropdown-submenu-parent active">
+                     <a href="javascript:void()" target="">Home Insurance</a>
+                     <ul class="submenu" >
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="home-insurance/property-insurance.html">Property Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="home-insurance/high-value-homeowners-insurance.html">High Value Homeowners Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="home-insurance/homeowners-liability.html">Homeowners Liability</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="home-insurance/renters-insurance.html">Renters Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="home-insurance/condo-insurance.html">Condo Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="home-insurance/scheduled-property-insurance.html">Scheduled Property Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="home-insurance/landlords-insurance.html">Landlords Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="home-insurance/in-home-business-insurance.html">In-Home Business Insurance</a>
+                             </li>
+                     </ul>
+                 </li>
+                 <li  class="is-dropdown-submenu-parent">
+                     <a href="javascript:void()" target="">Other Personal Insurance</a>
+                     <ul class="submenu" >
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="other-personal-insurance/identity-theft.html">Identity Theft</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="other-personal-insurance/personal-umbrella-insurance.html">Personal Umbrella Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="other-personal-insurance/data-backup.html">Data Backup</a>
+                             </li>
+                     </ul>
+                 </li>
+                 <li  class="is-dropdown-submenu-parent" >
+                     <a href="javascript:void()" target="">Life Insurance</a>
+                     <ul class="submenu" >
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="life-insurance/individual-life-insurance.html">Individual Life Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="life-insurance/group-life-insurance.html">Group Life Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="life-insurance/long-term-care-insurance.html">Long-Term Care Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="life-insurance/mortgage-protection-insurance.html">Mortgage Protection Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="life-insurance/disability-insurance.html">Disability Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="life-insurance/second-to-die-policy">Second-To-Die Policy</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="life-insurance/key-person-key-men-insurance.html">Key Person (Key Men) Insurance</a>
+                             </li>
+                     </ul>
+                 </li>
+                 <li  class="is-dropdown-submenu-parent">
+                     <a href="javascript:void()" target="">Health Insurance</a>
+                     <ul class="submenu" >
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/individual-family-health-insurance.html">Individual &amp; Family Health Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/group-health-insurance.html">Group Health Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/dental-coverage">Dental Coverage</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/vision-coverage">Vision Coverage</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/long-term-care-insurance.html">Long-Term Care Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/temporary-health-insurance.html">Temporary Health Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/supplemental-insurance.html">Supplemental Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/disability-insurance.html">Disability Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/medical-expense-insurance.html">Medical Expense Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/child-health-insurance.html">Child Health Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/travel-health-insurance.html">Travel Health Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/prescription-insurance.html">Prescription Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="health-insurance/hsas.html">HSAs</a>
+                             </li>
+                     </ul>
+                 </li>
+                 <li  class="is-dropdown-submenu-parent">
+                     <a href="javascript:void()" target="">Financial Services</a>
+                     <ul class="submenu" >
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="financial-services/financial-planning.html">Financial Planning</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="financial-services/annuities.html">Annuities</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="financial-services/401k.html">401K</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="financial-services/retirement-plans.html">Retirement Plans</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="financial-services/mutual-funds.html">Mutual Funds</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="financial-services/pension-plans.html">Pension Plans</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="financial-services/profit-sharing-plans.html">Profit Sharing Plans</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="financial-services/traditional-roth-iras.html">Traditional &amp; Roth IRAs</a>
+                             </li>
+                     </ul>
+                 </li>
+                 <li  class="is-dropdown-submenu-parent" >
+                     <a href="javascript:void()" target="">Coverage for Specific Industries</a>
+                     <ul class="submenu" >
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/accounting-firm-insurance.html">Accounting Firm Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/alarm-contractors-insurance.html">Alarm Contractors Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/insurance-for-arborists">Insurance for Arborists</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/builders-risk-insurance.html">Builders Risk Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/car-dealership-insurance.html">Car Dealership Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/cargo-insurance-and-freight-insurance.html">Cargo Insurance and Freight Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/catering-insurance.html">Catering Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/cleaning-business-insurance.html">Cleaning Business Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/construction-insurance.html">Construction Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/consulting-firm-insurance.html">Consulting Firm Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/contractors-insurance.html">Contractors Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/specialty-trade-contractors-insurance.html">Specialty Trade Contractors Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/dental-practice-insurance.html">Dental Practice Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/dump-truck-insurance.html">Dump Truck Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/educational-facility-insurance.html">Educational Facility Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/financial-institution-insurance.html">Financial Institution Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/fleet-insurance.html">Fleet Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/garage-insurance.html">Garage Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/handyman-insurance.html">Handyman Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/hotel-insurance.html">Hotel Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/healthcare-facility-insurance.html">Healthcare Facility Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/healthcare-practice-insurance.html">Healthcare Practice Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/hvac-contractors-insurance.html">HVAC Contractors Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/law-firm-insurance.html">Law Firm Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/life-science-insurance.html">Life Science Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/limousine-services-insurance.html">Limousine Services Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/maintenance-contractors-insurance.html">Maintenance Contractors Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/manufacturing-insurance.html">Manufacturing Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/maritime-employers-insurance.html">Maritime Employers Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/media--advertising-insurance.html">Media &amp; Advertising Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/medical-malpractice-insurance.html">Medical Malpractice Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/minibus-insurance.html">Minibus Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/non-profit-insurance.html">Non Profit Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/nursing-home-insurance.html">Nursing Home Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/nursing-insurance.html">Nursing Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/orthotics--prosthetics-insurance.html">Orthotics &amp; Prosthetics Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/personal-trainer-insurance.html">Personal Trainer Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/pharmacist-insurance.html">Pharmacist Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/printers--publishers-insurance.html">Printers &amp; Publishers Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/railroad-contractors-insurance.html">Railroad Contractors Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/real-estate-investor-insurance.html">Real Estate Investor Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/real-estate-businesses-insurance.html">Real Estate Businesses Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/restaurant-insurance.html">Restaurant Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/retail-insurance.html">Retail Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/school-bus-contractors-insurance.html">School Bus Contractors Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/scrap-metal-insurance.html">Scrap Metal Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/security-guards-insurance.html">Security Guards Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/self-storage-insurance.html">Self-Storage Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/snow-plow-insurance.html">Snow Plow Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/specialized-truck-equipment-insurance.html">Specialized Truck Equipment Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/technology-services-insurance.html">Technology Services Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/tractor-insurance.html">Tractor Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/tow-trucks-insurance.html">Tow Trucks Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/uber-insurance.html">Uber Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/water-well-drillers-insurance.html">Water Well Drillers Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-specific-industries/veterinary-insurance.html">Veterinary Insurance</a>
+                             </li>
+                     </ul>
+                 </li>
+                 <li  class="is-dropdown-submenu-parent" >
+                     <a href="javascript:void()" target="">Coverage for Your Business</a>
+                     <ul class="submenu" >
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/bonds.html">Bonds</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/business-catastrophe-insurance.html">Business Catastrophe Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/business-owners-policy-bop.html">Business Owners Policy (BOP)</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/commercial-auto-insurance.html">Commercial Auto Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/commercial-general-liability.html">Commercial General Liability</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/commercial-property-insurance.html">Commercial Property Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/commercial-real-estate-insurance.html">Commercial Real Estate Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/commercial-umbrella-insurance.html">Commercial Umbrella Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/crime-insurance.html">Crime Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/cyber-liability-insurance.html">Cyber Liability Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/employment-practices-liability-insurance-epli.html">Employment Practices Liability Insurance (EPLI)</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/equipment-insurance.html">Equipment Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/errors-and-omissions-insurance.html">Errors and Omissions Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/fidelity-bonds.html">Fidelity Bonds</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/leave-management.html">Leave Management</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/loss-control-insurance.html">Loss Control Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/inland-marine-insurance.html">Inland Marine Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/marine-insurance.html">Marine Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/mechanical-breakdown-insurance.html">Mechanical Breakdown Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/office-insurance.html">Office Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/product-liability-insurance.html">Product Liability Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/professional-liability">Professional Liability</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/shipping-insurance.html">Shipping Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/small-business-insurance.html">Small Business Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/small-business-liability-insurance.html">Small Business Liability Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/storage-insurance.html">Storage Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/surety-bonds">Surety Bonds</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/technology-insurance.html">Technology Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/trailer-insurance.html">Trailer Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/transportation-insurance.html">Transportation Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/trucking-insurance-and-semi-truck-insurance.html">Trucking Insurance and Semi Truck Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/workers-compensation.html">Workers Compensation</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-business/van-insurance.html">Van Insurance</a>
+                             </li>
+                     </ul>
+                 </li>
+                 <li  class="is-dropdown-submenu-parent" >
+                     <a href="javascript:void()" target="">Coverage for Your Employees</a>
+                     <ul class="submenu" >
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-employees/small-business-retirement-plans.html">Small Business Retirement Plans</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-employees/employer-sponsored-retirement.html">Employer-Sponsored Retirement</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-employees/group-benefits.html">Group Benefits</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-employees/group-disability-insurance.html">Group Disability Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-employees/voluntary-benefits.html">Voluntary Benefits</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-employees/retiree-health-coverage.html">Retiree Health Coverage</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-employees/group-health-insurance.html">Group Health Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-employees/disability-insurance.html">Disability Insurance</a>
+                             </li>
+                             <li  class="is-submenu-item is-dropdown-submenu-item">
+                                 <a href="coverage-for-your-employees/individual-life-insurance.html">Individual Life Insurance</a>
+                             </li>
+                     </ul>
+                 </li>
+         </ul>
+         </div>
+     </div>
+                     </li>
+                     <li class="header-nav-item has-subMenu">
+                         <a class="header-nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"  aria-expanded="false" href="/contact.html"><span>Contact Us</span></a>
+                         <ul class="subMenu" aria-labelledby="dropdownMenuButton">
+                             <li class="subMenu-item"><a href="contact.html">Contact Us</a></li>
+                             <li class="subMenu-item"><a href="location.html">location</a></li>
+                             <li class="subMenu-item"><a href="get-a-quote.html">Get a Quote</a></li>
+                             <li class="subMenu-item"><a href="defy-insurance.html">Defy Insurance</a></li>
+                         </ul>
+                     </li>
+                     <li class="header-nav-item">
+                         <a class="header-nav-link" href="#"><span>Our Agency</span></a>
+                     </li>
+                 </ul>
+             </nav>
+
+             <div class="call-us">
+
+                 <a class="call-us-link" href="#">
+                     <svg x="0px" y="0px" viewBox="0 0 511.999 511.999" width="15" height="15" style="enable-background:new 0 0 511.999 511.999;">
+                     <g>
+                     <path
+                         d="M267.998,61.092c0.337,0,0.665-0.002,1-0.002c48.74,0,94.412,18.844,128.686,53.118 c34.557,34.557,53.459,80.618,53.225,129.697c-0.052,11.045,8.859,20.042,19.905,20.095c0.033,0,0.064,0,0.097,0 c10.999,0,19.944-8.892,19.997-19.905c0.285-59.837-22.778-116.009-64.94-158.172C384.134,44.088,328.43,21.09,269.004,21.09 c-0.365,0-0.733,0.001-1.099,0.002c-11.046,0.053-19.957,9.05-19.905,20.095C248.053,52.2,256.997,61.092,267.998,61.092z" />
+                     <path
+                         d="M511.949,412.553c-0.714-19.805-8.964-38.287-23.229-52.042c-27.931-26.933-51.332-42.481-73.646-48.929 c-30.75-8.887-59.226-0.805-84.641,24.016c-0.038,0.037-0.077,0.075-0.115,0.113l-27.066,26.865 c-16.811-9.444-49.491-30.227-85.234-65.971l-2.632-2.63c-35.508-35.507-56.423-68.373-65.939-85.253l26.839-27.041 c0.038-0.038,0.075-0.076,0.113-0.115c24.821-25.414,32.902-53.892,24.016-84.64c-6.448-22.313-21.995-45.715-48.929-73.646 C137.731,9.015,119.249,0.765,99.446,0.051C79.647-0.662,60.614,6.232,45.865,19.472l-0.574,0.516 c-0.267,0.239-0.527,0.486-0.78,0.739c-29.36,29.358-44.75,70.46-44.508,118.861c0.41,82.22,45.599,176.249,120.879,251.528 c0.063,0.063,0.125,0.124,0.188,0.186c14.152,14.132,30.22,28.116,47.762,41.567c8.765,6.721,21.319,5.063,28.041-3.702 c6.721-8.766,5.064-21.32-3.702-28.041c-16.236-12.448-31.041-25.333-44.004-38.296c-0.062-0.062-0.124-0.124-0.187-0.185 C81.095,294.683,40.361,211.239,40.002,139.387c-0.186-37.276,11.027-68.389,32.431-90.014l0.153-0.138 c14.538-13.048,36.548-12.254,50.108,1.808c51.781,53.698,48.031,79.049,25.151,102.511l-37.074,37.353 c-5.814,5.858-7.433,14.686-4.075,22.226c0.941,2.114,23.709,52.427,80.414,109.132l2.632,2.629 c56.698,56.699,107.011,79.466,109.125,80.408c7.54,3.359,16.368,1.739,22.226-4.075l37.346-37.068 c23.466-22.883,48.818-26.638,102.518,25.145c14.062,13.56,14.856,35.57,1.81,50.105l-0.141,0.157 c-21.45,21.229-52.231,32.433-89.102,32.433c-0.303,0-0.608,0-0.912-0.002c-29.471-0.147-63.598-8.226-98.689-23.362 c-10.142-4.376-21.911,0.3-26.286,10.443c-4.375,10.142,0.301,21.911,10.443,26.286c40.562,17.496,79.029,26.456,114.332,26.633 c0.375,0.001,0.748,0.002,1.122,0.002c47.914-0.001,88.608-15.379,117.738-44.51c0.254-0.254,0.5-0.513,0.739-0.78l0.519-0.577 C505.766,451.385,512.663,432.357,511.949,412.553z" />
+                     <path
+                         d="M369.457,142.549c-21.453-21.454-42.043-27.147-51.939-29.884c-10.649-2.945-21.663,3.299-24.607,13.946 c-2.944,10.646,3.299,21.663,13.946,24.607c8.092,2.238,20.32,5.62,34.316,19.615c13.473,13.473,17.052,25.636,19.421,33.685 l0.289,0.979c2.574,8.697,10.538,14.329,19.169,14.329c1.88,0.001,3.792-0.267,5.686-0.828 c10.591-3.135,16.636-14.263,13.5-24.854l-0.271-0.918C395.882,182.744,390.14,163.232,369.457,142.549z" />
+                     </g>
+                     </svg>
+                     <span>877-780-4626</span>
+                 </a>
+                 <div class="cta-btn">
+                     <a class="btn btn-primary btn-sm" href="#">
+                         <span>Get a Quote</span>
+                         <svg height="16px" viewBox="0 0 512 512.00007" width="16px"><path d="m509.785156 15.433594c-.773437-6.972656-6.277344-12.480469-13.253906-13.253906-118.703125-13.183594-219.890625 34.300781-302.429688 119.265624-23.621093 24.316407-44.109374 50.054688-61.597656 74.894532-29.597656-1.203125-62.414062 12.1875-85.679687 35.453125l-42.429688 42.429687c-4.800781 4.800782-5.777343 12.230469-2.382812 18.109375 3.394531 5.878907 10.3125 8.742188 16.875 6.988281 9.84375-2.644531 25.839843-5.71875 41.207031-6.433593 5.617188-.261719 10.285156-.179688 14.164062.117187-9.363281 18.007813-16.539062 33.09375-18.917968 36.871094-3.726563 5.929688-2.863282 13.644531 2.089844 18.597656l24.550781 24.550782c-35.730469 48.730468-36.320313 73.6875-36.195313 77.222656.261719 7.488281 6.101563 14.503906 15.773438 14.503906 8.375 0 32.394531-3.554688 76.121094-36.027344l25.824218 25.824219c4.988282 4.988281 12.78125 5.824219 18.71875 2.011719 4.039063-2.597656 18.238282-9.472656 35.265625-18.371094.28125 12.691406-1.441406 31.328125-5.179687 56.589844-2.125 14.328125 15.292968 22.953125 25.445312 12.804687l42.429688-42.429687c21.878906-21.878906 34.566406-54.375 33.628906-84.859375 26.167969-18.285157 53.390625-39.855469 78.808594-64.78125 84.15625-82.527344 130.179687-182.949219 117.164062-300.078125zm-28.695312 15.4375c2.394531 32.34375-.160156 63.695312-7.601563 94.035156-18.480469-5.820312-36.546875-17.253906-52.863281-33.566406-16.375-16.378906-27.832031-34.519532-33.628906-53.066406 30.328125-7.332032 61.699218-9.816407 94.09375-7.402344zm-422.953125 232.039062 9.898437-9.902344c11.972656-11.96875 27.542969-20.589843 43.027344-24.464843-8.089844 12.839843-15.300781 25.101562-21.660156 36.417969-9.824219-2.167969-20.746094-2.570313-31.265625-2.050782zm28.386719 72.230469c3.246093-6.40625 7.171874-14.4375 14.378906-28.054687l19.746094 19.75c-7.347657 7.882812-13.980469 15.371093-19.957032 22.46875zm73.355468-5.738281c10.929688-10.925782 21.410156-12.921875 34.429688-13.203125-.285156 12.6875-2.320313 23.523437-13.214844 34.417969-46.570312 46.570312-78.492188 67.367187-97.582031 76.648437 9.417969-19.457031 30.269531-51.765625 76.367187-97.863281zm16.871094 95.964844-15.46875-15.472657c7.0625-6 14.527344-12.652343 22.402344-20.027343l21.019531 21.019531c-13.820313 7.378906-19.585937 10.15625-27.953125 14.480469zm82.214844 18.570312-12.007813 12.011719c.972657-14.550781.636719-25.152344-.738281-33.332031 11.03125-6.210938 23.011719-13.253907 35.566406-21.132813-3.578125 15.859375-11.621094 31.257813-22.820312 42.453125zm-26.953125-48.167969-26.894531-26.898437c19.902343-21.898438 19.160156-43 19.160156-67.652344 0-8.285156-6.714844-15-15-15-23.03125 0-45.195313-1.234375-67.652344 19.164062l-25.683594-25.683593c70.132813-122.980469 151.199219-200.839844 242.28125-232.902344 7.210938 23.332031 21.246094 45.8125 41.191406 65.757813 19.851563 19.855468 42.226563 33.855468 65.457032 41.09375-32.25 90.582031-110.089844 171.597656-232.859375 242.121093zm0 0"/><path d="m378.199219 133.765625c-29.246094-29.242187-76.832031-29.242187-106.074219 0-29.242188 29.246094-29.242188 76.832031 0 106.074219 29.242188 29.242187 76.828125 29.246094 106.074219 0 29.242187-29.242188 29.242187-76.828125 0-106.074219zm-21.214844 84.859375c-17.546875 17.546875-46.101563 17.546875-63.644531 0-17.546875-17.546875-17.546875-46.097656 0-63.644531 17.542968-17.542969 46.09375-17.546875 63.644531 0 17.546875 17.546875 17.546875 46.097656 0 63.644531zm0 0"/></svg>
+                     </a>
+                 </div>
+
+
+             </div>
+
+         </div>
+
+     </header>
+      <main class="main">
+         <div class="dot-nav d-none d-md-flex" role="navigation">
+            <div class="dot-nav-item active" id="snVehiclesBtn">
+               <span class="nav-dot"></span>
+               <span class="nav-label">VEHICLES</span>
+            </div>
+            <div class="dot-nav-item" id="snDriversBtn">
+               <span class="nav-marker-line"></span>
+               <span class="nav-dot"></span>
+               <span class="nav-label">DRIVERS</span>
+            </div>
+            <div class="dot-nav-item" id="snResultsBtn">
+               <span class="nav-marker-line"></span>
+               <span class="nav-dot"></span>
+               <span class="nav-label">RESULTS</span>
+            </div>
+         </div>
+         <section class="middle-section">
+            <div id="scroll-container" class="scroll-wrap">
+               <div class="section-wrapper active" id="step-1">
+                  <div class="section-page-header">
+                     <div class="row">
+                        <div class="col align-items-center">
+                           <section class="section-header">
+                              <h2 class="section-title mini">We’ll make this fast &amp; simple.</h2>
+                           </section>
+                        </div>
+                        <div class="col-auto">
+                           <button class="summary-tab" style="border: 0;background: 0;" type="button">
+                              <svg width="16" height="16" viewBox="0 0 16 16">
+                                 <rect x="1" y="2" width="14" height="2"></rect>
+                                 <rect x="1" y="7" width="8" height="2"></rect>
+                                 <rect x="1" y="12" width="14" height="2"></rect>
+                              </svg>
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="section-page-questions">
+                     <div class="section-page-question-item active-question">
+                        <div class="question">
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">Let's add your vehicle.</h3>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="vehicle-select">
+                                          <div class="dropdown-select-wrap">
+                                             <div class="dropdown-select dropdown">
+                                                <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                   <label class="dropdown-label" for="yearYear-0Input-0">Vehicle year</label>
+                                                   <input id="YearList_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="2018" value="">
+                                                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                      <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                   </svg>
+                                                </span>
+                                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="YearList">
+                                                   <div class="item">2021</div>
+                                                   <div class="item">2020</div>
+                                                   <div class="item">2019</div>
+                                                   <div class="item">2018</div>
+                                                   <div class="item">2017</div>
+                                                   <div class="item">2016</div>
+                                                   <div class="item">2015</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="dropdown-select-wrap ">
+                                             <div class="dropdown-select dropdown">
+                                                <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                   <label class="dropdown-label" for="yearYear-0Input-0">Vehicle make</label>
+                                                   <input id="YearList_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select Maker" value="">
+                                                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                      <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                   </svg>
+                                                </span>
+                                                <div class="dropdown-menu" id="YearList">
+                                                   <div class="item">Acura</div>
+                                                   <div class="item">Alfa Romeo</div>
+                                                   <div class="item">Audi</div>
+                                                   <div class="item">BMW</div>
+                                                   <div class="item">Buick</div>
+                                                   <div class="item">Cadillac</div>
+                                                   <div class="item">Chevrolet</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="dropdown-select-wrap ">
+                                             <div class="dropdown-select dropdown">
+                                                <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                   <label class="dropdown-label" for="yearYear-0Input-0">Vehicle model<span class="sr-only">. Type to search for a Vehicle model, or arrow down to navigate the prefilled options.</span></label>
+                                                   <input id="ModelList_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select model" value="">
+                                                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                      <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                   </svg>
+                                                </span>
+                                                <div class="dropdown-menu" id="ModelList">
+                                                   <div class="item">Camaro 1</div>
+                                                   <div class="item">Camaro 2</div>
+                                                   <div class="item">Camaro 3</div>
+                                                   <div class="item">Camaro 4</div>
+                                                   <div class="item">Camaro 5</div>
+                                                   <div class="item">Camaro 6</div>
+                                                   <div class="item">Camaro 7</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="dropdown-select-wrap ">
+                                             <div class="dropdown-select dropdown">
+                                                <span aria-haspopup="true" aria-expanded="false" class="dropdown-select-header completed">
+                                                   <label class="dropdown-label" for="yearYear-0Input-0">Vehicle trim<span class="sr-only">. Type to search for a Vehicle model, or arrow down to navigate the prefilled options.</span></label>
+                                                   <input id="TrimList_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select trim" value="">
+                                                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                      <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                   </svg>
+                                                </span>
+                                                <div class="dropdown-menu" id="TrimList">
+                                                   <div class="item">LS 2dr 1</div>
+                                                   <div class="item">LS 2dr 2</div>
+                                                   <div class="item">LS 2dr 3</div>
+                                                   <div class="item">LS 2dr 4</div>
+                                                   <div class="item">LS 2dr 5</div>
+                                                   <div class="item">LS 2dr 6</div>
+                                                   <div class="item">LS 2dr 7</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="section-page-question-item">
+                        <div class="question-wrap">
+                           <div class="row">
+                              <div class="col-12 col-md-6">
+                                 <div class="question-header">
+                                    <span class="question-counter"><span>2</span></span>
+                                    <div>
+                                       <h3 class="question-text">Need to add another vehicle?</h3>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-12 col-md-6">
+                                 <div name="vehicles-2" class="form-group">
+                                    <label class="custom-control custom-block custom-checkbox">
+                                       <input type="checkbox" class="custom-control-input form-check-input">
+                                       <div class="custom-control-label-wrap">
+                                          <span class="custom-control-indicator"></span>
+                                          <div class="indicator-desc-row"><span class="custom-control-description">Yes, add another vehicle.</span></div>
+                                       </div>
+                                    </label>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="question">
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">Let's add your vehicle.</h3>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="vehicle-select">
+                                          <div class="dropdown-select-wrap">
+                                             <div class="dropdown-select dropdown">
+                                                <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                   <label class="dropdown-label" for="yearYear-0Input-0">Vehicle year</label>
+                                                   <input id="YearList_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="2018" value="">
+                                                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                      <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                   </svg>
+                                                </span>
+                                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="YearList">
+                                                   <div class="item">2021</div>
+                                                   <div class="item">2020</div>
+                                                   <div class="item">2019</div>
+                                                   <div class="item">2018</div>
+                                                   <div class="item">2017</div>
+                                                   <div class="item">2016</div>
+                                                   <div class="item">2015</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="dropdown-select-wrap ">
+                                             <div class="dropdown-select dropdown">
+                                                <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                   <label class="dropdown-label" for="yearYear-0Input-0">Vehicle make</label>
+                                                   <input id="YearList_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select Maker" value="">
+                                                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                      <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                   </svg>
+                                                </span>
+                                                <div class="dropdown-menu" id="YearList">
+                                                   <div class="item">Acura</div>
+                                                   <div class="item">Alfa Romeo</div>
+                                                   <div class="item">Audi</div>
+                                                   <div class="item">BMW</div>
+                                                   <div class="item">Buick</div>
+                                                   <div class="item">Cadillac</div>
+                                                   <div class="item">Chevrolet</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="dropdown-select-wrap ">
+                                             <div class="dropdown-select dropdown">
+                                                <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                   <label class="dropdown-label" for="yearYear-0Input-0">Vehicle model<span class="sr-only">. Type to search for a Vehicle model, or arrow down to navigate the prefilled options.</span></label>
+                                                   <input id="ModelList_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select model" value="">
+                                                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                      <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                   </svg>
+                                                </span>
+                                                <div class="dropdown-menu" id="ModelList">
+                                                   <div class="item">Camaro 1</div>
+                                                   <div class="item">Camaro 2</div>
+                                                   <div class="item">Camaro 3</div>
+                                                   <div class="item">Camaro 4</div>
+                                                   <div class="item">Camaro 5</div>
+                                                   <div class="item">Camaro 6</div>
+                                                   <div class="item">Camaro 7</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="dropdown-select-wrap ">
+                                             <div class="dropdown-select dropdown">
+                                                <span aria-haspopup="true" aria-expanded="false" class="dropdown-select-header completed">
+                                                   <label class="dropdown-label" for="yearYear-0Input-0">Vehicle trim<span class="sr-only">. Type to search for a Vehicle model, or arrow down to navigate the prefilled options.</span></label>
+                                                   <input id="TrimList_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select trim" value="">
+                                                   <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                      <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                   </svg>
+                                                </span>
+                                                <div class="dropdown-menu" id="TrimList">
+                                                   <div class="item">LS 2dr 1</div>
+                                                   <div class="item">LS 2dr 2</div>
+                                                   <div class="item">LS 2dr 3</div>
+                                                   <div class="item">LS 2dr 4</div>
+                                                   <div class="item">LS 2dr 5</div>
+                                                   <div class="item">LS 2dr 6</div>
+                                                   <div class="item">LS 2dr 7</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="">
+                     <div class="navigation-buttons d-flex justify-content-end">
+                        <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="step-2">
+                           <span>
+                              <span>Save &amp; continue</span>
+                              <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                 <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                              </svg>
+                           </span>
+                        </button>
+                     </div>
+                  </div>
+               </div>
+               <div class="section-wrapper" id="step-2">
+                  <div class="section-page-header">
+                     <div class="row">
+                        <div class="col align-items-center">
+                           <section class="section-header">
+                              <h2 class="section-title mini">Tell us about your vehicle.</h2>
+                           </section>
+                        </div>
+                        <div class="col-auto">
+                           <button class="summary-tab" style="border: 0;background: 0;" type="button">
+                              <svg width="16" height="16" viewBox="0 0 16 16">
+                                 <rect x="1" y="2" width="14" height="2"></rect>
+                                 <rect x="1" y="7" width="8" height="2"></rect>
+                                 <rect x="1" y="12" width="14" height="2"></rect>
+                              </svg>
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="section-page-questions">
+                     <div class="section-page-question-item active-question">
+                        <div class="question">
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">Do you own or lease?</h3>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div data-cy="radio_form" class="form-group-radiobox stacked form-group">
+                                          <label for="ownership-0-0" data-cy="ownership-0RadioButton" class="custom-control custom-block custom-radio">
+                                             <input id="ownership-0-0" name="demo" type="radio" class="custom-control-input form-check-input" value="0" checked="">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Own - paid in full</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="ownership-2-0" data-cy="ownership-0RadioButton" class="custom-control custom-block custom-radio">
+                                             <input id="ownership-2-0" name="demo" type="radio" class="custom-control-input form-check-input" >
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Own - making payments</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="ownership-1-0" data-cy="ownership-0RadioButton" class="custom-control custom-block custom-radio">
+                                             <input id="ownership-1-0" name="demo" type="radio" class="custom-control-input form-check-input">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Lease</span></div>
+                                             </div>
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">What do you mostly use your car for?</h3>
+                                             <p>Most drivers choose "Personal/Commuting.</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="form-group-radiobox stacked form-group">
+                                          <label for="primary_use-0-0" data-cy="primary_use-0RadioButton" class="custom-control custom-block custom-radio">
+                                             <input id="primary_use-0-0" name="primary" type="radio" class="custom-control-input form-check-input" value="0" checked="">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Personal/Commuting</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="primary_use-1-0" data-cy="primary_use-0RadioButton" class="custom-control custom-block custom-radio">
+                                             <input id="primary_use-1-0" name="primary" type="radio" class="custom-control-input form-check-input" value="1">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Pleasure</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="primary_use-4-0" data-cy="primary_use-0RadioButton" class="custom-control custom-block custom-radio">
+                                             <input id="primary_use-4-0" name="primary" type="radio" class="custom-control-input form-check-input" value="4">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Farm</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="primary_use-2-0" data-cy="primary_use-0RadioButton" class="custom-control custom-block custom-radio">
+                                             <input id="primary_use-2-0" name="primary" type="radio" class="custom-control-input form-check-input" value="2">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Business/Rideshare</span></div>
+                                             </div>
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">How many miles do you drive?</h3>
+                                             <p>Most drivers average 11,000 miles per year.</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="row">
+                                          <div class="col-12 col-md-6">
+                                             <div class="form-field text-left">
+                                                <div class="form-field__control">
+                                                   <label class="form-field__label">Estimated mileage</label>
+                                                   <input type="text" class="form-field__input">
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-12 col-md-6">
+                                             <div class="dropdown-select-wrap">
+                                                <div class="dropdown-select dropdown">
+                                                   <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                      <label class="dropdown-label" for="yearYear-0Input-0">Frequency</label>
+                                                      <input id="Perlist_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="per pear" value="">
+                                                      <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                         <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                      </svg>
+                                                   </span>
+                                                   <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="Perlist">
+                                                      <div class="item">per day</div>
+                                                      <div class="item">per week</div>
+                                                      <div class="item">per month</div>
+                                                      <div class="item">per year</div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Navifation Buttons -->
+                  <div class="navigation-buttons">
+                     <div class="row">
+                        <div class="col-12 col-md-6">
+                           <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-1">
+                              <span>
+                                 <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                    <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                 </svg>
+                                 <span class="text-dark">Back</span>
+                              </span>
+                           </button>
+                        </div>
+                        <div class="col-12 col-md-6">
+                           <div class="d-flex justify-content-end">
+                              <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="step-3" >
+                                 <span>
+                                    <span>Save &amp; continue</span>
+                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                       <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                    </svg>
+                                 </span>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- //Navifation Buttons -->
+               </div>
+               <div class="section-wrapper" id="step-3">
+                  <div class="section-page-header">
+                     <div class="row">
+                        <div class="col align-items-center">
+                           <section class="section-header">
+                              <h2 class="section-title mini">Next, let's add your drivers.</h2>
+                           </section>
+                        </div>
+                        <div class="col-auto">
+                           <button class="summary-tab" style="border: 0;background: 0;" type="button">
+                              <svg width="16" height="16" viewBox="0 0 16 16">
+                                 <rect x="1" y="2" width="14" height="2"></rect>
+                                 <rect x="1" y="7" width="8" height="2"></rect>
+                                 <rect x="1" y="12" width="14" height="2"></rect>
+                              </svg>
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="section-page-questions">
+                     <div class="section-page-question-item active-question">
+                        <div class="question">
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">Tell us a little about yourself.</h3>
+                                             <p>We take your privacy seriously and your information is always secure with us.</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="">
+                                          <div class="form-field text-left">
+                                             <div class="form-field__control">
+                                                <label class="form-field__label">First Name</label>
+                                                <input type="text" class="form-field__input">
+                                             </div>
+                                          </div>
+                                          <div class="form-field text-left">
+                                             <div class="form-field__control">
+                                                <label class="form-field__label">Last Name</label>
+                                                <input type="text" class="form-field__input">
+                                             </div>
+                                          </div>
+                                          <div class="form-field text-left">
+                                             <div class="form-field__control">
+                                                <label class="form-field__label">Birthdate</label>
+                                                <input type="text" class="form-field__input birthdate" onkeydown="return false">
+                                             </div>
+                                          </div>
+                                          <div class="row">
+                                             <div class="col-md-8 col-12">
+                                                <div class="form-field text-left">
+                                                   <div class="form-field__control">
+                                                      <label class="form-field__label">Phone Number</label>
+                                                      <input type="text" class="form-field__input">
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div class="col-md-4 col-12">
+                                                <div class="form-field text-left">
+                                                   <div class="form-field__control">
+                                                      <label class="form-field__label">Unit #</label>
+                                                      <input type="text" class="form-field__input">
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Navifation Buttons -->
+                  <div class="navigation-buttons">
+                     <div class="row">
+                        <div class="col-12 col-md-6">
+                           <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-2">
+                              <span>
+                                 <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                    <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                 </svg>
+                                 <span class="text-dark">Back</span>
+                              </span>
+                           </button>
+                        </div>
+                        <div class="col-12 col-md-6">
+                           <div class="d-flex justify-content-end">
+                              <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="step-4">
+                                 <span>
+                                    <span>Save &amp; continue</span>
+                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                       <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                    </svg>
+                                 </span>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- //Navifation Buttons -->
+               </div>
+               <div class="section-wrapper" id="step-4">
+                  <div class="section-page-header">
+                     <div class="row">
+                        <div class="col align-items-center">
+                           <section class="section-header">
+                              <h2 class="section-title mini">Tell us about your drivers.</h2>
+                           </section>
+                        </div>
+                        <div class="col-auto">
+                           <button class="summary-tab" style="border: 0;background: 0;" type="button">
+                              <svg width="16" height="16" viewBox="0 0 16 16">
+                                 <rect x="1" y="2" width="14" height="2"></rect>
+                                 <rect x="1" y="7" width="8" height="2"></rect>
+                                 <rect x="1" y="12" width="14" height="2"></rect>
+                              </svg>
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="section-page-questions">
+                     <div class="section-page-question-item active-question">
+                        <div class="question">
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">What's your gender?</h3>
+                                             <p>Please select the gender listed on your driver's license.</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="form-group-radiobox form-group">
+                                          <div class="row">
+                                             <div class="col-12 col-md-6">
+                                                <label for="gender-0-0" class="custom-control custom-block custom-radio">
+                                                   <input id="gender-0-0" name="gender" type="radio" class="custom-control-input form-check-input" value="0">
+                                                   <div class="custom-control-label-wrap">
+                                                      <span class="custom-control-indicator"></span>
+                                                      <div class="indicator-desc-row"><span class="custom-control-description">Male</span></div>
+                                                   </div>
+                                                </label>
+                                             </div>
+                                             <div class="col-12 col-md-6">
+                                                <label for="gender-1-0" class="custom-control custom-block custom-radio">
+                                                   <input id="gender-1-0" name="gender" type="radio" class="custom-control-input form-check-input" value="1">
+                                                   <div class="custom-control-label-wrap">
+                                                      <span class="custom-control-indicator"></span>
+                                                      <div class="indicator-desc-row"><span class="custom-control-description">Female</span></div>
+                                                   </div>
+                                                </label>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">What's your marital status?</h3>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div  class="form-group-radiobox stacked form-group">
+                                          <label for="marital_status-0-0" data-cy="marital_status-0RadioButton" class="custom-control custom-block custom-radio">
+                                             <input id="marital_status-0-0" name="marital_status" type="radio" class="custom-control-input form-check-input" value="0">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Single</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="marital_status-1-0" data-cy="marital_status-0RadioButton" class="custom-control custom-block custom-radio">
+                                             <input id="marital_status-1-0" name="marital_status" type="radio" class="custom-control-input form-check-input" value="1" checked="">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Married</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="marital_status-2-0" data-cy="marital_status-0RadioButton" class="custom-control custom-block custom-radio">
+                                             <input id="marital_status-2-0" name="marital_status" type="radio" class="custom-control-input form-check-input" value="2">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Divorced</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="marital_status-3-0" data-cy="marital_status-0RadioButton" class="custom-control custom-block custom-radio">
+                                             <input id="marital_status-3-0" name="marital_status" type="radio" class="custom-control-input form-check-input" value="3">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Widowed</span></div>
+                                             </div>
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">Do you own or rent your home?</h3>
+                                             <p class="question-byline">Select "Other" if you live with a family member or are not listed on a lease agreement.</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="form-group-radiobox stacked form-group">
+                                          <label for="residence_ownership-0-0"  class="custom-control custom-block custom-radio">
+                                             <input id="residence_ownership-0-0" name="residence_ownership" type="radio" class="custom-control-input form-check-input">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Own home</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="residence_ownership-1-0"  class="custom-control custom-block custom-radio">
+                                             <input id="residence_ownership-1-0" name="residence_ownership" type="radio" class="custom-control-input form-check-input">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Own condo</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="residence_ownership-2-0"  class="custom-control custom-block custom-radio">
+                                             <input id="residence_ownership-2-0" name="residence_ownership" type="radio" class="custom-control-input form-check-input">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Rent</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="residence_ownership-3-0"  class="custom-control custom-block custom-radio">
+                                             <input id="residence_ownership-3-0" name="residence_ownership" type="radio" class="custom-control-input form-check-input">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Other</span></div>
+                                             </div>
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">What's your credit score?</h3>
+                                             <p class="question-byline">Select "Good" if you are unsure.</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="form-group-radiobox stacked form-group">
+                                          <label for="credit_score-0-0" class="custom-control custom-block custom-radio">
+                                             <input id="credit_score-0-0" name="credit_score" type="radio" class="custom-control-input form-check-input">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Excellent (720+)</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="credit_score-1-0"  class="custom-control custom-block custom-radio">
+                                             <input id="credit_score-1-0" name="credit_score" type="radio" class="custom-control-input form-check-input" >
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Good (680-719)</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="credit_score-2-0"  class="custom-control custom-block custom-radio">
+                                             <input id="credit_score-2-0" name="credit_score" type="radio" class="custom-control-input form-check-input" >
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Average (580-679)</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="credit_score-4-0"  class="custom-control custom-block custom-radio">
+                                             <input id="credit_score-4-0" name="credit_score" type="radio" class="custom-control-input form-check-input">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Poor (Below 580)</span></div>
+                                             </div>
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">What's your highest level of education?</h3>
+                                             <p class="question-byline">Select the highest level you have attempted.</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="form-group-radiobox stacked form-group">
+                                          <label for="education-4-0"  class="custom-control custom-block custom-radio">
+                                             <input id="education-4-0" name="education" type="radio" class="custom-control-input form-check-input" >
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Doctoral degree</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="education-3-0"  class="custom-control custom-block custom-radio">
+                                             <input id="education-3-0" name="education" type="radio" class="custom-control-input form-check-input" >
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Master's degree</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="education-2-0"  class="custom-control custom-block custom-radio">
+                                             <input id="education-2-0" name="education" type="radio" class="custom-control-input form-check-input" >
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Bachelor's degree</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="education-1-0"  class="custom-control custom-block custom-radio">
+                                             <input id="education-1-0" name="education" type="radio" class="custom-control-input form-check-input">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">High school diploma / GED</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="education-0-0"  class="custom-control custom-block custom-radio">
+                                             <input id="education-0-0" name="education" type="radio" class="custom-control-input form-check-input" >
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">No diploma</span></div>
+                                             </div>
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">Are you currently insured?</h3>
+                                             <p class="question-byline">Select "Yes" if you have active car insurance as of today.</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="form-group-radiobox form-group">
+                                          <div class="row">
+                                             <div class="col-12 col-md-6">
+                                                <label for="currently_insured-0-0"  class="custom-control custom-block custom-radio">
+                                                   <input id="currently_insured-0-0" name="currently_insured" type="radio" class="custom-control-input form-check-input">
+                                                   <div class="custom-control-label-wrap">
+                                                      <span class="custom-control-indicator"></span>
+                                                      <div class="indicator-desc-row"><span class="custom-control-description">No</span></div>
+                                                   </div>
+                                                </label>
+                                             </div>
+                                             <div class="col-12 col-md-6">
+                                                <label for="currently_insured-1-0"  class="custom-control custom-block custom-radio">
+                                                   <input id="currently_insured-1-0" name="currently_insured" type="radio" class="custom-control-input form-check-input">
+                                                   <div class="custom-control-label-wrap">
+                                                      <span class="custom-control-indicator"></span>
+                                                      <div class="indicator-desc-row"><span class="custom-control-description">Yes</span></div>
+                                                   </div>
+                                                </label>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">Who is your current carrier?</h3>
+                                             <p class="question-byline">Select "Other" if your company is not on the list.</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="dropdown-select-wrap ">
+                                          <div class="dropdown-select dropdown">
+                                             <span aria-haspopup="true" aria-expanded="false" class="dropdown-select-header completed">
+                                                <label class="dropdown-label" for="yearYear-0Input-0">Vehicle trim<span class="sr-only">. Type to search for a Vehicle model, or arrow down to navigate the prefilled options.</span></label>
+                                                <input id="TrimList_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select trim" value="">
+                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                   <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                </svg>
+                                             </span>
+                                             <div class="dropdown-menu" id="TrimList">
+                                                <div class="item">LS 2dr 1</div>
+                                                <div class="item">LS 2dr 2</div>
+                                                <div class="item">LS 2dr 3</div>
+                                                <div class="item">LS 2dr 4</div>
+                                                <div class="item">LS 2dr 5</div>
+                                                <div class="item">LS 2dr 6</div>
+                                                <div class="item">LS 2dr 7</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header m-0">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">Any accidents or tickets in the last 3 years?</h3>
+                                             <p class="question-byline">Select "Yes" for no-fault accidents and weather or vandalism incidents.</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="form-group-radiobox form-group">
+                                          <div class="row">
+                                             <div class="col-12 col-md-6">
+                                                <label for="acc-1"  class="custom-control custom-block custom-radio">
+                                                   <input id="acc-1" name="acc" type="radio" class="custom-control-input form-check-input">
+                                                   <div class="custom-control-label-wrap">
+                                                      <span class="custom-control-indicator"></span>
+                                                      <div class="indicator-desc-row"><span class="custom-control-description">Yes</span></div>
+                                                   </div>
+                                                </label>
+                                             </div>
+                                             <div class="col-12 col-md-6">
+                                                <label for="acc-2"  class="custom-control custom-block custom-radio">
+                                                   <input id="acc-2" name="acc" type="radio" class="custom-control-input form-check-input">
+                                                   <div class="custom-control-label-wrap">
+                                                      <span class="custom-control-indicator"></span>
+                                                      <div class="indicator-desc-row"><span class="custom-control-description">Yes</span></div>
+                                                   </div>
+                                                </label>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="question-wrap incidents-question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <h3 class="question-text fake-counter-space">How many of these did you have?</h3>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="violations-wrap">
+                                          <div class="violations-categories">
+                                             <div class="violation-type d-flex align-items-center justify-content-between">
+                                                <div>
+                                                   <h6 class="violation-title">Accidents that were my fault</h6>
+                                                </div>
+                                                <div class="counter-wrap d-flex align-items-center">
+                                                   <button type="button" disabled="" id="icRemoveBtn2" class="decrease-count btn-counter btn-circle-lg btn btn-primary disabled"><span>-</span></button>
+                                                   <div class="incident-count">0</div>
+                                                   <button type="button" id="icAddBtn2" class="increase-count btn-counter btn-circle-lg btn btn-primary"><span>+</span></button>
+                                                </div>
+                                             </div>
+                                             <div class="violation-type d-flex align-items-center justify-content-between">
+                                                <div>
+                                                   <h6 class="violation-title">Accidents that were not my fault</h6>
+                                                </div>
+                                                <div class="counter-wrap d-flex align-items-center">
+                                                   <button type="button" disabled="" id="icRemoveBtn24" class="decrease-count btn-counter btn-circle-lg btn btn-primary disabled"><span>-</span></button>
+                                                   <div class="incident-count">0</div>
+                                                   <button type="button" id="icAddBtn24" class="increase-count btn-counter btn-circle-lg btn btn-primary"><span>+</span></button>
+                                                </div>
+                                             </div>
+                                             <div class="violation-type d-flex align-items-center justify-content-between">
+                                                <div>
+                                                   <h6 class="violation-title">Claims</h6>
+                                                   <span class="text-gray text-sm">(Weather, vandalism, uninsured motorist damage, etc.)</span>
+                                                </div>
+                                                <div class="counter-wrap d-flex align-items-center">
+                                                   <button type="button" disabled="" id="icRemoveBtn25" class="decrease-count btn-counter btn-circle-lg btn btn-primary disabled"><span>-</span></button>
+                                                   <div class="incident-count">0</div>
+                                                   <button type="button" id="icAddBtn25" class="increase-count btn-counter btn-circle-lg btn btn-primary"><span>+</span></button>
+                                                </div>
+                                             </div>
+                                             <div class="violation-type d-flex align-items-center justify-content-between">
+                                                <div>
+                                                   <h6 class="violation-title">Tickets/Violations</h6>
+                                                </div>
+                                                <div class="counter-wrap d-flex align-items-center">
+                                                   <button type="button" disabled="" id="icRemoveBtnViolations" class="decrease-count btn-counter btn-circle-lg btn btn-primary disabled"><span>-</span></button>
+                                                   <div class="incident-count">0</div>
+                                                   <button type="button" id="icAddBtnViolations" class="increase-count btn-counter btn-circle-lg btn btn-primary"><span>+</span></button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">Where would you like to receive a copy of your quotes?</h3>
+                                             <p class="question-byline">Honestly, we won't spam you.</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="form-field text-left">
+                                          <div class="form-field__control">
+                                             <label class="form-field__label">Email</label>
+                                             <input type="text" class="form-field__input">
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">Do any of these discounts apply?</h3>
+                                             <p class="question-byline">Check all that apply (optional).</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="custom-block-wrap form-group">
+                                          <label for="currently_employed" class="custom-control custom-block custom-checkbox">
+                                             <input id="currently_employed" type="checkbox" class="custom-control-input form-check-input" checked="">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Employed full time</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="active_military" class="custom-control custom-block custom-checkbox">
+                                             <input id="active_military" disabled="" type="checkbox" class="custom-control-input form-check-input">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Active military or veteran</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="pay_up_front" class="custom-control custom-block custom-checkbox">
+                                             <input id="pay_up_front" type="checkbox" class="custom-control-input form-check-input">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Pay in full at the start of policy</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="auto_pay" class="custom-control custom-block custom-checkbox">
+                                             <input id="auto_pay" type="checkbox" class="custom-control-input form-check-input" checked="">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Set auto-pay from my bank account</span></div>
+                                             </div>
+                                          </label>
+                                          <label for="paperless" class="custom-control custom-block custom-checkbox">
+                                             <input id="paperless" type="checkbox" class="custom-control-input form-check-input" checked="">
+                                             <div class="custom-control-label-wrap">
+                                                <span class="custom-control-indicator"></span>
+                                                <div class="indicator-desc-row"><span class="custom-control-description">Go paperless</span></div>
+                                             </div>
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="section-page-question">
+                              <div class="question-wrap">
+                                 <div class="row">
+                                    <div class="col-12 col-md-6">
+                                       <div class="question-header">
+                                          <span class="question-counter complete"></span>
+                                          <div>
+                                             <h3 class="question-text">How did you hear about us?</h3>
+                                             <p class="question-byline">We'd like to know who to thank! (optional)</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                       <div class="dropdown-select-wrap ">
+                                          <div class="dropdown-select dropdown">
+                                             <span aria-haspopup="true" aria-expanded="false" class="dropdown-select-header completed">
+                                                <label class="dropdown-label" for="yearYear-0Input-0">We'd like to know who to thank!></label>
+                                                <input id="TrimList_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select trim" value="">
+                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                   <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                </svg>
+                                             </span>
+                                             <div class="dropdown-menu" id="TrimList">
+                                                <div class="item">LS 2dr 1</div>
+                                                <div class="item">LS 2dr 2</div>
+                                                <div class="item">LS 2dr 3</div>
+                                                <div class="item">LS 2dr 4</div>
+                                                <div class="item">LS 2dr 5</div>
+                                                <div class="item">LS 2dr 6</div>
+                                                <div class="item">LS 2dr 7</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="section-page-header">
+                    <div class="row">
+                       <div class="col align-items-center">
+                          <section class="section-header">
+                            <span>(Driver 2 of 2)</span>
+                             <h2 class="section-title mini">Next, add your spouse.</h2>
+                             <p>Most insurance companies require you to add your spouse to the policy, and this information helps us get you an accurate quote.</p>
+                          </section>
+                       </div>
+                       <div class="col-auto">
+                          <button class="summary-tab" style="border: 0;background: 0;" type="button">
+                             <svg width="16" height="16" viewBox="0 0 16 16">
+                                <rect x="1" y="2" width="14" height="2"></rect>
+                                <rect x="1" y="7" width="8" height="2"></rect>
+                                <rect x="1" y="12" width="14" height="2"></rect>
+                             </svg>
+                          </button>
+                       </div>
+                    </div>
+                 </div>
+                  <div class="section-page-questions section-page-questions-2 mt-3">
+                    <div class="section-page-question-item active-question">
+                       <div class="question">
+                          <div class="section-page-question">
+                             <div class="question-wrap">
+                                <div class="row">
+                                   <div class="col-12 col-md-6">
+                                      <div class="question-header">
+                                         <span class="question-counter complete"></span>
+                                         <div>
+                                            <h3 class="question-text">Tell us a little about them.</h3>
+                                         </div>
+                                      </div>
+                                   </div>
+                                   <div class="col-12 col-md-6">
+                                    <div class="">
+                                        <div class="form-field text-left">
+                                           <div class="form-field__control">
+                                              <label class="form-field__label">First Name</label>
+                                              <input type="text" class="form-field__input">
+                                           </div>
+                                        </div>
+                                        <div class="form-field text-left">
+                                           <div class="form-field__control">
+                                              <label class="form-field__label">Last Name</label>
+                                              <input type="text" class="form-field__input">
+                                           </div>
+                                        </div>
+                                        <div class="form-field text-left">
+                                           <div class="form-field__control">
+                                              <label class="form-field__label">Birthdate</label>
+                                              <input type="text" class="form-field__input birthdate" onkeydown="return false">
+                                           </div>
+                                        </div>
+                                        <div class="row">
+                                           <div class="col-md-8 col-12">
+                                              <div class="form-field text-left">
+                                                 <div class="form-field__control">
+                                                    <label class="form-field__label">Phone Number</label>
+                                                    <input type="text" class="form-field__input">
+                                                 </div>
+                                              </div>
+                                           </div>
+                                           <div class="col-md-4 col-12">
+                                              <div class="form-field text-left">
+                                                 <div class="form-field__control">
+                                                    <label class="form-field__label">Unit #</label>
+                                                    <input type="text" class="form-field__input">
+                                                 </div>
+                                              </div>
+                                           </div>
+                                        </div>
+                                     </div>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                         <div class="section-page-question">
+                            <div class="question-wrap">
+                               <div class="row">
+                                  <div class="col-12 col-md-6">
+                                     <div class="question-header">
+                                        <span class="question-counter complete"></span>
+                                        <div>
+                                           <h3 class="question-text">What's their gender?</h3>
+                                           <p>Please select the gender listed on their driver's license.</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="col-12 col-md-6">
+                                     <div class="form-group-radiobox form-group">
+                                        <div class="row">
+                                           <div class="col-12 col-md-6">
+                                              <label for="gender-0-0" class="custom-control custom-block custom-radio">
+                                                 <input id="gender-0-0" name="gender" type="radio" class="custom-control-input form-check-input" value="0">
+                                                 <div class="custom-control-label-wrap">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <div class="indicator-desc-row"><span class="custom-control-description">Male</span></div>
+                                                 </div>
+                                              </label>
+                                           </div>
+                                           <div class="col-12 col-md-6">
+                                              <label for="gender-1-0" class="custom-control custom-block custom-radio">
+                                                 <input id="gender-1-0" name="gender" type="radio" class="custom-control-input form-check-input" value="1">
+                                                 <div class="custom-control-label-wrap">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <div class="indicator-desc-row"><span class="custom-control-description">Female</span></div>
+                                                 </div>
+                                              </label>
+                                           </div>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="section-page-question">
+                            <div class="question-wrap">
+                               <div class="row">
+                                  <div class="col-12 col-md-6">
+                                     <div class="question-header">
+                                        <span class="question-counter complete"></span>
+                                        <div>
+                                           <h3 class="question-text">Need to add another driver?</h3>
+                                           <p>You will be able to add up to a total of 4 drivers.</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="col-12 col-md-6">
+                                     <div class="form-group-radiobox form-group">
+                                        <div class="row">
+                                           <div class="col-12 col-md-6">
+                                              <label for="another_2" class="custom-control custom-block custom-radio">
+                                                 <input id="another_2" name="another " type="radio" class="custom-control-input form-check-input" value="0">
+                                                 <div class="custom-control-label-wrap">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <div class="indicator-desc-row"><span class="custom-control-description">Yes</span></div>
+                                                 </div>
+                                              </label>
+                                           </div>
+                                           <div class="col-12 col-md-6">
+                                              <label for="another_1" class="custom-control custom-block custom-radio">
+                                                 <input id="another_1" name="another " type="radio" class="custom-control-input form-check-input" value="1">
+                                                 <div class="custom-control-label-wrap">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <div class="indicator-desc-row"><span class="custom-control-description">No</span></div>
+                                                 </div>
+                                              </label>
+                                           </div>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                        </div>
+                    </div>
+                 </div>
+                  <!-- Navifation Buttons -->
+                  <div class="navigation-buttons">
+                     <div class="row">
+                        <div class="col-12 col-md-6">
+                           <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="3">
+                              <span>
+                                 <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                    <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                 </svg>
+                                 <span class="text-dark">Back</span>
+                              </span>
+                           </button>
+                        </div>
+                        <div class="col-12 col-md-6">
+                           <div class="d-flex justify-content-end">
+                              <button type="button" class="btn-rounded btn-continue btn btn-primary submit-btn">
+                                 <span>
+                                    <span style="font-size: 24px;margin-right: 5px;">Show My Quotes </span>
+                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                       <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                    </svg>
+                                 </span>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- //Navifation Buttons -->
+               </div>
+            </div>
+         </section>
+
+         <aside class="right-summary-rail d-xl-block d-none">
+			<div class="aside-resources">
+				<h4>Resources</h4>
+				<ul class="resources-list right-menu list-unstyled">
+					<li class="resources-item"><a href="">3 insurance tips for your road trip</a></li>
+					<li class="resources-item"><a href="">Auto insurance road map</a></li>
+					<li class="resources-item"><a href="">Home insurance isn't apples to apples</a></li>
+					<li class="resources-item"><a href="">To bundle or not to bundle?</a></li>
+					<li class="resources-item"><a href="">Tornadoes, storms and floods, oh my!</a></li>
+					<li class="resources-item"><a href="">Why does my car insurance keep going up?</a></li>
+				</ul>
+			</div>
+         </aside>
+      </main>
+      <script src="assets/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+      <script src="assets/js/bootstrap.min.js" type="text/javascript"></script> 
+      <script type="text/javascript" src="assets/js/slick.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js" type="text/javascript"></script>
+      <script src="assets/js/custom.js" type="text/javascript"></script>
+      <script src="assets/js/material-form.js" type="text/javascript"></script>
+      <!-- <div style="display: none;">
+         Icons made by <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+         </div> -->   
+		<script>
+			$(".birthdate").on('click', function(){
+				$(this).attr("type",'date');
+			});
+			$(".birthdate").blur('click', function(){
+				$(this).attr("type",'text');
+			});
+		</script>
+   </body>
+</html>

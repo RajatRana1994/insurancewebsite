@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="25px" viewBox="0 0 24 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ic_logout_active</title>
+    <desc>Created with Sketch.</desc>
+    <g id="panel-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2-Copy-3" transform="translate(12.000000, 13.000000) rotate(-270.000000) translate(-12.000000, -13.000000) translate(4.000000, 4.000000)">
+            <path d="M3.97568627,4.10481801 L11.8109804,4.10481801 C12.8050929,4.10481801 13.6109804,4.91070546 13.6109804,5.90481801 L13.6109804,17.664818 C13.6109804,18.6589306 12.8050929,19.464818 11.8109804,19.464818 L3.97568627,19.464818 C2.98157372,19.464818 2.17568627,18.6589306 2.17568627,17.664818 L2.17568627,5.90481801 C2.17568627,4.91070546 2.98157372,4.10481801 3.97568627,4.10481801 Z" id="Rectangle" fill="#FFFFFF" transform="translate(7.893333, 11.784818) rotate(-90.000000) translate(-7.893333, -11.784818) "></path>
+            <path d="M3.84333333,7.25834742 L11.9433333,7.25834742" id="Line-Copy" stroke="#252037" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="translate(7.893333, 7.258347) rotate(-90.000000) translate(-7.893333, -7.258347) "></path>
+            <path d="M2.65215686,6.06717095 L13.1345098,6.06717095" id="Line" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" transform="translate(7.893333, 6.067171) rotate(-90.000000) translate(-7.893333, -6.067171) "></path>
+            <polyline id="Rectangle-2" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" transform="translate(7.912842, 2.964706) rotate(-405.000000) translate(-7.912842, -2.964706) " points="5.99284212 1.04470588 9.81872448 1.05882353 9.83284212 4.88470588"></polyline>
+        </g>
+    </g>
+</svg>

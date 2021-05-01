@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+       <% include ./partials/head.ejs %>
+    </head>
+
+    <body>
+
+
+         <% include ./partials/header.ejs %>
+		
+		<section class="inner-pages-content section_padding_other">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="section-title">Defy is hiring! Make a smart (and fun) career move.</h2>
+						<p>We’re looking for ambitious, driven people who want to be a part of Defy,
+							the smart, fast and friendly digital insurance expert.</p>
+						<p>Defy is a fast-growing startup . We combine leading edge technology with
+							unique expertise connecting people and businesses to the right coverage.</p>
+						<p>Want to be part of a smart and (humbly) amazing team? We have room for
+							more inspired, passionate, fun and creative problem solvers!</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="container">
+			<img src="/web_assets/assets/img/agent-banner.png" width="100%">
+		</div>
+		
+		<section class="inner-pages-content bg-light section_padding_other">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<h2 class="section-title">Insurance Sales Agents (NJ. NY.TX. IL)</h2>
+						<p>As a Defy Sales Agent, you will advise prospects on their choices among multiple personal
+							lines and/or small commercial insurance options, make recommendations and turn prospects
+							into clients. Our ideal team member will demonstrate not only a high level of professionalism
+							but will also have the ability to embrace our culture and fast-paced environment and the
+							flexibility to adapt easily to changing priorities.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section faq-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Requirements</h2>
+                </div>
+				<div class="row">
+                    <div class="col-lg-12">
+						<div id="accordion" class="accordion insurance_faq">
+							<div class="card mb-0">
+								<% if(careers && careers.length){ %>
+								<% careers.forEach((career,i)=>{ %>
+								<div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq_0<%-i%>">
+									<a class="card-title"> <%-career.title %> </a>
+								</div>
+								<div id="faq_0<%-i%>" class="card-body collapse" data-parent="#accordion">
+									<ul>
+										<li>Experience - <%-career.experience %></li>
+										<li>No of vacancies - <%-career.post_number %></li>
+										<li>Salary - <%-career.salary %></li>
+									</ul>
+									<h5>Expertise - </h5>
+									<%-career.expertise %>
+									<h5>Job Description - </h5>
+									<%-career.description %>
+									<div class="text-right mb-3">
+										<button class="btn btn-primary" data-toggle="modal" data-target="#carees_popup">Apply Now</button>
+									</div>
+								</div>
+								<% }) }else{%>
+									<h3>Currently No Any Requirements</h3>
+									<% } %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </section>
+
+		<section class="inner-pages-content section_padding_other bg-light">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-header">
+                            <h2 class="section-title">Our ideal candidate will:</h2>
+                        </div> 
+						<ul class="pl-4">
+							<li>Have a passionate desire to work harder and smarter</li>
+							<li>Be skilled at following up with pre-qualified leads who are already looking (No Cold Calling! Great news – right?)</li>
+							<li>Effectively connect with prospective clients on the telephone to help them match their insurance needs with the right coverage</li>
+							<li>Successfully navigate technology</li>
+							<li>Demonstrate quick thinking, intuitive and resourceful client problem solving sales skills</li>
+							<li>Communicate in a positive manner and contribute to a collaborative, fun work environment</li>
+							<li>Thrive on making a positive impression on our prospects and clients</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="about section featured-section section_padding_other" id="community">
+            <div class="container">
+				<div class="row justify-content-center">
+                    <div class="col-lg-9 text-center col-12">
+                        <div class="section-header">
+                            <h2 class="section-title">Defy Core Values</h2>
+                        </div> 
+					</div>
+				</div>
+                <div class="row justify-content-center how-does-it-work">
+					<div class="col-12">
+                        <div class="card featured-card product">
+                            <h4>Impactful</h4>
+                            <p>Get it done</p>
+							<p>When we say we’ll do something, it’s done. We hit deadlines, beat expectations, deliver a lot in a short time. The right things keep happening because of us.</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card featured-card">
+                            <h4>Passionate</h4>
+                            <p>Obsessed in a good way</p>
+							<p>We’re energized by making a difference. We believe in what we’re doing and it shows. If we geek out a little sometimes, we can’t help it – we’re on a mission.</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card featured-card">
+                            <h4>Self-improving</h4>
+                            <p>Hooked on better-than-ever</p>
+							<p>We’re not the same people we were yesterday. We test and roll, learn from mistakes, jump on successes. We love to go from breakthrough to breakthrough.</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card featured-card">
+                            <h4>Empowered</h4>
+                            <p>Pros at proactive</p>
+							<p>Forward is our favorite direction. We see needs and don't hesitate to meet them. We feel right at home in a fighter jet, even when we’re still building it in the air.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+		<section class="inner-pages-content bg-light section_padding_other">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="section-title">Think you have what it takes?</h2>
+						<p>We'd love you to join our team of inspired, passionate, fun and creative problem solvers! Tell us why you think you'd be a great fit and drop us your resume at <a href="#">careers@chooseDefy.com.</a></p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- The Modal -->
+		<div class="modal" id="carees_popup">
+			<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+		
+				<!-- Modal Header -->
+				<div class="modal-header">
+				<h4 class="modal-title">Apply Form</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+		
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class="quote-form">
+						<form class="form" action="/careers" method="POST" id="Carrer-form" enctype="multipart/form-data">
+							<div class="form-innner">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-field text-left">
+											<div class="form-field__control">
+												<label class="form-field__label">First Name</label>
+												<input type="text" name="first_name" class="form-field__input" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-field text-left">
+											<div class="form-field__control">
+												<label class="form-field__label">Last Name</label>
+												<input type="text" name="last_name" class="form-field__input" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-field text-left">
+											<div class="form-field__control">
+												<label class="form-field__label">Email</label>
+												<input type="text" name="email" class="form-field__input" />
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-field text-left">
+											<div class="form-field__control">
+												<label class="form-field__label">Phone Number</label>
+												<input type="text" name="phone_number" class="form-field__input" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-field text-left">
+									<div class="form-field__control">
+										<label class="form-field__label">Apply for Position</label>
+										<input type="text" name="position" class="form-field__input" />
+									</div>
+								</div>
+								
+								<div class="form-field text-left">
+									<div class="form-field__control">
+										<select class="form-control" name="state" id="state">
+											<option selected="true" value="" hidden>Licensed State (if any)</option>
+											<option value="Alabama">Alabama</option>
+											<option value="Alaska">Alaska</option>
+											<option value="Arizona">Arizona</option>
+											<option value="Arkansas">Arkansas</option>
+											<option value="California">California</option>
+											<option value="Colorado">Colorado</option>
+											<option value="Connecticut">Connecticut</option>
+											<option value="Delaware">Delaware</option>
+											<option value="Florida">Florida</option>
+											<option value="Georgia">Georgia</option>
+											<option value="Hawaii">Hawaii</option>
+											<option value="Idaho">Idaho</option>
+											<option value="Illinois">Illinois</option>
+											<option value="Indiana">Indiana</option>
+											<option value="Iowa">Iowa</option>
+											<option value="Kansas">Kansas</option>
+											<option value="Kentucky">Kentucky</option>
+											<option value="Louisiana">Louisiana</option>
+											<option value="Maine">Maine</option>
+											<option value="Maryland">Maryland</option>
+											<option value="Massachusetts">Massachusetts</option>
+											<option value="Michigan">Michigan</option>
+											<option value="Minnesota">Minnesota</option>
+											<option value="Mississippi">Mississippi</option>
+											<option value="Missouri">Missouri</option>
+											<option value="Montana">Montana</option>
+											<option value="Nebraska">Nebraska</option>
+											<option value="Nevada">Nevada</option>
+											<option value="New&#x20;Hampshire">New Hampshire</option>
+											<option value="New&#x20;Jersey">New Jersey</option>
+											<option value="New&#x20;Mexico">New Mexico</option>
+											<option value="New&#x20;York">New York</option>
+											<option value="North&#x20;Carolina">North Carolina</option>
+											<option value="North&#x20;Dakota">North Dakota</option>
+											<option value="Ohio">Ohio</option>
+											<option value="Oklahoma">Oklahoma</option>
+											<option value="Oregon">Oregon</option>
+											<option value="Pennsylvania">Pennsylvania</option>
+											<option value="Rhode&#x20;Island">Rhode Island</option>
+											<option value="South&#x20;Carolina">South Carolina</option>
+											<option value="South&#x20;Dakota">South Dakota</option>
+											<option value="Tennessee">Tennessee</option>
+											<option value="Texas">Texas</option>
+											<option value="Utah">Utah</option>
+											<option value="Vermont">Vermont</option>
+											<option value="Virginia">Virginia</option>
+											<option value="Washington">Washington</option>
+											<option value="West&#x20;Virginia">West Virginia</option>
+											<option value="Wisconsin">Wisconsin</option>
+											<option value="Wyoming">Wyoming</option>
+											<option value="Alabama">Alabama</option>
+											<option value="Alaska">Alaska</option>
+											<option value="Arizona">Arizona</option>
+											<option value="Arkansas">Arkansas</option>
+											<option value="California">California</option>
+											<option value="Colorado">Colorado</option>
+											<option value="Connecticut">Connecticut</option>
+											<option value="Delaware">Delaware</option>
+											<option value="Florida">Florida</option>
+											<option value="Georgia">Georgia</option>
+											<option value="Hawaii">Hawaii</option>
+											<option value="Idaho">Idaho</option>
+											<option value="Illinois">Illinois</option>
+											<option value="Indiana">Indiana</option>
+											<option value="Iowa">Iowa</option>
+											<option value="Kansas">Kansas</option>
+											<option value="Kentucky">Kentucky</option>
+											<option value="Louisiana">Louisiana</option>
+											<option value="Maine">Maine</option>
+											<option value="Maryland">Maryland</option>
+											<option value="Massachusetts">Massachusetts</option>
+											<option value="Michigan">Michigan</option>
+											<option value="Minnesota">Minnesota</option>
+											<option value="Mississippi">Mississippi</option>
+											<option value="Missouri">Missouri</option>
+											<option value="Montana">Montana</option>
+											<option value="Nebraska">Nebraska</option>
+											<option value="Nevada">Nevada</option>
+											<option value="New&#x20;Hampshire">New Hampshire</option>
+											<option value="New&#x20;Jersey">New Jersey</option>
+											<option value="New&#x20;Mexico">New Mexico</option>
+											<option value="New&#x20;York">New York</option>
+											<option value="North&#x20;Carolina">North Carolina</option>
+											<option value="North&#x20;Dakota">North Dakota</option>
+											<option value="Ohio">Ohio</option>
+											<option value="Oklahoma">Oklahoma</option>
+											<option value="Oregon">Oregon</option>
+											<option value="Pennsylvania">Pennsylvania</option>
+											<option value="Rhode&#x20;Island">Rhode Island</option>
+											<option value="South&#x20;Carolina">South Carolina</option>
+											<option value="South&#x20;Dakota">South Dakota</option>
+											<option value="Tennessee">Tennessee</option>
+											<option value="Texas">Texas</option>
+											<option value="Utah">Utah</option>
+											<option value="Vermont">Vermont</option>
+											<option value="Virginia">Virginia</option>
+											<option value="Washington">Washington</option>
+											<option value="West&#x20;Virginia">West Virginia</option>
+											<option value="Wisconsin">Wisconsin</option>
+											<option value="Wyoming">Wyoming</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-field text-left">
+									<div class="form-field__control">
+										<label class="form-field__label">Experience (years)</label>
+										<input type="text" name="experience" class="form-field__input" />
+									</div>
+								</div>
+								<div class="form-field">
+									<div class="form-field__control">
+										<label for="formFileLg" class="form-field__textarea" style="height: 40px;">Attach resume</label>
+										<input class="form-control form-control-lg form-field__textarea" id="formFileLg" name="image"  type="file" style="height: 70px;">
+									</div>
+								</div>
+								<div class="btn-wrapper">
+									<button type="button" onclick="validatecarrerForm()" class="btn btn-green" data-toggle="modal">Apply Now</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		
+        <!-- Footer Starts -->
+        <% include ./partials/footer.ejs %>
+        <!-- Footer Ends -->
+
+
+    </body>
+
+</html>

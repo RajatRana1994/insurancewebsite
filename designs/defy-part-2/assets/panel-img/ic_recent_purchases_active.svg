@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ic_recent_purchases_active</title>
+    <desc>Created with Sketch.</desc>
+    <g id="panel-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-Copy-3" transform="translate(3.000000, 3.000000)">
+            <rect id="Rectangle" fill="#333333" x="0" y="0" width="18" height="3.55555556" rx="0.75"></rect>
+            <path d="M1.8,4.44444444 L16.2,4.44444444 L16.2,14.5 C16.2,15.3284271 15.5284271,16 14.7,16 L3.3,16 C2.47157288,16 1.8,15.3284271 1.8,14.5 L1.8,4.44444444 Z" id="Rectangle-Copy" fill="#333333"></path>
+            <path d="M4.125,13.3555556 L8.625,13.3555556" id="Line-4" stroke="#FFFFFF" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M4.125,11.0444444 L9.72000621,11.0444444" id="Line-4-Copy" stroke="#FFFFFF" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

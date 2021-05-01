@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <% include partials/head.ejs%>
+</head>
+
+<body class="inner_insurance_body">
+
+
+    <% include partials/header.ejs%>
+
+        <section class="agent_detail_sec mt-5 mb-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <div class="heading">
+                            <h1>
+                                <%= agents.first_name %>
+                                    <%= agents.last_name %>
+                            </h1>
+                            <%if(agents.license!=""){ %>
+                            <small>License: <%=agents.license %></small>
+                            <% } %>
+                            <form class="quote-form mt-3" action="" autocomplete="off">
+                                <div class="form-innner">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <% var type = JSON.parse(agents.products)
+                                                    var v_type = [];														
+                                                type.forEach(function(product, i) {
+                                                        if(product == 1){
+                                                        var obj = {
+                                                            "name" : "Auto",
+                                                            "value" : "add_insurance/1"
+                                                            }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 2){
+                                                        var obj = {
+                                                            "name" : "Home",
+                                                            "value" : "add_insurance/2"
+                                                            }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 3){
+                                                        var obj = {
+                                                            "name" : "Busines",
+                                                            "value" : "add_insurance/3"
+                                                            }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 4){
+                                                        var obj = {
+                                                            "name" : "Work Compensation",
+                                                            "value" : "add_insurance/4"
+                                                            }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 5){
+                                                        var obj = {
+                                                            "name" : "Renters",
+                                                            "value" : "add_insurance/5"
+                                                            }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 6){
+                                                            var obj = {
+                                                                "name" : "Home Insurance Floater",
+                                                                "value" : "add_insurance/6"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 7){
+                                                            var obj = {
+                                                                "name" : "Motorcycle, RV, Boat",
+                                                                "value" : "add_insurance/7"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 8){
+                                                            var obj = {
+                                                                "name" : "Umbrella",
+                                                                "value" : "add_insurance/8"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 9){
+                                                            var obj = {
+                                                                "name" : "Small Group Benefits",
+                                                                "value" : "add_insurance/9"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 10){
+                                                            var obj = {
+                                                                "name" : "Life",
+                                                                "value" : "add_insurance/10"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 11){
+                                                            var obj = {
+                                                                "name" : "Health care",
+                                                                "value" : "add_insurance/11"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 12){
+                                                            var obj = {
+                                                                "name" : "Accident",
+                                                                "value" : "add_insurance/12"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 13){
+                                                            var obj = {
+                                                                "name" : "Dental",
+                                                                "value" : "add_insurance/13"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 14){
+                                                            var obj = {
+                                                                "name" : "Short-Term Medical",
+                                                                "value" : "add_insurance/14"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 15){
+                                                            var obj = {
+                                                                "name" : "Vision",
+                                                                "value" : "add_insurance/15"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 16){
+                                                            var obj = {
+                                                                "name" : "Medicare",
+                                                                "value" : "add_insurance/16"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 17){
+                                                            var obj = {
+                                                                "name" : "Medical",
+                                                                "value" : "add_insurance/17"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 18){
+                                                            var obj = {
+                                                                "name" : "Commercial Auto",
+                                                                "value" : "add_insurance/18"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 19){
+                                                            var obj = {
+                                                                "name" : "General Liability",
+                                                                "value" : "add_insurance/19"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 20){
+                                                            var obj = {
+                                                                "name" : "Professional Liability",
+                                                                "value" : "add_insurance/20"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 21){
+                                                            var obj = {
+                                                                "name" : "Cyber Insurance",
+                                                                "value" : "add_insurance/21"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                                        if(product == 22){
+                                                            var obj = {
+                                                                "name" : "Surety Bonds",
+                                                                "value" : "add_insurance/22"
+                                                                }
+                                                            v_type.push(obj);
+                                                        }
+                                               })%>
+                                            <select class="form-control" id="productInput" name="" title="Please select a product">
+                                               <% v_type.forEach(function(product,i){ %>
+                                                    <option value="<%=product.value%>"><%=product.name%></option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="btn-wrapper col-6">
+                                            <button type="button" class="btn btn-primary" data-agentID="<%-agents.id %>" id="findMyQuote">Start My Quote</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <h4>Contact</h4>
+                            <p><i class="fa fa-phone" aria-hidden="true"></i>
+                                <%=agents.phone_number %>
+                            </p>
+                            <p><i class="fa fa-envelope" aria-hidden="true"></i>
+                                <%=agents.email %>
+                            </p>
+                            <div class="agent_social_icon">
+                                <% if(agents.fb_link){ %>
+                                    <a href="<%=agents.fb_link %>"><i class="fa fa-facebook" aria-hidden="true"></i> Follow <%=agents.first_name %> on Facebook</a>
+                                    <% } if(agents.twitter_link){%>
+                                        <a href="<%=agents.twitter_link %>"><i class="fa fa-twitter" aria-hidden="true"></i> Follow <%=agents.first_name %> on Twiter</a>
+                                        <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="left_img">
+                            <img src="<%=agents.image %>" alt="" width="100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <img src="/web_assets/assets/img/agent-banner.png" width="100%">
+        </div>
+        <section class="section section1 featured-section bg-custom-green ">
+            <div class="container">
+                <div class="section-header text-center mb-4">
+                    <h2 class="section-title white_heading">About Me</h2>
+                </div>
+                <div class="row about justify-content-center">
+                    <div class="col-lg-9 text-center col-12">
+                        <p class="mb-5 text-white"><%-agents.about%></p>
+                        <!-- <div class="about-video">
+                            <iframe width="100%" height="360" src="https://defyinsurancebucket.s3.us-east-2.amazonaws.com/Videos/1597180466273.mp4" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div> -->
+                        <div class="col-12 mt-2 mt-md-5 text-center">
+                            <a class="btn btn-black" href="/about-defy">About Defy </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="banner">
+            <div class="banner-content">
+                <div class="banner-inner featured-section">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9 text-center col-12">
+                            <div class="section-header mb-4">
+                                <h2 class="section-title">Products</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-sm-6 col-md-3">
+                            <a href="/get_home_nsurance">
+                                <div class="card featured-card border-style">
+                                    <h4>Home</h4>
+                                    <div class="card-icon">
+                                        <img src="/web_assets/assets/img/green-img/icon-green-8.png" class="product_active" width="100px" />
+                                        <img src="/web_assets/assets/img/green-img/icon-green-8-before.png" class="product_inactive" width="100px" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <a href="/get_auto_nsurance">
+                                <div class="card featured-card border-style">
+                                    <h4>Auto</h4>
+                                    <div class="card-icon">
+                                        <img src="/web_assets/assets/img/green-img/icon-green-6.png" class="product_active" width="100px" />
+                                        <img src="/web_assets/assets/img/green-img/icon-green-6-before.png" class="product_inactive" width="100px" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <a href="/get_business_nsurance">
+                                <div class="card featured-card border-style">
+                                    <h4>Business</h4>
+                                    <div class="card-icon">
+                                        <img src="/web_assets/assets/img/green-img/icon-green-10.png" class="product_active" width="100px" />
+                                        <img src="/web_assets/assets/img/green-img/icon-green-10-before.png" class="product_inactive" width="100px" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <a href="/get_life_nsurance">
+                                <div class="card featured-card border-style">
+                                    <h4>Life</h4>
+                                    <div class="card-icon">
+                                        <img src="/web_assets/assets/img/green-img/icon-green-1.png" class="product_active" width="100px" />
+                                        <img src="/web_assets/assets/img/green-img/icon-green-1-before.png" class="product_inactive" width="100px" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="svg-wrapper bg-white" id="textimonial">
+            <svg version="1.1" id="Layer_1" class="footer-top" x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223" enable-background="new 0 0 1920 58.223" xml:space="preserve"><path fill="#12bcc5" d="M1920,233.223H0C0,233.223,1600.488,364.223,1920,233.223z"/><path fill="#12bcc5" d="M0,58.223h1920C1920,58.223,319.512-72.777,0,58.223z"/></svg>
+        </div>
+        <section class="testimonials section section1" style="background-color: #12bcc5;">
+            <div class="testimonials-iner ">
+                <div class="section-header text-center">
+                    <h2 class="section-title black-heading">Testimonial</h2>
+                </div>
+                <div class="testimonial-slider-wrapper">
+                    <div class="testimonial-slider">
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>Accommodating, professional, helpful, and quick. Very comfortable experience and I was impressed by their capabilities.</p>
+                                    <h4 class="client">Brad M.</h4>
+                                    <span class="testimonial_review">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>They have strong ties with the community, and it shows. It's nice to do business with people that really show they care about you and your family.</p>
+                                    <h4 class="client">Susan T.</h4>
+                                    <span class="testimonial_review">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>Over the years we've never once had to worry about our coverage. My husband and I are long-time customers and proud to be.</p>
+                                    <h4 class="client">Carol S.</h4>
+                                    <span class="testimonial_review">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>They have strong ties with the community, and it shows. It's nice to do business with people that really show they care about you and your family.</p>
+                                    <h4 class="client">Susan T.</h4>
+                                    <span class="testimonial_review">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="svg-wrapper bg-light">
+            <svg x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223"><path fill="#12bcc5" d="M1920,0H0C0,0,1600.488,131,1920,0z"/><path fill="#12bcc5" d="M0-175h1920C1920-175,319.512-306,0-175z"/></svg>
+        </div>
+
+        <section class="about section bg-light featured-section how-it-work-new" id="pledge">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 text-center col-12">
+                        <div class="section-header">
+                            <h2 class="section-title">Our Pledge to You </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center how-does-it-work">
+                    <div class="col-12">
+                        <div class="card featured-card product col-md-10 offset-md-1">
+                            <div class="card-icon mb-4">
+                                <img src="/web_assets/assets/img/green-img/icon-green-4.png" width="100px" style="width: 250px; height: 250px;" />
+                            </div>
+                            <p>Defy Insurance takes an educational and transparent approach to insuring your Business, your home or Auto. Our team of licensed insurance experts will help you understand your insurance and develop a personalized solution tailored
+                                to your needs. We invest in building trust and long-term relationship </p>
+                            <p>so you can finally have an insurance partner you can trust and rely on when life happens. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section faq-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Fast Facts About Auto Insurance</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="accordion" class="accordion insurance_faq">
+                            <div class="card mb-0">
+                                <div class="card-header collapsed" data-toggle="collapse" href="#faq_01">
+                                    <a class="card-title"> What are Common auto coverages? </a>
+                                </div>
+                                <div id="faq_01" class="card-body collapse" data-parent="#accordion">
+                                    <p>Defy Insurance through its carrier partners offers extensive coverage options that may be available to give you peace of mind when you’re on the road. Customize your policy to get the coverage that fits your life.</p>
+                                    <h5>Comprehensive</h5>
+                                    <p>Also known as “other than collision,” this coverage can help pay for damage to your vehicle from vandalism, theft, weather events and accidents involving animals.</p>
+                                    <h5>Collision</h5>
+                                    <p>Regardless of who’s at fault, collision can pay for damage to your vehicle if you hit another vehicle or object, another vehicle hits you, or your vehicle rolls over.</p>
+                                    <h5>Gap coverage</h5>
+                                    <p>Gap insurance may help you cover the “gap” between what you owe on your car and your car’s actual cash value.</p>
+                                    <h5>Uninsured motorist</h5>
+                                    <p>If an uninsured or underinsured driver causes an accident that results in property damage and/or bodily injury, uninsured motorist coverage may help pay for damage and medical costs for you and your passenger(s).</p>
+                                    <h5>Bodily injury liability</h5>
+                                    <p>If you cause an automobile accident that results in injuries, bodily injury protects you by paying for damages you may become legally liable for as a result of the accident, including medical bills and loss of income
+                                        for the injured party.</p>
+                                    <h5>Roadside Assistance</h5>
+                                    <p>Roadside Assistance coverage may even be available when you and your family household members are passengers in someone else&#39;s vehicle, or during a roadside emergency in which your vehicle is disabled.</p>
+                                </div>
+
+                                <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq_02">
+                                    <a class="card-title"> What Does Car Insurance Cover? </a>
+                                </div>
+                                <div id="faq_02" class="card-body collapse" data-parent="#accordion">
+                                    <p>It depends on your state, your insurance company and the coverage options you choose. Since bodily injury and property damage liability insurance is required in most states, at a minimum your policy should cover vehicle
+                                        and property damage, injury-related expenses and legal fees for other people involved in an accident you cause, up to the state-mandated policy limits.</p>
+                                </div>
+
+                                <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq_03">
+                                    <a class="card-title"> What Is Bodily Injury Liability Coverage and How Much Do I Need? </a>
+                                </div>
+                                <div id="faq_03" class="card-body collapse" data-parent="#accordion">
+                                    <p>Bodily injury liability insurance is the most important car coverage a driver can have. If you cause an accident, it helps cover accident-related expenses such as hospital and medical bills, lost wages, rehabilitation
+                                        and legal fees if a lawsuit results.</p>
+                                </div>
+
+                                <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq_04">
+                                    <a class="card-title"> Does my auto insurance cover damages if I lend my car to someone else? </a>
+                                </div>
+                                <div id="faq_04" class="card-body collapse" data-parent="#accordion">
+                                    <p>Your auto insurance policy is for the car, not the driver, meaning your auto insurance will cover damages incurred by a friend or family member borrowing your car, up to your policy limit. The driver’s auto insurance
+                                        serves as secondary coverage, kicking in after the limits of your policy have already been reached</p>
+                                </div>
+
+                                <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq_05">
+                                    <a class="card-title"> Is commercial auto insurance tax-deductible? </a>
+                                </div>
+                                <div id="faq_05" class="card-body collapse" data-parent="#accordion">
+                                    <p>Yes, your commercial auto coverage is tax-deductible. There are many situations that allow you to deduct the cost of commercial auto insurance for tax purposes when you use your vehicle for commercial or business use.</p>
+                                    <p>If you are self-employed, you may be able to deduct your commercial auto insurance premium under Schedule C. If you are an employee and do not receive mileage or expense reimbursement, you can use Form 2106 (Employee
+                                        Business Expenses). Your best bet is to contact the IRS or a tax adviser for clarification.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="banner" style="background-color: #12bcc5;">
+            <div class="banner-content">
+                <div class="banner-inner featured-section">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9 text-center col-12">
+                            <div class="section-header mb-4">
+                                <h2 class="section-title white_heading">Product</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-sm-6 col-md-4">
+                            <a href="/get_auto_nsurance">
+                                <div class="card featured-card border-style">
+                                    <h4>Auto</h4>
+                                    <div class="card-icon">
+                                        <img src="/web_assets/assets/img/green-img/icon-green-6.png" class="product_active" width="100px" />
+                                        <img src="/web_assets/assets/img/green-img/icon-green-6-before.png" class="product_inactive" width="100px" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <a href="/get_home_nsurance">
+                                <div class="card featured-card border-style">
+                                    <h4>Home</h4>
+                                    <div class="card-icon">
+                                        <img src="/web_assets/assets/img/green-img/icon-green-8.png" class="product_active" width="100px" />
+                                        <img src="/web_assets/assets/img/green-img/icon-green-8-before.png" class="product_inactive" width="100px" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <a href="/get_business_nsurance">
+                                <div class="card featured-card border-style">
+                                    <h4>Business</h4>
+                                    <div class="card-icon">
+                                        <img src="/web_assets/assets/img/green-img/icon-green-10.png" class="product_active" width="100px" />
+                                        <img src="/web_assets/assets/img/green-img/icon-green-10-before.png" class="product_inactive" width="100px" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Starts -->
+        <% include partials/footer.ejs%>
+            <!-- Footer Ends -->
+
+
+
+
+
+            <!-- <script src="../assets/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script> 
+        <script type="text/javascript" src="../assets/js/slick.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js" type="text/javascript"></script>
+        <script src="../assets/js/custom.js" type="text/javascript"></script>
+        <script src="../assets/js/material-form.js" type="text/java -->script"></script>
+            <!-- <div style="display: none;">
+            Icons made by <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        </div> -->
+
+
+
+</body>
+
+</html>

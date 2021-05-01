@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <% include partials/head.ejs%>
+</head>
+
+<body>
+    <% include partials/header.ejs%>
+        <section class="section_padding_other">
+            <div class="container">
+                <div class="banner-inner featured-section">
+                    <div class="row mb-5">
+                        <div class="col-lg-6">
+                            <div class="about-video my-5">
+                                <iframe width="100%" height="450" src="<%= about_video %>" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-5">
+                            <h3 class="mb-5">Why Defy?</h3>
+                            <p>We’re here to recommend the ideal coverage for your insurance need – then quickly find you the best price from a wide range of trusted carriers.</p>
+                            <p>Because we’re a one-stop shop, you can count on our solutions for business, car, home, health, life and more.</p>
+                            <p>Not to go all mysterious on you, but we’re equipped with an AI-powered recommendation engine we call the Mind of Defy. (It was created in-house by super smart engineers who use their powers for good.)</p>
+                            <p>This powerful tech lets us zero in on solutions that save you money now and protect your long-term financial future.</p>
+                            <form class="quote-form mt-3" action="" autocomplete="off">
+                                <div class="form-innner mt-5">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <select class="form-control" id="productInput" name="" required="" title="Please select a product">
+                                                <option value="">Choose a product</option>
+                                                <option value="get_auto_nsurance">Auto</option>
+                                                <option value="get_home_nsurance">Home</option>
+                                                <option value="get_business_nsurance">Business</option>
+                                                <option value="get_worker_comp_nsurance">Work Compensation</option>
+                                                <option value="get_renter_nsurance">Renters</option>
+                                                <option value="add_insurance/6">Home Insurance Floater</option>
+                                                <option value="get_motorcycle_nsurance">Motorcycle, RV, Boat</option>
+                                                <option value="get_umbrella_nsurance">Umbrella</option>
+                                                <option value="small_group_benefits">Small Group Benefits</option>
+                                                <option value="get_life_nsurance">Life</option>
+                                                <option value="get_health_nsurance">Health care</option>
+                                                <option value="get_accident_nsurance">Accident</option>
+                                                <option value="get_dental_nsurance">Dental</option>
+                                                <option value="add_insurance/14">Short-Term Medical</option>
+                                                <option value="add_insurance/15">Vision</option>
+                                                <option value="get_medicare_nsurance">Medicare</option>
+                                                <option value="get_medical_nsurance">Medical</option>
+                                                <option value="get_commercial_nsurance">Commercial Auto</option>
+                                                <option value="get_general_liability_nsurance">General Liability</option>
+                                                <option value="get_professional_liability_nsurance">Professional Liability</option>
+                                                <option value="get_cyber_nsurance">Cyber Insurance</option>
+                                                <option value="get_surety_bonds_nsurance">Surety Bonds</option>
+                                            </select>
+                                        </div>
+                                        <div class="btn-wrapper col-6">
+                                            <button type="button" class="btn btn-primary" id="findMyQuote">Start My Quote</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section_padding_other bg-light">
+            <div class="container">
+                <div class="banner-inner featured-section">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h3>What do we believe in? </h3>
+                            <p>For us, it’s all connected: our business, our community, the world we live in. What we value creates value.</p>
+                            <p>First of all, we believe in being a powerful and true partner for our customers. We look out for your best interests at every stage of the relationship . That means finding you the best price and the right  coverage to properly protect your valuable assets.</p>
+                            <p>We also try to make a positive impact in the communities you live in..Defy leaders and Associates give their time, talents and resources to causes and movements that include interfaith dialogue , IRUSA, ICNA, MAS national  and other Charitable Foundation and more.</p>
+                            <!-- <ul>
+                                <li>Our own original technology</li>
+                                <li>50+ years of unbiased expertise</li>
+                                <li>100+ A rated carrier partners</li>
+                                <li>Expert agents licensed in all 50 states</li>
+                            </ul> -->
+                        </div>
+                        <div class="col-lg-6">
+                            <img src="/web_assets/assets/img/funnel-01.png" width="100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="svg-wrapper bg-light" id="textimonial">
+            <svg version="1.1" id="Layer_1" class="footer-top" x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223" enable-background="new 0 0 1920 58.223" xml:space="preserve"><path fill="#21ce99" d="M1920,233.223H0C0,233.223,1600.488,364.223,1920,233.223z"/><path fill="#21ce99" d="M0,58.223h1920C1920,58.223,319.512-72.777,0,58.223z"/></svg>
+        </div>
+        <section class="testimonials section section1 bg-custom-blue">
+            <div class="testimonials-iner ">
+                <div class="section-header text-center">
+                    <h2 class="section-title black-heading">Testimonial</h2>
+                </div>
+                <div class="testimonial-slider-wrapper">
+                    <div class="testimonial-slider">
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>Accommodating, professional, helpful, and quick. Very comfortable experience and I was impressed by their capabilities.</p>
+                                    <h4 class="client">Brad M.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>They have strong ties with the community, and it shows. It's nice to do business with people that really show they care about you and your family.</p>
+                                    <h4 class="client">Susan T.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>Over the years we've never once had to worry about our coverage. My husband and I are long-time customers and proud to be.</p>
+                                    <h4 class="client">Carol S.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card testimonial-card">
+                                <div class="testimonial-inner">
+                                    <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 123.961 123.961" style="enable-background:new 0 0 123.961 123.961;"><g><path d="M49.8,29.032c3.1-1.3,4.4-5,3-8l-4.9-10.3c-1.4-2.899-4.8-4.2-7.8-2.899c-8.5,3.6-15.8,8.3-21.6,14 C11.4,28.532,6.6,36.232,4,44.732c-2.6,8.601-4,20.3-4,35.2v30.7c0,3.3,2.7,6,6,6h39.3c3.3,0,6-2.7,6-6v-39.3c0-3.301-2.7-6-6-6 H26.5c0.2-10.101,2.6-18.2,7-24.301C37.1,36.133,42.5,32.133,49.8,29.032z"/><path d="M120.4,29.032c3.1-1.3,4.399-5,3-8l-4.9-10.199c-1.4-2.9-4.8-4.2-7.8-2.9c-8.4,3.6-15.601,8.3-21.5,13.9 c-7.101,6.8-12,14.5-14.601,23c-2.6,8.399-3.899,20.1-3.899,35.1v30.7c0,3.3,2.7,6,6,6H116c3.3,0,6-2.7,6-6v-39.3 c0-3.301-2.7-6-6-6H97.1c0.2-10.101,2.601-18.2,7-24.301C107.7,36.133,113.1,32.133,120.4,29.032z"/></g></svg>
+                                    <p>They have strong ties with the community, and it shows. It's nice to do business with people that really show they care about you and your family.</p>
+                                    <h4 class="client">Susan T.</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="svg-wrapper bg-light" id="textimonial">
+            <svg x="0px" y="0px" width="1920px" height="58.223px" viewBox="0 0 1920 58.223"><path fill="#21ce99" d="M1920,0H0C0,0,1600.488,131,1920,0z"/><path fill="#21ce99" d="M0-175h1920C1920-175,319.512-306,0-175z"/></svg>
+        </div>
+
+        <section class="banner py-5 bg-light">
+            <div class="banner-content">
+                <div class="banner-inner featured-section section-one pt-4">
+                    <div class="typed_wrap">
+                        <h1 class="banner-title black-heading">Shop the market and get insurance right.</h1>
+                        <h4 class="subtitle">select a product to see your quotes.</h4>
+                    </div>
+
+        <div class="row justify-content-center mb-5">
+        <% var messages = getMessages() %>
+            <% if (messages.error_message){ %>
+                <div class="col-12 col-md-12 alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <%= messages.error_message %>
+                </div>
+                <% } if (messages.success_message){ %>
+                    <div class="col-12 col-md-12 alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <%= messages.success_message %>
+                    </div>
+                    <% } %>
+                        <div class="col-12 col-md-3">
+                            <a href="/get_business_nsurance">
+                                <div class="card featured-card border-style">
+                                    <h4>Business</h4>
+                                    <div class="card-icon">
+                                        <img src="/web_assets/assets/img/green-img/icon-green-10.png" width="100px" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <a href="/get_auto_nsurance">
+                                <div class="card featured-card border-style">
+                                    <h4>Auto</h4>
+                                    <div class="card-icon">
+                                        <img src="/web_assets/assets/img/green-img/icon-green-6.png" width="100px" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <a href="/get_home_nsurance">
+                                <div class="card featured-card border-style">
+                                    <h4>Home</h4>
+                                    <div class="card-icon">
+                                        <img src="/web_assets/assets/img/green-img/icon-green-8.png" width="100px" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-4 col-sm-6 col-lg-3">
+                            <a href="/get_renter_nsurance" class="card featured-card border-style">
+                                <h4>Life</h4>
+                                <div class="card-icon">
+                                    <img src="/web_assets/assets/img/green-img/shop.png" width="100px" />
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-4 col-sm-6 col-lg-3">
+                            <a href="/add_insurance/6" class="card featured-card border-style">
+                                <h4>Workers Compensation</h4>
+                                <div class="card-icon">
+                                    <img src="/web_assets/assets/img/green-img/worker icon.png" width="100px" />
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-4 col-sm-6 col-lg-3">
+                            <a href="/add_insurance/7" class="card featured-card border-style">
+                                <h4>Cyber</h4>
+                                <div class="card-icon">
+                                    <img src="/web_assets/assets/img/green-img/cybericon.png" width="100px" />
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-4 col-sm-6 col-lg-3">
+                            <a href="/add_insurance/8" class="card featured-card border-style">
+                                <h4>Umbrella</h4>
+                                <div class="card-icon">
+                                    <img src="/web_assets/assets/img/green-img/icon-green-7.png" width="100px" />
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <a href="/insurance_more_product">
+                                <div class="card featured-card border-style">
+                                    <h4>More</h4>
+                                    <div class="card-icon">
+                                        <img src="/web_assets/assets/img/green-img/icon-green-11.png" width="100px" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Ends -->
+        <% include partials/footer.ejs%>
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/head.ejs %>
+</head>
+
+<body class="inner_insurance_body">
+
+
+    <% include ../partials/header.ejs %>
+
+        <div class="inner-pages-content contact-us bg-custom-blue" id="contact_us">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-header text-center mb-3 mb-md-5">
+                            <h2 class="section-title mb-2 white_heading">Defy Makes it easy</h2>
+                            <h3 class="text-white">Let our agents find you the best coverage and deals from top-rated carriers.</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <% var messages = getMessages() %>
+                            <% if (messages.error_message){ %>
+                                <div class="col-12 col-md-12 alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <%= messages.error_message %>
+                                </div>
+                                <% } if (messages.success_message){ %>
+                                    <div class="col-12 col-md-12 alert alert-success alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <%= messages.success_message %>
+                                    </div>
+                                    <% } %>
+                                        <div class="quote-form">
+                                            <form class="form" action="" method="post" id="insurance-form" autocomplete="off">
+                                                <input type="hidden" value="<%=type%>" name="type" class="form-field__input" />
+                                                    <input type="hidden" value="<%=agentID %>" name="agentID">
+                                                <div class="form-innner form-row">
+                                                    <div class="dropdown-select-wrap col-12">
+                                                        <div class="dropdown-select dropdown">
+                                                            <span style="box-shadow: none;" aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                              <label class="dropdown-label" for="yearYear-0Input-0">I have a question about *</label>
+                                              <input id="question_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="No Preference" value="" name="question">
+                                              <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                 <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                              </svg>
+                                           </span>
+                                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="question">
+                                                                <div class="item">None</div>
+                                                                <div class="item">Become an agent </div>
+                                                                <div class="item">Affiliate partnership </div>
+                                                                <div class="item">Get a quote</div>
+                                                                <div class="item">My policies</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-field text-left col-md-6">
+                                                        <div class="form-field__control">
+                                                            <label class="form-field__label">First Name *</label>
+                                                            <input type="text" name="first_name" class="form-field__input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-field text-left col-md-6">
+                                                        <div class="form-field__control">
+                                                            <label class="form-field__label">Last Name *</label>
+                                                            <input type="text" name="last_name" class="form-field__input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-field text-left col-md-6">
+                                                        <div class="form-field__control">
+                                                            <label class="form-field__label">Email *</label>
+                                                            <input type="text" name="email" class="form-field__input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-field text-left col-md-6">
+                                                        <div class="form-field__control">
+                                                            <label class="form-field__label">Phone *</label>
+                                                            <input type="number" name="phone_number" class="form-field__input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-field text-left col-md-6">
+                                                        <div class="form-field__control">
+                                                            <label class="form-field__label">City</label>
+                                                            <input type="text" name="city" class="form-field__input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="dropdown-select-wrap col-md-6">
+                                                        <div class="dropdown-select dropdown">
+                                                            <span style="box-shadow: none;" aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                              <label class="dropdown-label" for="yearYear-0Input-0">State/ Province</label>
+                                              <input id="State_input" data-cy="year-0Input" type="text" class="form-control completed" placeholder="No Preference" name="state" value="">
+                                              <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                 <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                              </svg>
+                                           </span>
+                                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="State">
+                                                                <div class="item">Alabama</div>
+                                                                <div class="item">Alaska</div>
+                                                                <div class="item">Arizona</div>
+                                                                <div class="item">Arkansas</div>
+                                                                <div class="item">California</div>
+                                                                <div class="item">Colorado</div>
+                                                                <div class="item">Connecticut</div>
+                                                                <div class="item">Delaware</div>
+                                                                <div class="item">Florida</div>
+                                                                <div class="item">Georgia</div>
+                                                                <div class="item">Hawaii</div>
+                                                                <div class="item">Idaho</div>
+                                                                <div class="item">Illinois</div>
+                                                                <div class="item">Indiana</div>
+                                                                <div class="item">Iowa</div>
+                                                                <div class="item">Kansas</div>
+                                                                <div class="item">Kentucky</div>
+                                                                <div class="item">Louisiana</div>
+                                                                <div class="item">Maine</div>
+                                                                <div class="item">Maryland</div>
+                                                                <div class="item">Massachusetts</div>
+                                                                <div class="item">Michigan</div>
+                                                                <div class="item">Minnesota</div>
+                                                                <div class="item">Mississippi</div>
+                                                                <div class="item">Missouri</div>
+                                                                <div class="item">Montana</div>
+                                                                <div class="item">Nebraska</div>
+                                                                <div class="item">Nevada</div>
+                                                                <div class="item">New Hampshire</div>
+                                                                <div class="item">New Jersey</div>
+                                                                <div class="item">New Mexico</div>
+                                                                <div class="item">New York</div>
+                                                                <div class="item">North Carolina</div>
+                                                                <div class="item">North Dakota</div>
+                                                                <div class="item">Ohio</div>
+                                                                <div class="item">Oklahoma</div>
+                                                                <div class="item">Oregon</div>
+                                                                <div class="item">Pennsylvania</div>
+                                                                <div class="item">Rhode Island</div>
+                                                                <div class="item">South Carolina</div>
+                                                                <div class="item">South Dakota</div>
+                                                                <div class="item">Tennessee</div>
+                                                                <div class="item">Texas</div>
+                                                                <div class="item">Utah</div>
+                                                                <div class="item">Vermont</div>
+                                                                <div class="item">Virginia</div>
+                                                                <div class="item">Washington</div>
+                                                                <div class="item">West Virginia</div>
+                                                                <div class="item">Wisconsin</div>
+                                                                <div class="item">Wyoming</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-field text-left col-12">
+                                                        <div class="form-field__control">
+                                                            <label class="form-field__label">Referred by</label>
+                                                            <input type="text" name="referredby" class="form-field__input" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-field text-left col-12">
+                                                        <div class="form-field__control">
+                                                            <label class="form-field__label">Additional Comments</label>
+                                                            <textarea class="form-field__textarea" name="comment"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="btn-wrapper col-12 text-center">
+                                                        <button type="button" class="btn btn-black" onclick="validateForm();">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% include ../partials/footer.ejs %>
+</body>
+
+</html>

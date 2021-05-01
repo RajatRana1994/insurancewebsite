@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <% include ../../partials/head.ejs%>
+    </head>
+    <body>
+        <% include ../../partials/header.ejs%>
+        <section class="section pt-5">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Tell us about yourself.</h2>
+                </div>
+                <div class="row about justify-content-center">
+                    <div class="col-12">
+                        <div class="more_product_form_outer">
+                            <form class="form" method="post" id="lifeInsuranceForm">
+                                <div class="form-innner">
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">First Name</label>
+                                            <input type="text" class="form-field__input" name="first_name" id="first_name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Last Name</label>
+                                            <input type="text" class="form-field__input" name="last_name" id="last_name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Email</label>
+                                            <input type="email" class="form-field__input" name="email" id="email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Phone Number</label>
+                                            <input type="number" class="form-field__input" name="phone_number" id="phone_number" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Birth Date</label>
+                                            <input type="text" class="form-field__input birthdate" name="dob" id="dob" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group-radiobox form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <label for="gender-0-0" class="custom-control custom-block custom-radio">
+                                                    <input id="gender-0-0" name="gender" type="radio" class="custom-control-input form-check-input" value="1" checked="">
+                                                    <div class="custom-control-label-wrap">
+                                                        <span class="custom-control-indicator"></span>
+                                                        <div class="indicator-desc-row"><span class="custom-control-description">Male</span></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <label for="gender-1-0" class="custom-control custom-block custom-radio">
+                                                    <input id="gender-1-0" name="gender" type="radio" class="custom-control-input form-check-input" value="2">
+                                                    <div class="custom-control-label-wrap">
+                                                        <span class="custom-control-indicator"></span>
+                                                        <div class="indicator-desc-row"><span class="custom-control-description">Female</span></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Address line 1</label>
+                                            <input type="text" class="form-field__input" name="address_line1" id="address_line1" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Address line 2</label>
+                                            <input type="text" class="form-field__input" name="address_line2" id="address_line2" />
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-select-wrap">
+                                        <div class="dropdown-select dropdown">
+                                            <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                <label class="dropdown-label" for="StateList_input">Select State</label>
+                                                <input id="StateList_input" type="text" class="form-control completed" data-id="" placeholder="Select State" value="">
+                                                <input id="state_id" name="state_id" type="hidden" value="">
+                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                </svg>
+                                            </span>
+                                            <div class="dropdown-menu" id="StateList">
+                                                <% if(states.length > 0){
+                                                states.forEach(function(res, i) {
+                                                %>
+                                                <div class="item" data-id="<%= res.id %>"><%= res.name %></div>
+                                                <% }); 
+                                                } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">City</label>
+                                            <input type="text" class="form-field__input" name="city" id="city" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">ZIP Code</label>
+                                            <input type="number" class="form-field__input" name="zipcode" id="zipcode" />
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-select-wrap">
+                                        <div class="dropdown-select dropdown">
+                                            <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                <label class="dropdown-label">Desired coverage amount</label>
+                                                <input id="CoverageAmtList_input" type="text" class="form-control completed" data-id="" placeholder="Select a coverage amount" value="">
+                                                <input id="coverage_amt" name="coverage_amt" type="hidden" value="">
+                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                </svg>
+                                            </span>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="CoverageAmtList">
+                                                <div class="item" data-id="50000">$50,000</div>
+                                                <div class="item" data-id="100000">$100,000</div>
+                                                <div class="item" data-id="150000">$150,000</div>
+                                                <div class="item" data-id="200000">$200,000</div>
+                                                <div class="item" data-id="250000">$250,000</div>
+                                                <div class="item" data-id="300000">$300,000</div>
+                                                <div class="item" data-id="350000">$350,000</div>
+                                                <div class="item" data-id="400000">$400,000</div>
+                                                <div class="item" data-id="450000">$450,000</div>
+                                                <div class="item" data-id="500000">$500,000</div>
+                                                <div class="item" data-id="550000">$550,000</div>
+                                                <div class="item" data-id="600000">$600,000</div>
+                                                <div class="item" data-id="650000">$650,000</div>
+                                                <div class="item" data-id="700000">$700,000</div>
+                                                <div class="item" data-id="750000">$750,000</div>
+                                                <div class="item" data-id="800000">$800,000</div>
+                                                <div class="item" data-id="850000">$850,000</div>
+                                                <div class="item" data-id="900000">$900,000</div>
+                                                <div class="item" data-id="950000">$950,000</div>
+                                                <div class="item" data-id="1000000">$1000,000</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="more_product_inner_heading subheading">
+                                        <h5 class="pb-3">Do you currently use products that contain nicotine?</h5>
+                                    </div>
+                                    <div class="form-group-radiobox form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <label for="contain_nicotine-0-0" class="custom-control custom-block custom-radio">
+                                                    <input id="contain_nicotine-0-0" name="contain_nicotine" type="radio" class="custom-control-input form-check-input" value="1" checked="">
+                                                    <div class="custom-control-label-wrap">
+                                                        <span class="custom-control-indicator"></span>
+                                                        <div class="indicator-desc-row"><span class="custom-control-description">Yes</span></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <label for="contain_nicotine-1-0" class="custom-control custom-block custom-radio">
+                                                    <input id="contain_nicotine-1-0" name="contain_nicotine" type="radio" class="custom-control-input form-check-input" value="2">
+                                                    <div class="custom-control-label-wrap">
+                                                        <span class="custom-control-indicator"></span>
+                                                        <div class="indicator-desc-row"><span class="custom-control-description">No</span></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="btn-wrapper mt-5">
+                                        <button class="btn btn-green" type="button" onClick="validateLifeInsuranceForm();">Find Plans</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Ends -->
+        <% include ../../partials/footer.ejs%>
+    </body>
+</html>

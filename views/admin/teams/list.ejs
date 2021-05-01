@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Team Members</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="/admin/dashboard">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Team Members</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Team Members</h3>
+                                        <a title="Add Video" href="/admin/teams/add" class="btn btn-info btn-sm float-right">Add Member</a>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <% var messages = getMessages()
+                                            if (messages.error_message){ %>
+                                                <div class="alert alert-danger alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <%= messages.error_message %>
+                                                </div>
+                                        <% } if (messages.success_message){ %>
+                                                <div class="alert alert-success alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <%= messages.success_message %>
+                                                </div>
+                                        <% } %>
+                                        <table id="teams_list" class="table table-bordered table-striped dt-responsive nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Image</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Contact Number</th>
+                                                    <th>Designation</th>
+                                                    <th>Bio</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% result.forEach(function(res, i) { %>
+                                                    <tr>
+                                                        <td><%= i+1 %></td>
+                                                        <td>
+                                                            <a href="<%= res.image %>" target="_blank">
+                                                                <img src="<%= res.image %>" width="60px" height="60px">
+                                                            </a>
+                                                        </td>
+                                                        <td><%= res.name %></td>
+                                                        <td><%= res.email %></td>
+                                                        <td><%= res.phone_number %></td>
+                                                        <td><%= res.designation %></td>
+                                                        <td><%= (res.bio) ? res.bio : 'N/A' %></td>
+                                                        <td>
+                                                            <a title="Delete" href="/admin/teams/delete?id=<%= res.id %>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you wish to delete this member?');">
+                                                                <i class="fas fa-trash">
+                                                                </i>
+                                                            </a>
+                                                            <a title="Delete" href="/admin/teams/edit?id=<%= res.id %>" class="btn btn-info btn-sm" >
+                                                                <i class="fas fa-edit">
+                                                                </i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                    </div><!--/. container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   

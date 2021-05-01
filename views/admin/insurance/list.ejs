@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Insurance</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="/admin/dashboard">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Insurance</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Insurance</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <% var messages = getMessages() %>
+                                            <% if (messages.error_message){ %>
+                                                <div class="alert alert-danger alert-dismissible">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <%= messages.error_message %>
+                                                </div>
+                                        <% } %>
+                                        <table id="insurance_list" class="table table-bordered table-striped dt-responsive nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>User UID</th>
+                                                    <th>Zipcode</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% ins_res.forEach(function(res, i) {
+                                                    if(res.status == 0)
+                                                        var ins_status = '<span class="badge bg-primary">Pending</span>';
+                                                    if(res.status == 1)
+                                                        var ins_status = '<span class="badge bg-warning">Under Review</span>';
+                                                %>
+                                                    <tr>
+                                                        <td><%= i+1 %></td>
+                                                        <td><%= res.local_storage_uid %></td>
+                                                        <td><%= res.zipcode %></td>
+                                                        <td><%= res.first_name %></td>
+                                                        <td><%= res.last_name %></td>
+                                                        <td><%- ins_status %></td>
+                                                        <td>
+                                                            <% if(insurance_type == 1){ %>
+                                                                <a title="View Details" href="/admin/car_insurance_details/<%= res.id %>" class="btn btn-info btn-xs">
+                                                                    <i class="fas fa-info-circle">
+                                                                    </i>
+                                                                    View
+                                                                </a>
+                                                            <% } if(insurance_type == 2){ %>
+                                                                <a title="View Details" href="/admin/home_insurance_details/<%= res.id %>" class="btn btn-info btn-xs">
+                                                                    <i class="fas fa-info-circle">
+                                                                    </i>
+                                                                    View
+                                                                </a>
+                                                            <% } if(insurance_type == 3){ %>
+                                                                <a title="View Details" href="/admin/business_insurance_details/<%= res.id %>" class="btn btn-info btn-xs">
+                                                                    <i class="fas fa-info-circle">
+                                                                    </i>
+                                                                    View
+                                                                </a>
+                                                            <% } if(insurance_type == 4){ %>
+                                                                <a title="View Details" href="/admin/work_insurance_details/<%= res.id %>" class="btn btn-info btn-xs">
+                                                                    <i class="fas fa-info-circle">
+                                                                    </i>
+                                                                    View
+                                                                </a>
+                                                            <% } %>
+                                                        </td>
+                                                    </tr>
+                                                 <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                    </div><!--/. container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   

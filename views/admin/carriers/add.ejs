@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ../partials/head.ejs %>
+
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+                <% include ../partials/sidebar.ejs %>
+                    <!-- Content Wrapper. Contains page content -->
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!-- Content Header (Page header) -->
+                        <div class="content-header">
+                            <div class="container-fluid">
+                                <div class="row mb-2">
+                                    <div class="col-sm-6">
+                                        <h1 class="m-0 text-dark">Carriers</h1>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-sm-6">
+                                        <ol class="breadcrumb float-sm-right">
+                                            <li class="breadcrumb-item">
+                                                <a href="/admin/dashboard">
+                                                    <i class="fa fa-tachometer-alt"></i> Dashboard
+                                                </a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Carrier</li>
+                                        </ol>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.container-fluid -->
+                        </div>
+                        <!-- /.content-header -->
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <% var messages = getMessages()
+                                if (messages.error_message){ %>
+                                            <div class="alert alert-danger alert-dismissible">
+                                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                <%= messages.error_message %>
+                                            </div>
+                                            <% } %>
+                                                <div class="card card-primary">
+                                                    <div class="card-header">
+                                                        <h3 class="card-title">Add Carrier</h3>
+                                                    </div>
+                                                    <!-- /.card-header -->
+                                                    <form role="form" action="" method="post" id="" enctype="multipart/form-data">
+                                                        <div class="card-body">
+                                                            <div class="form-group">
+                                                                <label for="name">Carrier Name</label>
+                                                                <input class="form-control" type="text" name="name" id="name" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Carrier Claims Number</label>
+                                                                <input type="text" class="form-control" name="claims_number" id="claims_number" placeholder="Enter Claims Number" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Carrier Service Number</label>
+                                                                <input type="text" class="form-control" name="service_number" id="service_number" placeholder="Enter Service Number" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Claim URL</label>
+                                                                <!-- <textarea name="about" id="claim-url" class="form-control" cols="30" rows="5" maxlength="4000"></textarea> -->
+                                                                <input type="text" class="form-control" name="claim_url" id="claim_url" placeholder="Enter Claim URL" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Billing URL</label>
+                                                                <input type="text" class="form-control" name="billing_url" id="billing_url" placeholder="Enter Billing URL" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Website URL</label>
+                                                                <input type="text" class="form-control" name="website_url" id="website_url" placeholder="Enter Website URL" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name">Image</label>
+                                                                <input type="file" id="image1" name="image" accept="image/*" required="">
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.card-body -->
+
+                                                        <div class="card-footer">
+                                                            <input type="submit" name="btn_sub" id="btn_sub" class="btn btn-primary" value="Add">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+                            </div>
+                            <!--/. container-fluid -->
+                        </section>
+                        <!-- /.content -->
+                    </div>
+                    <!-- /.content-wrapper -->
+                    <!-- /.content-wrapper -->
+                    <% include ../partials/footer.ejs %>
+    </body>
+
+</html>

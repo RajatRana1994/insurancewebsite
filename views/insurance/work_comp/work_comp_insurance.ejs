@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../../partials/head.ejs%>
+        <style>
+            .has-tooltip {
+                display: flex;
+            }
+            .modal-tooltip-toggle {
+                cursor: pointer;
+                height: 20px;
+                position: relative;
+                top: 1rem;
+                left: 1.5rem;
+            }
+            .header{
+                background-color: #f9f8f4;
+                position: fixed;
+                z-index: 9999;
+                width: 100%;
+            }
+
+            .question-icon-tooltip {
+                margin: -1rem;
+                padding: 1rem;
+            }
+            .middle-section{
+                flex: 1 1;
+            }
+
+            .question-counter {
+                border: 1px solid #0a0c0e;
+                border-radius: 100%;
+                flex: 0 0 25px;
+                font-weight: 400;
+                margin-right: .75rem;
+                text-align: center;
+                height: 25px;
+                width: 25px;
+            }   
+            .question-wrap > .form-group {
+                margin: 0;
+            }
+            .scroll-wrap {
+                max-height: 100vh;
+                overflow-x: hidden;
+                overflow-y: auto;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+                height: calc(100vh - 6.5rem);
+                width: 100%;
+            }
+            .section-header {
+                margin-bottom: 10px;
+            }
+            .navigation-buttons.section-page-appear-active, 
+            .navigation-buttons.section-page-enter-active, 
+            .section-page-questions.section-page-appear-active, 
+            .section-page-questions.section-page-enter-active {
+                animation: slideUpVH .6s ease-out;
+                animation-delay: .2s;
+            }
+            .legal-content, .legal-copy {
+                margin: 5rem auto 2.5rem;
+                max-width: 500px;
+            }
+            .header{
+                background-color: #f9f8f4;
+                position: fixed;
+                z-index: 9999;
+                width: 100%;
+            }
+
+            .section-page-header {
+                background: #f9f8f4;
+                margin-bottom: 4rem;
+                position: relative;
+            }
+            .section-page-questions {
+                counter-reset: section;
+            }
+            .question-wrap {
+                padding: 0 0 6rem;
+            }
+            .question-wrap.disabled {
+                opacity: .3;
+                position: relative;
+                z-index: auto;
+            }
+            .question-wrap:last-of-type {
+                padding-bottom: 20px;
+            }
+            .question-header {
+                margin-bottom: 1rem;
+            }
+            .question-icon {
+                margin-bottom: 15px !important;;
+            }
+            .question-text {
+                color: #34393f;
+                margin-bottom: 0;
+                text-align: left;
+            }
+            .question-byline {
+                color: #4a4f53;
+                font-size: 1.12rem;
+                margin-top: .5rem;
+                margin-bottom: 0;
+                text-align: left;
+            }
+            .form-group-radio {
+                align-items: flex-start;
+                display: block;
+            }
+            .form-group-radio.stacked {
+                flex-direction: column;
+            }
+            .question-wrap .form-group, .section-nav {
+                max-width: 400px;
+                width: 100%;
+
+            }
+            .form-group-radio.stacked .custom-radio {
+                margin-right: 0;
+                width: 100%;
+                padding-left: 0;
+            }
+            .custom-control-input {
+                opacity: 0;
+                position: absolute;
+                z-index: -1;
+            }
+            .custom-control-label-wrap {
+                background-color: #fff;
+                border: 1px solid #d2d3d4;
+                border-radius: .25rem;
+                display: flex;
+                flex-wrap: nowrap;
+                padding: 1rem;
+            }
+            .custom-control-input:checked~.custom-control-label-wrap {
+                background-color: #574cfa;
+                box-shadow: none;
+            }
+            .custom-control-indicator {
+                background-color: #fff;
+                background-position: 50%;
+                background-repeat: no-repeat;
+                border: 1px solid #d2d3d4;
+                display: block;
+                pointer-events: none;
+                user-select: none;
+                min-height: 1.625rem;
+                min-width: 1.625rem;
+                height: 1.625rem;
+                width: 1.625rem;
+            }
+            .custom-radio .custom-control-indicator {
+                border-radius: 50%;
+            }
+            .custom-control-input:checked~.custom-control-label-wrap .custom-control-indicator {
+                border: none;
+                box-shadow: none;
+                color: #fff;
+            }
+            .custom-radio .custom-control-input:checked~.custom-control-label-wrap .custom-control-indicator {
+                background-image: url(/web_assets/assets/img/svg/radio.svg);
+                background-size: 100% 100%;
+            }
+            .home-icon svg {
+                margin-right: 1rem;
+                margin-bottom: -2px;
+            }
+            .summary-rail-section .btn-edit {
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                position: absolute;
+                right: 0;
+            }
+            @media (max-width: 767px) {
+                .question-wrap:last-of-type {
+                    padding-bottom: 1.5rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <% include ../../partials/header.ejs%>
+        <div class="main">
+            <div class="dot-nav d-none d-md-flex" role="navigation">
+                <div class="dot-nav-item active" id="snVehiclesBtn">
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">BASIC INFO</span>
+                </div>
+                <div class="dot-nav-item" id="snDriversBtn">
+                    <span class="nav-marker-line"></span>
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">RECOMMENDATIONS</span>
+                </div>
+                <div class="dot-nav-item" id="snResultsBtn">
+                    <span class="nav-marker-line"></span>
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">BUSINESS DETAILS</span>
+                </div>
+                <div class="dot-nav-item" id="snResultsBtn">
+                    <span class="nav-marker-line"></span>
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">QUOTE</span>
+                </div>
+                <div class="dot-nav-item" id="snResultsBtn">
+                    <span class="nav-marker-line"></span>
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">PURCHASE</span>
+                </div>
+            </div>
+            <section class="middle-section">
+                <form id="workCompInsuranceForm" action="" method="post">
+                    <div id="scroll-container" class="scroll-wrap">
+                        <!-- Step 1 Starts -->
+                        <div class="section-wrapper active" id="step-1">
+                            <div class="section-header">
+                                <h1>Welcome! Let's get started</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">What's the name of your business?
+                                                        </h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Enter Business Name</label>
+                                                                <input type="text" class="form-field__input" name="business_name" id="business_name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" id="save_continue1"  onClick="validateWorkInsuranceFormStep1();">
+                                    <span>
+                                        <span>Save &amp; continue</span>
+                                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                        <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+
+                            </div>
+                        </div>
+                        <!-- //Step 1 Ends -->
+
+                        <!-- Step 2 Starts -->
+                        <div class="section-wrapper" id="step-2">
+                            <div class="section-header">
+                                <h1>Contact Information</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Fill Information</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">First Name</label>
+                                                                <input type="text" class="form-field__input" name="first_name" id="first_name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Last Name</label>
+                                                                <input type="text" class="form-field__input" name="last_name" id="last_name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Email</label>
+                                                                <input type="email" class="form-field__input" name="email" id="email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Phone Number</label>
+                                                                <input type="number" class="form-field__input" name="phone_number" id="phone_number">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-1">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" id="save_continue2"  onClick="validateWorkInsuranceFormStep2();">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- //Step 2 Ends -->
+
+                        <!-- Step 3 Starts -->
+                        <div class="section-wrapper" id="step-3">
+                            <div class="section-header">
+                                <h1>Fill Information</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">When was your business established?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Year</label>
+                                                                <input type="number" min="0" maxlength="4" onKeyPress="if (this.value.length == 4) return false;" class="form-field__input" name="business_establish_year" id="business_establish_year">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-2">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" id="save_continue3"  onClick="validateWorkInsuranceFormStep3();">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //Step 3 Ends -->
+
+                        <!-- Step 4 Starts -->
+                        <div class="section-wrapper" id="step-4">
+                            <div class="section-header">
+                                <h1>Please Select Options</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">What's the legal structure of your business?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <label class="custom-control custom-block custom-checkbox">
+                                                            <input type="checkbox" name="business_legal_structure[]" value="1" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row">
+                                                                    <span class="custom-control-description">Corporation</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                        <label class="custom-control custom-block custom-checkbox">
+                                                            <input type="checkbox" name="business_legal_structure[]" value="2" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row">
+                                                                    <span class="custom-control-description">Partnership</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                        <label class="custom-control custom-block custom-checkbox">
+                                                            <input type="checkbox" name="business_legal_structure[]" value="3" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row">
+                                                                    <span class="custom-control-description">Limited Liability Company</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                        <label class="custom-control custom-block custom-checkbox">
+                                                            <input type="checkbox" name="business_legal_structure[]" value="4" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row">
+                                                                    <span class="custom-control-description">Sole Proprietorship</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                        <label class="custom-control custom-block custom-checkbox">
+                                                            <input type="checkbox" name="business_legal_structure[]" value="5" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row">
+                                                                    <span class="custom-control-description">Other</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-3">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" id="save_continue4"  onClick="validateWorkInsuranceFormStep4();">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //Step 4 Ends -->
+
+
+                        <!-- Step 5 Starts -->
+                        <div class="section-wrapper" id="step-5">
+                            <div class="section-header">
+                                <h1>On average, how many employees will your business have over the next 12 months?</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Full Time Employee</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Full Time Employee</label>
+                                                                <input type="number" min="0" class="form-field__input" name="full_time_employee" id="full_time_employee">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Part Time Employee</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Part Time Employee</label>
+                                                                <input type="number" min="0" class="form-field__input" name="part_time_employee" id="part_time_employee">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-4">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="step-6">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //Step 5 Ends -->
+
+                        <!-- Step 6 Starts -->
+                        <div class="section-wrapper" id="step-6">
+                            <div class="section-header">
+                                <h1>What’s the total amount you expect to pay your employees over the next 12 months, excluding owners, officers, and partners?</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Enter amount</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Enter amount($2000)</label>
+                                                                <input type="number" min="0" class="form-field__input" name="yearly_emp_amt" id="yearly_emp_amt">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-5">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="step-7">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //Step 6 Ends -->
+
+                        <!-- Step 7 Starts -->
+                        <div class="section-wrapper" id="step-7">
+                            <div class="section-header">
+                                <h1>What is the primary type of work your business does?</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Enter Type</h2>
+                                                        <p>Type in keywords to find the best description, or enter the 4-digit class code from your workers' comp policy declarations page</p>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">E.g plumbing</label>
+                                                                <input type="text" class="form-field__input" name="type_of_work" id="type_of_work">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-6">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" id="save_continue7"  onClick="validateWorkInsuranceFormStep7();">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //Step 7 Ends -->
+
+                        <!-- Step 8 Starts -->
+                        <div class="section-wrapper" id="step-8">
+                            <div class="section-header">
+                                <h1>Compensation Insurance</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Does your business currently have workers' compensation insurance?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <label for="inputID" class="custom-control custom-block custom-radio">
+                                                            <input id="inputID" type="radio" name="worker_comp_ins" value="yes" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row"><span class="custom-control-description">Yes</span></div>
+                                                            </div>
+                                                        </label>
+                                                        <label for="inputID1" class="custom-control custom-block custom-radio">
+                                                            <input id="inputID1" type="radio" name="worker_comp_ins" value="no" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row"><span class="custom-control-description">No</span></div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-7">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" id="save_continue8"  onClick="validateWorkInsuranceFormStep8();">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //Step 8 Ends -->
+
+
+                        <!-- Step 9 Starts -->
+                        <div class="section-wrapper" id="step-9">
+                            <div class="section-header">
+                                <h1>Please Select Options</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2"/>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">How long has your business continuously had workers' compensation insurance?</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <label class="custom-control custom-block custom-checkbox">
+                                                            <input type="checkbox" name="worker_comp_ins_year" value="1" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row">
+                                                                    <span class="custom-control-description">Less than a year</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                        <label class="custom-control custom-block custom-checkbox">
+                                                            <input type="checkbox" name="worker_comp_ins_year" value="2" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row">
+                                                                    <span class="custom-control-description">1 year</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                        <label class="custom-control custom-block custom-checkbox">
+                                                            <input type="checkbox" name="worker_comp_ins_year" value="3" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row">
+                                                                    <span class="custom-control-description">2 years</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                        <label class="custom-control custom-block custom-checkbox">
+                                                            <input type="checkbox" name="worker_comp_ins_year" value="4" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row">
+                                                                    <span class="custom-control-description">3 years</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                        <label class="custom-control custom-block custom-checkbox">
+                                                            <input type="checkbox" name="worker_comp_ins_year" value="5" class="custom-control-input form-check-input">
+                                                            <div class="custom-control-label-wrap">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <div class="indicator-desc-row">
+                                                                    <span class="custom-control-description">More than 3 years</span>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-8">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" id="save_continue9"  onClick="validateWorkInsuranceFormStep9();">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //Step 9 Ends -->
+
+                        <!-- Step 10 Starts -->
+                        <div class="section-wrapper" id="step-10">
+                            <div class="section-header">
+                                <h1>How many workers' compensation claims or work-related injuries has the business had in the past 3 years?</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2">
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Please Enter Last 3 Years Injuries</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Last 3 Years Injuries</label>
+                                                                <input type="number" min="0" class="form-field__input" name="past_three_year_injury" id="past_three_year_injury">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-9">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="step-11">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 10 Starts -->
+
+                        <!-- Step 11 Starts -->
+                        <div class="section-wrapper" id="step-11">
+                            <div class="section-header">
+                                <h1>Of those claims or work-related injuries, how many happened in the last 12 months?</h1>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item">
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src="/web_assets/assets/icons/web/ic_business_insurance.png" width="90" class="question-icon mb-2">
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">Please Enter Last 12 Years Injuries</h2>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Last 12 Years Injuries</label>
+                                                                <input type="number" min="0" class="form-field__input" name="past_twelve_year_injury" id="past_twelve_year_injury">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="section-page-question mt-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <svg class=" question-icon mb-2" width="113" height="82" viewBox="0 0 249.81 180"><title>Asset 10</title><rect x="179" y="142" width="29" height="5" fill="none"></rect><rect x="67" y="126" width="41" height="33" fill="none"></rect><rect x="63" y="76" width="17" height="25" fill="none"></rect><rect x="135" y="142" width="29" height="5" fill="none"></rect><rect x="135" y="126" width="29" height="5" fill="none"></rect><rect x="135" y="134" width="29" height="5" fill="none"></rect><rect x="35" y="126" width="21" height="43" fill="none"></rect><rect x="179" y="134" width="29" height="5" fill="none"></rect><rect x="179" y="126" width="29" height="5" fill="none"></rect><path d="M17.65,93,66.29,34.59l49.06,58.87a1.49,1.49,0,0,0,1.15.54h108a1.51,1.51,0,0,0,1.36-.87,1.49,1.49,0,0,0-.21-1.59l-50-60A1.49,1.49,0,0,0,174.5,31H65.43l-.08,0-50,60A1.5,1.5,0,1,0,17.65,93Z" fill="#21ce99"></path><path d="M203.4,33a1.46,1.46,0,0,0,.84.26,1.51,1.51,0,0,0,1.24-.65L212.06,23a1.5,1.5,0,0,0-2.48-1.69L203,30.93A1.5,1.5,0,0,0,203.4,33ZM43.68,12.71a1.49,1.49,0,0,0,1.38.91,1.59,1.59,0,0,0,.59-.12,1.5,1.5,0,0,0,.78-2L41.88.91a1.5,1.5,0,1,0-2.75,1.18ZM133.5,162h32a1.5,1.5,0,0,0,0-3H135v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,133.5,162Zm1.5-36h29v5H135Zm0,8h29v5H135Zm0,8h29v5H135Zm106.5,35H223V102.5a1.5,1.5,0,0,0-3,0V177H123V102.5a1.5,1.5,0,0,0-3,0V177H23v-5H57.5a1.5,1.5,0,0,0,1.5-1.5v-46a1.5,1.5,0,0,0-1.5-1.5h-24a1.5,1.5,0,0,0-1.5,1.5V169H23V103L68.65,48.26a1.5,1.5,0,0,0-2.3-1.92l-46,55.2a1.48,1.48,0,0,0-.35,1V177H1.5a1.5,1.5,0,0,0,0,3h240a1.5,1.5,0,0,0,0-3ZM35,126H56v43H35ZM249.78,72A1.5,1.5,0,0,0,248,70.82l-9.1,2a1.5,1.5,0,0,0,.32,3,1.24,1.24,0,0,0,.33,0l9.1-2A1.5,1.5,0,0,0,249.78,72ZM177.5,162h32a1.5,1.5,0,0,0,0-3H179v-9h30.5a1.5,1.5,0,0,0,1.5-1.5v-24a1.5,1.5,0,0,0-1.5-1.5h-32a1.5,1.5,0,0,0-1.5,1.5v36A1.5,1.5,0,0,0,177.5,162Zm1.5-36h29v5H179Zm0,8h29v5H179Zm0,8h29v5H179ZM1.57,54l7.08,2.53a1.5,1.5,0,0,0,1-2.83L2.58,51.15a1.5,1.5,0,0,0-1,2.83ZM64,124.5v36a1.5,1.5,0,0,0,1.5,1.5h44a1.5,1.5,0,0,0,1.5-1.5v-36a1.5,1.5,0,0,0-1.5-1.5h-44A1.5,1.5,0,0,0,64,124.5Zm3,1.5h41v33H67ZM60,74.5v28a1.5,1.5,0,0,0,1.5,1.5h20a1.5,1.5,0,0,0,1.5-1.5v-28A1.5,1.5,0,0,0,81.5,73h-20A1.5,1.5,0,0,0,60,74.5ZM63,76H80v25H63Z" fill="#181717"></path></svg>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div  class="element question-wrap ">
+                                                    <div class="question-header">
+                                                        <h2 class="question-text">We'd like to know who to thank!</h2>
+                                                    </div>
+                                                    <div class="dropdown-select-wrap ">
+                                                        <div class="dropdown-select dropdown">
+                                                            <span aria-haspopup="true" aria-expanded="false" class="dropdown-select-header completed">
+                                                                    <label class="dropdown-label" for="yearYear-0Input-0">We'd like to know who to thank!></label>
+                                                                    <input id="HearAboutUsList_input" data-cy="year-0Input" type="text" name="hear_about_us" class="form-control completed" placeholder="Hear About Us" value="">
+                                                                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                    <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                    </svg>
+                                                            </span>
+                                                            <div class="dropdown-menu" id="HearAboutUsList">
+                                                                <div class="item">Online ad on a website</div>
+                                                                <div class="item">Podcast/Radio ad</div>
+                                                                <div class="item">Hulu ad</div>
+                                                                <div class="item">Reffered by a friend</div>
+                                                                <div class="item">Another insurance website</div>
+                                                                <div class="item">Search engine (Google, Bing, etc.)</div>
+                                                                <div class="item">TV ad</div>
+                                                                <div class="item">Facebook ad</div>
+                                                                <div class="item">Other</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="navigation-buttons p-0">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-10">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit" class="btn-rounded btn-continue btn btn-primary">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 10 Starts -->
+                    </div>
+                </form>
+            </section>
+            <aside class="right-summary-rail d-xl-block d-none"></aside>
+        </div>
+        <% include ../../partials/footer.ejs%>
+    </body>
+</html>

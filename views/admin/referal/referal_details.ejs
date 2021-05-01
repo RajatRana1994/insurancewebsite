@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Referal Details</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="<?php echo base_url('dashboard'); ?>">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Referal Details</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header p-2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <ul class="nav nav-pills">
+                                                    <li class="nav-item"><a class="nav-link active" href="#referByDetails" data-toggle="tab">Refer By Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#referToDetails" data-toggle="tab">Refer To Details</a></li>
+                                                </ul>
+                                            </div>
+                                            <%
+                                            var created_at = new Date(parseInt(res.created_at));
+                                            var month = created_at.getMonth()+1;
+                                            var referal_date = created_at.getFullYear()+'-'+month+'-'+created_at.getDate()
+                                            %>
+                                        </div>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <!-- Refer By Details -->
+                                            <div class="active tab-pane" id="referByDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>User UID</th>
+                                                            <td><%= res.local_storage_uid %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>First Name</th>
+                                                            <td><%= res.first_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Last Name</th>
+                                                            <td><%= res.last_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Phone Number</th>
+                                                            <td><%= res.phone_number %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Email</th>
+                                                            <td><%= res.email %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Referal Date</th>
+                                                            <td><%= moment(referal_date).format('DD MMM, YYYY') %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Refer To Details -->
+                                            <div class="tab-pane" id="referToDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <th>#</th>
+                                                        <th>First Name</th>
+                                                        <th>Last Name</th>
+                                                        <th>Email</th>
+                                                        <th>Phone Number</th>
+                                                     </thead>
+                                                    <tbody>
+                                                        <% res.referToArr.forEach(function(row, i) { %>
+                                                            <tr>
+                                                                <td><%= i+1 %></td>
+                                                                <td><%= row.first_name %></td>
+                                                                <td><%= row.last_name %></td>
+                                                                <td><%= row.email %></td>
+                                                                <td><%= row.phone_number %></td>
+                                                            </tr>
+                                                        <% }) %>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   

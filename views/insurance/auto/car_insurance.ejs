@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../../partials/head.ejs%>
+        <style>
+            .header{
+                background-color: #f9f8f4;
+                position: fixed;
+                z-index: 9999;
+                width: 100%;
+            }
+            #step-1 .section-page-header {
+                background: linear-gradient(180deg,#f9f8f4,rgba(249,248,244,0));
+                width: calc(100% - 34rem);
+                z-index: 1030;
+                position: fixed;
+                top: 6.25rem;
+            }
+
+            .middle-section{
+                flex: 1 1;
+            }
+            .middle-section .section-wrapper {
+                margin-bottom: 50px;
+                padding-right: 3rem;
+                padding-left: 3.75rem;
+                position: relative;
+            }
+            .question-counter {
+                border: 1px solid #0a0c0e;
+                border-radius: 100%;
+                flex: 0 0 25px;
+                font-weight: 400;
+                margin-right: .75rem;
+                text-align: center;
+                height: 25px;
+                width: 25px;
+            }   
+            .question-header {
+                display: flex;
+                margin-bottom: 2rem;
+            }
+            .question-wrap > .form-group {
+                margin: 0;
+            }
+            .question-counter.complete {
+                background-color: #02a38a;
+                background-position: 50%;
+                background-repeat: no-repeat;
+                background-size: 70% 70%;
+                border-color: #02a38a;
+                background-image: url(/web_assets/assets/img/svg/tick-white.svg);
+            }
+            .question-header {
+                display: flex;
+                margin-bottom: 2rem;
+            }
+            .question-wrap .vehicle-select {
+                margin-right: 0;
+                margin-left: 0;
+                width: 100%;
+            }
+            .question-text {
+                color: #34393f;
+                font-size: 1.375rem;
+                letter-spacing: 0;
+                line-height: 1.875rem;
+                text-align: left;
+            }
+            .question{
+                display: none;
+            }
+            .active-question .question{
+                display: block;
+            }
+            .active-question .question-wrap{
+                padding-bottom: 2rem;
+            }
+
+            .scroll-wrap {
+                max-height: 100vh;
+                overflow-x: hidden;
+                overflow-y: auto;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+                height: calc(100vh - 6.5rem);
+                width: 100%;
+            }
+            .section-header {
+                margin-bottom: 10px;
+            }
+            .navigation-buttons.section-page-appear-active, 
+            .navigation-buttons.section-page-enter-active, 
+            .section-page-questions.section-page-appear-active, 
+            .section-page-questions.section-page-enter-active {
+                animation: slideUpVH .6s ease-out;
+                animation-delay: .2s;
+            }
+            .section-page-questions {
+                margin-top: 3rem;
+            }
+            #step-1 .section-page-questions {
+                margin-top: 8rem;
+            }
+            .legal-content, .legal-copy {
+                margin: 5rem auto 2.5rem;
+                max-width: 500px;
+            }
+        </style>
+    </head>
+    <body>
+        <% include ../../partials/header.ejs%>
+        <div class="main">
+            <div class="dot-nav d-none d-md-flex" role="navigation">
+                <div class="dot-nav-item active" id="snVehiclesBtn">
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">VEHICLES</span>
+                </div>
+                <div class="dot-nav-item" id="snDriversBtn">
+                    <span class="nav-marker-line"></span>
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">DRIVERS</span>
+                </div>
+                <div class="dot-nav-item" id="snResultsBtn">
+                    <span class="nav-marker-line"></span>
+                    <span class="nav-dot"></span>
+                    <span class="nav-label">RESULTS</span>
+                </div>
+            </div>
+            <section class="middle-section">
+                <form id="carInsuranceForm" action="" method="post">
+                    <div id="scroll-container" class="scroll-wrap">
+                        <div class="section-wrapper active" id="step-1">
+                            <div class="section-page-header">
+                                <div class="row">
+                                    <div class="col align-items-center">
+                                        <section class="section-header">
+                                            <h2 class="section-title mini">We’ll make this fast &amp; simple.</h2>
+                                        </section>
+                                    </div>
+                                    <div class="col-auto" style="display: none;">
+                                        <button class="summary-tab" style="border: 0;background: 0;" type="button">
+                                            <svg width="16" height="16" viewBox="0 0 16 16">
+                                            <rect x="1" y="2" width="14" height="2"></rect>
+                                            <rect x="1" y="7" width="8" height="2"></rect>
+                                            <rect x="1" y="12" width="14" height="2"></rect>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item active-question">
+                                    <div class="question">
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Let's add your vehicle.</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="vehicle-select">
+                                                            <div class="dropdown-select-wrap">
+                                                                <div class="dropdown-select dropdown">
+                                                                    <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                                        <label class="dropdown-label" for="yearYear-0Input-0">Vehicle year</label>
+                                                                        <input id="YearList_input" name="year[]" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select Year" value="">
+                                                                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                        <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="YearList" data-function-name="MakeList">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown-select-wrap ">
+                                                                <div class="dropdown-select dropdown">
+                                                                    <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                                        <label class="dropdown-label" for="yearYear-0Input-0">Vehicle make</label>
+                                                                        <input id="MakerList_input" name="maker[]" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select Maker" value="">
+                                                                               <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                        <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <div class="dropdown-menu" tabindex="-1" role="menu" aria-hidden="true" id="MakerList" data-function-name="ModelList">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown-select-wrap ">
+                                                                <div class="dropdown-select dropdown">
+                                                                    <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                                        <label class="dropdown-label" for="yearYear-0Input-0">Vehicle model<span class="sr-only">. Type to search for a Vehicle model, or arrow down to navigate the prefilled options.</span></label>
+                                                                        <input id="ModelList_input" name="model[]" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select Model" value="">
+                                                                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                        <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <div class="dropdown-menu" tabindex="-1" role="menu" aria-hidden="true"  id="ModelList" data-function-name="TrimList"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown-select-wrap ">
+                                                                <div class="dropdown-select dropdown">
+                                                                    <span aria-haspopup="true" aria-expanded="false" class="dropdown-select-header completed">
+                                                                        <label class="dropdown-label" for="yearYear-0Input-0">Vehicle trim<span class="sr-only">. Type to search for a Vehicle model, or arrow down to navigate the prefilled options.</span></label>
+                                                                        <input id="TrimList_input" name="trim[]" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select Trim" value="">
+                                                                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                        <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <div class="dropdown-menu" tabindex="-1" role="menu" aria-hidden="true" id="TrimList">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="section-page-question-item">
+                                    <div class="question-wrap">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="question-header">
+                                                    <span class="question-counter"><span>2</span></span>
+                                                    <div>
+                                                        <h3 class="question-text">Need to add another vehicle?</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div name="vehicles-2" class="form-group">
+                                                    <label class="custom-control custom-block custom-checkbox">
+                                                        <input type="checkbox" name="add_another_vehicle" id="add_another_vehicle" class="custom-control-input form-check-input">
+                                                        <div class="custom-control-label-wrap">
+                                                            <span class="custom-control-indicator"></span>
+                                                            <div class="indicator-desc-row"><span class="custom-control-description">Yes, add another vehicle.</span></div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Let's add your vehicle.</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="vehicle-select">
+                                                            <div class="dropdown-select-wrap">
+                                                                <div class="dropdown-select dropdown">
+                                                                    <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                                        <label class="dropdown-label" for="yearYear-0Input-0">Vehicle year</label>
+                                                                        <input id="YearList1_input" name="year[]" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select Year" value="">
+                                                                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                        <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="YearList1" data-function-name="MakeList1">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown-select-wrap ">
+                                                                <div class="dropdown-select dropdown">
+                                                                    <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                                        <label class="dropdown-label" for="yearYear-0Input-0">Vehicle make</label>
+                                                                        <input id="MakerList1_input" name="maker[]" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select Maker" value="">
+                                                                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                        <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <div class="dropdown-menu" tabindex="-1" role="menu" aria-hidden="true" id="MakerList1" data-function-name="ModelList1">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown-select-wrap ">
+                                                                <div class="dropdown-select dropdown">
+                                                                    <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                                        <label class="dropdown-label" for="yearYear-0Input-0">Vehicle model<span class="sr-only">. Type to search for a Vehicle model, or arrow down to navigate the prefilled options.</span></label>
+                                                                        <input id="ModelList1_input" name="model[]" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select Model" value="">
+                                                                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                        <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <div class="dropdown-menu" tabindex="-1" role="menu" aria-hidden="true" id="ModelList1" data-function-name="TrimList1">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown-select-wrap ">
+                                                                <div class="dropdown-select dropdown">
+                                                                    <span aria-haspopup="true" aria-expanded="false" class="dropdown-select-header completed">
+                                                                        <label class="dropdown-label" for="yearYear-0Input-0">Vehicle trim<span class="sr-only">. Type to search for a Vehicle model, or arrow down to navigate the prefilled options.</span></label>
+                                                                        <input id="TrimList1_input" name="trim[]" data-cy="year-0Input" type="text" class="form-control completed" placeholder="Select Trim" value="">
+                                                                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                        <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <div class="dropdown-menu" tabindex="-1" role="menu" aria-hidden="true" id="TrimList1">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="navigation-buttons d-flex justify-content-end">
+                                    <button type="button" id="save_continue1" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" onClick="validatecarInsuranceFormStep1();">
+                                        <span>
+                                            <span>Save &amp; continue</span>
+                                            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                            <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-wrapper" id="step-2">
+                            <div class="section-page-header">
+                                <div class="row">
+                                    <div class="col align-items-center">
+                                        <section class="section-header">
+                                            <h2 class="section-title mini">Tell us about your vehicle.</h2>
+                                        </section>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button class="summary-tab" style="border: 0;background: 0;" type="button">
+                                            <svg width="16" height="16" viewBox="0 0 16 16">
+                                            <rect x="1" y="2" width="14" height="2"></rect>
+                                            <rect x="1" y="7" width="8" height="2"></rect>
+                                            <rect x="1" y="12" width="14" height="2"></rect>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item active-question">
+                                    <div class="question">
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Do you own or lease?</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div data-cy="radio_form" class="form-group-radiobox stacked form-group">
+                                                            <label for="ownership-0-0" data-cy="ownership-0RadioButton" class="custom-control custom-block custom-radio">
+                                                                <input id="ownership-0-0" name="vehicle_lease" type="radio" class="custom-control-input form-check-input" value="1" checked="">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Own - paid in full</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="ownership-2-0" data-cy="ownership-0RadioButton" class="custom-control custom-block custom-radio">
+                                                                <input id="ownership-2-0" name="vehicle_lease" type="radio" class="custom-control-input form-check-input" value="2">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Own - making payments</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="ownership-1-0" data-cy="ownership-0RadioButton" class="custom-control custom-block custom-radio">
+                                                                <input id="ownership-1-0" name="vehicle_lease" type="radio" class="custom-control-input form-check-input" value="3">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Lease</span></div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">What do you mostly use your car for?</h3>
+                                                                <p>Most drivers choose "Personal/Commuting.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group-radiobox stacked form-group">
+                                                            <label for="primary_use-0-0" data-cy="primary_use-0RadioButton" class="custom-control custom-block custom-radio">
+                                                                <input id="primary_use-0-0" name="vehicle_use_for" type="radio" class="custom-control-input form-check-input" value="1" checked="">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Personal/Commuting</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="primary_use-1-0" data-cy="primary_use-0RadioButton" class="custom-control custom-block custom-radio">
+                                                                <input id="primary_use-1-0" name="vehicle_use_for" type="radio" class="custom-control-input form-check-input" value="2">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Pleasure</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="primary_use-4-0" data-cy="primary_use-0RadioButton" class="custom-control custom-block custom-radio">
+                                                                <input id="primary_use-4-0" name="vehicle_use_for" type="radio" class="custom-control-input form-check-input" value="3">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Farm</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="primary_use-2-0" data-cy="primary_use-0RadioButton" class="custom-control custom-block custom-radio">
+                                                                <input id="primary_use-2-0" name="vehicle_use_for" type="radio" class="custom-control-input form-check-input" value="4">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Business/Rideshare</span></div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">How many miles do you drive?</h3>
+                                                                <p>Most drivers average 11,000 miles per year.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-6">
+                                                                <div class="form-field text-left">
+                                                                    <div class="form-field__control">
+                                                                        <label class="form-field__label">Estimated mileage</label>
+                                                                        <input type="text" class="form-field__input" name="estimated_mileage" value="" id="mileage">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-md-6">
+                                                                <div class="dropdown-select-wrap">
+                                                                    <div class="dropdown-select dropdown">
+                                                                        <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                                            <label class="dropdown-label" for="yearYear-0Input-0">Frequency</label>
+                                                                            <input id="Perlist_input" name="frequency" data-cy="year-0Input" type="text" class="form-control completed" placeholder="per pear" value="">
+                                                                            <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                            <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                            </svg>
+                                                                        </span>
+                                                                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="Perlist">
+                                                                            <div class="item">per day</div>
+                                                                            <div class="item">per week</div>
+                                                                            <div class="item">per month</div>
+                                                                            <div class="item">per year</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Navifation Buttons -->
+                            <div class="navigation-buttons">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-1">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button id="save_continue2" type="button" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" onClick="validatecarInsuranceFormStep2();">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //Navifation Buttons -->
+                        </div>
+                        <div class="section-wrapper" id="step-3">
+                            <div class="section-page-header">
+                                <div class="row">
+                                    <div class="col align-items-center">
+                                        <section class="section-header">
+                                            <h2 class="section-title mini">Next, let's add your drivers.</h2>
+                                        </section>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button class="summary-tab" style="border: 0;background: 0;" type="button">
+                                            <svg width="16" height="16" viewBox="0 0 16 16">
+                                            <rect x="1" y="2" width="14" height="2"></rect>
+                                            <rect x="1" y="7" width="8" height="2"></rect>
+                                            <rect x="1" y="12" width="14" height="2"></rect>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item active-question">
+                                    <div class="question">
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Tell us a little about yourself.</h3>
+                                                                <p>We take your privacy seriously and your information is always secure with us.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="">
+                                                            <div class="form-field text-left">
+                                                                <div class="form-field__control">
+                                                                    <label class="form-field__label">First Name</label>
+                                                                    <input type="text" name="first_name" id="first_name" value="" class="form-field__input">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-field text-left">
+                                                                <div class="form-field__control">
+                                                                    <label class="form-field__label">Last Name</label>
+                                                                    <input type="text" name="last_name" id="last_name" value="" class="form-field__input">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-field text-left">
+                                                                <div class="form-field__control">
+                                                                    <label class="form-field__label">Birthdate</label>
+                                                                    <input type="text" name="dob" id="dob" value="" placeholder="" class="form-field__input birthdate">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-8 col-12">
+                                                                    <div class="form-field text-left">
+                                                                        <div class="form-field__control">
+                                                                            <label class="form-field__label">Address</label>
+                                                                            <input type="text" name="phone_number" id="phone_number" value="" class="form-field__input">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4 col-12">
+                                                                    <div class="form-field text-left">
+                                                                        <div class="form-field__control">
+                                                                            <label class="form-field__label">Unit #</label>
+                                                                            <input type="text" name="unit" id="unit" value="" class="form-field__input">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-field text-left">
+                                                                <div class="form-field__control">
+                                                                    <label class="form-field__label">Zip code</label>
+                                                                    <input type="number" class="form-field__input" name="zipcode" id="zipcode">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Navifation Buttons -->
+                            <div class="navigation-buttons">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="step-2">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" id="save_continue3" class="btn-rounded btn-continue btn btn-primary step-btn" show-step="" onClick="validatecarInsuranceFormStep3();">
+                                                <span>
+                                                    <span>Save &amp; continue</span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //Navifation Buttons -->
+                        </div>
+                        <div class="section-wrapper" id="step-4">
+                            <div class="section-page-header">
+                                <div class="row">
+                                    <div class="col align-items-center">
+                                        <section class="section-header">
+                                            <h2 class="section-title mini">Tell us about your drivers.</h2>
+                                        </section>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button class="summary-tab" style="border: 0;background: 0;" type="button">
+                                            <svg width="16" height="16" viewBox="0 0 16 16">
+                                            <rect x="1" y="2" width="14" height="2"></rect>
+                                            <rect x="1" y="7" width="8" height="2"></rect>
+                                            <rect x="1" y="12" width="14" height="2"></rect>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section-page-questions">
+                                <div class="section-page-question-item active-question">
+                                    <div class="question">
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">What's your gender?</h3>
+                                                                <p>Please select the gender listed on your driver's license.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group-radiobox form-group">
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-6">
+                                                                    <label for="gender-0-0" class="custom-control custom-block custom-radio">
+                                                                        <input id="gender-0-0" name="gender" type="radio" class="custom-control-input form-check-input" value="1">
+                                                                        <div class="custom-control-label-wrap">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <div class="indicator-desc-row"><span class="custom-control-description">Male</span></div>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-6">
+                                                                    <label for="gender-1-0" class="custom-control custom-block custom-radio">
+                                                                        <input id="gender-1-0" name="gender" type="radio" class="custom-control-input form-check-input" value="2">
+                                                                        <div class="custom-control-label-wrap">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <div class="indicator-desc-row"><span class="custom-control-description">Female</span></div>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">What's your marital status?</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div  class="form-group-radiobox stacked form-group">
+                                                            <label for="marital_status-0-0" data-cy="marital_status-0RadioButton" class="custom-control custom-block custom-radio">
+                                                                <input id="marital_status-0-0" name="marital_status" type="radio" class="custom-control-input form-check-input" value="1">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Single</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="marital_status-1-0" data-cy="marital_status-0RadioButton" class="custom-control custom-block custom-radio">
+                                                                <input id="marital_status-1-0" name="marital_status" type="radio" class="custom-control-input form-check-input" value="2" checked="">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Married</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="marital_status-2-0" data-cy="marital_status-0RadioButton" class="custom-control custom-block custom-radio">
+                                                                <input id="marital_status-2-0" name="marital_status" type="radio" class="custom-control-input form-check-input" value="3">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Divorced</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="marital_status-3-0" data-cy="marital_status-0RadioButton" class="custom-control custom-block custom-radio">
+                                                                <input id="marital_status-3-0" name="marital_status" type="radio" class="custom-control-input form-check-input" value="4">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Widowed</span></div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Do you own or rent your home?</h3>
+                                                                <p class="question-byline">Select "Other" if you live with a family member or are not listed on a lease agreement.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group-radiobox stacked form-group">
+                                                            <label for="residence_ownership-0-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="residence_ownership-0-0" name="residence_ownership" type="radio" class="custom-control-input form-check-input" value="1">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Own home</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="residence_ownership-1-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="residence_ownership-1-0" name="residence_ownership" type="radio" class="custom-control-input form-check-input" value="2">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Own condo</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="residence_ownership-2-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="residence_ownership-2-0" name="residence_ownership" type="radio" class="custom-control-input form-check-input" value="3">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Rent</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="residence_ownership-3-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="residence_ownership-3-0" name="residence_ownership" type="radio" class="custom-control-input form-check-input" value="4">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Other</span></div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">What's your credit score?</h3>
+                                                                <p class="question-byline">Select "Good" if you are unsure.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group-radiobox stacked form-group">
+                                                            <label for="credit_score-0-0" class="custom-control custom-block custom-radio">
+                                                                <input id="credit_score-0-0" name="credit_score" type="radio" class="custom-control-input form-check-input" value="1">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Excellent (720+)</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="credit_score-1-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="credit_score-1-0" name="credit_score" type="radio" class="custom-control-input form-check-input" value="2">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Good (680-719)</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="credit_score-2-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="credit_score-2-0" name="credit_score" type="radio" class="custom-control-input form-check-input" value="3">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Average (580-679)</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="credit_score-4-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="credit_score-4-0" name="credit_score" type="radio" class="custom-control-input form-check-input" value="4">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Poor (Below 580)</span></div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">What's your highest level of education?</h3>
+                                                                <p class="question-byline">Select the highest level you have attempted.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group-radiobox stacked form-group">
+                                                            <label for="education-4-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="education-4-0" name="education" type="radio" class="custom-control-input form-check-input" value="Doctoral degree">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Doctoral degree</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="education-3-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="education-3-0" name="education" type="radio" class="custom-control-input form-check-input" value="Master's degree">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Master's degree</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="education-2-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="education-2-0" name="education" type="radio" class="custom-control-input form-check-input" value="Bachelor's degree">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Bachelor's degree</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="education-1-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="education-1-0" name="education" type="radio" class="custom-control-input form-check-input" value="High school diploma / GED">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">High school diploma / GED</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label for="education-0-0"  class="custom-control custom-block custom-radio">
+                                                                <input id="education-0-0" name="education" type="radio" class="custom-control-input form-check-input" value="No diploma">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">No diploma</span></div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Are you currently insured?</h3>
+                                                                <p class="question-byline">Select "Yes" if you have active car insurance as of today.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group-radiobox form-group">
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-6">
+                                                                    <label for="currently_insured-0-0"  class="custom-control custom-block custom-radio">
+                                                                        <input id="currently_insured-0-0" name="currently_insured" type="radio" class="custom-control-input form-check-input" value="no">
+                                                                        <div class="custom-control-label-wrap">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <div class="indicator-desc-row"><span class="custom-control-description">No</span></div>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-6">
+                                                                    <label for="currently_insured-1-0"  class="custom-control custom-block custom-radio">
+                                                                        <input id="currently_insured-1-0" name="currently_insured" type="radio" class="custom-control-input form-check-input" value="yes">
+                                                                        <div class="custom-control-label-wrap">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <div class="indicator-desc-row"><span class="custom-control-description">Yes</span></div>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Who is your current carrier?</h3>
+                                                                <p class="question-byline">Select "Other" if your company is not on the list.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="dropdown-select-wrap ">
+                                                            <div class="dropdown-select dropdown">
+                                                                <span aria-haspopup="true" aria-expanded="false" class="dropdown-select-header completed">
+                                                                    <label class="dropdown-label" for="yearYear-0Input-0">Vehicle trim<span class="sr-only">. Type to search for a Vehicle model, or arrow down to navigate the prefilled options.</span></label>
+                                                                    <input id="CarrierList_input" data-cy="year-0Input" name="carrier" type="text" class="form-control completed" placeholder="Select Carrier" value="">
+                                                                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                    <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                    </svg>
+                                                                </span>
+                                                                <div class="dropdown-menu" id="CarrierList">
+                                                                    <div class="item">Test1</div>
+                                                                    <div class="item">Test2</div>
+                                                                    <div class="item">Test3</div>
+                                                                    <div class="item">Test4</div>
+                                                                    <div class="item">Test5</div>
+                                                                    <div class="item">Test6</div>
+                                                                    <div class="item">Other</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header m-0">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Any accidents or tickets in the last 3 years?</h3>
+                                                                <p class="question-byline">Select "Yes" for no-fault accidents and weather or vandalism incidents.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group-radiobox form-group">
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-6">
+                                                                    <label for="acc-1" class="custom-control custom-block custom-radio">
+                                                                        <input id="acc-1" name="accident" type="radio" class="custom-control-input form-check-input" value="yes">
+                                                                        <div class="custom-control-label-wrap">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <div class="indicator-desc-row"><span class="custom-control-description">Yes</span></div>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-6">
+                                                                    <label for="acc-2" class="custom-control custom-block custom-radio">
+                                                                        <input id="acc-2" name="accident" type="radio" class="custom-control-input form-check-input" value="no">
+                                                                        <div class="custom-control-label-wrap">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <div class="indicator-desc-row"><span class="custom-control-description">No</span></div>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="question-wrap incidents-question-wrap" style="display:none;" id="accidentDiv">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <h3 class="question-text fake-counter-space">How many of these did you have?</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="violations-wrap">
+                                                            <div class="violations-categories">
+                                                                <div class="violation-type d-flex align-items-center justify-content-between">
+                                                                    <div>
+                                                                        <h6 class="violation-title">Accidents that were my fault</h6>
+                                                                    </div>
+                                                                    <div class="counter-wrap d-flex align-items-center">
+                                                                        <button type="button" id="icRemoveBtn2" class="decrease-count btn-counter btn-circle-lg btn btn-primary"><span>-</span></button>
+                                                                        <div class="incident-count" id="accident_by_my_fault">0</div>
+                                                                        <button type="button" id="icAddBtn2" class="increase-count btn-counter btn-circle-lg btn btn-primary"><span>+</span></button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="violation-type d-flex align-items-center justify-content-between">
+                                                                    <div>
+                                                                        <h6 class="violation-title">Accidents that were not my fault</h6>
+                                                                    </div>
+                                                                    <div class="counter-wrap d-flex align-items-center">
+                                                                        <button type="button" id="icRemoveBtn24" class="decrease-count btn-counter btn-circle-lg btn btn-primary"><span>-</span></button>
+                                                                        <div class="incident-count" id="accident_not_by_my_fault">0</div>
+                                                                        <button type="button" id="icAddBtn24" class="increase-count btn-counter btn-circle-lg btn btn-primary"><span>+</span></button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="violation-type d-flex align-items-center justify-content-between">
+                                                                    <div>
+                                                                        <h6 class="violation-title">Claims</h6>
+                                                                        <span class="text-gray text-sm">(Weather, vandalism, uninsured motorist damage, etc.)</span>
+                                                                    </div>
+                                                                    <div class="counter-wrap d-flex align-items-center">
+                                                                        <button type="button" id="icRemoveBtn25" class="decrease-count btn-counter btn-circle-lg btn btn-primary"><span>-</span></button>
+                                                                        <div class="incident-count" id="claims">0</div>
+                                                                        <button type="button" id="icAddBtn25" class="increase-count btn-counter btn-circle-lg btn btn-primary"><span>+</span></button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="violation-type d-flex align-items-center justify-content-between">
+                                                                    <div>
+                                                                        <h6 class="violation-title">Tickets/Violations</h6>
+                                                                    </div>
+                                                                    <div class="counter-wrap d-flex align-items-center">
+                                                                        <button type="button" id="icRemoveBtnViolations" class="decrease-count btn-counter btn-circle-lg btn btn-primary"><span>-</span></button>
+                                                                        <div class="incident-count" id="tickets_violation">0</div>
+                                                                        <button type="button" id="icAddBtnViolations" class="increase-count btn-counter btn-circle-lg btn btn-primary"><span>+</span></button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Where would you like to receive a copy of your quotes?</h3>
+                                                                <p class="question-byline">Honestly, we won't spam you.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-field text-left">
+                                                            <div class="form-field__control">
+                                                                <label class="form-field__label">Email</label>
+                                                                <input type="email" class="form-field__input" id="quote_receive_email" name="quote_receive_email" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Do any of these discounts apply?</h3>
+                                                                <p class="question-byline">Check all that apply (optional).</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="custom-block-wrap form-group">
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" name="discount_apply[]" class="custom-control-input form-check-input" value="1">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Employed full time</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" name="discount_apply[]" class="custom-control-input form-check-input" value="2">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Active military or veteran</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" name="discount_apply[]" class="custom-control-input form-check-input" value="3">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Pay in full at the start of policy</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" name="discount_apply[]" class="custom-control-input form-check-input" value="4">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Set auto-pay from my bank account</span></div>
+                                                                </div>
+                                                            </label>
+                                                            <label class="custom-control custom-block custom-checkbox">
+                                                                <input type="checkbox" name="discount_apply[]" class="custom-control-input form-check-input" value="5">
+                                                                <div class="custom-control-label-wrap">
+                                                                    <span class="custom-control-indicator"></span>
+                                                                    <div class="indicator-desc-row"><span class="custom-control-description">Go paperless</span></div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">How did you hear about us?</h3>
+                                                                <p class="question-byline">We'd like to know who to thank! (optional)</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="dropdown-select-wrap ">
+                                                            <div class="dropdown-select dropdown">
+                                                                <span aria-haspopup="true" aria-expanded="false" class="dropdown-select-header completed">
+                                                                    <label class="dropdown-label" for="yearYear-0Input-0">We'd like to know who to thank!</label>
+                                                                    <input id="HearAboutUsList_input" data-cy="year-0Input" type="text" name="hear_about_us" class="form-control completed" placeholder="Hear About Us" value="">
+                                                                    <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                                    <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                                    </svg>
+                                                                </span>
+                                                                <div class="dropdown-menu" id="HearAboutUsList">
+                                                                    <div class="item">Online ad on a website</div>
+                                                                    <div class="item">Podcast/Radio ad</div>
+                                                                    <div class="item">Hulu ad</div>
+                                                                    <div class="item">Reffered by a friend</div>
+                                                                    <div class="item">Another insurance website</div>
+                                                                    <div class="item">Search engine (Google, Bing, etc.)</div>
+                                                                    <div class="item">TV ad</div>
+                                                                    <div class="item">Facebook ad</div>
+                                                                    <div class="item">Other</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section-page-header">
+                                <div class="row">
+                                    <div class="col align-items-center">
+                                        <section class="section-header">
+                                            <span>(Driver 2 of 2)</span>
+                                            <h2 class="section-title mini">Next, add your Driver.</h2>
+                                            <p>Most insurance companies require you to add your driver to the policy, and this information helps us get you an accurate quote.</p>
+                                        </section>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button class="summary-tab" style="border: 0;background: 0;" type="button">
+                                            <svg width="16" height="16" viewBox="0 0 16 16">
+                                            <rect x="1" y="2" width="14" height="2"></rect>
+                                            <rect x="1" y="7" width="8" height="2"></rect>
+                                            <rect x="1" y="12" width="14" height="2"></rect>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section-page-questions section-page-questions-2 mt-3">
+                                <div class="section-page-question-item active-question">
+                                    <div class="question">
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Tell us a little about them.</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="">
+                                                            <div class="form-field text-left">
+                                                                <div class="form-field__control">
+                                                                    <label class="form-field__label">First Name</label>
+                                                                    <input type="text" name="spouse_first_name[]" class="form-field__input">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-field text-left">
+                                                                <div class="form-field__control">
+                                                                    <label class="form-field__label">Last Name</label>
+                                                                    <input type="text" name="spouse_last_name[]" class="form-field__input">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-field text-left">
+                                                                <div class="form-field__control">
+                                                                    <label class="form-field__label">Birthdate</label>
+                                                                    <input type="text" name="spouse_dob[]" class="form-field__input birthdate">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-8 col-12">
+                                                                    <div class="form-field text-left">
+                                                                        <div class="form-field__control">
+                                                                            <label class="form-field__label">Phone Number</label>
+                                                                            <input type="number" name="spouse_phone_number[]" class="form-field__input">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4 col-12">
+                                                                    <div class="form-field text-left">
+                                                                        <div class="form-field__control">
+                                                                            <label class="form-field__label">Unit #</label>
+                                                                            <input type="text" name="spouse_unit[]" class="form-field__input">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">What's their gender?</h3>
+                                                                <p>Please select the gender listed on their driver's license.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group-radiobox form-group">
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-6">
+                                                                    <label for="spouse-gender-0-0" class="custom-control custom-block custom-radio">
+                                                                        <input id="spouse-gender-0-0" name="spouse_gender[]" type="radio" class="custom-control-input form-check-input" value="1">
+                                                                        <div class="custom-control-label-wrap">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <div class="indicator-desc-row"><span class="custom-control-description">Male</span></div>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-6">
+                                                                    <label for="spouse-gender-1-0" class="custom-control custom-block custom-radio">
+                                                                        <input id="spouse-gender-1-0" name="spouse_gender[]" type="radio" class="custom-control-input form-check-input" value="2">
+                                                                        <div class="custom-control-label-wrap">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <div class="indicator-desc-row"><span class="custom-control-description">Female</span></div>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--div class="section-page-question">
+                                            <div class="question-wrap">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="question-header">
+                                                            <span class="question-counter complete"></span>
+                                                            <div>
+                                                                <h3 class="question-text">Need to add another driver?</h3>
+                                                                <p>You will be able to add up to a total of 4 drivers.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group-radiobox form-group">
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-6">
+                                                                    <label for="another_2" class="custom-control custom-block custom-radio">
+                                                                        <input id="another_2" name="add_another_driver" type="radio" class="custom-control-input form-check-input" value="0">
+                                                                        <div class="custom-control-label-wrap">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <div class="indicator-desc-row"><span class="custom-control-description">Yes</span></div>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-12 col-md-6">
+                                                                    <label for="another_1" class="custom-control custom-block custom-radio">
+                                                                        <input id="another_1" name="add_another_driver " type="radio" class="custom-control-input form-check-input" value="1">
+                                                                        <div class="custom-control-label-wrap">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <div class="indicator-desc-row"><span class="custom-control-description">No</span></div>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Navifation Buttons -->
+                            <div class="navigation-buttons">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" class="btn-link text-brand-gray btn step-btn" show-step="3">
+                                            <span>
+                                                <svg class="icon-fill-gray-md" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                <path d="M5.64323855,1.44095875 C5.63327336,1.5761889 5.57387376,1.70323808 5.47609569,1.79845875 L1.92895284,5.36429209 L12.4125243,5.36429209 C12.7253541,5.36429209 12.9789528,5.61463953 12.9789528,5.92345875 C12.9789528,6.23227798 12.7253541,6.48262542 12.4125243,6.48262542 L1.92895284,6.48262542 L5.47609569,10.0484588 C5.61304607,10.2102173 5.64619688,10.4342638 5.56183715,10.6279341 C5.47747742,10.8216043 5.28994803,10.9519749 5.07680998,10.9651254 C4.9266272,10.9654991 4.78265206,10.9060032 4.67752427,10.8001254 L0.164667123,6.31762542 C-0.0548890411,6.09954018 -0.0548890411,5.74737733 0.164667123,5.52929209 L0.164667123,5.52929209 L4.67752427,1.04679209 C4.84138359,0.911597503 5.06833981,0.878871678 5.26452524,0.962149928 C5.46071065,1.04542809 5.59277439,1.23055323 5.60609569,1.44095875 L5.64323855,1.44095875 L5.64323855,1.44095875 Z" fill="#6e6f70"></path>
+                                                </svg>
+                                                <span class="text-dark">Back</span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="d-flex justify-content-end">
+                                            <input type="hidden" name="accident_by_my_fault_input" id="accident_by_my_fault_input" value="">
+                                            <input type="hidden" name="accident_not_by_my_fault_input" id="accident_not_by_my_fault_input" value="">
+                                            <input type="hidden" name="claims_input" id="claims_input" value="">
+                                            <input type="hidden" name="tickets_violation_input" id="tickets_violation_input" value="">
+                                            <button type="button" class="btn-rounded btn-continue btn btn-primary" onClick="validatecarInsuranceFormStep4();">
+                                                <span>
+                                                    <span style="font-size: 24px;margin-right: 5px;">Show My Quotes </span>
+                                                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="13.98" height="11" viewBox="0 0 13.98 11">
+                                                    <path d="M7.9,10.39A.61.61,0,0,1,8.08,10L11.9,6.11H.61a.61.61,0,0,1,0-1.22H11.9L8.08,1a.61.61,0,0,1,.43-1,.6.6,0,0,1,.43.18L13.8,5.07h0a.61.61,0,0,1,0,.86h0L8.94,10.82a.61.61,0,0,1-1-.43Z" fill="#fff" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //Navifation Buttons -->
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <% include ../../partials/footer.ejs%>
+        <script>
+        $(document).ready(function () {
+            $.get('/api/getYearList', function (data) {
+                if (data != "") {
+                    var min = data.min_year;
+                    var max = data.max_year;
+                    var item = '';
+                    while (min <= max) {
+                        item += '<div class="item">' + min + '</div>';
+                        min = min + 1;
+                    }
+                    $('#YearList').html(item);
+                }
+            });
+            $("#add_another_vehicle").click(function() {
+                if($(this).is(":checked")) {
+                    $.get('/api/getYearList', function (data) {
+                        if (data != "") {
+                            var min = data.min_year;
+                            var max = data.max_year;
+                            var item = '';
+                            while (min <= max) {
+                                item += '<div class="item">' + min + '</div>';
+                                min = min + 1;
+                            }
+                            $('#YearList1').html(item);
+                        }
+                });
+                } else {
+                    $('#YearList1').html('');
+                }
+            });
+        });
+        </script>
+        <script>
+            $('.decrease-count').click(function(){
+                var dec_count = $(this).siblings('div').html();
+                dec_count = parseInt(dec_count);
+                dec_count = (dec_count == 0) ? dec_count : dec_count-1;
+                $(this).siblings('div').html(dec_count);
+                var input_id = $(this).siblings('div').attr('id')+'_input';
+                $('#'+input_id).val(dec_count);
+            });
+            $('.increase-count').click(function(){
+                var inc_count = $(this).siblings('div').html();
+                inc_count = parseInt(inc_count);
+                inc_count = inc_count+1;
+                $(this).siblings('div').html(inc_count);
+                var input_id = $(this).siblings('div').attr('id')+'_input';
+                $('#'+input_id).val(inc_count);
+            });
+            $('#acc-1').change(function(){
+                $('#accidentDiv').css('display','block');
+            });
+            $('#acc-2').change(function(){
+                $('#accidentDiv').css('display','none');
+            });
+        </script>
+    </body>
+</html>

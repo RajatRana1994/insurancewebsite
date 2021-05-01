@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="110px" height="48px" viewBox="0 0 110 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ic_selected</title>
+    <desc>Created with Sketch.</desc>
+    <g id="panel-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-6">
+            <path d="M8,8 L110,8 L110,48 L8,48 C3.581722,48 5.41083001e-16,44.418278 0,40 L0,16 C-5.41083001e-16,11.581722 3.581722,8 8,8 Z" id="Rectangle" fill="#D9354E"></path>
+            <polygon id="Path-2" fill="#A71F34" points="110 8 100 0.496535161 100 8"></polygon>
+        </g>
+    </g>
+</svg>

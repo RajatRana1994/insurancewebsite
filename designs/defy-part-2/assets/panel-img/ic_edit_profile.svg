@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ic_edit_profile</title>
+    <desc>Created with Sketch.</desc>
+    <g id="panel-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-5" transform="translate(1.000000, 1.000000)">
+            <circle id="Oval" stroke="#FFFFFF" fill="#F36365" cx="10" cy="10" r="10"></circle>
+            <g id="Group-9" transform="translate(5.000000, 5.000000)" fill="#FFFFFF">
+                <polygon id="Rectangle" transform="translate(5.441748, 4.558252) rotate(-315.000000) translate(-5.441748, -4.558252) " points="4.30163074 0.852869057 6.58186613 0.852869057 6.58186613 8.26363407 4.30163074 8.26363407"></polygon>
+                <polygon id="Rectangle-Copy-2" transform="translate(8.666488, 1.333512) rotate(-315.000000) translate(-8.666488, -1.333512) " points="7.52637055 1.04848233 9.80660594 1.04848233 9.80660594 1.61854118 7.52637055 1.61854118"></polygon>
+                <polygon id="Rectangle-Copy" transform="translate(1.612370, 8.387630) rotate(-315.000000) translate(-1.612370, -8.387630) " points="0.472252212 7.2475124 2.7524876 7.2475124 1.61153486 9.52774779"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

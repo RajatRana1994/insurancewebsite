@@ -1,0 +1,7 @@
+::ffff:106.202.81.73 - - [14/Apr/2020:07:04:59 +0000] "GET /web_assets/assets/css/ajax-loader.gif HTTP/1.1" 404 176 "http://13.58.125.166:3000/web_assets/assets/css/slick-theme.css" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"
+::ffff:106.202.81.73 - - [14/Apr/2020:07:04:59 +0000] "GET /web_assets/assets/css/fonts/slick.woff HTTP/1.1" 404 177 "http://13.58.125.166:3000/web_assets/assets/css/slick-theme.css" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"
+::ffff:106.202.81.73 - - [14/Apr/2020:07:05:01 +0000] "GET /web_assets/assets/css/fonts/slick.ttf HTTP/1.1" 404 176 "http://13.58.125.166:3000/web_assets/assets/css/slick-theme.css" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36"
+::ffff:92.118.161.45 - - [14/Apr/2020:12:55:27 +0000] "GET / HTTP/1.1" 200 93369 "-" "NetSystemsResearch studies the availability of various services across the internet. Our website is netsystemsresearch.com"
+::ffff:209.17.96.178 - - [14/Apr/2020:19:03:34 +0000] "GET / HTTP/1.0" 200 93369 "-" "Mozilla/5.0 (compatible; Nimbostratus-Bot/v1.3.2; http://cloudsystemnetworks.com)"
+::ffff:209.17.96.98 - - [14/Apr/2020:19:14:43 +0000] "GET / HTTP/1.1" 200 93369 "-" "Mozilla/5.0 (compatible; Nimbostratus-Bot/v1.3.2; http://cloudsystemnetworks.com)"
+::ffff:198.108.67.48 - - [14/Apr/2020:20:05:47 +0000] "GET / HTTP/1.1" 200 93369 "-" "-"

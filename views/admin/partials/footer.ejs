@@ -1,0 +1,53 @@
+<!-- Main Footer -->
+<footer class="main-footer">
+    <strong>Copyright &copy; <span id="footerYear"></span> <a href="/admin/dashboard">Defy Insurance</a>.</strong>
+    All rights reserved.
+</footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="/admin_assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/admin_assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/admin_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+<!-- AdminLTE App -->
+<script src="/admin_assets/js/adminlte.js"></script>
+<!-- DataTables -->
+<script src="/admin_assets/plugins/datatables/jquery.dataTables.js"></script>
+<script src="/admin_assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+<script src="/admin_assets/plugins/moment/moment.min.js"></script>
+<!-- PAGE SCRIPTS -->
+<script src="/admin_assets/js/dashboard.js"></script>
+<script src="/admin_assets/js/validation.js"></script>
+<script>
+$(document).ready(function(){
+    $("#footerYear").html(new Date().getFullYear());
+});
+</script>
+<script>
+    CKEDITOR.replace('description');
+    CKEDITOR.replace('short_description');
+</script>
+<script>
+$(function () {
+    $('#videos_list').DataTable();
+    $('#make_list').DataTable();
+    $('#model_list').DataTable();
+    $('#trim_list').DataTable();
+    $('#users_list').DataTable();
+    $('#insurance_list').DataTable();
+    $('#contact_us_list').DataTable();
+    $('#referal_list').DataTable();
+    $('#blogs_list').DataTable();
+    $('#teams_list').DataTable();
+    $('#other_insurance_list').DataTable();
+    $('#ebook_list').DataTable();
+    $('#Business_Category_list').DataTable();
+});
+</script>

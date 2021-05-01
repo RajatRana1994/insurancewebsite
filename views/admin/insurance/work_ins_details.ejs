@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Insurance Details</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="<?php echo base_url('dashboard'); ?>">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Insurance Details</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header p-2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <ul class="nav nav-pills">
+                                                    <li class="nav-item"><a class="nav-link active" href="#basicDetails" data-toggle="tab">Basic Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#workDetails" data-toggle="tab">Work Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#insuranceOtherDetails" data-toggle="tab">Insurance Other Details</a></li>
+                                                </ul>
+                                            </div>
+                                            <%
+                                            var created_at = new Date(parseInt(ins_res.created_at));
+                                            var month = created_at.getMonth()+1;
+                                            var ins_date = created_at.getFullYear()+'-'+month+'-'+created_at.getDate()
+                                            if(ins_res.status == 0)
+                                                    var ins_status = '<span class="badge bg-primary">Pending</span>';
+                                            if(ins_res.status == 1)
+                                                var ins_status = '<span class="badge bg-warning">Under Review</span>';
+                                            %>
+                                        </div>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <!-- Basic Details -->
+                                            <div class="active tab-pane" id="basicDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>User UID</th>
+                                                            <td><%= ins_res.local_storage_uid %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Zipcode</th>
+                                                            <td><%= ins_res.zipcode %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Business Details -->
+                                            <div class="tab-pane" id="workDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Business Name</th>
+                                                            <td><%= ins_res.business_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>First Name</th>
+                                                            <td><%= ins_res.first_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Last Name</th>
+                                                            <td><%= ins_res.last_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Phone Number</th>
+                                                            <td><%= ins_res.phone_number %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Email</th>
+                                                            <td><%= ins_res.email %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Established Year</th>
+                                                            <td><%= ins_res.business_establish_year %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Business Legal Structure</th>
+                                                            <td><%= (ins_res.business_legal_structure == 1) ? 'Corporation' : (ins_res.business_legal_structure == 2) ? 'Partnership' : (ins_res.business_legal_structure == 3) ? 'Limited Liability Company' : (ins_res.business_legal_structure == 4) ? 'Sole Proprietorship' : 'Other' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Number of Full Time Employee</th>
+                                                            <td><%= ins_res.full_time_employee %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Number of Part Time Employee</th>
+                                                            <td><%= ins_res.part_time_employee %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>total amount you expect to pay your employees over the next 12 months, excluding owners, officers, and partnersd</th>
+                                                            <td><%= ins_res.yearly_emp_amt %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Type of Work</th>
+                                                            <td><%= ins_res.type_of_work %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Does your business currently have workers' compensation insurance</th>
+                                                            <td><%= ins_res.worker_comp_ins %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>How long has your business continuously had workers' compensation insurance</th>
+                                                            <td><%= (ins_res.worker_comp_ins_year == 1) ? 'Less than a year' : (ins_res.worker_comp_ins_year == 2) ? '1 Year' : (ins_res.worker_comp_ins_year == 3) ? '2 Years' : (ins_res.worker_comp_ins_year == 4) ? '3 Years' : 'More than 3 years' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>How many workers' compensation claims or work-related injuries has the business had in the past 3 years</th>
+                                                            <td><%= ins_res.past_three_year_injury %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Of those claims or work-related injuries, how many happened in the last 12 months</th>
+                                                            <td><%= ins_res.past_twelve_year_injury %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Insurance Other Details -->
+                                            <div class="tab-pane" id="insuranceOtherDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Insurance Status</th>
+                                                            <td><%- ins_status %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Insurance Creation Date</th>
+                                                            <td><%= moment(ins_date).format('DD MMM, YYYY') %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   

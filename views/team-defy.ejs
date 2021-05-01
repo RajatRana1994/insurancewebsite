@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <% include partials/head.ejs%>
+</head>
+
+<body>
+    <% include partials/header.ejs%>
+
+        <section class="py-5 about-defy">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-header text-center mb-3 mb-md-5">
+                            <h2 class="section-title mb-2">Meet Our Team</h2>
+                        </div>
+                    </div>
+                    <% teamMembers.forEach(function(member, i) { %>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <a href="/team-details-defy/<%-member.id%>" class="leadership_box ">
+                                <div class="leadership_img ">
+                                    <img src="<%= member.image %>" alt=" " width="100% ">
+                                </div>
+                                <div class="leadership_text ">
+                                    <h4>
+                                        <%-member.name %>
+                                    </h4>
+                                    <p>
+                                        <%=member.designation %>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Ends -->
+        <% include partials/footer.ejs%>
+</body>
+
+</html>

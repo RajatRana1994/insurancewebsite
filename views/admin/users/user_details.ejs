@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">User Details</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="<?php echo base_url('dashboard'); ?>">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">User Details</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header p-2">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <ul class="nav nav-pills">
+                                                    <li class="nav-item"><a class="nav-link active" href="#basicDetails" data-toggle="tab">Basic</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#addressDetails" data-toggle="tab">Address</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#eduDetails" data-toggle="tab">Education</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#familyMemberDetails" data-toggle="tab">Family Member</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#workDetails" data-toggle="tab">Work</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#petDetails" data-toggle="tab">Pets</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#assetDetails" data-toggle="tab">asset</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#vehicleDetails" data-toggle="tab">Vehicle</a></li>
+                                                </ul>
+                                            </div>
+                                            <% 
+                                            if(user_result.status == 0)
+                                                var acc_status = '<span class="badge bg-warning">Deactivate</span>';
+                                            if(user_result.status == 1)
+                                                var acc_status = '<span class="badge bg-success">Activate</span>'; 
+                                            if(user_result.phone_is_verified == 0)
+                                                var phone_verified_status = '<span class="badge bg-warning">Pending</span>';
+                                            if(user_result.phone_is_verified == 1)
+                                                var phone_verified_status = '<span class="badge bg-success">Verified</span>';
+                                            %>
+                                            <div class="col-md-3" style="margin-top: 10px;">
+                                                <b>Account Status : </b> <%- acc_status %>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <!-- Basic Details -->
+                                            <div class="active tab-pane" id="basicDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <td><%= user_result.name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Email</th>
+                                                            <td><%= user_result.email %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Country Code</th>
+                                                            <td><%= user_result.country_code %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Phone Number</th>
+                                                            <td><%= user_result.phone_number %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Registration Date</th>
+                                                            <td><%= moment(user_result.signup_date).format('DD MMM, YYYY') %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Phone Number Verfied Status</th>
+                                                            <td><%- phone_verified_status %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Address Details -->
+                                            <div class="tab-pane" id="addressDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Address</th>
+                                                    <th>Latitude</th>
+                                                    <th>Longitude</th>
+                                                    <th>Type</th>
+                                                    <th>Build Year</th>
+                                                    <th>Image</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if(user_result.otherInfo.user_address.length > 0){
+                                                            user_result.otherInfo.user_address.forEach(function(item, i) { %>
+                                                        <tr>
+                                                            <td><%= i+1 %></td>
+                                                            <td><%= item.name %></td>
+                                                            <td><%= item.address %></td>
+                                                            <td><%= (item.latitude) ? item.latitude : 'N/A' %></td>
+                                                            <td><%= (item.longitude) ? item.longitude : 'N/A' %></td>
+                                                            <td><%= (item.type == 1) ? 'Owner' : 'Rent' %></td>
+                                                            <td><%= item.build_year %></td>
+                                                            <td>
+                                                                <% if(item.image != ''){ %>
+                                                                <a href="<%= item.image %>" target="_blank">
+                                                                    <img src="<%= item.image %>" height="50px" width="50px">
+                                                                </a>
+                                                                <% }else{ %>
+                                                                N/A
+                                                                <% } %>
+                                                            </td>
+                                                        </tr>
+                                                        <% })
+                                                        } else{ %>
+                                                        <tr><td colspan="8" class="text-center">No data found</td></tr>
+                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Education Details -->
+                                            <div class="tab-pane" id="eduDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                    <th>#</th>
+                                                    <th>School/University</th>
+                                                    <th>Degree</th>
+                                                    <th>Start Year</th>
+                                                    <th>End Year</th>
+                                                    <th>Place</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if(user_result.otherInfo.user_education.length > 0){
+                                                            user_result.otherInfo.user_education.forEach(function(item, i) { %>
+                                                        <tr>
+                                                            <td><%= i+1 %></td>
+                                                            <td><%= item.school_college %></td>
+                                                            <td><%= item.degree %></td>
+                                                            <td><%= item.start_year %></td>
+                                                            <td><%= item.end_year %></td>
+                                                            <td><%= item.place %></td>
+                                                        </tr>
+                                                        <% })
+                                                        }else{ %>
+                                                        <tr><td colspan="6" class="text-center">No data found</td></tr>
+                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Family Member Details -->
+                                            <div class="tab-pane" id="familyMemberDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Relation</th>
+                                                    <th>DOB</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if(user_result.otherInfo.user_family_member.length > 0){
+                                                            user_result.otherInfo.user_family_member.forEach(function(item, i) { %>
+                                                        <tr>
+                                                            <td><%= i+1 %></td>
+                                                            <td><%= item.name %></td>
+                                                            <td><%= item.relation %></td>
+                                                            <td><%= moment(item.dob).format('DD MMM, YYYY') %></td>
+                                                        </tr>
+                                                        <% })
+                                                        }else{ %>
+                                                        <tr><td colspan="4" class="text-center">No data found</td></tr>
+                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Work Details -->
+                                            <div class="tab-pane" id="workDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                    <th>#</th>
+                                                    <th>Title</th>
+                                                    <th>Company Name</th>
+                                                    <th>Currently Working</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                    <th>Location</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if(user_result.otherInfo.user_work.length > 0){
+                                                            user_result.otherInfo.user_work.forEach(function(item, i) { %>
+                                                        <tr>
+                                                            <td><%= i+1 %></td>
+                                                            <td><%= item.title %></td>
+                                                            <td><%= item.company_name %></td>
+                                                            <td><%= (item.currently_working == 1) ? 'Yes' : 'No'  %></td>
+                                                            <td><%= moment(item.start_date).format('DD MMM, YYYY') %></td>
+                                                            <td><%= (item.currently_working == 0) ? moment(item.end_date).format('DD MMM, YYYY') : 'N/A' %></td>
+                                                            <td><%= item.location %></td>
+                                                        </tr>
+                                                        <% })
+                                                        }else{ %>
+                                                        <tr><td colspan="7" class="text-center">No data found</td></tr>
+                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Pets Details -->
+                                            <div class="tab-pane" id="petDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                    <th>#</th>
+                                                    <th>Pet Type</th>
+                                                    <th>Breed</th>
+                                                    <th>Pet Name</th>
+                                                    <th>Pet DOB</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if(user_result.otherInfo.user_pets.length > 0){
+                                                            user_result.otherInfo.user_pets.forEach(function(item, i) { %>
+                                                        <tr>
+                                                            <td><%= i+1 %></td>
+                                                            <td><%= item.pet_type %></td>
+                                                            <td><%= item.breed %></td>
+                                                            <td><%= item.pet_name %></td>
+                                                            <td><%= moment(item.pet_dob).format('DD MMM, YYYY') %></td>
+                                                        </tr>
+                                                        <% })
+                                                        }else{ %>
+                                                        <tr><td colspan="5" class="text-center">No data found</td></tr>
+                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Asset Details -->
+                                            <div class="tab-pane" id="assetDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                    <th>#</th>
+                                                    <th>Asset Name</th>
+                                                    <th>Type</th>
+                                                    <th>Brand</th>
+                                                    <th>Year</th>
+                                                    <th>Image</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if(user_result.otherInfo.user_assets.length > 0){
+                                                            user_result.otherInfo.user_assets.forEach(function(item, i) { %>
+                                                        <tr>
+                                                            <td><%= i+1 %></td>
+                                                            <td><%= item.asset_name %></td>
+                                                            <td><%= item.type %></td>
+                                                            <td><%= item.brand %></td>
+                                                            <td><%= item.year %></td>
+                                                            <td>
+                                                                <% if(item.image != ''){ %>
+                                                                <a href="<%= item.image %>" target="_blank">
+                                                                    <img src="<%= item.image %>" height="50px" width="50px">
+                                                                </a>
+                                                                <% }else{ %>
+                                                                N/A
+                                                                <% } %>
+                                                            </td>
+                                                        </tr>
+                                                        <% })
+                                                        }else{ %>
+                                                        <tr><td colspan="6" class="text-center">No data found</td></tr>
+                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Vehicle Details -->
+                                            <div class="tab-pane" id="vehicleDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                    <th>#</th>
+                                                    <th>Year</th>
+                                                    <th>Make</th>
+                                                    <th>Model</th>
+                                                    <th>Vehicle Usage</th>
+                                                    <th>Ownership</th>
+                                                    <th>VIN</th>
+                                                    <th>Miles Covered</th>
+                                                    <th>LIC Plate</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if(user_result.otherInfo.user_vehicle.length > 0){
+                                                            user_result.otherInfo.user_vehicle.forEach(function(item, i) { %>
+                                                        <tr>
+                                                            <td><%= i+1 %></td>
+                                                            <td><%= item.year %></td>
+                                                            <td><%= item.make %></td>
+                                                            <td><%= item.model %></td>
+                                                            <td><%= item.vehicle_usage %></td>
+                                                            <td><%= item.ownership %></td>
+                                                            <td><%= item.vin %></td>
+                                                            <td><%= item.miles_covered %></td>
+                                                            <td><%= item.lic_plate %></td>
+                                                        </tr>
+                                                        <% }) 
+                                                        }else{ %>
+                                                        <tr><td colspan="9" class="text-center">No data found</td></tr>
+                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   

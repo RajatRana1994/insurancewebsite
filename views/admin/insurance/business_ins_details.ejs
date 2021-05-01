@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Insurance Details</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="<?php echo base_url('dashboard'); ?>">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Insurance Details</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header p-2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <ul class="nav nav-pills">
+                                                    <li class="nav-item"><a class="nav-link active" href="#basicDetails" data-toggle="tab">Basic Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#businessDetails" data-toggle="tab">Business Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#businessAddressDetails" data-toggle="tab">Business Address Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#mailingAddressDetails" data-toggle="tab">Mailing Address Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#insuranceOtherDetails" data-toggle="tab">Insurance Other Details</a></li>
+                                                </ul>
+                                            </div>
+                                            <%
+                                            var created_at = new Date(parseInt(ins_res.created_at));
+                                            var month = created_at.getMonth()+1;
+                                            var ins_date = created_at.getFullYear()+'-'+month+'-'+created_at.getDate()
+                                            if(ins_res.status == 0)
+                                                    var ins_status = '<span class="badge bg-primary">Pending</span>';
+                                            if(ins_res.status == 1)
+                                                var ins_status = '<span class="badge bg-warning">Under Review</span>';
+                                            %>
+                                        </div>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <!-- Basic Details -->
+                                            <div class="active tab-pane" id="basicDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>User UID</th>
+                                                            <td><%= ins_res.local_storage_uid %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Zipcode</th>
+                                                            <td><%= ins_res.zipcode %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Business Details -->
+                                            <div class="tab-pane" id="businessDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Business Type</th>
+                                                            <td><%= ins_res.business_type %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Business Classification(Industry Type)</th>
+                                                            <td><%= ins_res.industry_type %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Business Name</th>
+                                                            <td><%= ins_res.business_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>What state is your business based in</th>
+                                                            <td><%= ins_res.state_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>How many employees (including owner)</th>
+                                                            <td><%= ins_res.no_of_employee %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Where do you do your work</th>
+                                                            <td><%= (ins_res.work_from == 1) ? 'Home' : (ins_res.work_from == 2) ? 'Rented property' : (ins_res.work_from == 3) ? 'Business-owned property' : 'Client sites' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Do you do any of the following</th>
+                                                            <td><%= (ins_res.provide_facility == 1) ? 'Transport valuable equipment (worth $500 or more) to jobs' : (ins_res.provide_facility == 2) ? 'Accept credit cards as a form of payment' : 'Store sensitive customer information' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>What types of vehicles are used</th>
+                                                            <td><%= (ins_res.vehicle_type == 1) ? 'Business-owned vehicles' : (ins_res.vehicle_type == 2) ? 'Employee-owned vehicles' : (ins_res.vehicle_type == 3) ? 'Rented vehicles' : 'My personal vehicles' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>First Name</th>
+                                                            <td><%= ins_res.first_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Last Name</th>
+                                                            <td><%= ins_res.last_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Phone Number</th>
+                                                            <td><%= ins_res.phone_number %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Email</th>
+                                                            <td><%= ins_res.email %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Business Structure</th>
+                                                            <td><%= ins_res.business_structure_val %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Date Established</th>
+                                                            <td><%= ins_res.establish_date %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Number of business owned vehicles</th>
+                                                            <td><%= ins_res.business_owned_vehicle %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Projected annual revenue</th>
+                                                            <td>$<%= ins_res.annual_revenue %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Annual payroll (+owner)</th>
+                                                            <td>$<%= ins_res.annual_payroll %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Value of business personal property</th>
+                                                            <td>$<%= ins_res.personal_property_value %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Website</th>
+                                                            <td>$<%= ins_res.website %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Business Address Details -->
+                                            <div class="tab-pane" id="businessAddressDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Address Line1</th>
+                                                            <td><%= (ins_res.address_line1) ? ins_res.address_line1 : 'NA' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Address Line2</th>
+                                                            <td><%= (ins_res.address_line2) ? ins_res.address_line2 : 'NA' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>State</th>
+                                                            <td><%= ins_res.address_state_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>City</th>
+                                                            <td><%= ins_res.city %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Zipcode</th>
+                                                            <td><%= ins_res.address_zipcode %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Mailing Address Details -->
+                                            <div class="tab-pane" id="mailingAddressDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Address Line1</th>
+                                                            <td><%= (ins_res.mailing_address_line1) ? ins_res.mailing_address_line1 : 'NA' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Address Line2</th>
+                                                            <td><%= (ins_res.mailing_address_line2) ? ins_res.mailing_address_line2 : 'NA' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>State</th>
+                                                            <td><%= ins_res.mailing_address_state_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>City</th>
+                                                            <td><%= ins_res.mailing_city %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Zipcode</th>
+                                                            <td><%= ins_res.mailing_address_zipcode %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Insurance Other Details -->
+                                            <div class="tab-pane" id="insuranceOtherDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Insurance Status</th>
+                                                            <td><%- ins_status %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Insurance Creation Date</th>
+                                                            <td><%= moment(ins_date).format('DD MMM, YYYY') %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   

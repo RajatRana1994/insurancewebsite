@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>ic_card</title>
+    <desc>Created with Sketch.</desc>
+    <g id="panel-assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-6" transform="translate(3.000000, 3.000000)">
+            <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="18" height="14" rx="2"></rect>
+            <rect id="Rectangle" stroke="#B93070" x="10.5" y="2.5" width="5" height="5" rx="1"></rect>
+            <path d="M2.48394846,8.5 L6.52282284,8.5" id="Line-3" stroke="#B93070" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M2.48394846,11.5 L12.0428798,11.5" id="Line-3-Copy" stroke="#B93070" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+    </g>
+</svg>

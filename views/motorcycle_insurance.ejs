@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <% include partials/head.ejs%>
+    </head>
+    <body>
+        <% include partials/header.ejs%>
+        <section class="section pt-5">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Motorcycle, RV, Trailer, Boat</h2>
+                </div>
+                <div class="row about justify-content-center">
+                    <div class="col-12">
+                        <div class="more_product_form_outer">
+                            <form class="form" method="post" id="motorCycleInsuranceForm">
+                                <div class="more_product_inner_heading subheading">
+                                    <h4>Contact info</h4>
+                                    <h5 class="pb-3">We need this information so we can get in touch with you about your quotes.</h5>
+                                </div>
+                                <div class="form-innner">
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">First Name</label>
+                                            <input type="text" class="form-field__input" name="first_name" id="first_name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Last Name</label>
+                                            <input type="text" class="form-field__input" name="last_name" id="last_name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Email</label>
+                                            <input type="email" class="form-field__input" name="email" id="email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Phone Number</label>
+                                            <input type="number" class="form-field__input" name="phone_number" id="phone_number" />
+                                        </div>
+                                    </div>
+
+                                    <div class="more_product_inner_heading subheading">
+                                        <h4>Address info</h4>
+                                        <h5 class="pb-3">We need this information so we can determine the best carriers for your area.</h5>
+                                    </div>
+
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Address line 1</label>
+                                            <input type="text" class="form-field__input" name="address_line1" id="address_line1" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">Address line 2</label>
+                                            <input type="text" class="form-field__input" name="address_line2" id="address_line2" />
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-select-wrap">
+                                        <div class="dropdown-select dropdown">
+                                            <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                <label class="dropdown-label" for="StateList_input">Select State</label>
+                                                <input id="StateList_input" type="text" class="form-control completed" data-id="" placeholder="Select State" value="">
+                                                <input id="state_id" name="state_id" type="hidden" value="">
+                                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                </svg>
+                                            </span>
+                                            <div class="dropdown-menu" id="StateList">
+                                                <% if(states.length > 0){
+                                                states.forEach(function(res, i) {
+                                                %>
+                                                <div class="item" data-id="<%= res.id %>"><%= res.name %></div>
+                                                <% }); 
+                                                } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">City</label>
+                                            <input type="text" class="form-field__input" name="city" id="city" />
+                                        </div>
+                                    </div>
+                                    <div class="form-field text-left">
+                                        <div class="form-field__control">
+                                            <label class="form-field__label">ZIP Code</label>
+                                            <input type="number" class="form-field__input" name="zipcode" id="zipcode" />
+                                        </div>
+                                    </div>
+
+                                    <div class="vehicles_form_outer">
+                                        <div class="more_product_inner_heading subheading">
+                                            <h4>Vehicles</h4>
+                                            <h5 class="pb-3">Tell us about the vehicles you'd like to insure.</h5>
+                                        </div>
+                                        <input type="hidden" name="no_of_div" id="no_of_div" value="1" class="form-field__input" />
+                                        <div id="vehicleDiv">
+                                            <div class="dropdown-select-wrap">
+                                                <div class="dropdown-select dropdown">
+                                                    <span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">
+                                                        <label class="dropdown-label">Type</label>
+                                                        <input id="VehicleList1_input" type="text" name="vehicle_type[]" class="form-control completed" placeholder="Select Vehicle" value="">
+                                                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">
+                                                        <polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>
+                                                        </svg>
+                                                    </span>
+                                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="VehicleList1">
+                                                        <div class="item">Motorcycle</div>
+                                                        <div class="item">RV</div>
+                                                        <div class="item">Trailer</div>
+                                                        <div class="item">Boat</div>
+                                                        <div class="item">Other</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-field">
+                                                <div class="form-field__control">
+                                                    <label  class="form-field__label">Message</label>
+                                                    <textarea class="form-field__textarea" name="message[]" id="message1"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-wrapper my-5 text-center">
+                                            <button class="btn btn-black" type="button" id="addAnotherBtn">+ Add More Vehicles</button>
+                                        </div>
+
+                                        <p><i>By clicking the button below, I give my electronic signature and consent to be called by Defy or receive text messages at this number regarding my inquiry. This consent is not required for purchase and can be revoked at any time. My telephone company may impose additional charges for text messages.</i></p>
+                                    </div>
+
+                                    <div class="btn-wrapper mt-5">
+                                        <button class="btn btn-green" type="button" onClick="validateMotorCycleInsuranceForm();">Find Plans</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Ends -->
+        <% include partials/footer.ejs%>
+        <script>
+        $(document).ready(function () {
+            $('#addAnotherBtn').click(function () {
+                var no_of_div = parseInt($('#no_of_div').val());
+                if (no_of_div >= 4) {
+                    alert("You can add maximum 4 vehicles");
+                } else {
+                    var vehicle = $("#VehicleList_input" + no_of_div).val();
+                    var message = $("#message" + no_of_div).val();
+                    
+                    if (vehicle == '' || message == '') {
+                        alert("Please fill all fields");
+                    } else {
+                        no_of_div = no_of_div + 1;
+                        var morediv = '<div class="dropdown-select-wrap">'+
+                                            '<div class="dropdown-select dropdown">'+
+                                                '<span aria-haspopup="true" aria-expanded="false" tabindex="-1" class="dropdown-select-header completed">'+
+                                                    '<label class="dropdown-label">Type</label>'+
+                                                    '<input id="VehicleList' + no_of_div + '_input" type="text" name="vehicle_type[]" class="form-control completed" placeholder="Select Vehicle" value="">'+
+                                                    '<svg class="" xmlns="http://www.w3.org/2000/svg" width="11.67" height="6.04" viewBox="0 0 11.67 6.04">'+
+                                                    '<polygon points="5.89 6.04 0 0.74 0.67 0 5.88 4.69 11 0 11.67 0.74 5.89 6.04" fill="#fff"></polygon>'+
+                                                    '</svg>'+
+                                                '</span>'+
+                                                '<div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" id="VehicleList' + no_of_div + '">'+
+                                                    '<div class="item">Motorcycle</div>'+
+                                                    '<div class="item">RV</div>'+
+                                                    '<div class="item">Trailer</div>'+
+                                                    '<div class="item">Boat</div>'+
+                                                    '<div class="item">Other</div>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="form-field">'+
+                                            '<div class="form-field__control">'+
+                                                '<label  class="form-field__label">Message</label>'+
+                                                '<textarea class="form-field__textarea" name="message[]" id="message' + no_of_div + '"></textarea>'+
+                                            '</div>'+
+                                        '</div>';
+                        $('#vehicleDiv').append(morediv);
+                        $('#no_of_div').val(no_of_div);
+
+                    }
+                }
+            });
+        });
+        </script>
+    </body>
+</html>

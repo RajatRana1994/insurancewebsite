@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ../partials/head.ejs %>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <% include ../partials/header.ejs %>
+            <% include ../partials/sidebar.ejs %>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Insurance Details</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="<?php echo base_url('dashboard'); ?>">
+                                            <i class="fa fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Insurance Details</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header p-2">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <ul class="nav nav-pills">
+                                                    <li class="nav-item"><a class="nav-link active" href="#basicDetails" data-toggle="tab">Basic Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#addressDetails" data-toggle="tab">Address Details</a></li>
+                                                    <li class="nav-item"><a class="nav-link" href="#otherDetails" data-toggle="tab">Other Details</a></li>
+                                                </ul>
+                                            </div>
+                                            <% 
+                                            var created_at = new Date(parseInt(ins_res.created_at));
+                                            var month = created_at.getMonth()+1;
+                                            var ins_date = created_at.getFullYear()+'-'+month+'-'+created_at.getDate()
+                                            if(ins_res.status == 0)
+                                                    var ins_status = '<span class="badge bg-primary">Pending</span>';
+                                            if(ins_res.status == 1)
+                                                var ins_status = '<span class="badge bg-warning">Under Review</span>';
+                                            %>
+                                            <div class="col-md-3">
+                                                <b>Insurance Status : </b> <%- ins_status %>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
+                                            <!-- Basic Details -->
+                                            <div class="active tab-pane" id="basicDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Insurance Type</th>
+                                                            <td><span class="badge bg-success">Renter</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>User UID</th>
+                                                            <td><%= ins_res.local_storage_uid %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>First Name</th>
+                                                            <td><%= ins_res.first_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Last Name</th>
+                                                            <td><%= ins_res.last_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Email</th>
+                                                            <td><%= ins_res.email %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Phone Number</th>
+                                                            <td><%= ins_res.phone_number %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Address Details -->
+                                            <div class="tab-pane" id="addressDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Address Line 1</th>
+                                                            <td><%= ins_res.address_line_1 %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Address Line 2</th>
+                                                            <td><%= (ins_res.address_line_2) ? ins_res.address_line_2 : 'N/A' %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>State</th>
+                                                            <td><%= ins_res.state_name %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>City</th>
+                                                            <td><%= ins_res.city %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Zipcode</th>
+                                                            <td><%= ins_res.zipcode %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!-- Other Details -->
+                                            <div class="tab-pane" id="otherDetails">
+                                                <table class="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Is this the address you would like to insure?</th>
+                                                            <td><%= ins_res.personal_property_amount %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Personal Property(How much personal property would you like to insure?)</th>
+                                                            <td><%= ins_res.insure_address %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Insurance Creation Date</th>
+                                                            <td><%= moment(ins_date).format('DD MMM, YYYY') %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <% include ../partials/footer.ejs %>
+    </body>
+</html>   
